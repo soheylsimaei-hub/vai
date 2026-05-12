@@ -1,16 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  /* VAI uses a slightly warmer navy with a deeper veterinary-clinical character */
-  --color-navy: #0F2540;
-  --color-navy-deep: #0A1B2F;
-  --color-navy-soft: #1A2F4D;
-  --color-ivory: #F5EFE3;
+  /* Foundation aligned to Academia Europa for family consistency */
+  --color-navy: #102341;
+  --color-navy-deep: #0E1B33;
+  --color-navy-soft: #1B2E50;
+  --color-ivory: #F4EEDF;
   --color-paper: #FAFAF6;
   --color-platinum: #D4CFC4;
   --color-platinum-soft: #ECE7DD;
+
+  /* Champagne — inherited institutional accent (used minimally on VAI) */
   --color-champagne: #B89863;
   --color-champagne-soft: #C8AC7E;
+
+  /* Teal — scientific accent unique to VAI */
+  --color-teal: #3E6E7A;
+  --color-teal-hover: #508593;
+  --color-teal-soft: #E5ECEE;
+
   --color-charcoal: #1B1B1B;
   --color-graphite: #3B3B3B;
   --color-muted: #6B6B6B;

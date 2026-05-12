@@ -159,8 +159,8 @@ const directions = [
           d: 'Selected workshops, intensives, masterclasses, or professional events may be delivered in person where direct interaction, practical demonstration, or focused group learning adds educational value.',
         },
       ].map((f) => (
-        <li class="border-l-2 border-champagne pl-6 py-1">
-          <div class="font-serif text-champagne text-xs tracking-[0.3em] mb-2">{f.n}</div>
+        <li class="border-l-2 border-teal pl-6 py-1">
+          <div class="font-serif text-teal text-xs tracking-[0.3em] mb-2">{f.n}</div>
           <h3 class="font-serif text-xl text-navy-deep mb-3">{f.t}</h3>
           <p class="text-graphite leading-relaxed text-[15px]">{f.d}</p>
         </li>
@@ -211,12 +211,12 @@ const directions = [
           cta: 'View on the flagship programme →',
         },
       ].map((a) => (
-        <li class="border-l-2 border-champagne pl-6 py-1">
-          <div class="font-serif text-champagne text-xs tracking-[0.3em] mb-2">{a.n}</div>
+        <li class="border-l-2 border-teal pl-6 py-1">
+          <div class="font-serif text-teal text-xs tracking-[0.3em] mb-2">{a.n}</div>
           <h3 class="font-serif text-xl text-navy-deep mb-3">{a.t}</h3>
           <p class="text-graphite leading-relaxed text-[15px] mb-3">{a.d}</p>
           {a.href && (
-            <a href={a.href} class="inline-block text-sm tracking-[0.14em] uppercase text-navy hover:text-champagne">{a.cta}</a>
+            <a href={a.href} class="inline-block text-sm tracking-[0.14em] uppercase text-navy hover:text-teal-hover">{a.cta}</a>
           )}
         </li>
       ))}
