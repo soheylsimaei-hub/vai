@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+
+const documentation = [
+  { t: 'Learning objectives', d: 'Defined per programme, in plain language, mapped to professional outcomes.' },
+  { t: 'Module structure', d: 'Sequenced modules with stated topics and teaching duration.' },
+  { t: 'Faculty profiles', d: 'Qualifications, experience, and declared interests of contributing educators.' },
+  { t: 'Evidence framework', d: 'Each major claim is graded against the VAI evidence hierarchy.' },
+  { t: 'Assessment components', d: 'Methods of assessment defined per programme and per level.' },
+  { t: 'Certificate criteria', d: 'Completion requirements stated in advance for each programme.' },
+  { t: 'References & versioning', d: 'Reference lists carry version dates and defined review cycles.' },
+];
+---
+<Base
+  title="CPD/CE Alignment & Professional Review · VAI"
+  description="VAI programmes are developed with professional review readiness in mind. Defined learning objectives, evidence-level distinctions, assessment components, and certificate criteria support CPD/CE alignment where applicable."
+>
+  <PageHero
+    eyebrow="Professional Review"
+    title="CPD/CE Alignment & Professional Review."
+    lede="VAI programmes are developed with professional review and CPD/CE alignment in mind. Each programme is designed with defined learning objectives, structured modules, evidence-level distinctions, assessment components, and certificate criteria."
+  />
+
+  <Section eyebrow="Our Approach" title="Designed for review, transparent on status.">
+    <div class="prose-editorial max-w-3xl">
+      <p>Every VAI programme is built to a documented academic standard. Where appropriate, selected programmes are submitted to relevant professional bodies for CPD/CE review. Any external recognition, approval, or credit allocation is communicated clearly on the corresponding programme page once formally granted.</p>
+    </div>
+  </Section>
+
+  <Section eyebrow="Review-Ready Documentation" title="What we maintain for every programme." tone="ivory">
+    <ul class="grid md:grid-cols-2 gap-x-12 gap-y-8 max-w-5xl">
+      {documentation.map((d) => (
+        <li>
+          <h3 class="font-serif text-xl text-navy-deep mb-2">{d.t}</h3>
+          <p class="text-graphite leading-relaxed">{d.d}</p>
+        </li>
+      ))}
+    </ul>
+  </Section>
+
+  <Section eyebrow="Bodies Under Consideration" title="Familiar with major European and international pathways.">
+    <div class="prose-editorial max-w-3xl">
+      <p>VAI develops programmes with familiarity to the review pathways used by major CPD/CE organisations in Europe and internationally. The status of any specific submission is communicated programme-by-programme as it evolves.</p>
+    </div>
+  </Section>
+
+  <Section eyebrow="How Recognition Is Communicated" tone="ivory">
+    <div class="prose-editorial max-w-3xl">
+      <p>Where CPD/CE recognition, credit allocation, or external approval is granted, the corresponding programme page is updated with the granting body, the credit allocation, and the period of validity. Where review is in progress, this is also stated.</p>
+    </div>
+  </Section>
+
+  <Section eyebrow="Contact for Institutional Review">
+    <div class="prose-editorial max-w-3xl">
+      <p>For CPD/CE review, academic documentation, faculty collaboration, or institutional partnership enquiries, please contact VAI's academic office.</p>
+      <p><a href="mailto:partnerships@vai.vet" class="font-serif text-xl md:text-2xl text-navy-deep hover:text-champagne transition-colors">partnerships@vai.vet</a></p>
+    </div>
+  </Section>
+</Base>

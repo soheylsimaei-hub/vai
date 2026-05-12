@@ -2,53 +2,72 @@
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import Section from '../components/Section.astro';
+
+const certificateTypes = [
+  {
+    t: 'Certificate of Attendance',
+    d: 'Confirms participation in a defined learning activity, such as a lecture series or seminar.',
+  },
+  {
+    t: 'Certificate of Completion',
+    d: 'Confirms completion of the required components of a structured programme.',
+  },
+  {
+    t: 'Certificate with Assessment',
+    d: 'Confirms completion of required components and successful participation in defined assessment activities.',
+  },
+];
 ---
 <Base
   title="Certificate Policy · VAI"
-  description="What a VAI certificate documents, and what it does not confer. Completion criteria, verification, and ethical claims."
+  description="VAI certificates document structured postgraduate professional learning. Certificate types, completion criteria, verification, and clarifications."
 >
   <PageHero
     eyebrow="Certificate Policy"
-    title="What a VAI Certificate Documents, and What It Does Not."
-    lede="Plain language on the meaning, scope, and limits of certificates issued by Veterinary Academy International."
+    title="Documenting Structured Postgraduate Professional Learning."
+    lede="VAI certificates are designed to document structured postgraduate professional learning according to the requirements of each programme."
   />
 
-  <Section eyebrow="What a VAI certificate documents">
+  <Section eyebrow="What VAI Certificates Document">
     <div class="prose-editorial max-w-3xl">
-      <p>A VAI certificate documents the completion of a defined postgraduate professional education programme. Each certificate identifies the programme, the issuing academy, the completion criteria met, the version of the programme, and the date of issue.</p>
+      <p>Each VAI certificate identifies the programme, the issuing academy, the completion criteria met, the version of the programme, and the date of issue. Certificate wording reflects the nature and scope of the programme it documents.</p>
     </div>
   </Section>
 
-  <Section eyebrow="What a VAI certificate does not confer" tone="ivory">
+  <Section eyebrow="Certificate Types" title="Three forms, used as appropriate." tone="ivory">
+    <ul class="grid md:grid-cols-3 gap-10 max-w-5xl">
+      {certificateTypes.map((c, i) => (
+        <li>
+          <div class="font-serif text-champagne text-xs tracking-[0.3em] mb-3">0{i + 1}</div>
+          <h3 class="font-serif text-xl text-navy-deep mb-3">{c.t}</h3>
+          <p class="text-graphite leading-relaxed">{c.d}</p>
+        </li>
+      ))}
+    </ul>
+  </Section>
+
+  <Section eyebrow="Completion Criteria">
     <div class="prose-editorial max-w-3xl">
-      <p>Unless explicitly stated and formally recognised by the relevant authority, a VAI certificate <strong class="text-navy-deep font-medium">does not confer specialist status, board certification, or state academic degree equivalence</strong>.</p>
+      <p>Each programme defines its own completion criteria. Components are stated in advance on the relevant programme page and may include module assessments, case-based exercises, reflective activities, and final knowledge checks.</p>
     </div>
   </Section>
 
-  <Section eyebrow="Completion criteria">
+  <Section eyebrow="External Recognition" title="Stated clearly where granted." tone="ivory">
     <div class="prose-editorial max-w-3xl">
-      <p>Certificate eligibility is tied to defined completion components, typically including module assessments, case-based exercises, and a final knowledge check. Components are stated in advance for each programme.</p>
+      <p>Where a programme carries CPD/CE recognition, credit allocation, or other external review status, this is stated on the corresponding programme page, with the granting body and the period of validity. Our approach to professional review is documented in detail on the <a href="/cpd-ce-alignment" class="text-navy-deep underline decoration-champagne underline-offset-4">CPD/CE Alignment</a> page.</p>
     </div>
   </Section>
 
-  <Section eyebrow="Verification" tone="ivory">
+  <Section eyebrow="Verification">
     <div class="prose-editorial max-w-3xl">
       <p>Certificate verification infrastructure is in development. Each certificate will carry a unique identifier verifiable through VAI's verification page.</p>
     </div>
   </Section>
 
-  <Section eyebrow="CPD/CE recognition">
+  <Section eyebrow="Clarification" title="Boundary of professional certificates." tone="ivory">
     <div class="prose-editorial max-w-3xl">
-      <p>Where applicable, selected programmes may be submitted to relevant professional bodies for CPD/CE review. <strong class="text-navy-deep font-medium">Any external recognition is communicated only after it has been formally granted.</strong></p>
-      <div class="mt-6">
-        <a href="/cpd-ce-status" class="inline-block text-sm tracking-[0.14em] uppercase text-navy hover:text-champagne">View CPD/CE Status →</a>
-      </div>
-    </div>
-  </Section>
-
-  <Section eyebrow="Ethical claims" tone="ivory">
-    <div class="prose-editorial max-w-3xl">
-      <p>VAI does not market certificates as equivalents to qualifications they are not. Programme outcomes are described in plain language, and the boundary between professional education and statutory qualification is preserved at all times.</p>
+      <p>Specialist status, board certification, and state academic degree equivalence are governed by relevant professional and regulatory bodies. Unless explicitly stated and formally recognised by the relevant authority, VAI certificates should not be interpreted as conferring these.</p>
+      <p>VAI is a postgraduate professional education academy under Academia Europa. Our certificates document structured professional learning; they are not, and are not represented as, regulatory qualifications.</p>
     </div>
   </Section>
 </Base>

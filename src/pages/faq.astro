@@ -1,0 +1,70 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+
+const faqs = [
+  {
+    q: 'Are VAI programmes CPD/CE accredited?',
+    a: 'Selected VAI programmes may be submitted for CPD/CE review where applicable. Each programme page states its current review or recognition status clearly. Our overall approach to professional review is described on the CPD/CE Alignment page.',
+  },
+  {
+    q: 'What does a VAI certificate mean?',
+    a: 'A VAI certificate documents completion of structured postgraduate professional learning according to the requirements of the specific programme. Each programme defines its own completion criteria in advance, and the certificate states what was completed and at what version of the programme.',
+  },
+  {
+    q: 'Does a VAI certificate make me a specialist?',
+    a: 'Specialist status is governed by relevant professional and regulatory bodies. VAI certificates document professional learning and do not replace formal specialist recognition unless explicitly stated and formally recognised by the relevant authority.',
+  },
+  {
+    q: 'Will VAI courses carry CPD/CE hours?',
+    a: 'Where CPD/CE hours or credits are formally recognised, they are stated on the relevant programme page, with the granting body and the period of validity. Programmes are developed with documentation suitable for professional review.',
+  },
+  {
+    q: 'Is VAI a university?',
+    a: 'VAI is not a university and does not issue state academic degrees. It is a postgraduate professional education academy under Academia Europa, focused on structured veterinary learning and professional development.',
+  },
+  {
+    q: 'Who develops VAI programmes?',
+    a: 'Programmes are developed under the leadership of Dr. Soheyl Simaei, in collaboration with experienced veterinary professionals, educators, and subject-matter experts. Faculty profiles are published alongside the programmes they contribute to.',
+  },
+  {
+    q: 'How does VAI grade evidence?',
+    a: 'VAI applies a four-level evidence hierarchy across its programmes: Strong Clinical Evidence, Emerging Clinical Evidence, Preclinical or Mechanistic Evidence, and Expert Hypothesis. Each major claim is graded so learners and reviewers see the basis of the content explicitly.',
+  },
+  {
+    q: 'Who can I contact for institutional review?',
+    a: 'Academic, CPD/CE, and partnership enquiries are handled by VAI\'s academic office at partnerships@vai.vet. Programme documentation suitable for professional review is available on request.',
+  },
+];
+---
+<Base
+  title="Frequently Asked Questions · VAI"
+  description="Answers to common questions about VAI programmes, certificates, CPD/CE alignment, and institutional structure."
+>
+  <PageHero
+    eyebrow="FAQ"
+    title="Frequently Asked Questions."
+    lede="Programmes, certificates, professional review, and institutional questions answered."
+  />
+
+  <Section>
+    <ul class="max-w-4xl divide-y divide-platinum">
+      {faqs.map((f) => (
+        <li class="py-10">
+          <h3 class="font-serif text-2xl md:text-3xl text-navy-deep leading-snug mb-4">{f.q}</h3>
+          <p class="text-graphite leading-relaxed max-w-3xl">{f.a}</p>
+        </li>
+      ))}
+    </ul>
+  </Section>
+
+  <Section eyebrow="Need more detail?" tone="ivory">
+    <div class="prose-editorial max-w-3xl">
+      <p>For specific questions about programmes, faculty, partnerships, or institutional review, please contact us directly.</p>
+      <div class="mt-8">
+        <a href="/contact" class="btn">Contact VAI</a>
+      </div>
+    </div>
+  </Section>
+</Base>
