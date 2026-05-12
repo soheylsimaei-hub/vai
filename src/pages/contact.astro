@@ -5,46 +5,62 @@ import Section from '../components/Section.astro';
 import ContactForm from '../components/ContactForm.astro';
 
 const pathways = [
-  { t: 'Programme Enquiries', e: 'hello@vai.vet' },
-  { t: 'Faculty Enquiries', e: 'faculty@vai.vet' },
-  { t: 'Partnerships & CPD Review', e: 'partnerships@vai.vet' },
-  { t: 'Media & Press', e: 'press@vai.vet' },
+  {
+    t: 'VAI Enquiries',
+    e: 'vai@vai.vet',
+    d: 'For course interest, programme questions, learner enquiries, and general VAI communication.',
+  },
+  {
+    t: 'Academic & CPD/CE Review',
+    e: 'academic@academiaeuropa.com',
+    d: 'For academic review, programme documentation, CPD/CE-related enquiries, and institutional review.',
+  },
+  {
+    t: 'Partnerships & Faculty Collaboration',
+    e: 'partnerships@academiaeuropa.com',
+    d: 'For faculty collaboration, programme co-development, institutional partnerships, and professional association dialogue.',
+  },
 ];
 ---
 <Base
   title="Contact VAI"
-  description="Programme, faculty, partnership, and media enquiries for Veterinary Academy International."
+  description="Programme, academic review, and partnership enquiries for Veterinary Academy International."
 >
   <PageHero
     eyebrow="Contact"
     title="Contact VAI."
-    lede="For programme, faculty, partnership, and media enquiries."
+    lede="For programme enquiries, academic review, or faculty collaboration, please use the appropriate pathway below."
   />
 
   <Section eyebrow="Send an Enquiry" title="Use the form below, or reach the relevant office directly.">
     <ContactForm />
   </Section>
 
-  <Section eyebrow="Direct Pathways" tone="ivory">
-    <div class="grid md:grid-cols-2 gap-x-12 gap-y-12 max-w-4xl">
+  <Section eyebrow="Direct Pathways" title="Reach the appropriate office directly." tone="ivory">
+    <ul class="max-w-4xl border-t border-platinum">
       {pathways.map((p) => (
-        <div class="border-t border-platinum pt-6">
-          <div class="eyebrow mb-3">{p.t}</div>
-          <a href={`mailto:${p.e}`} class="font-serif text-xl md:text-2xl text-navy-deep hover:text-champagne transition-colors">{p.e}</a>
-        </div>
+        <li class="grid md:grid-cols-12 gap-6 md:gap-10 items-baseline py-8 border-b border-platinum">
+          <div class="md:col-span-4">
+            <div class="eyebrow">{p.t}</div>
+          </div>
+          <div class="md:col-span-5 text-graphite leading-relaxed text-[15px]">{p.d}</div>
+          <div class="md:col-span-3 md:text-right">
+            <a href={`mailto:${p.e}`} class="text-[15px] tracking-tight text-navy-deep hover:text-champagne transition-colors whitespace-nowrap">{p.e}</a>
+          </div>
+        </li>
       ))}
-    </div>
+    </ul>
   </Section>
 
-  <Section eyebrow="Institutional Review">
+  <Section eyebrow="Relationship to Academia Europa">
     <div class="prose-editorial max-w-3xl">
-      <p>For CPD/CE review, academic documentation, faculty collaboration, or institutional partnership enquiries, please contact VAI's academic office at <a href="mailto:partnerships@vai.vet" class="text-navy-deep underline decoration-champagne underline-offset-4">partnerships@vai.vet</a>. VAI maintains structured programme documentation to support professional review where applicable.</p>
+      <p>As a specialised academy of <a href="https://academiaeuropa.com" rel="noopener" class="text-navy-deep underline decoration-champagne underline-offset-4">Academia Europa</a>, VAI coordinates academic review and partnership enquiries through the institutional office of Academia Europa. Programme-level and learner enquiries are handled directly by VAI.</p>
     </div>
   </Section>
 
   <Section eyebrow="Institutional Information" tone="ivory">
     <div class="prose-editorial max-w-3xl">
-      <p>VAI is a specialised academy of <a href="https://academiaeuropa.com" rel="noopener" class="text-navy-deep underline decoration-champagne underline-offset-4">Academia Europa</a>, operated by Solex Education Unipessoal LDA, registered in Portugal.</p>
+      <p>Veterinary Academy International is a specialised academy of Academia Europa, operated by <strong class="text-navy-deep font-medium">Solex Education Unipessoal LDA</strong>, registered in Portugal.</p>
     </div>
   </Section>
 </Base>
