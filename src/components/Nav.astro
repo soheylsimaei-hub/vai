@@ -10,18 +10,31 @@ const links = [
 ];
 ---
 <header class="border-b border-platinum-soft bg-paper">
-  <div class="container-prose flex items-center justify-between py-6">
-    <a href="/" class="flex items-center gap-4">
-      <img src="/vai-logo.svg" alt="VAI · Veterinary Academy International" class="h-10 w-auto" />
-      <span class="hidden md:inline text-[11px] tracking-[0.22em] uppercase border-l border-platinum pl-4" style="color: #101114;">Veterinary Academy International</span>
+  <!-- Top row: logo + tagline (centered on desktop, left on mobile) + mobile menu button -->
+  <div class="container-prose flex items-center justify-between lg:justify-center py-6 lg:py-8">
+    <a href="/" class="flex items-center gap-5">
+      <img
+        src="/vai-logo.svg"
+        alt="VAI · Veterinary Academy International"
+        class="h-12 md:h-14 w-auto"
+      />
+      <span class="hidden md:inline text-[11px] tracking-[0.22em] uppercase border-l border-platinum pl-5" style="color: #101114;">
+        Veterinary Academy International
+      </span>
     </a>
-    <nav class="hidden lg:flex items-center gap-6 text-[12.5px] tracking-[0.12em] uppercase text-graphite">
+    <button id="nav-toggle" class="lg:hidden text-navy text-xs tracking-[0.18em] uppercase" aria-label="Menu">Menu</button>
+  </div>
+
+  <!-- Bottom row: nav items (desktop only) -->
+  <nav class="hidden lg:flex border-t border-platinum-soft/70">
+    <div class="container-prose flex items-center justify-center gap-8 py-4 text-[12.5px] tracking-[0.14em] uppercase text-graphite">
       {links.map((l) => (
         <a href={l.href} class="hover:text-navy transition-colors">{l.label}</a>
       ))}
-    </nav>
-    <button id="nav-toggle" class="lg:hidden text-navy text-xs tracking-[0.18em] uppercase" aria-label="Menu">Menu</button>
-  </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
   <div id="nav-mobile" class="hidden lg:hidden border-t border-platinum-soft">
     <nav class="container-prose flex flex-col gap-3 py-6 text-sm tracking-[0.1em] uppercase text-graphite">
       {links.map((l) => (
