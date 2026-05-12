@@ -1,4 +1,6 @@
 ---
+import SocialLinks from './SocialLinks.astro';
+
 const year = new Date().getFullYear();
 const cols = [
   {
@@ -66,9 +68,12 @@ const cols = [
 
     <!-- Legal & flagship strip -->
     <div class="mt-16 pt-8 border-t border-navy-soft">
-      <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-4 mb-6 text-[11px] tracking-[0.18em] uppercase">
-        <div class="text-champagne-soft">Flagship Direction</div>
-        <a href="https://www.veterinarylongevity.com" rel="noopener" target="_blank" class="text-platinum hover:text-ivory transition-colors">Visit VeterinaryLongevity.com ↗</a>
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
+        <div class="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 text-[11px] tracking-[0.18em] uppercase">
+          <div class="text-champagne-soft">Flagship Direction</div>
+          <a href="https://www.veterinarylongevity.com" rel="noopener" target="_blank" class="text-platinum hover:text-ivory transition-colors">Visit VeterinaryLongevity.com ↗</a>
+        </div>
+        <SocialLinks />
       </div>
       <p class="max-w-4xl text-xs text-platinum/80 leading-relaxed">
         Veterinary Academy International is a specialised academy of Academia Europa, operated by Solex Education Unipessoal LDA, Portugal. Programmes are developed for postgraduate professional education and may be submitted for CPD/CE review where applicable.
