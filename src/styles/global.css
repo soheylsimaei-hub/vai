@@ -78,6 +78,10 @@
     line-height: 1.7;
     color: var(--color-graphite);
     margin-bottom: 1.25rem;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
   }
   .prose-editorial p:last-child { margin-bottom: 0; }
 
