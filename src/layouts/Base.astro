@@ -11,10 +11,10 @@ interface Props {
 }
 const {
   title,
-  description = 'Veterinary Academy International — the veterinary academy of Academia Europa. Structured postgraduate veterinary education.',
+  description = 'Veterinary Academy International. The veterinary academy of Academia Europa. Structured postgraduate veterinary education.',
   ogTitle,
 } = Astro.props;
-const fullTitle = title.includes('VAI') ? title : `${title} — VAI`;
+const fullTitle = title.includes('VAI') ? title : `${title} · VAI`;
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 ---
 <!doctype html>
