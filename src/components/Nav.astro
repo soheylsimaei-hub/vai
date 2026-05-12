@@ -13,11 +13,14 @@ const links = [
   <!-- Top row: logo + tagline (centered on desktop, left on mobile) + mobile menu button -->
   <div class="container-prose flex items-center justify-between lg:justify-center py-6 lg:py-8">
     <a href="/" class="flex items-center gap-5">
-      <img
-        src="/vai-logo.svg"
-        alt="VAI · Veterinary Academy International"
-        class="h-12 md:h-14 w-auto"
-      />
+      <span class="relative inline-block">
+        <img
+          src="/vai-logo.svg"
+          alt="VAI · Veterinary Academy International"
+          class="h-12 md:h-14 w-auto"
+        />
+        <span class="absolute top-0 -right-3 text-[10px] font-sans" style="color: #101114; line-height: 1;">™</span>
+      </span>
       <span class="hidden md:inline text-[11px] tracking-[0.22em] uppercase border-l border-platinum pl-5" style="color: #101114;">
         Veterinary Academy International
       </span>
