@@ -132,7 +132,46 @@ const directions = [
     </ul>
   </Section>
 
-  <Section eyebrow="Faculty & Reviewers" title="Announcements forthcoming." tone="ivory">
+  <Section eyebrow="Programme Delivery Formats" title="Format selected for the educational purpose." tone="ivory">
+    <div class="prose-editorial max-w-3xl mb-12">
+      <p>VAI programmes may be delivered through different learning formats depending on the subject, faculty, learning objectives, and professional requirements. The aim is to match the format to the educational purpose, not to force every topic into the same model.</p>
+    </div>
+    <ul class="grid md:grid-cols-2 gap-8 max-w-5xl">
+      {[
+        {
+          n: '01',
+          t: 'Self-Paced Online Courses',
+          d: 'Structured recorded lessons supported by downloadable frameworks, guided learning materials, review questions, and certificate criteria. Designed for professionals who need flexibility without losing academic structure.',
+        },
+        {
+          n: '02',
+          t: 'Live Online Teaching',
+          d: 'Faculty-led online sessions that may include case discussions, Q&A, clinical reasoning exercises, or interactive teaching where the subject benefits from real-time engagement.',
+        },
+        {
+          n: '03',
+          t: 'Hybrid Programmes',
+          d: 'Programmes that combine structured online learning with live teaching, discussion, or supervised educational components, allowing deeper progression and stronger learner engagement.',
+        },
+        {
+          n: '04',
+          t: 'In-Person Courses & Workshops',
+          d: 'Selected workshops, intensives, masterclasses, or professional events may be delivered in person where direct interaction, practical demonstration, or focused group learning adds educational value.',
+        },
+      ].map((f) => (
+        <li class="border-l-2 border-champagne pl-6 py-1">
+          <div class="font-serif text-champagne text-xs tracking-[0.3em] mb-2">{f.n}</div>
+          <h3 class="font-serif text-xl text-navy-deep mb-3">{f.t}</h3>
+          <p class="text-graphite leading-relaxed text-[15px]">{f.d}</p>
+        </li>
+      ))}
+    </ul>
+    <p class="mt-10 text-sm text-muted max-w-3xl leading-relaxed">
+      Format availability per programme is stated on the corresponding programme page. Future editions may introduce additional formats where they support the learning objectives.
+    </p>
+  </Section>
+
+  <Section eyebrow="Faculty & Reviewers" title="Announcements forthcoming.">
     <div class="prose-editorial max-w-3xl">
       <p>Faculty and academic contributors will be announced as programmes are finalised. Educators interested in contributing to a future programme direction are welcome to enquire.</p>
       <div class="mt-8">
@@ -141,7 +180,7 @@ const directions = [
     </div>
   </Section>
 
-  <Section eyebrow="Engage">
+  <Section eyebrow="Engage" tone="ivory">
     <div class="prose-editorial max-w-3xl">
       <p>To be notified when programmes open for registration, or to discuss faculty participation, please register your interest.</p>
       <div class="mt-8 flex flex-wrap gap-4">
