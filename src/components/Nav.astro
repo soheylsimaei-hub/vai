@@ -27,9 +27,9 @@ const links = [
 
   <!-- Bottom row: nav items (desktop only) -->
   <nav class="hidden lg:flex border-t border-platinum-soft/70">
-    <div class="container-prose flex items-center justify-center gap-8 py-4 text-[12.5px] tracking-[0.14em] uppercase text-graphite">
+    <div class="container-prose flex items-center justify-center gap-x-7 xl:gap-x-9 py-4 text-[12px] xl:text-[12.5px] tracking-[0.13em] uppercase text-graphite">
       {links.map((l) => (
-        <a href={l.href} class="hover:text-navy transition-colors">{l.label}</a>
+        <a href={l.href} class="whitespace-nowrap hover:text-navy transition-colors">{l.label}</a>
       ))}
     </div>
   </nav>
