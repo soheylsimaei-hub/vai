@@ -1,0 +1,30 @@
+---
+interface Props {
+  programmeName?: string;
+}
+const { programmeName = 'This programme' } = Astro.props;
+
+const items = [
+  { t: 'Learning objectives', d: 'Defined in plain language, mapped to professional outcomes.' },
+  { t: 'Module outline', d: 'Sequenced modules with stated topics and teaching duration.' },
+  { t: 'Faculty profile', d: 'Qualifications, experience, and declared interests.' },
+  { t: 'Evidence framework', d: 'Major claims graded against the VAI evidence hierarchy.' },
+  { t: 'Assessment method', d: 'Methods of assessment defined per programme and level.' },
+  { t: 'Certificate criteria', d: 'Completion requirements stated in advance.' },
+  { t: 'Reference list & version date', d: 'Versioned references with defined review intervals.' },
+  { t: 'CPD/CE status', d: 'Stated where applicable; updated once formally granted.' },
+];
+---
+<div class="max-w-4xl">
+  <p class="text-graphite leading-relaxed mb-8 max-w-3xl">
+    {programmeName} is documented to a defined standard. The following is maintained and available for academic review on request.
+  </p>
+  <ul class="grid md:grid-cols-2 gap-x-12 gap-y-6">
+    {items.map((i) => (
+      <li class="border-l-2 border-champagne pl-5 py-1">
+        <div class="font-serif text-base text-navy-deep mb-1">{i.t}</div>
+        <div class="text-sm text-graphite leading-relaxed">{i.d}</div>
+      </li>
+    ))}
+  </ul>
+</div>

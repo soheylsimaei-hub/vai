@@ -8,40 +8,69 @@ const directions = [
     n: '01',
     name: 'Veterinary Longevity',
     flagship: true,
-    short: 'A flagship VAI educational direction exploring animal healthspan, aging biology, early detection, preventive strategies, and evidence-aware clinical integration. Developed within VAI, with a dedicated platform at VeterinaryLongevity.com.',
+    short: "Veterinary Longevity is VAI's first flagship educational direction, focused on animal healthspan, aging biology, early detection, preventive strategies, and responsible clinical integration. Developed within VAI, with a dedicated platform at VeterinaryLongevity.com.",
     audience: 'Veterinarians, clinical directors, practice owners, educators.',
     status: 'Flagship direction with dedicated platform.',
     external: 'https://www.veterinarylongevity.com',
     href: '/programmes/foundations-veterinary-longevity',
-    relatedLabel: 'View related VAI courses',
+    relatedLabel: 'Foundations of Veterinary Longevity →',
   },
   {
     n: '02',
     name: 'Clinical Mastery',
-    short: 'Case-based advanced clinical reasoning across core veterinary disciplines.',
+    short: 'Clinical Mastery programmes are designed to strengthen diagnostic reasoning, case interpretation, therapeutic planning, and practical clinical decision-making in everyday veterinary practice.',
     audience: 'Veterinarians with three or more years of practice.',
     status: 'In development.',
+    examples: [
+      'Advanced Dermatology Case Reasoning',
+      'Internal Medicine Decision-Making',
+      'Diagnostic Reasoning in Small Animal Practice',
+      'Evidence-Based Therapeutic Planning',
+      'Case-Based Clinical Problem Solving',
+    ],
   },
   {
     n: '03',
     name: 'Practice Leadership',
-    short: 'Leadership, structure, and sustainability for clinical leads and practice owners.',
+    short: 'Practice Leadership programmes support veterinarians and clinical leaders who are responsible for medical standards, team development, client communication, workflow quality, and sustainable clinical operations.',
     audience: 'Practice owners, clinical leads, senior associates.',
     status: 'In development.',
+    examples: [
+      'Clinical Director Foundations',
+      'Building Medical Standards in Practice',
+      'Leading Veterinary Teams with Structure',
+      'Client Communication and Compliance Leadership',
+      'Sustainable Veterinary Practice Management',
+    ],
   },
   {
     n: '04',
     name: 'Veterinary Team Development',
-    short: 'Programmes for veterinary teams, beyond individual CPD, toward collective clinical and professional growth.',
-    audience: 'Whole-team programmes for clinics and groups.',
+    short: 'Veterinary Team Development programmes are designed to support the wider veterinary team through structured training in communication, client journey, clinical support, workflow, and professional standards.',
+    audience: 'Veterinary nurses, receptionists, assistants, client care teams.',
     status: 'In development.',
+    examples: [
+      'Reception Excellence in Veterinary Practice',
+      'Veterinary Nurse Communication',
+      'Client Journey and Compliance',
+      'Assistant Training for Clinical Workflow',
+      'Team Standards for Modern Veterinary Clinics',
+    ],
   },
   {
     n: '05',
     name: 'Future Programmes',
-    short: 'Faculty-led subject series, professional sustainability for veterinary teams, and others as the academy matures.',
+    short: 'Future VAI programmes will be developed in response to professional need, faculty expertise, clinical relevance, and academic review readiness. New areas may include advanced clinical disciplines, communication, leadership, technology, and emerging fields in veterinary medicine.',
     audience: null,
     status: 'Forthcoming.',
+    examples: [
+      'Veterinary Artificial Intelligence and Digital Tools',
+      'Advanced Client Communication',
+      'Veterinary Ethics and Professional Responsibility',
+      'Preventive Medicine and Healthspan',
+      'Clinical Quality Systems',
+      'Veterinary Education and Mentorship',
+    ],
   },
 ];
 ---
@@ -56,9 +85,9 @@ const directions = [
   />
 
   <Section>
-    <ul class="space-y-10 max-w-5xl">
+    <ul class="space-y-14 max-w-5xl">
       {directions.map((d) => (
-        <li class="border-t border-platinum pt-8">
+        <li class="border-t border-platinum pt-10">
           <div class="grid md:grid-cols-12 gap-6">
             <div class="md:col-span-2">
               <div class="font-serif text-champagne text-xs tracking-[0.3em] mb-3">{d.n}</div>
@@ -66,11 +95,25 @@ const directions = [
             </div>
             <div class="md:col-span-10">
               <h2 class="font-serif text-2xl md:text-3xl text-navy-deep mb-3">{d.name}</h2>
-              <p class="text-graphite leading-relaxed mb-3">{d.short}</p>
+              <p class="text-graphite leading-relaxed mb-4 max-w-3xl">{d.short}</p>
               {d.audience && (
                 <p class="text-sm text-muted mb-2"><span class="eyebrow mr-2">Audience</span>{d.audience}</p>
               )}
               <p class="text-sm text-navy-deep mb-5"><span class="eyebrow mr-2">Status</span>{d.status}</p>
+
+              {d.examples && (
+                <div class="mb-6">
+                  <div class="eyebrow mb-3">Example Future Courses</div>
+                  <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-2 max-w-3xl">
+                    {d.examples.map((ex) => (
+                      <li class="flex gap-3 items-baseline text-graphite text-[15px] leading-relaxed">
+                        <span class="text-champagne text-xs">—</span><span>{ex}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
               {d.external && (
                 <div class="flex flex-wrap gap-4 items-baseline">
                   <a href={d.external} rel="noopener" target="_blank" class="btn">Visit Veterinary Longevity ↗</a>
@@ -89,7 +132,16 @@ const directions = [
     </ul>
   </Section>
 
-  <Section eyebrow="Engage" tone="ivory">
+  <Section eyebrow="Faculty & Reviewers" title="Announcements forthcoming." tone="ivory">
+    <div class="prose-editorial max-w-3xl">
+      <p>Faculty and academic contributors will be announced as programmes are finalised. Educators interested in contributing to a future programme direction are welcome to enquire.</p>
+      <div class="mt-8">
+        <a href="/faculty" class="btn">Teach with VAI</a>
+      </div>
+    </div>
+  </Section>
+
+  <Section eyebrow="Engage">
     <div class="prose-editorial max-w-3xl">
       <p>To be notified when programmes open for registration, or to discuss faculty participation, please register your interest.</p>
       <div class="mt-8 flex flex-wrap gap-4">

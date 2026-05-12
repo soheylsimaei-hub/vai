@@ -1,0 +1,16 @@
+---
+interface Props {
+  context?: string;
+}
+const { context = 'this programme' } = Astro.props;
+---
+<div class="max-w-3xl border border-platinum bg-paper p-8 md:p-10">
+  <div class="eyebrow mb-3">Faculty & Reviewers</div>
+  <h3 class="font-serif text-2xl text-navy-deep mb-3">Announcements forthcoming.</h3>
+  <p class="text-graphite leading-relaxed">
+    Faculty and academic contributors for {context} will be announced as the programme is finalised. Each faculty profile, with qualifications, experience, and declared interests, is published alongside the modules that contributor leads.
+  </p>
+  <div class="mt-6">
+    <a href="/faculty" class="inline-block text-sm tracking-[0.14em] uppercase text-navy hover:text-champagne">Teach with VAI →</a>
+  </div>
+</div>
