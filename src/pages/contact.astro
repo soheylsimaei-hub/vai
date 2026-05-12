@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import Section from '../components/Section.astro';
+import ContactForm from '../components/ContactForm.astro';
 
 const pathways = [
   { t: 'Programme Enquiries', e: 'hello@vai.vet' },
@@ -20,7 +21,11 @@ const pathways = [
     lede="For programme, faculty, partnership, and media enquiries."
   />
 
-  <Section>
+  <Section eyebrow="Send an Enquiry" title="Use the form below, or reach the relevant office directly.">
+    <ContactForm />
+  </Section>
+
+  <Section eyebrow="Direct Pathways" tone="ivory">
     <div class="grid md:grid-cols-2 gap-x-12 gap-y-12 max-w-4xl">
       {pathways.map((p) => (
         <div class="border-t border-platinum pt-6">
@@ -31,7 +36,7 @@ const pathways = [
     </div>
   </Section>
 
-  <Section eyebrow="Institutional Information" tone="ivory">
+  <Section eyebrow="Institutional Information">
     <div class="prose-editorial max-w-3xl">
       <p>VAI is a specialised academy of <a href="https://academiaeuropa.com" rel="noopener" class="text-navy-deep underline decoration-champagne underline-offset-4">Academia Europa</a>, operated by Solex Education Unipessoal LDA, registered in Portugal.</p>
     </div>
