@@ -1,0 +1,100 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHero from '../../../components/PageHero.astro';
+import Section from '../../../components/Section.astro';
+
+const objectives = [
+  'Define Veterinary Longevity in a clinically responsible way.',
+  'Distinguish longevity medicine from geriatric care and anti-aging marketing.',
+  'Explain why healthspan matters in veterinary medicine.',
+  'Identify ethical risks in longevity communication.',
+  'Describe how longevity principles may be integrated into routine practice.',
+];
+
+const subtopics = [
+  'Why longevity is entering veterinary medicine',
+  'Healthspan versus lifespan',
+  'Senior care versus longevity medicine',
+  'What Veterinary Longevity is not',
+  'Evidence and uncertainty',
+  'Owner communication',
+  'Clinical integration',
+  'Monday morning relevance',
+];
+---
+<Base
+  title="Module 1 — What Veterinary Longevity Really Means — VAI"
+  description="Sample module: definition, ethics, and clinical integration of Veterinary Longevity. Part of the Foundations of Veterinary Longevity programme."
+>
+  <PageHero
+    eyebrow="Sample Module · Foundations of Veterinary Longevity"
+    title="Module 1 — What Veterinary Longevity Really Means."
+    lede="The conceptual and ethical foundations for the entire programme."
+  />
+
+  <Section eyebrow="Module Overview">
+    <div class="prose-editorial max-w-3xl">
+      <p>The opening module sets the conceptual and ethical foundations for the entire programme. Before exploring biological mechanisms, risk stratification, or clinical integration, learners must first establish what Veterinary Longevity <em>is</em> — and just as importantly, what it <em>is not</em>.</p>
+    </div>
+  </Section>
+
+  <Section eyebrow="Learning Objectives" title="By the end of this module, learners should be able to:" tone="ivory">
+    <ul class="space-y-3 max-w-3xl">
+      {objectives.map((o) => (
+        <li class="flex gap-3 items-baseline text-graphite leading-relaxed">
+          <span class="text-champagne text-xs">—</span><span>{o}</span>
+        </li>
+      ))}
+    </ul>
+  </Section>
+
+  <Section eyebrow="Subtopics">
+    <ol class="grid md:grid-cols-2 gap-x-12 gap-y-4 max-w-5xl">
+      {subtopics.map((s, i) => (
+        <li class="grid grid-cols-[auto_1fr] gap-4 items-baseline border-l-2 border-champagne pl-5 py-1">
+          <div class="font-serif text-champagne text-xs tracking-[0.3em]">{String(i + 1).padStart(2, '0')}</div>
+          <div class="font-serif text-lg text-navy-deep">{s}</div>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <Section eyebrow="Clinical Relevance" tone="ivory">
+    <blockquote class="font-serif text-2xl md:text-3xl italic text-navy-deep leading-snug max-w-3xl border-l-2 border-champagne pl-8">
+      "Every concept in Veterinary Longevity must ultimately answer one question: what does this mean on Monday morning in a real clinic?"
+    </blockquote>
+  </Section>
+
+  <Section eyebrow="Evidence Labels" title="Used throughout this module.">
+    <div class="prose-editorial max-w-3xl">
+      <p>Each major claim in this module is tagged with one of the four VAI evidence levels: Strong Clinical, Emerging Clinical, Preclinical/Mechanistic, or Expert Hypothesis. Learners see, at a glance, the basis of what they are being taught.</p>
+      <div class="mt-6">
+        <a href="/academic-standards" class="inline-block text-sm tracking-[0.14em] uppercase text-navy hover:text-champagne">View the Evidence Framework →</a>
+      </div>
+    </div>
+  </Section>
+
+  <Section eyebrow="Case Example" tone="ivory">
+    <div class="prose-editorial max-w-3xl">
+      <p>A 9-year-old neutered male Labrador, asymptomatic, presented for routine review. Module 1 closes with how Veterinary Longevity reframes this consultation — without overstating evidence, without alarming the owner, and without selling unproven interventions.</p>
+    </div>
+  </Section>
+
+  <Section eyebrow="Practical Takeaway">
+    <div class="prose-editorial max-w-3xl">
+      <p>A one-page <strong class="text-navy-deep font-medium">Longevity Communication Framework</strong> for owner conversations is provided as a downloadable resource for learners completing this module.</p>
+    </div>
+  </Section>
+
+  <Section eyebrow="Assessment Style" tone="ivory">
+    <ul class="space-y-2 max-w-3xl">
+      <li class="flex gap-3 items-baseline text-graphite leading-relaxed"><span class="text-champagne text-xs">—</span><span>Five short-answer questions</span></li>
+      <li class="flex gap-3 items-baseline text-graphite leading-relaxed"><span class="text-champagne text-xs">—</span><span>One reflective clinical scenario</span></li>
+      <li class="flex gap-3 items-baseline text-graphite leading-relaxed"><span class="text-champagne text-xs">—</span><span>One ethical communication scenario</span></li>
+    </ul>
+  </Section>
+
+  <Section>
+    <a href="/programmes/foundations-veterinary-longevity" class="inline-block text-sm tracking-[0.14em] uppercase text-navy hover:text-champagne">← Return to the programme</a>
+  </Section>
+</Base>

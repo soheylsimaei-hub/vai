@@ -53,6 +53,44 @@ const expected = [
         </li>
       ))}
     </ul>
+  </Section>
+
+  <Section eyebrow="Faculty Standards" title="What we ask of every contributor." tone="ivory">
+    <ul class="grid md:grid-cols-2 gap-4 max-w-3xl">
+      {[
+        ['Relevant qualifications', 'Veterinary or scientific qualifications appropriate to the subject taught.'],
+        ['Demonstrable experience', 'Clinical, academic, or research experience that supports the teaching.'],
+        ['Evidence-based teaching', 'Use of the VAI evidence hierarchy, with claims appropriately labelled.'],
+        ['Ethical communication', 'No exaggerated outcomes; respect for clinical uncertainty.'],
+        ['Declared interests', 'Conflict-of-interest disclosure submitted before publication.'],
+        ['Structured collaboration', 'Willingness to work within VAI\'s course design and review process.'],
+      ].map(([t, d]) => (
+        <li>
+          <div class="font-serif text-lg text-navy-deep mb-1">{t}</div>
+          <div class="text-graphite leading-relaxed text-sm">{d}</div>
+        </li>
+      ))}
+    </ul>
+  </Section>
+
+  <Section eyebrow="Process" title="From enquiry to publication.">
+    <ol class="max-w-4xl divide-y divide-platinum">
+      {[
+        { t: 'Enquiry', d: 'Submit qualifications, experience, and area of teaching interest.' },
+        { t: 'Initial review', d: 'Suitability assessment by the academy.' },
+        { t: 'Scoping conversation', d: 'Define topic, level, structure, and outcomes.' },
+        { t: 'Course design', d: 'Collaborative curriculum development with academic support.' },
+        { t: 'Production', d: 'Recording, editing, and final assembly.' },
+        { t: 'Academic review', d: 'Final review against our standards before publication.' },
+        { t: 'Publication & ongoing care', d: 'Versioning, updates, and faculty support.' },
+      ].map((s, i) => (
+        <li class="py-6 grid md:grid-cols-12 gap-4">
+          <div class="md:col-span-1 font-serif text-champagne text-sm tracking-[0.3em]">0{i + 1}</div>
+          <div class="md:col-span-4 font-serif text-xl text-navy-deep">{s.t}</div>
+          <div class="md:col-span-7 text-graphite leading-relaxed">{s.d}</div>
+        </li>
+      ))}
+    </ol>
     <div class="mt-12">
       <a href="/contact" class="btn">Apply to Teach</a>
     </div>

@@ -1,0 +1,21 @@
+---
+const levels = [
+  { l: 'Level 1', t: 'Strong Clinical Evidence', d: 'Established, replicated, clinically accepted.', w: 'w-full' },
+  { l: 'Level 2', t: 'Emerging Clinical Evidence', d: 'Early but credible clinical data.', w: 'w-[85%]' },
+  { l: 'Level 3', t: 'Preclinical or Mechanistic', d: 'Laboratory or translational; not yet clinical.', w: 'w-[70%]' },
+  { l: 'Level 4', t: 'Expert Hypothesis', d: 'Reasoned perspective; clearly labelled.', w: 'w-[55%]' },
+];
+---
+<div class="max-w-3xl mx-auto space-y-3">
+  {levels.map((lv) => (
+    <div class={`${lv.w} mx-auto bg-navy-deep text-ivory px-6 py-5 transition-all`}>
+      <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
+        <div>
+          <div class="eyebrow text-champagne-soft mb-1">{lv.l}</div>
+          <div class="font-serif text-lg md:text-xl">{lv.t}</div>
+        </div>
+        <div class="text-xs text-platinum md:text-right md:max-w-xs leading-relaxed">{lv.d}</div>
+      </div>
+    </div>
+  ))}
+</div>

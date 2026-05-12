@@ -1,0 +1,176 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Section from '../../components/Section.astro';
+
+const objectives = [
+  'Define Veterinary Longevity and distinguish it from geriatric care, palliative care, and anti-aging marketing.',
+  'Explain key biological mechanisms associated with aging and age-related decline.',
+  'Identify early clinical risk factors relevant to healthspan and quality of life.',
+  'Apply an evidence hierarchy to longevity-related interventions.',
+  'Design a structured longevity consultation for veterinary patients.',
+  'Communicate longevity concepts responsibly to pet owners.',
+  'Integrate preventive, nutritional, mobility, oral, inflammatory, and monitoring strategies into routine practice.',
+  'Recognise the limits of current evidence and avoid exaggerated claims.',
+];
+
+const modules = [
+  'What Veterinary Longevity Really Means',
+  'The Biology of Aging in Veterinary Patients',
+  'The Evidence Framework for Longevity Medicine',
+  'Risk Stratification and Early Detection',
+  'Nutrition for Healthspan',
+  'Mobility, Musculoskeletal Preservation, and Functional Aging',
+  'Oral, Gut, and Systemic Inflammation',
+  'Designing the Longevity Consultation',
+  'Bringing Longevity into a Busy Veterinary Clinic',
+  'The Future of Veterinary Longevity',
+];
+
+const format = [
+  'Online structured course',
+  'Recorded lectures',
+  'Case-based learning',
+  'Downloadable clinical frameworks',
+  'Module assessment questions',
+  'Certificate of completion',
+];
+
+const audience = [
+  'Veterinarians in small animal practice',
+  'Clinical directors and practice owners',
+  'Veterinary educators',
+  'Veterinarians interested in preventive medicine, senior care, and clinical innovation',
+];
+---
+<Base
+  title="Foundations of Veterinary Longevity — VAI"
+  description="Flagship programme: the science and clinical integration of healthspan medicine for veterinary patients. Ten modules, evidence-graded, case-based."
+>
+  <PageHero
+    eyebrow="Flagship Programme — In Development"
+    title="Foundations of Veterinary Longevity."
+    lede="The Science and Clinical Integration of Healthspan Medicine. A structured postgraduate professional education programme introducing veterinarians to the principles, evidence, ethics, and clinical integration of Veterinary Longevity."
+    tone="dark"
+  />
+
+  <Section eyebrow="Programme Positioning">
+    <div class="prose-editorial max-w-3xl">
+      <p>Foundations of Veterinary Longevity is the first structured course in the Veterinary Longevity direction within VAI. It is designed for veterinarians who want a serious, evidence-graded introduction to healthspan medicine in animals — beyond geriatric care, beyond anti-aging marketing, and beyond unstructured CPD.</p>
+    </div>
+  </Section>
+
+  <Section eyebrow="At a Glance" tone="ivory">
+    <div class="grid md:grid-cols-2 gap-x-12 gap-y-10 max-w-5xl">
+      <div>
+        <div class="eyebrow mb-3">Target Audience</div>
+        <ul class="space-y-2 text-graphite leading-relaxed">
+          {audience.map((a) => (
+            <li class="flex gap-3 items-baseline"><span class="text-champagne text-xs">—</span><span>{a}</span></li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <div class="eyebrow mb-3">Format</div>
+        <ul class="space-y-2 text-graphite leading-relaxed">
+          {format.map((f) => (
+            <li class="flex gap-3 items-baseline"><span class="text-champagne text-xs">—</span><span>{f}</span></li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <div class="eyebrow mb-3">Level</div>
+        <p class="text-graphite leading-relaxed">Foundation / Advanced Foundation.</p>
+      </div>
+      <div>
+        <div class="eyebrow mb-3">Estimated Duration</div>
+        <p class="text-graphite leading-relaxed">Designed as a structured 10-module course. Final duration to be confirmed.</p>
+      </div>
+    </div>
+  </Section>
+
+  <Section eyebrow="Learning Objectives" title="By the end of this programme, learners should be able to:">
+    <ul class="grid md:grid-cols-2 gap-x-12 gap-y-4 max-w-5xl">
+      {objectives.map((o) => (
+        <li class="flex gap-3 items-baseline text-graphite leading-relaxed">
+          <span class="text-champagne text-xs">—</span><span>{o}</span>
+        </li>
+      ))}
+    </ul>
+  </Section>
+
+  <Section eyebrow="Curriculum" title="Ten modules." tone="ivory">
+    <ol class="grid md:grid-cols-2 gap-x-12 gap-y-4 max-w-5xl">
+      {modules.map((m, i) => (
+        <li class="grid grid-cols-[auto_1fr] gap-4 items-baseline border-l-2 border-champagne pl-5 py-1">
+          <div class="font-serif text-champagne text-xs tracking-[0.3em]">{String(i + 1).padStart(2, '0')}</div>
+          <div class="font-serif text-lg text-navy-deep">{m}</div>
+        </li>
+      ))}
+    </ol>
+    <div class="mt-12">
+      <a href="/programmes/foundations-veterinary-longevity/module-1" class="btn">Preview Module 1</a>
+    </div>
+  </Section>
+
+  <Section eyebrow="Assessment Approach" title="What completion requires.">
+    <ul class="grid md:grid-cols-2 gap-4 max-w-3xl">
+      {[
+        'Module review questions',
+        'Case-based questions',
+        'Reflective clinical application exercises',
+        'Final knowledge check',
+        'Certificate issued upon completion of required components',
+      ].map((a) => (
+        <li class="flex gap-3 items-baseline text-graphite leading-relaxed">
+          <span class="text-champagne text-xs">—</span><span>{a}</span>
+        </li>
+      ))}
+    </ul>
+  </Section>
+
+  <Section eyebrow="Certificate" tone="ivory">
+    <div class="max-w-3xl">
+      <div class="border-2 border-champagne bg-paper p-10 md:p-12 text-center">
+        <div class="eyebrow mb-4">Certificate of Completion</div>
+        <h3 class="font-serif text-3xl md:text-4xl text-navy-deep mb-3">Foundations of Veterinary Longevity</h3>
+        <div class="text-sm text-graphite leading-relaxed">
+          Issued by Veterinary Academy International<br />
+          A specialised academy of Academia Europa<br />
+          Operated by Solex Education Unipessoal LDA, Portugal
+        </div>
+      </div>
+      <p class="mt-8 text-sm text-muted leading-relaxed">
+        Sample wording. The certificate documents completion of structured postgraduate professional learning. See our <a href="/certificate-policy" class="underline decoration-champagne underline-offset-4">Certificate Policy</a> for full scope and limits.
+      </p>
+    </div>
+  </Section>
+
+  <Section eyebrow="CPD/CE Status" title="Designed for review readiness.">
+    <div class="prose-editorial max-w-3xl">
+      <p>This programme is being structured with CPD/CE review in mind. Where applicable, selected programmes may be submitted to relevant professional bodies for review or recognition. <strong class="text-navy-deep font-medium">No external accreditation is claimed unless formally granted.</strong></p>
+      <div class="mt-6">
+        <a href="/cpd-ce-status" class="inline-block text-sm tracking-[0.14em] uppercase text-navy hover:text-champagne">View full CPD/CE Status →</a>
+      </div>
+    </div>
+  </Section>
+
+  <Section eyebrow="Evidence & Ethics" tone="ivory">
+    <div class="prose-editorial max-w-3xl">
+      <p>VAI distinguishes between established clinical evidence, emerging clinical evidence, mechanistic or preclinical evidence, and expert hypothesis. Veterinary Longevity education must not be used to promote miracle anti-aging claims or unsupported interventions.</p>
+    </div>
+  </Section>
+
+  <section class="bg-navy-deep text-ivory">
+    <div class="container-prose py-28 text-center">
+      <div class="eyebrow text-champagne-soft mb-6">Engage</div>
+      <h2 class="font-serif text-ivory text-3xl md:text-5xl leading-tight max-w-3xl mx-auto">
+        Foundations of Veterinary Longevity is open for professional interest.
+      </h2>
+      <div class="mt-12 flex flex-wrap gap-4 justify-center">
+        <a href="/contact" class="btn btn-light">Register Interest</a>
+        <a href="/faculty" class="btn btn-light">Faculty Participation</a>
+      </div>
+    </div>
+  </section>
+</Base>

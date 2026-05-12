@@ -2,13 +2,7 @@
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import Section from '../components/Section.astro';
-
-const evidence = [
-  { l: 'Level 1', t: 'Strong Clinical Evidence', d: 'Well-conducted clinical research with consistent findings across studies.' },
-  { l: 'Level 2', t: 'Emerging Clinical Evidence', d: 'Promising but still maturing clinical data; appropriate caution applied.' },
-  { l: 'Level 3', t: 'Preclinical or Mechanistic Evidence', d: 'Laboratory or mechanistic data; not yet validated in routine practice.' },
-  { l: 'Level 4', t: 'Expert Hypothesis / Future Direction', d: 'Informed clinical reasoning and future-facing thought, presented as such.' },
-];
+import EvidencePyramid from '../components/EvidencePyramid.astro';
 ---
 <Base
   title="Academic Standards"
@@ -36,15 +30,7 @@ const evidence = [
     <div class="prose-editorial max-w-3xl mb-10">
       <p>To protect scientific integrity, our programmes distinguish between four levels of evidence. This hierarchy is referenced explicitly in our content, so that learners — and reviewers — can see the basis of every claim.</p>
     </div>
-    <div class="grid md:grid-cols-2 gap-6 max-w-4xl">
-      {evidence.map((e) => (
-        <div class="border-l-2 border-champagne pl-6 py-2">
-          <div class="eyebrow mb-2">{e.l}</div>
-          <h3 class="font-serif text-xl text-navy-deep mb-2">{e.t}</h3>
-          <p class="text-graphite leading-relaxed text-sm">{e.d}</p>
-        </div>
-      ))}
-    </div>
+    <EvidencePyramid />
   </Section>
 
   <Section eyebrow="Assessment" title="Methods appropriate to level and intent." tone="ivory">

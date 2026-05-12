@@ -5,15 +5,23 @@ const cols = [
     title: 'Academy',
     links: [
       { href: '/about', label: 'About VAI' },
+      { href: '/about/leadership', label: 'Leadership' },
       { href: '/programmes', label: 'Programmes' },
       { href: '/veterinary-longevity', label: 'Veterinary Longevity' },
+    ],
+  },
+  {
+    title: 'Standards',
+    links: [
       { href: '/academic-standards', label: 'Academic Standards' },
+      { href: '/certificate-policy', label: 'Certificate Policy' },
+      { href: '/cpd-ce-status', label: 'CPD/CE Status' },
+      { href: '/faculty', label: 'Faculty' },
     ],
   },
   {
     title: 'Engage',
     links: [
-      { href: '/faculty', label: 'Faculty' },
       { href: '/contact', label: 'Contact' },
       { href: 'https://academiaeuropa.com', label: 'Academia Europa', external: true },
     ],
@@ -22,7 +30,7 @@ const cols = [
 ---
 <footer class="bg-navy-deep text-ivory mt-32">
   <div class="container-prose py-20">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
       <div>
         <img src="/vai-logo.svg" alt="VAI — Veterinary Academy International" class="h-12 w-auto mb-3" style="filter: brightness(0) invert(1);" />
         <div class="text-[11px] tracking-[0.22em] uppercase text-champagne-soft mb-4">Veterinary Academy International</div>
@@ -48,7 +56,12 @@ const cols = [
       ))}
     </div>
     <div class="mt-16 pt-8 border-t border-navy-soft text-xs text-platinum/80 leading-relaxed">
-      © {year} Veterinary Academy International. A specialised academy of Academia Europa, operated by Solex Education Unipessoal LDA, Portugal.
+      <p class="max-w-4xl">
+        Veterinary Academy International is a specialised academy of Academia Europa, operated by Solex Education Unipessoal LDA, Portugal.
+        VAI does not, unless formally granted and explicitly stated, hold external accreditation. Certificates document
+        completion of structured postgraduate professional learning.
+      </p>
+      <div class="mt-6">© {year} Veterinary Academy International.</div>
     </div>
   </div>
 </footer>

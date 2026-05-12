@@ -1,0 +1,59 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+
+const programmes = [
+  { name: 'Foundations of Veterinary Longevity', status: 'Under structured development; review readiness in progress.' },
+  { name: 'Clinical Mastery (planned)', status: 'In development.' },
+  { name: 'Practice Leadership (planned)', status: 'In development.' },
+  { name: 'Veterinary Team Development (planned)', status: 'In development.' },
+];
+---
+<Base
+  title="CPD/CE Status — VAI"
+  description="Transparent status of CPD/CE review and recognition for VAI programmes. No external accreditation is claimed unless formally granted."
+>
+  <PageHero
+    eyebrow="CPD/CE Status"
+    title="Transparent Status of External Recognition."
+    lede="VAI programmes are being developed with CPD/CE alignment in mind. This page states, transparently, where each programme stands."
+  />
+
+  <Section eyebrow="Current Overview" title="No external accreditation claimed without formal grant.">
+    <div class="prose-editorial max-w-3xl">
+      <p>At the time of writing, VAI is a young academy. <strong class="text-navy-deep font-medium">No VAI programme currently holds external CPD/CE accreditation.</strong> Programmes are being structured for review readiness so that, where appropriate, they may be submitted to relevant external bodies.</p>
+    </div>
+  </Section>
+
+  <Section eyebrow="Per-Programme Status" tone="ivory">
+    <div class="max-w-4xl">
+      <ul class="divide-y divide-platinum">
+        {programmes.map((p) => (
+          <li class="py-6 grid md:grid-cols-12 gap-4">
+            <div class="md:col-span-5 font-serif text-xl text-navy-deep">{p.name}</div>
+            <div class="md:col-span-7 text-graphite leading-relaxed">{p.status}</div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </Section>
+
+  <Section eyebrow="Our Standard" title="External recognition is stated only when granted.">
+    <div class="prose-editorial max-w-3xl">
+      <p>We do not state, imply, or list CPD/CE recognition unless it has been formally granted. Where recognition is granted, the corresponding programme page is updated with the granting body, the credit allocation, and the period of validity.</p>
+    </div>
+  </Section>
+
+  <Section eyebrow="Bodies Under Consideration for Review" tone="ivory">
+    <div class="prose-editorial max-w-3xl">
+      <p>VAI is developing programmes with familiarity to the review pathways used by major CPD/CE organisations in Europe and internationally. Specific submissions will be communicated once status changes.</p>
+    </div>
+  </Section>
+
+  <Section eyebrow="Contact for CPD/CE Review">
+    <div class="prose-editorial max-w-3xl">
+      <p><a href="mailto:partnerships@vai.vet" class="font-serif text-xl md:text-2xl text-navy-deep hover:text-champagne transition-colors">partnerships@vai.vet</a></p>
+    </div>
+  </Section>
+</Base>

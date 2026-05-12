@@ -1,0 +1,23 @@
+---
+const steps = [
+  { n: '01', t: 'Foundation', d: 'Conceptual clarity and a reliable academic base.' },
+  { n: '02', t: 'Mastery', d: 'Advanced application, clinical reasoning, refined decisions.' },
+  { n: '03', t: 'Leadership', d: 'Practitioners who educate, lead, mentor, and shape the field.' },
+];
+---
+<div class="max-w-5xl mx-auto">
+  <div class="grid md:grid-cols-3 gap-0 relative">
+    {steps.map((s, i) => (
+      <div class={`relative p-8 md:p-10 ${i < 2 ? 'border-b md:border-b-0 md:border-r border-champagne/40' : ''} ${i === 0 ? 'bg-ivory' : i === 1 ? 'bg-paper' : 'bg-navy-deep text-ivory'}`}>
+        <div class={`font-serif text-xs tracking-[0.3em] mb-3 ${i === 2 ? 'text-champagne-soft' : 'text-champagne'}`}>{s.n}</div>
+        <h3 class={`font-serif text-2xl mb-3 ${i === 2 ? 'text-ivory' : 'text-navy-deep'}`}>{s.t}</h3>
+        <p class={`leading-relaxed text-sm ${i === 2 ? 'text-platinum' : 'text-graphite'}`}>{s.d}</p>
+        {i < 2 && (
+          <div class="hidden md:flex absolute top-1/2 -right-3 -translate-y-1/2 items-center">
+            <div class="font-serif text-champagne text-xl">→</div>
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+</div>

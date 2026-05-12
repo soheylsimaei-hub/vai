@@ -4,40 +4,87 @@ import PageHero from '../components/PageHero.astro';
 import Section from '../components/Section.astro';
 
 const directions = [
-  { t: 'Clinical Mastery', d: 'Case-based advanced clinical reasoning across core veterinary disciplines.' },
-  { t: 'Veterinary Longevity', d: 'Healthspan medicine, early detection, preventive intervention, and clinical integration.' },
-  { t: 'Veterinary Leadership and Practice', d: 'For practice owners, clinical leads, and educators shaping the profession.' },
-  { t: 'Faculty-Led Specialist Series', d: 'Focused programmes led by recognised specialists, surgeons, and academics.' },
-  { t: 'Professional Sustainability', d: 'The healthspan of the veterinary professional — career longevity, wellbeing, capacity.' },
+  {
+    n: '01',
+    name: 'Veterinary Longevity',
+    flagship: true,
+    short: 'Healthspan medicine for veterinary patients. The science of biological aging, early detection, preventive intervention, and clinical integration — distinguished from anti-aging marketing.',
+    audience: 'Veterinarians, clinical directors, practice owners, educators.',
+    status: 'Flagship programme in development — open for interest.',
+    href: '/programmes/foundations-veterinary-longevity',
+  },
+  {
+    n: '02',
+    name: 'Clinical Mastery',
+    short: 'Case-based advanced clinical reasoning across core veterinary disciplines.',
+    audience: 'Veterinarians with three or more years of practice.',
+    status: 'In development.',
+  },
+  {
+    n: '03',
+    name: 'Practice Leadership',
+    short: 'Leadership, structure, and sustainability for clinical leads and practice owners.',
+    audience: 'Practice owners, clinical leads, senior associates.',
+    status: 'In development.',
+  },
+  {
+    n: '04',
+    name: 'Veterinary Team Development',
+    short: 'Programmes for veterinary teams — beyond individual CPD, toward collective clinical and professional growth.',
+    audience: 'Whole-team programmes for clinics and groups.',
+    status: 'In development.',
+  },
+  {
+    n: '05',
+    name: 'Future Programmes',
+    short: 'Faculty-led specialist series, professional sustainability for veterinary teams, and others as the academy matures.',
+    audience: null,
+    status: 'Forthcoming.',
+  },
 ];
 ---
 <Base
-  title="Programmes"
-  description="VAI programme directions: Clinical Mastery, Veterinary Longevity, Leadership, Specialist Series, and Professional Sustainability."
+  title="Programmes — VAI"
+  description="Five programme directions for veterinarians, led by VAI's flagship Veterinary Longevity series."
 >
   <PageHero
     eyebrow="Programmes"
-    title="Where VAI's Education Leads."
-    lede="Five programme directions, each developed within the academic standards of Academia Europa."
+    title="Structured Veterinary Education, by Direction."
+    lede="VAI organises its programmes around five educational directions. Each is developed within the academic standards of Academia Europa."
   />
 
   <Section>
-    <ul class="grid md:grid-cols-2 gap-x-12 gap-y-12 max-w-5xl">
-      {directions.map((d, i) => (
-        <li class="border-t border-platinum pt-6">
-          <div class="font-serif text-champagne text-xs tracking-[0.3em] mb-3">0{i + 1}</div>
-          <h3 class="font-serif text-2xl text-navy-deep mb-3">{d.t}</h3>
-          <p class="text-graphite leading-relaxed">{d.d}</p>
+    <ul class="space-y-10 max-w-5xl">
+      {directions.map((d) => (
+        <li class="border-t border-platinum pt-8">
+          <div class="grid md:grid-cols-12 gap-6">
+            <div class="md:col-span-2">
+              <div class="font-serif text-champagne text-xs tracking-[0.3em] mb-3">{d.n}</div>
+              {d.flagship && <div class="eyebrow text-champagne-soft">Flagship</div>}
+            </div>
+            <div class="md:col-span-10">
+              <h2 class="font-serif text-2xl md:text-3xl text-navy-deep mb-3">{d.name}</h2>
+              <p class="text-graphite leading-relaxed mb-3">{d.short}</p>
+              {d.audience && (
+                <p class="text-sm text-muted mb-2"><span class="eyebrow mr-2">Audience</span>{d.audience}</p>
+              )}
+              <p class="text-sm text-navy-deep mb-4"><span class="eyebrow mr-2">Status</span>{d.status}</p>
+              {d.href && (
+                <a href={d.href} class="inline-block text-sm tracking-[0.14em] uppercase text-navy hover:text-champagne">Explore the programme →</a>
+              )}
+            </div>
+          </div>
         </li>
       ))}
     </ul>
   </Section>
 
-  <Section eyebrow="In Development" tone="ivory">
+  <Section eyebrow="Engage" tone="ivory">
     <div class="prose-editorial max-w-3xl">
-      <p>Detailed programme outlines, faculty announcements, and intake schedules will be published in due course. To be notified when programmes open for registration, please register your interest.</p>
-      <div class="mt-8">
+      <p>To be notified when programmes open for registration, or to discuss faculty participation, please register your interest.</p>
+      <div class="mt-8 flex flex-wrap gap-4">
         <a href="/contact" class="btn">Register Interest</a>
+        <a href="/faculty" class="btn">Teach with VAI</a>
       </div>
     </div>
   </Section>
