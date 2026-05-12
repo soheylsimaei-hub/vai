@@ -30,18 +30,23 @@ const cols = [
 ---
 <footer class="bg-navy-deep text-ivory mt-32">
   <div class="container-prose py-20">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
-      <div>
-        <img src="/vai-logo.svg" alt="VAI · Veterinary Academy International" class="h-12 w-auto mb-3" style="filter: brightness(0) invert(1);" />
-        <div class="text-[11px] tracking-[0.22em] uppercase text-champagne-soft mb-4">Veterinary Academy International</div>
-        <p class="text-sm text-platinum leading-relaxed max-w-xs">
-          The veterinary academy of Academia Europa. Structured postgraduate veterinary education.
-        </p>
+    <!-- Brand bar -->
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 pb-12 border-b border-navy-soft">
+      <a href="/" class="flex items-center gap-5">
+        <img src="/vai-logo.svg" alt="VAI" class="h-10 w-auto" style="filter: brightness(0) invert(1);" />
+        <span class="text-[11px] tracking-[0.22em] uppercase text-champagne-soft border-l border-navy-soft pl-5">Veterinary Academy International</span>
+      </a>
+      <div class="text-[11px] tracking-[0.18em] uppercase text-platinum/80">
+        A specialised academy of <a href="https://academiaeuropa.com" rel="noopener" class="text-champagne-soft hover:text-ivory">Academia Europa</a>
       </div>
+    </div>
+
+    <!-- Link columns -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 pt-14">
       {cols.map((c) => (
         <div>
-          <div class="eyebrow text-champagne-soft mb-4">{c.title}</div>
-          <ul class="space-y-2 text-sm text-platinum">
+          <div class="eyebrow text-champagne-soft mb-5">{c.title}</div>
+          <ul class="space-y-3 text-sm text-platinum">
             {c.links.map((l) => (
               <li>
                 <a
@@ -55,15 +60,17 @@ const cols = [
         </div>
       ))}
     </div>
-    <div class="mt-16 pt-8 border-t border-navy-soft text-xs text-platinum/80 leading-relaxed">
-      <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-4 mb-6">
-        <div class="text-[11px] tracking-[0.2em] uppercase text-champagne-soft">Flagship Direction</div>
+
+    <!-- Legal & flagship strip -->
+    <div class="mt-16 pt-8 border-t border-navy-soft">
+      <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-4 mb-6 text-[11px] tracking-[0.18em] uppercase">
+        <div class="text-champagne-soft">Flagship Direction</div>
         <a href="https://www.veterinarylongevity.com" rel="noopener" target="_blank" class="text-platinum hover:text-ivory transition-colors">Visit VeterinaryLongevity.com ↗</a>
       </div>
-      <p class="max-w-4xl">
+      <p class="max-w-4xl text-xs text-platinum/80 leading-relaxed">
         Veterinary Academy International is a specialised academy of Academia Europa, operated by Solex Education Unipessoal LDA, Portugal. Programmes are developed for postgraduate professional education and may be submitted for CPD/CE review where applicable.
       </p>
-      <div class="mt-6">© {year} Veterinary Academy International.</div>
+      <div class="mt-6 text-xs text-platinum/60">© {year} Veterinary Academy International.</div>
     </div>
   </div>
 </footer>
