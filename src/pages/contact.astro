@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+
+const pathways = [
+  { t: 'Programme Enquiries', e: 'hello@vai.vet' },
+  { t: 'Faculty Enquiries', e: 'faculty@vai.vet' },
+  { t: 'Partnerships & CPD Review', e: 'partnerships@vai.vet' },
+  { t: 'Media & Press', e: 'press@vai.vet' },
+];
+---
+<Base
+  title="Contact VAI"
+  description="Programme, faculty, partnership, and media enquiries for Veterinary Academy International."
+>
+  <PageHero
+    eyebrow="Contact"
+    title="Contact VAI."
+    lede="For programme, faculty, partnership, and media enquiries."
+  />
+
+  <Section>
+    <div class="grid md:grid-cols-2 gap-x-12 gap-y-12 max-w-4xl">
+      {pathways.map((p) => (
+        <div class="border-t border-platinum pt-6">
+          <div class="eyebrow mb-3">{p.t}</div>
+          <a href={`mailto:${p.e}`} class="font-serif text-xl md:text-2xl text-navy-deep hover:text-champagne transition-colors">{p.e}</a>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section eyebrow="Institutional Information" tone="ivory">
+    <div class="prose-editorial max-w-3xl">
+      <p>VAI is a specialised academy of <a href="https://academiaeuropa.com" rel="noopener" class="text-navy-deep underline decoration-champagne underline-offset-4">Academia Europa</a>, operated by Solex Education Unipessoal LDA, registered in Portugal.</p>
+    </div>
+  </Section>
+</Base>

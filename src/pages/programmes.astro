@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+
+const directions = [
+  { t: 'Clinical Mastery', d: 'Case-based advanced clinical reasoning across core veterinary disciplines.' },
+  { t: 'Veterinary Longevity', d: 'Healthspan medicine, early detection, preventive intervention, and clinical integration.' },
+  { t: 'Veterinary Leadership and Practice', d: 'For practice owners, clinical leads, and educators shaping the profession.' },
+  { t: 'Faculty-Led Specialist Series', d: 'Focused programmes led by recognised specialists, surgeons, and academics.' },
+  { t: 'Professional Sustainability', d: 'The healthspan of the veterinary professional — career longevity, wellbeing, capacity.' },
+];
+---
+<Base
+  title="Programmes"
+  description="VAI programme directions: Clinical Mastery, Veterinary Longevity, Leadership, Specialist Series, and Professional Sustainability."
+>
+  <PageHero
+    eyebrow="Programmes"
+    title="Where VAI's Education Leads."
+    lede="Five programme directions, each developed within the academic standards of Academia Europa."
+  />
+
+  <Section>
+    <ul class="grid md:grid-cols-2 gap-x-12 gap-y-12 max-w-5xl">
+      {directions.map((d, i) => (
+        <li class="border-t border-platinum pt-6">
+          <div class="font-serif text-champagne text-xs tracking-[0.3em] mb-3">0{i + 1}</div>
+          <h3 class="font-serif text-2xl text-navy-deep mb-3">{d.t}</h3>
+          <p class="text-graphite leading-relaxed">{d.d}</p>
+        </li>
+      ))}
+    </ul>
+  </Section>
+
+  <Section eyebrow="In Development" tone="ivory">
+    <div class="prose-editorial max-w-3xl">
+      <p>Detailed programme outlines, faculty announcements, and intake schedules will be published in due course. To be notified when programmes open for registration, please register your interest.</p>
+      <div class="mt-8">
+        <a href="/contact" class="btn">Register Interest</a>
+      </div>
+    </div>
+  </Section>
+</Base>

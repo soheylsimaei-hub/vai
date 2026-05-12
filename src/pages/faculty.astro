@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+
+const offered = [
+  'A serious institutional home for your teaching',
+  'Premium production standards',
+  'Structured course design support',
+  'Academic documentation that protects your reputation',
+  'International professional visibility',
+  'Long-term collaborative relationships',
+];
+const expected = [
+  'Relevant veterinary qualifications and demonstrable experience',
+  'Evidence-based, ethically grounded teaching',
+  'Clarity, precision, and respect for clinical uncertainty',
+  'Willingness to work within a structured course design process',
+  'Honest grading of evidence levels in your content',
+];
+---
+<Base
+  title="Teach with VAI — Faculty"
+  description="VAI invites experienced clinicians, specialists, academics, and veterinary educators to teach within a structured European postgraduate academy."
+>
+  <PageHero
+    eyebrow="Faculty"
+    title="Teach Within a Structured Veterinary Academy."
+    lede="VAI invites experienced veterinary clinicians, specialists, surgeons, academics, and educators to contribute to structured postgraduate learning."
+  />
+
+  <Section eyebrow="The Invitation">
+    <div class="prose-editorial max-w-3xl">
+      <p>Our model supports expert knowledge with academic documentation, production quality, and professional respect. Faculty join a long-term institution — not a course marketplace.</p>
+    </div>
+  </Section>
+
+  <Section eyebrow="What We Offer Faculty" tone="ivory">
+    <ul class="grid md:grid-cols-2 gap-4 max-w-3xl">
+      {offered.map((o) => (
+        <li class="flex gap-3 items-baseline text-graphite leading-relaxed">
+          <span class="text-champagne text-xs">—</span><span>{o}</span>
+        </li>
+      ))}
+    </ul>
+  </Section>
+
+  <Section eyebrow="What We Ask of Faculty">
+    <ul class="grid md:grid-cols-2 gap-4 max-w-3xl">
+      {expected.map((e) => (
+        <li class="flex gap-3 items-baseline text-graphite leading-relaxed">
+          <span class="text-champagne text-xs">—</span><span>{e}</span>
+        </li>
+      ))}
+    </ul>
+    <div class="mt-12">
+      <a href="/contact" class="btn">Apply to Teach</a>
+    </div>
+  </Section>
+</Base>

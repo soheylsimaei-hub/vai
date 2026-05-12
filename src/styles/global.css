@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@theme {
+  /* VAI uses a slightly warmer navy with a deeper veterinary-clinical character */
+  --color-navy: #0F2540;
+  --color-navy-deep: #0A1B2F;
+  --color-navy-soft: #1A2F4D;
+  --color-ivory: #F5EFE3;
+  --color-paper: #FAFAF6;
+  --color-platinum: #D4CFC4;
+  --color-platinum-soft: #ECE7DD;
+  --color-champagne: #B89863;
+  --color-champagne-soft: #C8AC7E;
+  --color-charcoal: #1B1B1B;
+  --color-graphite: #3B3B3B;
+  --color-muted: #6B6B6B;
+
+  --font-serif: "Cormorant Garamond", "Libre Caslon Text", Georgia, serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color: var(--color-charcoal);
+    background-color: var(--color-paper);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body { font-feature-settings: "ss01", "kern"; }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--color-navy-deep);
+  }
+  ::selection { background: var(--color-navy); color: var(--color-ivory); }
+}
+
+@layer components {
+  .container-prose {
+    max-width: 68rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+  @media (min-width: 768px) { .container-prose { padding-inline: 3rem; } }
+  @media (min-width: 1280px) { .container-prose { padding-inline: 6rem; } }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-champagne);
+    font-weight: 500;
+  }
+
+  .rule-gold { height: 1px; background: var(--color-champagne); width: 3rem; }
+
+  .btn {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.95rem 1.75rem;
+    border: 1px solid var(--color-navy);
+    color: var(--color-navy);
+    background: transparent;
+    transition: all 200ms ease;
+  }
+  .btn:hover { background: var(--color-navy); color: var(--color-ivory); }
+  .btn-light { border-color: var(--color-ivory); color: var(--color-ivory); }
+  .btn-light:hover { background: var(--color-ivory); color: var(--color-navy); }
+
+  .prose-editorial p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-graphite);
+    margin-bottom: 1.25rem;
+  }
+  .prose-editorial p:last-child { margin-bottom: 0; }
+
+  .institutional-bar {
+    background: var(--color-navy-deep);
+    color: var(--color-platinum);
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 0.55rem 0;
+    text-align: center;
+  }
+  .institutional-bar a { color: var(--color-champagne-soft); }
+  .institutional-bar a:hover { color: var(--color-ivory); }
+}

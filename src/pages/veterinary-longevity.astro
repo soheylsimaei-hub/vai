@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+
+const pillars = [
+  { n: '01', t: 'Biological Aging', d: 'Mechanisms, biomarkers, and the science of decline.' },
+  { n: '02', t: 'Early Detection and Risk Stratification', d: 'Identifying age-related risk before disease becomes irreversible.' },
+  { n: '03', t: 'Preventive and Proactive Intervention', d: 'Evidence-aware strategies that modify trajectory.' },
+  { n: '04', t: 'Clinical Integration', d: 'Translating concept into routine clinical workflow.' },
+  { n: '05', t: 'Evidence, Ethics, and Scientific Integrity', d: 'Honest grading of what is known, emerging, and hypothetical.' },
+];
+---
+<Base
+  title="Veterinary Longevity"
+  description="Healthspan medicine for the future of veterinary practice. An evidence-aware educational direction within VAI."
+>
+  <PageHero
+    eyebrow="A Flagship Direction of VAI"
+    title="Veterinary Longevity."
+    lede="Healthspan medicine for the future of veterinary practice. Evidence-aware, scientifically grounded, clinically translatable."
+    tone="dark"
+  />
+
+  <Section eyebrow="Definition" title="What Veterinary Longevity Means.">
+    <div class="prose-editorial max-w-3xl">
+      <p>Veterinary Longevity is the science and clinical practice of extending healthspan, delaying biological decline, and improving quality of life by identifying, measuring, and modifying the mechanisms and risk factors that drive aging and age-related disease in animals.</p>
+      <p>It is not anti-aging marketing. It is an evidence-aware educational framework for understanding healthspan, decline, risk, prevention, and quality of life.</p>
+    </div>
+  </Section>
+
+  <Section eyebrow="Why It Matters" tone="ivory">
+    <div class="prose-editorial max-w-3xl">
+      <p>Animals are living longer. The clinical question is no longer only <em>how long</em> — it is <em>how well</em>. Veterinary Longevity gives clinicians a framework to engage with that question seriously.</p>
+    </div>
+  </Section>
+
+  <Section eyebrow="Beyond Senior Care" title="A different question.">
+    <div class="prose-editorial max-w-3xl">
+      <p>Senior care often treats the consequences of aging. Veterinary Longevity aims to understand, detect, monitor, and modify the processes that drive aging, decline, and loss of quality of life — earlier, and with greater precision.</p>
+    </div>
+  </Section>
+
+  <Section eyebrow="The Framework" title="The Five Pillars." tone="ivory">
+    <div class="grid md:grid-cols-2 gap-x-12 gap-y-10 max-w-5xl">
+      {pillars.map((p) => (
+        <div class="border-l-2 border-champagne pl-6">
+          <div class="font-serif text-champagne text-xs tracking-[0.3em] mb-2">{p.n}</div>
+          <h3 class="font-serif text-2xl text-navy-deep mb-3">{p.t}</h3>
+          <p class="text-graphite leading-relaxed">{p.d}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section eyebrow="Clinical Translation">
+    <blockquote class="font-serif text-2xl md:text-3xl italic text-navy-deep leading-snug max-w-3xl border-l-2 border-champagne pl-8">
+      "Every concept in Veterinary Longevity must ultimately answer one question: what does this mean on Monday morning in a real clinic?"
+    </blockquote>
+  </Section>
+
+  <Section eyebrow="Veterinary Professional Longevity" title="The healthspan of the profession." tone="ivory">
+    <div class="prose-editorial max-w-3xl">
+      <p>The healthspan of the profession matters as much as the healthspan of the patient. Veterinary Longevity also examines the sustainability, wellbeing, and longevity of veterinary professionals themselves.</p>
+    </div>
+  </Section>
+
+  <Section eyebrow="Future Programmes">
+    <div class="prose-editorial max-w-3xl">
+      <p>Structured Veterinary Longevity programmes are in development under VAI. Programme outlines and faculty announcements will be published in due course.</p>
+      <div class="mt-8">
+        <a href="/contact" class="btn">Register Interest</a>
+      </div>
+    </div>
+  </Section>
+</Base>

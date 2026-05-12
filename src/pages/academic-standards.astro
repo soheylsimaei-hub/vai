@@ -1,0 +1,73 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+
+const evidence = [
+  { l: 'Level 1', t: 'Strong Clinical Evidence', d: 'Well-conducted clinical research with consistent findings across studies.' },
+  { l: 'Level 2', t: 'Emerging Clinical Evidence', d: 'Promising but still maturing clinical data; appropriate caution applied.' },
+  { l: 'Level 3', t: 'Preclinical or Mechanistic Evidence', d: 'Laboratory or mechanistic data; not yet validated in routine practice.' },
+  { l: 'Level 4', t: 'Expert Hypothesis / Future Direction', d: 'Informed clinical reasoning and future-facing thought, presented as such.' },
+];
+---
+<Base
+  title="Academic Standards"
+  description="VAI programmes are developed with documented learning objectives, evidence grading, faculty standards, and review processes prepared for academic and CPD/CE review."
+>
+  <PageHero
+    eyebrow="Quality & Standards"
+    title="Quality, Evidence, and Academic Discipline."
+    lede="Documented standards prepared for academic and professional review — aligned with Academia Europa."
+  />
+
+  <Section eyebrow="Programme Development" title="Every programme, fully documented.">
+    <div class="prose-editorial max-w-3xl">
+      <p>Every VAI programme is developed with defined learning objectives, structured modules, faculty documentation, reference lists, and assessment design appropriate to the level and intent of the course.</p>
+    </div>
+  </Section>
+
+  <Section eyebrow="Faculty Standards" title="Selected on substance, not visibility." tone="ivory">
+    <div class="prose-editorial max-w-3xl">
+      <p>Faculty are selected on the basis of relevant veterinary qualifications, professional experience, evidence-based approach, communication ability, and ethical teaching practice.</p>
+    </div>
+  </Section>
+
+  <Section eyebrow="VAI Evidence Hierarchy" title="Four levels. Stated openly.">
+    <div class="prose-editorial max-w-3xl mb-10">
+      <p>To protect scientific integrity, our programmes distinguish between four levels of evidence. This hierarchy is referenced explicitly in our content, so that learners — and reviewers — can see the basis of every claim.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6 max-w-4xl">
+      {evidence.map((e) => (
+        <div class="border-l-2 border-champagne pl-6 py-2">
+          <div class="eyebrow mb-2">{e.l}</div>
+          <h3 class="font-serif text-xl text-navy-deep mb-2">{e.t}</h3>
+          <p class="text-graphite leading-relaxed text-sm">{e.d}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section eyebrow="Assessment" title="Methods appropriate to level and intent." tone="ivory">
+    <div class="prose-editorial max-w-3xl">
+      <p>Programmes use assessment methods appropriate to their level, including case-based assessment, structured questions, reflective work, and applied exercises.</p>
+    </div>
+  </Section>
+
+  <Section eyebrow="References & Versioning" title="Current. Versioned. Reviewed.">
+    <div class="prose-editorial max-w-3xl">
+      <p>All programmes carry versioned reference lists and a defined review cycle to keep content current and accountable.</p>
+    </div>
+  </Section>
+
+  <Section eyebrow="Certificates" title="Honest in what they document." tone="ivory">
+    <div class="prose-editorial max-w-3xl">
+      <p>Veterinary programmes are delivered through Veterinary Academy International, the veterinary academy of Academia Europa. Certificates are designed to document structured postgraduate professional learning. Where applicable, selected programmes may be submitted for CPD/CE recognition by relevant professional bodies.</p>
+    </div>
+  </Section>
+
+  <Section eyebrow="Ethical Claims Policy" title="What we will not do.">
+    <div class="prose-editorial max-w-3xl">
+      <p>We do not promote unproven clinical claims. We do not market certificates as equivalent to state-recognised degrees, specialist qualifications, or board certifications. We do not claim accreditation we do not hold.</p>
+    </div>
+  </Section>
+</Base>

@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+---
+<Base
+  title="About VAI"
+  description="Veterinary Academy International is the veterinary academy of Academia Europa, dedicated to structured postgraduate veterinary education."
+>
+  <PageHero
+    eyebrow="About VAI"
+    title="The Veterinary Academy of Academia Europa."
+    lede="Structured postgraduate veterinary education for experienced practitioners."
+  />
+
+  <Section eyebrow="Our Purpose" title="From clinical competence to clinical mastery.">
+    <div class="prose-editorial max-w-3xl">
+      <p>Veterinary Academy International was created to give veterinarians something the wider CPD landscape rarely offers: a structured, expert-led, evidence-aware path from clinical competence to clinical mastery — and beyond, to leadership in the profession.</p>
+    </div>
+  </Section>
+
+  <Section eyebrow="Our Place" title="A specialised academy within Academia Europa." tone="ivory">
+    <div class="prose-editorial max-w-3xl">
+      <p>VAI is the first specialised academy within Academia Europa, a European institution for structured postgraduate professional education. Academia Europa is operated by Solex Education Unipessoal LDA, Portugal.</p>
+      <div class="mt-8">
+        <a href="https://academiaeuropa.com" rel="noopener" class="btn">Visit Academia Europa</a>
+      </div>
+    </div>
+  </Section>
+
+  <Section eyebrow="Who We Serve" title="Built for experienced veterinary professionals.">
+    <ul class="grid md:grid-cols-2 gap-4 max-w-3xl">
+      {[
+        'Veterinarians with three or more years of practice',
+        'Veterinary specialists and surgeons',
+        'Practice owners and clinical leaders',
+        'Veterinary educators',
+        'Veterinary teams seeking structured CPD/CE',
+        'Practitioners pursuing professional sustainability and longevity',
+      ].map((a) => (
+        <li class="flex gap-3 items-baseline text-graphite leading-relaxed">
+          <span class="text-champagne text-xs">—</span><span>{a}</span>
+        </li>
+      ))}
+    </ul>
+  </Section>
+
+  <Section eyebrow="Founder" title="Dr. Soheyl Simaei." tone="ivory">
+    <div class="prose-editorial max-w-3xl">
+      <p>VAI was founded by Dr. Soheyl Simaei, a veterinarian and entrepreneur with more than two decades of clinical and leadership experience. Before founding Academia Europa and VAI, he spent more than two decades in veterinary practice, clinical leadership, and veterinary entrepreneurship, building and leading a respected veterinary business in Dubai. This experience now informs his work in postgraduate veterinary education, professional development, and clinical leadership training.</p>
+    </div>
+  </Section>
+</Base>

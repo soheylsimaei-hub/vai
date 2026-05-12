@@ -1,0 +1,19 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lede?: string;
+  tone?: 'light' | 'dark';
+}
+const { eyebrow, title, lede, tone = 'light' } = Astro.props;
+const bg = tone === 'dark' ? 'bg-navy-deep text-ivory' : 'bg-ivory';
+const titleColor = tone === 'dark' ? 'text-ivory' : 'text-navy-deep';
+const ledeColor = tone === 'dark' ? 'text-platinum' : 'text-graphite';
+---
+<section class={`${bg} border-b border-platinum-soft/60`}>
+  <div class="container-prose py-24 md:py-32">
+    {eyebrow && <div class="eyebrow mb-6">{eyebrow}</div>}
+    <h1 class={`font-serif ${titleColor} text-4xl md:text-6xl leading-[1.05] max-w-4xl`}>{title}</h1>
+    {lede && <p class={`mt-8 max-w-2xl text-lg md:text-xl leading-relaxed ${ledeColor}`}>{lede}</p>}
+  </div>
+</section>

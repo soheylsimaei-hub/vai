@@ -1,0 +1,62 @@
+---
+import '../styles/global.css';
+import InstitutionalBar from '../components/InstitutionalBar.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogTitle?: string;
+}
+const {
+  title,
+  description = 'Veterinary Academy International — the veterinary academy of Academia Europa. Structured postgraduate veterinary education.',
+  ogTitle,
+} = Astro.props;
+const fullTitle = title.includes('VAI') ? title : `${title} — VAI`;
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonical} />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={ogTitle ?? fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap"
+    />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'EducationalOrganization',
+      name: 'Veterinary Academy International',
+      alternateName: 'VAI',
+      url: 'https://vai.vet',
+      description,
+      parentOrganization: {
+        '@type': 'EducationalOrganization',
+        name: 'Academia Europa',
+        url: 'https://academiaeuropa.com',
+      },
+    })} />
+  </head>
+  <body>
+    <InstitutionalBar />
+    <Nav />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

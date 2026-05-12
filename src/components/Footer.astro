@@ -1,0 +1,54 @@
+---
+const year = new Date().getFullYear();
+const cols = [
+  {
+    title: 'Academy',
+    links: [
+      { href: '/about', label: 'About VAI' },
+      { href: '/programmes', label: 'Programmes' },
+      { href: '/veterinary-longevity', label: 'Veterinary Longevity' },
+      { href: '/academic-standards', label: 'Academic Standards' },
+    ],
+  },
+  {
+    title: 'Engage',
+    links: [
+      { href: '/faculty', label: 'Faculty' },
+      { href: '/contact', label: 'Contact' },
+      { href: 'https://academiaeuropa.com', label: 'Academia Europa', external: true },
+    ],
+  },
+];
+---
+<footer class="bg-navy-deep text-ivory mt-32">
+  <div class="container-prose py-20">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div>
+        <div class="font-serif text-2xl tracking-[0.2em] uppercase mb-2">VAI</div>
+        <div class="text-[11px] tracking-[0.22em] uppercase text-champagne-soft mb-4">Veterinary Academy International</div>
+        <p class="text-sm text-platinum leading-relaxed max-w-xs">
+          The veterinary academy of Academia Europa. Structured postgraduate veterinary education.
+        </p>
+      </div>
+      {cols.map((c) => (
+        <div>
+          <div class="eyebrow text-champagne-soft mb-4">{c.title}</div>
+          <ul class="space-y-2 text-sm text-platinum">
+            {c.links.map((l) => (
+              <li>
+                <a
+                  href={l.href}
+                  class="hover:text-ivory transition-colors"
+                  {...(l.external ? { rel: 'noopener', target: '_blank' } : {})}
+                >{l.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+    <div class="mt-16 pt-8 border-t border-navy-soft text-xs text-platinum/80 leading-relaxed">
+      © {year} Veterinary Academy International. A specialised academy of Academia Europa, operated by Solex Education Unipessoal LDA, Portugal.
+    </div>
+  </div>
+</footer>

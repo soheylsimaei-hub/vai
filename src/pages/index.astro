@@ -1,0 +1,103 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+---
+<Base
+  title="VAI — Veterinary Academy International"
+  description="Veterinary Academy International is the veterinary academy of Academia Europa. Structured, evidence-based postgraduate education for veterinarians and veterinary teams."
+>
+  <!-- Hero -->
+  <section class="bg-navy-deep text-ivory">
+    <div class="container-prose py-32 md:py-44">
+      <div class="eyebrow text-champagne-soft mb-8">Veterinary Academy International</div>
+      <h1 class="font-serif text-ivory text-5xl md:text-7xl leading-[1.02] max-w-5xl">
+        Postgraduate Veterinary Education, Built for Mastery.
+      </h1>
+      <p class="mt-10 max-w-2xl text-lg md:text-xl leading-relaxed text-platinum">
+        VAI is the veterinary academy of Academia Europa — structured, evidence-based, expert-led education for veterinarians and veterinary teams seeking depth, progression, and lasting clinical authority.
+      </p>
+      <div class="mt-12 flex flex-wrap gap-4">
+        <a href="/programmes" class="btn btn-light">Explore Programmes</a>
+        <a href="/faculty" class="btn btn-light">Teach with VAI</a>
+      </div>
+    </div>
+  </section>
+
+  <Section eyebrow="The Question Behind VAI" title="Beyond fragmented CPD.">
+    <div class="prose-editorial max-w-3xl">
+      <p>Veterinary continuing education has become an inventory of isolated hours: webinars without progression, certificates without architecture, knowledge without translation into practice. VAI was created to offer something different — a structured, expert-led path from clinical competence to clinical mastery, and beyond, to leadership in the profession.</p>
+    </div>
+  </Section>
+
+  <Section eyebrow="What We Do" title="Education for experienced veterinary professionals." tone="ivory">
+    <div class="grid md:grid-cols-3 gap-10 max-w-5xl">
+      {[
+        { t: 'Case-Based Teaching', d: 'Every concept tested against the realities of clinical practice.' },
+        { t: 'Specialist-Led Faculty', d: 'Programmes shaped by experienced specialists, surgeons, and educators.' },
+        { t: 'Documented Evidence', d: 'Every module grades the evidence behind its content — openly.' },
+      ].map((s, i) => (
+        <div>
+          <div class="font-serif text-champagne text-sm tracking-[0.3em] mb-3">0{i + 1}</div>
+          <h3 class="font-serif text-2xl text-navy-deep mb-3">{s.t}</h3>
+          <p class="text-graphite leading-relaxed">{s.d}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section eyebrow="Flagship Direction" title="Veterinary Longevity.">
+    <div class="grid md:grid-cols-12 gap-12 items-start">
+      <div class="md:col-span-7 prose-editorial">
+        <p>Through VAI, Academia Europa is developing education in Veterinary Longevity — the science and clinical integration of healthspan medicine for animals, with a careful distinction between established evidence, emerging research, and future-facing clinical thought.</p>
+        <p>This is not anti-aging marketing. It is an evidence-aware framework for understanding healthspan, decline, prevention, and quality of life.</p>
+        <div class="mt-8">
+          <a href="/veterinary-longevity" class="btn">Explore Veterinary Longevity</a>
+        </div>
+      </div>
+      <div class="md:col-span-5 border-l border-champagne pl-8 py-2">
+        <div class="eyebrow mb-3">The Clinical Question</div>
+        <blockquote class="font-serif italic text-2xl text-navy-deep leading-snug">
+          "What does this mean on Monday morning in a real clinic?"
+        </blockquote>
+      </div>
+    </div>
+  </Section>
+
+  <Section eyebrow="Learning Pathways" title="Foundation. Mastery. Leadership." tone="ivory" align="center">
+    <div class="grid md:grid-cols-3 gap-10 max-w-5xl mx-auto">
+      {[
+        { t: 'Foundation', d: 'Conceptual clarity and structured grounding in core veterinary domains.' },
+        { t: 'Mastery', d: 'Advanced clinical reasoning, case-based learning, and refined decision-making.' },
+        { t: 'Leadership', d: 'For practitioners who teach, lead practices, mentor, and shape the profession.' },
+      ].map((s, i) => (
+        <div class="text-center">
+          <div class="font-serif text-champagne text-sm tracking-[0.3em] mb-4">0{i + 1}</div>
+          <h3 class="font-serif text-2xl text-navy-deep mb-4">{s.t}</h3>
+          <p class="text-graphite leading-relaxed">{s.d}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section eyebrow="Academic Discipline" title="Prepared for academic and professional review.">
+    <div class="prose-editorial max-w-3xl">
+      <p>VAI programmes are developed with defined learning objectives, structured modules, faculty documentation, evidence grading, assessment design, and reference versioning. This approach supports CPD/CE alignment and prepares selected programmes for external review where applicable.</p>
+      <div class="mt-8">
+        <a href="/academic-standards" class="btn">Read Our Academic Standards</a>
+      </div>
+    </div>
+  </Section>
+
+  <section class="bg-navy-deep text-ivory">
+    <div class="container-prose py-28 text-center">
+      <div class="eyebrow text-champagne-soft mb-6">For Veterinarians, Faculty, and Institutions</div>
+      <h2 class="font-serif text-ivory text-3xl md:text-5xl leading-tight max-w-3xl mx-auto">
+        VAI is being built for veterinary professionals who want education with structure, evidence, and meaning.
+      </h2>
+      <div class="mt-12 flex flex-wrap gap-4 justify-center">
+        <a href="/contact" class="btn btn-light">Register Interest</a>
+        <a href="/faculty" class="btn btn-light">Teach with VAI</a>
+      </div>
+    </div>
+  </section>
+</Base>
