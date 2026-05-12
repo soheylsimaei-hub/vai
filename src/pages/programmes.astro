@@ -171,7 +171,62 @@ const directions = [
     </p>
   </Section>
 
-  <Section eyebrow="Faculty & Reviewers" title="Announcements forthcoming.">
+  <Section eyebrow="Academic Documentation & Programme Assets" title="Structured documentation behind every programme.">
+    <div class="prose-editorial max-w-3xl mb-12">
+      <p>VAI programmes are supported by structured academic documentation, including learning objectives, module outlines, evidence-level distinctions, assessment criteria, certificate requirements, and versioned review materials.</p>
+    </div>
+    <ul class="grid md:grid-cols-2 gap-x-10 gap-y-10 max-w-5xl">
+      {[
+        {
+          n: '01',
+          t: 'Sample Certificate Preview',
+          d: 'Preview the structure and wording of VAI certificates of completion.',
+          href: '/programmes/foundations-veterinary-longevity',
+          cta: 'View on the flagship programme →',
+        },
+        {
+          n: '02',
+          t: 'Evidence Hierarchy',
+          d: 'Understand how VAI distinguishes established knowledge from emerging evidence and future-facing expert hypothesis.',
+          href: '/academic-standards',
+          cta: 'View the four levels →',
+        },
+        {
+          n: '03',
+          t: 'Module Preview',
+          d: 'Explore a sample module structure, including learning objectives, subtopics, clinical relevance, and assessment style.',
+          href: '/programmes/foundations-veterinary-longevity/module-1',
+          cta: 'Preview Module 1 →',
+        },
+        {
+          n: '04',
+          t: 'Programme Academic Pack',
+          d: 'Selected programmes may include an academic pack with course rationale, module structure, assessment approach, certificate wording, evidence framework, and review status. In preparation.',
+        },
+        {
+          n: '05',
+          t: 'Programme Documentation Checklist',
+          d: 'Review the academic elements used to structure VAI programmes, including learning objectives, faculty documentation, references, assessment method, and certificate criteria.',
+          href: '/programmes/foundations-veterinary-longevity',
+          cta: 'View on the flagship programme →',
+        },
+      ].map((a) => (
+        <li class="border-l-2 border-champagne pl-6 py-1">
+          <div class="font-serif text-champagne text-xs tracking-[0.3em] mb-2">{a.n}</div>
+          <h3 class="font-serif text-xl text-navy-deep mb-3">{a.t}</h3>
+          <p class="text-graphite leading-relaxed text-[15px] mb-3">{a.d}</p>
+          {a.href && (
+            <a href={a.href} class="inline-block text-sm tracking-[0.14em] uppercase text-navy hover:text-champagne">{a.cta}</a>
+          )}
+        </li>
+      ))}
+    </ul>
+    <p class="mt-10 text-sm text-muted max-w-3xl leading-relaxed">
+      Additional academic documentation will be added as programmes are finalised, with downloadable versions available where applicable.
+    </p>
+  </Section>
+
+  <Section eyebrow="Faculty & Reviewers" title="Announcements forthcoming." tone="ivory">
     <div class="prose-editorial max-w-3xl">
       <p>Faculty and academic contributors will be announced as programmes are finalised. Educators interested in contributing to a future programme direction are welcome to enquire.</p>
       <div class="mt-8">
@@ -180,7 +235,7 @@ const directions = [
     </div>
   </Section>
 
-  <Section eyebrow="Engage" tone="ivory">
+  <Section eyebrow="Engage">
     <div class="prose-editorial max-w-3xl">
       <p>To be notified when programmes open for registration, or to discuss faculty participation, please register your interest.</p>
       <div class="mt-8 flex flex-wrap gap-4">
