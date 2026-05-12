@@ -8,10 +8,12 @@ const directions = [
     n: '01',
     name: 'Veterinary Longevity',
     flagship: true,
-    short: 'Healthspan medicine for veterinary patients. The science of biological aging, early detection, preventive intervention, and clinical integration, distinguished from anti-aging marketing.',
+    short: 'A flagship VAI educational direction exploring animal healthspan, aging biology, early detection, preventive strategies, and evidence-aware clinical integration. Developed within VAI, with a dedicated platform at VeterinaryLongevity.com.',
     audience: 'Veterinarians, clinical directors, practice owners, educators.',
-    status: 'Flagship programme in development, open for interest.',
+    status: 'Flagship direction with dedicated platform.',
+    external: 'https://www.veterinarylongevity.com',
     href: '/programmes/foundations-veterinary-longevity',
+    relatedLabel: 'View related VAI courses',
   },
   {
     n: '02',
@@ -37,7 +39,7 @@ const directions = [
   {
     n: '05',
     name: 'Future Programmes',
-    short: 'Faculty-led specialist series, professional sustainability for veterinary teams, and others as the academy matures.',
+    short: 'Faculty-led subject series, professional sustainability for veterinary teams, and others as the academy matures.',
     audience: null,
     status: 'Forthcoming.',
   },
@@ -45,7 +47,7 @@ const directions = [
 ---
 <Base
   title="Programmes · VAI"
-  description="Five programme directions for veterinarians, led by VAI's flagship Veterinary Longevity series."
+  description="Five programme directions for veterinarians under VAI's structured postgraduate education framework."
 >
   <PageHero
     eyebrow="Programmes"
@@ -68,8 +70,16 @@ const directions = [
               {d.audience && (
                 <p class="text-sm text-muted mb-2"><span class="eyebrow mr-2">Audience</span>{d.audience}</p>
               )}
-              <p class="text-sm text-navy-deep mb-4"><span class="eyebrow mr-2">Status</span>{d.status}</p>
-              {d.href && (
+              <p class="text-sm text-navy-deep mb-5"><span class="eyebrow mr-2">Status</span>{d.status}</p>
+              {d.external && (
+                <div class="flex flex-wrap gap-4 items-baseline">
+                  <a href={d.external} rel="noopener" target="_blank" class="btn">Visit Veterinary Longevity ↗</a>
+                  {d.href && (
+                    <a href={d.href} class="inline-block text-sm tracking-[0.14em] uppercase text-navy hover:text-champagne">{d.relatedLabel ?? 'Explore →'}</a>
+                  )}
+                </div>
+              )}
+              {!d.external && d.href && (
                 <a href={d.href} class="inline-block text-sm tracking-[0.14em] uppercase text-navy hover:text-champagne">Explore the programme →</a>
               )}
             </div>
