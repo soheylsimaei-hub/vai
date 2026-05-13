@@ -31,6 +31,17 @@ Deploys to **GitHub Pages** on every push to `main` via `.github/workflows/deplo
 
 `public/CNAME` persists the custom domain across deploys.
 
+## Environment variables
+
+Configured in `.env.example`. For production the values are read from
+**GitHub Actions repository variables** at build time (Settings → Secrets
+and variables → Actions → Variables).
+
+| Variable | Purpose | Default |
+| --- | --- | --- |
+| `PUBLIC_LMS_URL` | Student sign-in URL for the VAI Learning Management System. Update to the final URL once confirmed with the IT team (Omer / Faisal). | `https://learn.vai.vet/login` |
+| `PUBLIC_LMS_ENABLED` | When `true`, the **Login** button is rendered in the main nav and mobile menu. When `false` (default), it is not rendered. Flip to `true` in the production repo variables once the LMS is publicly reachable. | `false` |
+
 ## Pages
 
 ```

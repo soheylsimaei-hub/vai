@@ -8,6 +8,9 @@ const links = [
   { href: '/cpd-ce-alignment', label: 'CPD/CE' },
   { href: '/contact', label: 'Contact' },
 ];
+
+const lmsUrl = import.meta.env.PUBLIC_LMS_URL ?? 'https://learn.vai.vet/login';
+const lmsEnabled = import.meta.env.PUBLIC_LMS_ENABLED === 'true';
 ---
 <header class="border-b border-platinum-soft bg-paper">
   <!-- Top row: logo + tagline (centered on desktop, left on mobile) + mobile menu button -->
@@ -29,11 +32,24 @@ const links = [
   </div>
 
   <!-- Bottom row: nav items (desktop only) -->
-  <nav class="hidden lg:flex border-t border-platinum-soft/70">
-    <div class="container-prose flex items-center justify-center gap-x-7 xl:gap-x-9 py-4 text-[12px] xl:text-[12.5px] tracking-[0.13em] uppercase text-graphite">
-      {links.map((l) => (
-        <a href={l.href} class="whitespace-nowrap hover:text-navy transition-colors">{l.label}</a>
-      ))}
+  <nav class="hidden lg:block border-t border-platinum-soft/70">
+    <div class="container-prose grid grid-cols-[1fr_auto_1fr] items-center py-4 text-[12px] xl:text-[12.5px] tracking-[0.13em] uppercase text-graphite">
+      <div></div>
+      <div class="flex items-center justify-center gap-x-7 xl:gap-x-9">
+        {links.map((l) => (
+          <a href={l.href} class="whitespace-nowrap hover:text-navy transition-colors">{l.label}</a>
+        ))}
+      </div>
+      <div class="flex justify-end">
+        {lmsEnabled && (
+          <a
+            href={lmsUrl}
+            rel="noopener noreferrer"
+            aria-label="Student login — opens the VAI Learning Management System"
+            class="inline-block whitespace-nowrap border border-navy text-navy hover:bg-navy hover:text-ivory transition-colors px-4 py-2 text-[11px] xl:text-[11.5px] tracking-[0.16em] uppercase focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+          >Login</a>
+        )}
+      </div>
     </div>
   </nav>
 
@@ -43,6 +59,14 @@ const links = [
       {links.map((l) => (
         <a href={l.href} class="hover:text-navy">{l.label}</a>
       ))}
+      {lmsEnabled && (
+        <a
+          href={lmsUrl}
+          rel="noopener noreferrer"
+          aria-label="Student login — opens the VAI Learning Management System"
+          class="mt-4 inline-block text-center border border-navy text-navy hover:bg-navy hover:text-ivory transition-colors px-5 py-3 text-sm tracking-[0.16em] uppercase focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+        >Login</a>
+      )}
     </nav>
   </div>
 </header>

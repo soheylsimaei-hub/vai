@@ -28,6 +28,9 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
+        env:
+          PUBLIC_LMS_URL: ${{ vars.PUBLIC_LMS_URL || 'https://learn.vai.vet/login' }}
+          PUBLIC_LMS_ENABLED: ${{ vars.PUBLIC_LMS_ENABLED || 'false' }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
