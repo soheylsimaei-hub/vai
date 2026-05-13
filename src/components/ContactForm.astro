@@ -2,6 +2,16 @@
 // Replace YOUR_FORMSPREE_ID below with the Formspree form ID you create
 // at https://formspree.io for vai.vet
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORMSPREE_ID';
+
+// Programme of interest can be pre-selected via ?programme=trusted-vet-method
+const programmeParam = Astro.url.searchParams.get('programme') ?? '';
+const programmeMap: Record<string, string> = {
+  'trusted-vet-method': 'The Trusted Vet Method',
+  'veterinary-longevity': 'Veterinary Longevity',
+  'foundations-veterinary-longevity': 'Foundations of Veterinary Longevity',
+};
+const programmeOfInterest = programmeMap[programmeParam] ?? '';
+const isProgrammeEnquiry = programmeOfInterest !== '';
 ---
 <form
   action={FORMSPREE_ENDPOINT}
@@ -16,13 +26,27 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORMSPREE_ID';
       required
       class="w-full border border-platinum bg-paper px-4 py-3 text-graphite font-sans focus:outline-none focus:border-navy"
     >
-      <option value="Programme">Programme enquiry / Register interest</option>
+      <option value="Programme" selected={isProgrammeEnquiry}>Programme enquiry / Register interest</option>
       <option value="Faculty">Faculty enquiry</option>
       <option value="Partnerships">Partnerships & CPD/CE review</option>
-      <option value="Media">Media & Press</option>
       <option value="General">General enquiry</option>
+      <option value="Other">Other enquiry</option>
     </select>
   </div>
+
+  {isProgrammeEnquiry && (
+    <div>
+      <label class="eyebrow mb-2 block" for="programme">Programme of interest</label>
+      <input
+        id="programme"
+        name="programme_of_interest"
+        type="text"
+        readonly
+        value={programmeOfInterest}
+        class="w-full border border-platinum bg-platinum-soft/40 px-4 py-3 text-navy-deep font-sans focus:outline-none"
+      />
+    </div>
+  )}
 
   <div class="grid md:grid-cols-2 gap-6">
     <div>
@@ -69,13 +93,13 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORMSPREE_ID';
     ></textarea>
   </div>
 
-  <input type="hidden" name="_subject" value="VAI Website enquiry" />
+  <input type="hidden" name="_subject" value={isProgrammeEnquiry ? `VAI — Interest in ${programmeOfInterest}` : 'VAI Website enquiry'} />
   <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
 
   <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pt-2">
     <p class="text-xs text-muted leading-relaxed max-w-md">
       By submitting this form, you agree to be contacted by Veterinary Academy International regarding your enquiry.
     </p>
-    <button type="submit" class="btn">Send Enquiry</button>
+    <button type="submit" class="btn btn-primary">Send Enquiry</button>
   </div>
 </form>

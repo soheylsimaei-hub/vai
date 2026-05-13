@@ -8,48 +8,102 @@ interface Props {
   title: string;
   description?: string;
   ogTitle?: string;
+  ogDescription?: string;
+  isHome?: boolean;
 }
 const {
   title,
   description = 'Veterinary Academy International. The veterinary academy of Academia Europa. Structured postgraduate veterinary education.',
   ogTitle,
+  ogDescription,
+  isHome = false,
 } = Astro.props;
 const fullTitle = title.includes('VAI') ? title : `${title} · VAI`;
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+
+// Site-wide Organization schema; the home page extends it to EducationalOrganization with parent + founder.
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Veterinary Academy International',
+  alternateName: 'VAI',
+  url: 'https://www.vai.vet',
+  logo: 'https://www.vai.vet/vai-logo.svg',
+  description,
+  sameAs: [
+    'https://www.linkedin.com/company/112349450/',
+    'https://www.instagram.com/veterinaryacademyinternational/',
+  ],
+};
+
+const homeSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'EducationalOrganization',
+  name: 'Veterinary Academy International',
+  alternateName: 'VAI',
+  url: 'https://www.vai.vet',
+  logo: 'https://www.vai.vet/vai-logo.svg',
+  description: 'VAI is the veterinary academy of Academia Europa: structured, evidence-based, expert-led postgraduate education for veterinarians and veterinary teams.',
+  parentOrganization: {
+    '@type': 'Organization',
+    name: 'Academia Europa',
+    url: 'https://academiaeuropa.com',
+  },
+  founder: {
+    '@type': 'Person',
+    name: 'Dr. Soheyl Simaei',
+    jobTitle: 'Founder & Academic Director',
+  },
+  sameAs: [
+    'https://www.linkedin.com/company/112349450/',
+    'https://www.instagram.com/veterinaryacademyinternational/',
+  ],
+};
 ---
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {/* Favicons */}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0E1B33" />
+
     <link rel="canonical" href={canonical} />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+
+    {/* Open Graph */}
+    <meta property="og:site_name" content="Veterinary Academy International" />
     <meta property="og:title" content={ogTitle ?? fullTitle} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={ogDescription ?? description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="https://www.vai.vet/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Veterinary Academy International — VAI" />
+
+    {/* Twitter */}
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle ?? fullTitle} />
+    <meta name="twitter:description" content={ogDescription ?? description} />
+    <meta name="twitter:image" content="https://www.vai.vet/og-image.jpg" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap"
     />
-    <script type="application/ld+json" set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'EducationalOrganization',
-      name: 'Veterinary Academy International',
-      alternateName: 'VAI',
-      url: 'https://vai.vet',
-      description,
-      parentOrganization: {
-        '@type': 'EducationalOrganization',
-        name: 'Academia Europa',
-        url: 'https://academiaeuropa.com',
-      },
-    })} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(isHome ? homeSchema : orgSchema)} />
   </head>
   <body>
     <InstitutionalBar />

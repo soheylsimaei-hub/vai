@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0E1B33"/>
+  <g transform="translate(600,260)">
+    <text text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-size="120" font-weight="500" fill="#F4EEDF" letter-spacing="8">VAI</text>
+  </g>
+  <g transform="translate(600,330)">
+    <text text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="20" letter-spacing="6" fill="#C8AC7E">VETERINARY ACADEMY INTERNATIONAL</text>
+  </g>
+  <line x1="500" y1="380" x2="700" y2="380" stroke="#B89863" stroke-width="1"/>
+  <g transform="translate(600,440)">
+    <text text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-style="italic" font-size="34" fill="#F4EEDF">Postgraduate Veterinary Education,</text>
+  </g>
+  <g transform="translate(600,485)">
+    <text text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-style="italic" font-size="34" fill="#F4EEDF">Built for Mastery.</text>
+  </g>
+  <g transform="translate(600,560)">
+    <text text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" letter-spacing="4" fill="#D4CFC4">A SPECIALISED ACADEMY OF ACADEMIA EUROPA</text>
+  </g>
+</svg>
