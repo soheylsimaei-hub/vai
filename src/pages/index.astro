@@ -104,18 +104,30 @@ import Section from '../components/Section.astro';
 
   <!-- P0.9 — Founder surfaced on home page -->
   <Section eyebrow="Leadership" title="Founder-led. Academically collaborative." tone="ivory">
-    <div class="grid md:grid-cols-12 gap-10 items-start max-w-5xl">
-      <div class="md:col-span-3">
-        <div class="aspect-[3/4] bg-platinum-soft border border-platinum flex items-center justify-center">
-          <span class="font-serif text-xs tracking-[0.2em] text-muted uppercase">Portrait</span>
-        </div>
+    <div class="grid md:grid-cols-12 gap-10 md:gap-14 items-start max-w-5xl">
+      <div class="md:col-span-4">
+        <figure class="relative">
+          <div class="aspect-[3/4] overflow-hidden bg-platinum-soft">
+            <img
+              src="/founder-portrait.png"
+              alt="Dr. Soheyl Simaei, Founder & Academic Director of Veterinary Academy International"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover object-center"
+            />
+          </div>
+          <div class="absolute -bottom-px left-0 w-12 h-px bg-champagne"></div>
+        </figure>
       </div>
-      <div class="md:col-span-9">
-        <div class="font-serif text-2xl text-navy-deep">Dr. Soheyl Simaei</div>
-        <div class="eyebrow mt-2 mb-5">Founder &amp; Academic Director</div>
-        <p class="text-graphite leading-relaxed">Veterinarian, 21 years of clinical practice.<br />Founder of Academia Europa.</p>
-        <p class="text-graphite leading-relaxed mt-5">VAI is being developed with experienced veterinary professionals, educators, and subject-matter experts to create rigorous, sequenced postgraduate veterinary education.</p>
-        <div class="mt-6">
+      <div class="md:col-span-8">
+        <div class="font-serif text-3xl md:text-4xl text-navy-deep leading-tight">Dr. Soheyl Simaei</div>
+        <div class="eyebrow mt-3 mb-6">Founder &amp; Academic Director</div>
+        <p class="text-graphite leading-relaxed text-lg">
+          Veterinarian with 21 years of clinical practice.<br />
+          Founder of Academia Europa.
+        </p>
+        <p class="text-graphite leading-relaxed mt-6">VAI is being developed with experienced veterinary professionals, educators, and subject-matter experts to create rigorous, sequenced postgraduate veterinary education.</p>
+        <div class="mt-8">
           <a href="/about/leadership" class="inline-block text-sm tracking-[0.14em] uppercase text-navy hover:text-champagne">Read the leadership note →</a>
         </div>
       </div>

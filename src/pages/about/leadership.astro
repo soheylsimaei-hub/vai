@@ -14,10 +14,30 @@ import Section from '../../components/Section.astro';
   />
 
   <Section>
-    <div class="prose-editorial max-w-3xl">
-      <p>Veterinary Academy International was established under the leadership of <strong class="text-navy-deep font-medium">Dr. Soheyl Simaei</strong>, a veterinarian and educator with more than two decades of clinical, leadership, and entrepreneurial experience.</p>
-      <p>Before establishing VAI, Dr. Simaei spent more than two decades in veterinary practice, clinical leadership, and veterinary entrepreneurship, building and leading a respected veterinary business in Dubai. This experience now informs his work in postgraduate veterinary education, professional development, and clinical leadership training.</p>
-      <p>VAI is being developed in collaboration with experienced veterinary professionals, educators, and subject-matter experts. Faculty announcements will be made as programmes mature.</p>
+    <div class="grid md:grid-cols-12 gap-10 md:gap-14 items-start max-w-5xl">
+      <div class="md:col-span-4">
+        <figure class="relative">
+          <div class="aspect-[3/4] overflow-hidden bg-platinum-soft">
+            <img
+              src="/founder-portrait.png"
+              alt="Dr. Soheyl Simaei, Founder & Academic Director of Veterinary Academy International"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover object-center"
+            />
+          </div>
+          <div class="absolute -bottom-px left-0 w-12 h-px bg-champagne"></div>
+        </figure>
+        <div class="mt-6">
+          <div class="font-serif text-xl text-navy-deep">Dr. Soheyl Simaei</div>
+          <div class="eyebrow mt-2">Founder &amp; Academic Director</div>
+        </div>
+      </div>
+      <div class="md:col-span-8 prose-editorial">
+        <p>Veterinary Academy International was established under the leadership of <strong class="text-navy-deep font-medium">Dr. Soheyl Simaei</strong>, a veterinarian and educator with more than two decades of clinical, leadership, and entrepreneurial experience.</p>
+        <p>Before establishing VAI, Dr. Simaei spent more than two decades in veterinary practice, clinical leadership, and veterinary entrepreneurship, building and leading a respected veterinary business in Dubai. This experience now informs his work in postgraduate veterinary education, professional development, and clinical leadership training.</p>
+        <p>VAI is being developed in collaboration with experienced veterinary professionals, educators, and subject-matter experts. Faculty announcements will be made as programmes mature.</p>
+      </div>
     </div>
   </Section>
 
