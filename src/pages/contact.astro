@@ -43,9 +43,9 @@ const pathways = [
           <div class="md:col-span-4">
             <div class="eyebrow">{p.t}</div>
           </div>
-          <div class="md:col-span-5 text-graphite leading-relaxed text-[15px]">{p.d}</div>
-          <div class="md:col-span-3 md:text-right">
-            <a href={`mailto:${p.e}`} class="text-[15px] tracking-tight text-navy-deep hover:text-champagne transition-colors whitespace-nowrap">{p.e}</a>
+          <div class="md:col-span-8 text-graphite leading-relaxed text-[15px]">
+            {p.d}
+            <a href={`mailto:${p.e}`} class="block mt-3 text-navy-deep hover:text-champagne transition-colors">{p.e}</a>
           </div>
         </li>
       ))}
