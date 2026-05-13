@@ -13,7 +13,7 @@ const alignClass = align === 'center' ? 'text-center mx-auto' : '';
 <section class={bg}>
   <div class="container-prose py-24 md:py-32">
     {(eyebrow || title) && (
-      <div class={`${alignClass} mb-12 max-w-3xl`}>
+      <div class={`${alignClass} mb-12 max-w-5xl`}>
         {eyebrow && <div class="eyebrow mb-5">{eyebrow}</div>}
         {title && <h2 class={`font-serif ${titleColor} text-3xl md:text-5xl leading-[1.1]`}>{title}</h2>}
         <div class={`rule-gold mt-8 ${align === 'center' ? 'mx-auto' : ''}`}></div>
