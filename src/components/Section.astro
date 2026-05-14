@@ -11,12 +11,12 @@ const titleColor = tone === 'navy' ? 'text-ivory' : 'text-navy-deep';
 const alignClass = align === 'center' ? 'text-center mx-auto' : '';
 ---
 <section class={bg}>
-  <div class="container-prose py-10 md:py-14">
+  <div class="container-prose py-6 md:py-10">
     {(eyebrow || title) && (
-      <div class={`${alignClass} mb-8 max-w-5xl`}>
-        {eyebrow && <div class="eyebrow mb-4">{eyebrow}</div>}
+      <div class={`${alignClass} mb-6 max-w-5xl`}>
+        {eyebrow && <div class="eyebrow mb-3">{eyebrow}</div>}
         {title && <h2 class={`font-serif ${titleColor} text-3xl md:text-5xl leading-[1.1]`}>{title}</h2>}
-        <div class={`rule-gold mt-6 ${align === 'center' ? 'mx-auto' : ''}`}></div>
+        <div class={`rule-gold mt-5 ${align === 'center' ? 'mx-auto' : ''}`}></div>
       </div>
     )}
     <slot />
