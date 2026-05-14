@@ -1,9 +1,8 @@
 ---
 type NavLink = { href: string; label: string };
-type NavItem = NavLink | { label: string; children: NavLink[] };
+type NavItem = NavLink & { children?: NavLink[] };
 const items: NavItem[] = [
-  { label: 'Home', children: [
-    { href: '/', label: 'Home' },
+  { href: '/', label: 'Home', children: [
     { href: '/about', label: 'About' },
   ] },
   { href: '/programmes', label: 'Programmes' },
@@ -41,13 +40,13 @@ const lmsEnabled = import.meta.env.PUBLIC_LMS_ENABLED === 'true';
       <div></div>
       <div class="flex items-center justify-center gap-x-7 xl:gap-x-9">
         {items.map((it) => (
-          'children' in it ? (
-            <div class="nav-group relative" data-nav-group>
-              <button type="button" class="nav-trigger whitespace-nowrap hover:text-navy transition-colors inline-flex items-center gap-1.5 uppercase tracking-[0.13em] xl:tracking-[0.13em] text-[12px] xl:text-[12.5px] cursor-pointer" aria-haspopup="true" aria-expanded="false">
-                {it.label}
+          it.children && it.children.length > 0 ? (
+            <div class="nav-group relative inline-flex items-center gap-1.5" data-nav-group>
+              <a href={it.href} class="whitespace-nowrap hover:text-navy transition-colors">{it.label}</a>
+              <button type="button" class="nav-trigger inline-flex items-center justify-center p-1 -m-1 text-graphite hover:text-navy transition-colors cursor-pointer" aria-haspopup="true" aria-expanded="false" aria-label={`Open ${it.label} submenu`}>
                 <svg class="w-2.5 h-2.5 opacity-60 transition-transform" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>
               </button>
-              <div class="nav-submenu absolute left-1/2 -translate-x-1/2 top-full pt-3 min-w-[11rem] opacity-0 invisible transition-opacity z-50">
+              <div class="nav-submenu absolute left-1/2 -translate-x-1/2 top-full pt-3 min-w-[10rem] opacity-0 invisible transition-opacity z-50">
                 <div class="bg-paper border border-platinum-soft shadow-sm py-2">
                   {it.children.map((c) => (
                     <a href={c.href} class="block whitespace-nowrap px-5 py-2 text-graphite hover:text-navy hover:bg-platinum-soft/40 transition-colors">{c.label}</a>
@@ -77,16 +76,12 @@ const lmsEnabled = import.meta.env.PUBLIC_LMS_ENABLED === 'true';
   <div id="nav-mobile" class="hidden lg:hidden border-t border-platinum-soft">
     <nav class="container-prose flex flex-col gap-3 py-6 text-sm tracking-[0.1em] uppercase text-graphite">
       {items.map((it) => (
-        'children' in it ? (
-          <>
-            <div class="text-muted text-xs tracking-[0.18em]">{it.label}</div>
-            {it.children.map((c) => (
-              <a href={c.href} class="pl-5 hover:text-navy">{c.label}</a>
-            ))}
-          </>
-        ) : (
+        <>
           <a href={it.href} class="hover:text-navy">{it.label}</a>
-        )
+          {it.children && it.children.map((c) => (
+            <a href={c.href} class="pl-5 text-xs tracking-[0.14em] text-muted hover:text-navy">{c.label}</a>
+          ))}
+        </>
       ))}
       {lmsEnabled && (
         <a
