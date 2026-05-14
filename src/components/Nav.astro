@@ -1,7 +1,9 @@
 ---
-type NavLink = { href: string; label: string; children?: NavLink[] };
-const links: NavLink[] = [
-  { href: '/', label: 'Home', children: [
+type NavLink = { href: string; label: string };
+type NavItem = NavLink | { label: string; children: NavLink[] };
+const items: NavItem[] = [
+  { label: 'Home', children: [
+    { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
   ] },
   { href: '/programmes', label: 'Programmes' },
@@ -38,23 +40,23 @@ const lmsEnabled = import.meta.env.PUBLIC_LMS_ENABLED === 'true';
     <div class="container-prose grid grid-cols-[1fr_auto_1fr] items-center py-4 text-[12px] xl:text-[12.5px] tracking-[0.13em] uppercase text-graphite">
       <div></div>
       <div class="flex items-center justify-center gap-x-7 xl:gap-x-9">
-        {links.map((l) => (
-          l.children && l.children.length > 0 ? (
-            <div class="nav-group relative">
-              <a href={l.href} class="whitespace-nowrap hover:text-navy transition-colors inline-flex items-center gap-1.5" aria-haspopup="true">
-                {l.label}
-                <svg class="w-2.5 h-2.5 opacity-60" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>
-              </a>
-              <div class="nav-submenu absolute left-1/2 -translate-x-1/2 top-full pt-3 min-w-[10rem] opacity-0 invisible transition-opacity">
+        {items.map((it) => (
+          'children' in it ? (
+            <div class="nav-group relative" data-nav-group>
+              <button type="button" class="nav-trigger whitespace-nowrap hover:text-navy transition-colors inline-flex items-center gap-1.5 uppercase tracking-[0.13em] xl:tracking-[0.13em] text-[12px] xl:text-[12.5px] cursor-pointer" aria-haspopup="true" aria-expanded="false">
+                {it.label}
+                <svg class="w-2.5 h-2.5 opacity-60 transition-transform" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>
+              </button>
+              <div class="nav-submenu absolute left-1/2 -translate-x-1/2 top-full pt-3 min-w-[11rem] opacity-0 invisible transition-opacity z-50">
                 <div class="bg-paper border border-platinum-soft shadow-sm py-2">
-                  {l.children.map((c) => (
+                  {it.children.map((c) => (
                     <a href={c.href} class="block whitespace-nowrap px-5 py-2 text-graphite hover:text-navy hover:bg-platinum-soft/40 transition-colors">{c.label}</a>
                   ))}
                 </div>
               </div>
             </div>
           ) : (
-            <a href={l.href} class="whitespace-nowrap hover:text-navy transition-colors">{l.label}</a>
+            <a href={it.href} class="whitespace-nowrap hover:text-navy transition-colors">{it.label}</a>
           )
         ))}
       </div>
@@ -74,13 +76,17 @@ const lmsEnabled = import.meta.env.PUBLIC_LMS_ENABLED === 'true';
   <!-- Mobile menu -->
   <div id="nav-mobile" class="hidden lg:hidden border-t border-platinum-soft">
     <nav class="container-prose flex flex-col gap-3 py-6 text-sm tracking-[0.1em] uppercase text-graphite">
-      {links.map((l) => (
-        <>
-          <a href={l.href} class="hover:text-navy">{l.label}</a>
-          {l.children && l.children.map((c) => (
-            <a href={c.href} class="pl-5 text-xs tracking-[0.14em] text-muted hover:text-navy">{c.label}</a>
-          ))}
-        </>
+      {items.map((it) => (
+        'children' in it ? (
+          <>
+            <div class="text-muted text-xs tracking-[0.18em]">{it.label}</div>
+            {it.children.map((c) => (
+              <a href={c.href} class="pl-5 hover:text-navy">{c.label}</a>
+            ))}
+          </>
+        ) : (
+          <a href={it.href} class="hover:text-navy">{it.label}</a>
+        )
       ))}
       {lmsEnabled && (
         <a
@@ -95,13 +101,48 @@ const lmsEnabled = import.meta.env.PUBLIC_LMS_ENABLED === 'true';
 </header>
 <style>
   .nav-group:hover > .nav-submenu,
-  .nav-group:focus-within > .nav-submenu {
+  .nav-group.is-open > .nav-submenu {
     opacity: 1;
     visibility: visible;
+  }
+  .nav-group.is-open .nav-trigger svg {
+    transform: rotate(180deg);
   }
 </style>
 <script>
   const t = document.getElementById('nav-toggle');
   const m = document.getElementById('nav-mobile');
   t?.addEventListener('click', () => m?.classList.toggle('hidden'));
+
+  const groups = document.querySelectorAll<HTMLElement>('[data-nav-group]');
+  groups.forEach((g) => {
+    const btn = g.querySelector<HTMLButtonElement>('.nav-trigger');
+    btn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = g.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(open));
+      groups.forEach((other) => {
+        if (other !== g) {
+          other.classList.remove('is-open');
+          other.querySelector('.nav-trigger')?.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  });
+  document.addEventListener('click', (e) => {
+    groups.forEach((g) => {
+      if (!g.contains(e.target as Node)) {
+        g.classList.remove('is-open');
+        g.querySelector('.nav-trigger')?.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      groups.forEach((g) => {
+        g.classList.remove('is-open');
+        g.querySelector('.nav-trigger')?.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
 </script>
