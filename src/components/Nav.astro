@@ -1,7 +1,9 @@
 ---
-const links = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
+type NavLink = { href: string; label: string; children?: NavLink[] };
+const links: NavLink[] = [
+  { href: '/', label: 'Home', children: [
+    { href: '/about', label: 'About' },
+  ] },
   { href: '/programmes', label: 'Programmes' },
   { href: '/academic-standards', label: 'Academic Standards' },
   { href: '/faculty', label: 'Faculty' },
@@ -37,7 +39,23 @@ const lmsEnabled = import.meta.env.PUBLIC_LMS_ENABLED === 'true';
       <div></div>
       <div class="flex items-center justify-center gap-x-7 xl:gap-x-9">
         {links.map((l) => (
-          <a href={l.href} class="whitespace-nowrap hover:text-navy transition-colors">{l.label}</a>
+          l.children && l.children.length > 0 ? (
+            <div class="nav-group relative">
+              <a href={l.href} class="whitespace-nowrap hover:text-navy transition-colors inline-flex items-center gap-1.5" aria-haspopup="true">
+                {l.label}
+                <svg class="w-2.5 h-2.5 opacity-60" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>
+              </a>
+              <div class="nav-submenu absolute left-1/2 -translate-x-1/2 top-full pt-3 min-w-[10rem] opacity-0 invisible transition-opacity">
+                <div class="bg-paper border border-platinum-soft shadow-sm py-2">
+                  {l.children.map((c) => (
+                    <a href={c.href} class="block whitespace-nowrap px-5 py-2 text-graphite hover:text-navy hover:bg-platinum-soft/40 transition-colors">{c.label}</a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <a href={l.href} class="whitespace-nowrap hover:text-navy transition-colors">{l.label}</a>
+          )
         ))}
       </div>
       <div class="flex justify-end">
@@ -57,7 +75,12 @@ const lmsEnabled = import.meta.env.PUBLIC_LMS_ENABLED === 'true';
   <div id="nav-mobile" class="hidden lg:hidden border-t border-platinum-soft">
     <nav class="container-prose flex flex-col gap-3 py-6 text-sm tracking-[0.1em] uppercase text-graphite">
       {links.map((l) => (
-        <a href={l.href} class="hover:text-navy">{l.label}</a>
+        <>
+          <a href={l.href} class="hover:text-navy">{l.label}</a>
+          {l.children && l.children.map((c) => (
+            <a href={c.href} class="pl-5 text-xs tracking-[0.14em] text-muted hover:text-navy">{c.label}</a>
+          ))}
+        </>
       ))}
       {lmsEnabled && (
         <a
@@ -70,6 +93,13 @@ const lmsEnabled = import.meta.env.PUBLIC_LMS_ENABLED === 'true';
     </nav>
   </div>
 </header>
+<style>
+  .nav-group:hover > .nav-submenu,
+  .nav-group:focus-within > .nav-submenu {
+    opacity: 1;
+    visibility: visible;
+  }
+</style>
 <script>
   const t = document.getElementById('nav-toggle');
   const m = document.getElementById('nav-mobile');
