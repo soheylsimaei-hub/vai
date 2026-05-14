@@ -46,10 +46,33 @@ import Section from '../components/Section.astro';
   </Section>
 
   <Section eyebrow="Leadership" title="Founder-led. Academically collaborative." tone="ivory">
-    <div class="prose-editorial max-w-5xl">
-      <p>VAI was established under the leadership of Dr. Soheyl Simaei and is being developed with experienced veterinary professionals, educators, and subject-matter experts. Its purpose is to bring structure, academic discipline, and clinical relevance to postgraduate veterinary education.</p>
-      <div class="mt-6">
-        <a href="/about/leadership" class="inline-block text-sm tracking-[0.14em] uppercase text-navy hover:text-champagne">Learn more about VAI leadership →</a>
+    <div class="grid md:grid-cols-12 gap-10 md:gap-14 items-start max-w-5xl">
+      <div class="md:col-span-4">
+        <figure class="relative">
+          <div class="aspect-[3/4] overflow-hidden bg-platinum-soft">
+            <img
+              src="/founder-portrait.png"
+              alt="Dr. Soheyl Simaei, Founder & Academic Director of Veterinary Academy International"
+              loading="lazy"
+              decoding="async"
+              class="block w-full h-full object-cover"
+              style="object-position: 50% 20%;"
+            />
+          </div>
+          <div class="absolute -bottom-px left-0 w-12 h-px bg-champagne"></div>
+        </figure>
+      </div>
+      <div class="md:col-span-8">
+        <div class="font-serif text-3xl md:text-4xl text-navy-deep leading-tight">Dr. Soheyl Simaei</div>
+        <div class="eyebrow mt-3 mb-6">Founder &amp; Academic Director</div>
+        <p class="text-graphite leading-relaxed text-lg">
+          Veterinarian with more than two decades of clinical practice.<br />
+          Founder of Academia Europa.
+        </p>
+        <p class="text-graphite leading-relaxed mt-6">VAI was established under the leadership of Dr. Soheyl Simaei and is being developed with experienced veterinary professionals, educators, and subject-matter experts. Its purpose is to bring structure, academic discipline, and clinical relevance to postgraduate veterinary education.</p>
+        <div class="mt-8">
+          <a href="/about/leadership" class="inline-block text-sm tracking-[0.14em] uppercase text-navy hover:text-champagne">Read the leadership note →</a>
+        </div>
       </div>
     </div>
   </Section>
