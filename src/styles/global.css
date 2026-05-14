@@ -152,6 +152,23 @@
   }
   .prose-editorial p:last-child { margin-bottom: 0; }
 
+  /* Historical engraving treatment — unify tone, hide publisher captions,
+     add subtle vignette. Used for Wellcome Collection plates on the home page. */
+  .heritage-engraving {
+    filter: sepia(0.35) saturate(0.7) brightness(0.95) contrast(1.05);
+  }
+  .heritage-frame {
+    position: relative;
+    overflow: hidden;
+  }
+  .heritage-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.55);
+  }
+
   .institutional-bar {
     background: var(--color-navy-deep);
     color: var(--color-platinum);

@@ -8,18 +8,30 @@ import Section from '../components/Section.astro';
   ogDescription="Postgraduate veterinary education, built for mastery. A specialised academy of Academia Europa."
   isHome={true}
 >
-  <!-- Hero — P0.5: eyebrow removed (brand name already in institutional bar + nav lockup) -->
-  <section class="bg-ivory border-b border-platinum-soft/60">
-    <div class="container-prose py-32 md:py-44">
-      <h1 class="font-serif text-navy-deep text-5xl md:text-7xl leading-[1.02] max-w-5xl">
-        Postgraduate Veterinary Education, Built for Mastery.
-      </h1>
-      <p class="mt-10 max-w-5xl text-lg md:text-xl leading-relaxed text-graphite">
-        VAI is the veterinary education arm of Academia Europa: structured, evidence-based, expert-led education for veterinarians and veterinary teams seeking depth, progression, and lasting clinical authority.
-      </p>
-      <div class="mt-12 flex flex-wrap gap-4">
-        <a href="/programmes" class="btn btn-primary">Explore Programmes</a>
-        <a href="/faculty" class="btn">Teach with VAI</a>
+  <!-- Hero — dark canvas with ghosted Bridges (1771) horse anatomy plate bleeding right.
+       Engraving acts as a watermark; text sits on the left. -->
+  <section class="relative overflow-hidden bg-navy-deep text-ivory border-b border-navy-soft heritage-frame">
+    <img
+      src="/heritage-horse-anatomy.jpg"
+      alt=""
+      aria-hidden="true"
+      class="heritage-engraving pointer-events-none select-none absolute top-1/2 -translate-y-1/2 right-[-12%] md:right-[-8%] h-[120%] md:h-[130%] w-auto max-w-none opacity-[0.18] md:opacity-[0.22] object-cover"
+      style="object-position: 50% 25%;"
+      loading="eager"
+      decoding="async"
+    />
+    <div class="relative container-prose py-32 md:py-44">
+      <div class="max-w-3xl">
+        <h1 class="font-serif text-ivory text-5xl md:text-7xl leading-[1.02]">
+          Postgraduate Veterinary Education, Built for Mastery.
+        </h1>
+        <p class="mt-10 text-lg md:text-xl leading-relaxed text-platinum">
+          VAI is the veterinary education arm of Academia Europa: structured, evidence-based, expert-led education for veterinarians and veterinary teams seeking depth, progression, and lasting clinical authority.
+        </p>
+        <div class="mt-12 flex flex-wrap gap-4">
+          <a href="/programmes" class="btn btn-light-primary">Explore Programmes</a>
+          <a href="/faculty" class="btn btn-light">Teach with VAI</a>
+        </div>
       </div>
     </div>
   </section>
@@ -131,6 +143,32 @@ import Section from '../components/Section.astro';
         <div class="mt-8">
           <a href="/about/leadership" class="inline-block text-sm tracking-[0.14em] uppercase text-navy hover:text-champagne">Read the leadership note →</a>
         </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Heritage — comparative anatomy plate (Waterhouse Hawkins, 19th C.) left,
+       editorial pull quote right. Engraving cropped to hide publisher caption. -->
+  <Section eyebrow="Heritage" title="Built on centuries of veterinary knowledge." tone="ivory">
+    <div class="grid md:grid-cols-12 gap-10 md:gap-14 items-center max-w-5xl">
+      <div class="md:col-span-7">
+        <figure class="heritage-frame aspect-[4/3] bg-platinum-soft">
+          <img
+            src="/heritage-comparative-anatomy.jpg"
+            alt=""
+            aria-hidden="true"
+            class="heritage-engraving block w-full h-full object-cover"
+            style="object-position: 50% 35%;"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+      </div>
+      <div class="md:col-span-5">
+        <p class="font-serif text-navy-deep text-2xl md:text-3xl leading-[1.25]">
+          The clinical disciplines we practise today rest on an inheritance: anatomy mapped by hand, principles refined across generations.
+        </p>
+        <p class="mt-6 text-graphite leading-relaxed">VAI continues that lineage with the rigour of contemporary academic structure — comparative reasoning, documented evidence, sequenced progression — so practitioners enter the profession's standing tradition with clarity, not nostalgia.</p>
       </div>
     </div>
   </Section>
