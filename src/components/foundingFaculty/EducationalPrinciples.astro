@@ -1,0 +1,24 @@
+---
+const principles = [
+  'Great teaching changes judgement, not only knowledge.',
+  'Educational design should honour the educator.',
+  'Implementation matters more than information.',
+  'Expertise carries a responsibility to be handed on.',
+  'Institutions are remembered by the standards they uphold.',
+];
+---
+<section class="bg-paper">
+  <div class="container-prose py-20 md:py-28">
+    <div class="max-w-3xl mb-14 md:mb-16">
+      <div class="eyebrow mb-6">Our Educational Principles</div>
+      <div class="rule-gold"></div>
+    </div>
+    <ul class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-px bg-platinum-soft">
+      {principles.map((p) => (
+        <li class="bg-paper p-8 md:p-9 flex">
+          <p class="font-serif text-xl leading-snug text-navy-deep">{p}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

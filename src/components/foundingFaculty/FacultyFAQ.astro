@@ -1,0 +1,82 @@
+---
+const faqs = [
+  {
+    q: 'What is the time commitment?',
+    a: 'Time commitment varies by course, but most Founding Faculty invest a small number of dedicated days across the design and filming process, planned entirely around your schedule.',
+  },
+  {
+    q: 'How much preparation is required?',
+    a: 'We handle curriculum structuring, scripting support, and logistics. You bring the clinical expertise. Preparation is guided closely by our educational design team so it never falls entirely on you.',
+  },
+  {
+    q: 'What does filming involve?',
+    a: 'Filming is professionally produced, either at a studio or a location that suits you. Sessions are structured, unhurried, and designed to capture your teaching at its best.',
+  },
+  {
+    q: 'Will I need to use a teleprompter?',
+    a: 'A teleprompter is available if useful, but it is entirely optional. Many Founding Faculty prefer to teach conversationally from a structured outline.',
+  },
+  {
+    q: 'Is travel required?',
+    a: 'Only if filming takes place away from your own location, and only by mutual agreement. Remote and hybrid production formats are also possible.',
+  },
+  {
+    q: 'Is accommodation arranged?',
+    a: 'Yes. Where travel is required, accommodation and related logistics are arranged and covered as part of the collaboration.',
+  },
+  {
+    q: 'What is the revenue model?',
+    a: 'Revenue terms are discussed individually and confirmed in writing before any production begins, so expectations are clear from the outset.',
+  },
+  {
+    q: 'Who owns the intellectual property?',
+    a: 'IP arrangements are agreed in advance and documented formally. We are glad to walk through the specific terms during our conversation.',
+  },
+  {
+    q: 'How are course updates handled?',
+    a: 'Clinical knowledge evolves, and course material is reviewed periodically. Updates are coordinated with you rather than made unilaterally.',
+  },
+  {
+    q: 'Do I have final review over the material?',
+    a: 'Yes. Nothing bearing your name is published without your explicit approval at the faculty review stage.',
+  },
+  {
+    q: 'What support is provided throughout?',
+    a: 'A dedicated educational design and production team supports you from first conversation through to launch and beyond.',
+  },
+  {
+    q: 'Is this a long-term collaboration?',
+    a: 'Founding Faculty status is intended as an ongoing academic relationship, not a one-off engagement.',
+  },
+  {
+    q: 'Is AI used anywhere in the process?',
+    a: 'AI tools may assist with production efficiency, such as editing support, but all clinical content and final decisions rest with you and our academic team.',
+  },
+  {
+    q: 'What is meant by educational design?',
+    a: 'Educational design is the discipline of translating clinical expertise into a structured, deliberately sequenced learning experience, applied by our team throughout the process.',
+  },
+];
+---
+<section class="bg-paper">
+  <div class="container-prose py-20 md:py-28">
+    <div class="max-w-3xl mb-14 md:mb-16">
+      <div class="eyebrow mb-6">Frequently Asked Questions</div>
+      <div class="rule-gold"></div>
+    </div>
+
+    <div class="max-w-3xl divide-y divide-platinum-soft">
+      {faqs.map((f) => (
+        <details class="group py-6">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-serif text-lg md:text-xl text-navy-deep">
+            <span>{f.q}</span>
+            <svg viewBox="0 0 16 16" class="h-3.5 w-3.5 shrink-0 text-champagne transition-transform duration-300 group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+              <path d="M8 1v14M1 8h14" />
+            </svg>
+          </summary>
+          <p class="mt-4 max-w-2xl text-graphite leading-relaxed">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

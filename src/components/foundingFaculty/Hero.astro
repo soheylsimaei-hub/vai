@@ -1,0 +1,39 @@
+---
+interface Props {
+  scrollTargetId: string;
+}
+const { scrollTargetId } = Astro.props;
+---
+<section class="bg-paper">
+  <div class="container-prose py-24 md:py-36">
+    <div class="max-w-3xl">
+      <div class="eyebrow mb-8">Founding Faculty</div>
+      <h1 class="font-serif text-navy-deep text-5xl md:text-7xl leading-[1.05]">Founding Faculty</h1>
+      <p class="mt-8 font-serif text-2xl md:text-3xl text-navy-deep leading-snug">
+        A private invitation to help shape the future of postgraduate veterinary education.
+      </p>
+      <p class="mt-10 text-graphite text-lg leading-relaxed max-w-2xl">
+        This page has been prepared exclusively for educators who have been personally invited to explore becoming Founding Faculty of Veterinary Academy International.
+      </p>
+      <div class="mt-14">
+        <a href={`#${scrollTargetId}`} data-scroll-target={scrollTargetId} class="btn btn-primary">
+          Watch Founder Video
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll<HTMLAnchorElement>('[data-scroll-target]').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      const id = link.getAttribute('data-scroll-target');
+      const target = id && document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
+    });
+  });
+</script>

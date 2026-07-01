@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/foundingFaculty/Hero.astro';
+import FounderVideo from '../components/foundingFaculty/FounderVideo.astro';
+import FounderLetter from '../components/foundingFaculty/FounderLetter.astro';
+import EducationalPrinciples from '../components/foundingFaculty/EducationalPrinciples.astro';
+import FacultyTimeline from '../components/foundingFaculty/FacultyTimeline.astro';
+import FacultyFAQ from '../components/foundingFaculty/FacultyFAQ.astro';
+import OurPromise from '../components/foundingFaculty/OurPromise.astro';
+import ConversationCTA from '../components/foundingFaculty/ConversationCTA.astro';
+import Closing from '../components/foundingFaculty/Closing.astro';
+
+const VIDEO_SECTION_ID = 'founder-video';
+---
+<Base
+  title="Founding Faculty · VAI"
+  description="A private invitation to help shape the future of postgraduate veterinary education, as Founding Faculty of Veterinary Academy International."
+  noindex={true}
+>
+  <Hero scrollTargetId={VIDEO_SECTION_ID} />
+  <FounderVideo id={VIDEO_SECTION_ID} />
+  <FounderLetter />
+  <EducationalPrinciples />
+  <FacultyTimeline />
+  <FacultyFAQ />
+  <OurPromise />
+  <ConversationCTA />
+  <Closing />
+</Base>

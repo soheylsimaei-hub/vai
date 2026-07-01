@@ -1,0 +1,40 @@
+---
+interface Props {
+  id: string;
+  videoEmbedUrl?: string;
+  posterSrc?: string;
+}
+const { id, videoEmbedUrl, posterSrc } = Astro.props;
+---
+<section id={id} class="bg-paper scroll-mt-10">
+  <div class="container-prose py-20 md:py-28">
+    <div class="mx-auto" style="max-width: 1100px;">
+      {videoEmbedUrl ? (
+        <div class="relative aspect-video overflow-hidden bg-navy-deep">
+          <iframe
+            src={videoEmbedUrl}
+            title="A message from the Founder, Dr. Soheyl Simaei"
+            class="absolute inset-0 h-full w-full"
+            loading="lazy"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      ) : (
+        <div class="relative aspect-video overflow-hidden bg-navy-deep flex items-center justify-center">
+          {posterSrc && (
+            <img src={posterSrc} alt="" class="absolute inset-0 h-full w-full object-cover opacity-70" loading="lazy" decoding="async" />
+          )}
+          <div class="relative flex flex-col items-center gap-4 text-ivory">
+            <span class="flex h-16 w-16 items-center justify-center rounded-full border border-ivory/60">
+              <svg viewBox="0 0 24 24" class="h-6 w-6 translate-x-0.5" fill="currentColor" aria-hidden="true">
+                <path d="M8 5v14l11-7-11-7z" />
+              </svg>
+            </span>
+            <span class="eyebrow text-platinum">Founder video · to be added</span>
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+</section>

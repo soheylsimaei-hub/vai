@@ -10,6 +10,7 @@ interface Props {
   ogTitle?: string;
   ogDescription?: string;
   isHome?: boolean;
+  noindex?: boolean;
 }
 const {
   title,
@@ -17,6 +18,7 @@ const {
   ogTitle,
   ogDescription,
   isHome = false,
+  noindex = false,
 } = Astro.props;
 const fullTitle = title.includes('VAI') ? title : `${title} · VAI`;
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
@@ -78,6 +80,7 @@ const homeSchema = {
     <link rel="canonical" href={canonical} />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     {/* Open Graph */}
     <meta property="og:site_name" content="Veterinary Academy International" />
