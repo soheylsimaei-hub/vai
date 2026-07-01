@@ -21,17 +21,17 @@ const { id, videoEmbedUrl, posterSrc } = Astro.props;
           ></iframe>
         </div>
       ) : (
-        <div class="relative aspect-video overflow-hidden bg-navy-deep flex items-center justify-center">
+        <div class="heritage-frame relative aspect-video overflow-hidden flex items-center justify-center" style="background: linear-gradient(150deg, var(--color-navy-deep), var(--color-navy-soft) 65%, var(--color-navy-deep));">
           {posterSrc && (
-            <img src={posterSrc} alt="" class="absolute inset-0 h-full w-full object-cover opacity-70" loading="lazy" decoding="async" />
+            <img src={posterSrc} alt="" class="absolute inset-0 h-full w-full object-cover opacity-50" loading="lazy" decoding="async" />
           )}
-          <div class="relative flex flex-col items-center gap-4 text-ivory">
-            <span class="flex h-16 w-16 items-center justify-center rounded-full border border-ivory/60">
+          <div class="relative flex flex-col items-center gap-5 text-ivory">
+            <span class="flex h-20 w-20 items-center justify-center rounded-full border border-ivory/40 bg-ivory/5 backdrop-blur-sm transition-colors">
               <svg viewBox="0 0 24 24" class="h-6 w-6 translate-x-0.5" fill="currentColor" aria-hidden="true">
                 <path d="M8 5v14l11-7-11-7z" />
               </svg>
             </span>
-            <span class="eyebrow text-platinum">Founder video · to be added</span>
+            <span class="text-[11px] tracking-[0.22em] uppercase text-platinum">Founder Introduction</span>
           </div>
         </div>
       )}
