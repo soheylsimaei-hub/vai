@@ -89,26 +89,26 @@ const groups = [
 ];
 ---
 <section class="bg-paper">
-  <div class="container-prose py-14 md:py-20">
-    <div class="max-w-3xl mb-10 md:mb-12">
+  <div class="container-prose py-10 md:py-14">
+    <div class="max-w-3xl mb-6 md:mb-8">
       <div class="eyebrow mb-6">Frequently Asked Questions</div>
       <div class="rule-gold"></div>
     </div>
 
-    <div class="max-w-3xl space-y-10 md:space-y-12">
+    <div class="max-w-3xl space-y-6 md:space-y-8">
       {groups.map((g) => (
         <div>
           <div class="eyebrow text-champagne mb-2">{g.category}</div>
           <div class="divide-y divide-platinum-soft border-t border-platinum-soft">
             {g.faqs.map((f) => (
-              <details class="group py-6">
+              <details class="group py-4">
                 <summary class="ff-faq-summary flex cursor-pointer list-none items-center justify-between gap-6 font-serif text-lg md:text-xl text-navy-deep rounded-sm">
                   <span>{f.q}</span>
                   <svg viewBox="0 0 16 16" class="h-3.5 w-3.5 shrink-0 text-champagne transition-transform duration-300 group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
                     <path d="M8 1v14M1 8h14" />
                   </svg>
                 </summary>
-                <p class="mt-4 max-w-2xl text-graphite leading-relaxed">{f.a}</p>
+                <p class="mt-3 max-w-2xl text-graphite leading-relaxed">{f.a}</p>
               </details>
             ))}
           </div>

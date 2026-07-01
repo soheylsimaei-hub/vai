@@ -43,8 +43,8 @@ const stages = [
 ];
 ---
 <section class="bg-ivory">
-  <div class="container-prose py-14 md:py-20">
-    <div class="max-w-3xl mb-10 md:mb-14">
+  <div class="container-prose py-10 md:py-14">
+    <div class="max-w-3xl mb-6 md:mb-8">
       <div class="eyebrow mb-6">Faculty Experience</div>
       <div class="rule-gold"></div>
     </div>
@@ -52,7 +52,7 @@ const stages = [
     <ol class="relative max-w-2xl mx-auto md:mx-0">
       <div class="absolute left-[17px] top-2 bottom-2 w-px bg-platinum" aria-hidden="true"></div>
       {stages.map((s, i) => (
-        <li class="ff-timeline-item relative flex gap-6 pb-14 last:pb-0" style={`transition-delay: ${i * 60}ms`}>
+        <li class="ff-timeline-item relative flex gap-6 pb-10 last:pb-0" style={`transition-delay: ${i * 60}ms`}>
           <span class="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-navy bg-ivory text-navy">
             <svg viewBox="0 0 20 20" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d={s.icon} />
