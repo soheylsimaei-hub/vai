@@ -1,0 +1,131 @@
+---
+import Base from '../layouts/Base.astro';
+
+// Phase 4A.11 — interim public VAI Veterinary Academy destination, living
+// inside this site at /academy until a genuine standalone deployment
+// exists at academy.vai.vet to migrate/redirect to (see 4A.10/4A.10A: the
+// previously-assumed standalone project did not actually exist). Built
+// against the same --brand-*/eyebrow-brand/.btn-brand-* system as the
+// homepage, not Section.astro, for the same reason index.astro avoids it —
+// nothing here should visually drift the still-legacy pages.
+//
+// Content is deliberately positioning-only: no programme names, faculty,
+// accreditation, pricing, dates, or testimonials are invented or carried
+// over from legacy Academy-era pages, per explicit instruction. The one
+// photograph used is the already-approved, already-optimized homepage
+// asset (public/photography/academy-ophthalmic-exam) — no new photography
+// sourced, no second image added (didn't find one that genuinely earned
+// its place without turning this into a gallery).
+const CONTACT_URL = '/contact';
+const LEARN_URL = '/#learn';
+---
+<Base
+  title="VAI Veterinary Academy"
+  description="VAI Veterinary Academy is the dedicated educational arm of VAI, providing structured professional development designed around the realities of veterinary clinical work."
+  ogDescription="Structured veterinary education for modern clinical practice."
+>
+  <!-- 1. Hero -->
+  <section class="bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <div class="max-w-3xl">
+        <div class="eyebrow-brand mb-4" style="color: var(--brand-gold);">VAI Veterinary Academy</div>
+        <h1 class="font-brand-serif text-[var(--brand-cloud-white)] text-4xl md:text-6xl leading-[1.1] mb-6">
+          Structured veterinary education for modern clinical practice.
+        </h1>
+        <p class="text-lg md:text-xl leading-relaxed opacity-90 max-w-2xl">
+          VAI Veterinary Academy is the dedicated educational arm of VAI, providing structured professional development designed around the realities of veterinary clinical work.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. What the Academy is — copy-left/image-right, same pairing as the
+       homepage Academy section. -->
+  <section class="bg-white border-t border-black/10">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <div class="grid md:grid-cols-12 gap-10 md:gap-14 items-center">
+        <div class="md:col-span-6">
+          <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-2xl md:text-3xl leading-[1.15] mb-6">
+            Education built around real clinical work, not a course catalogue.
+          </h2>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-4">
+            Veterinary careers demand continued development long after formal training ends. VAI Veterinary Academy exists to provide that development in a structured, expert-led way &mdash; grounded in the realities of clinical practice rather than generic online coursework.
+          </p>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed">
+            It is being built as a serious, lasting part of the VAI ecosystem, not a side project.
+          </p>
+        </div>
+        <div class="md:col-span-6">
+          <picture>
+            <source srcset="/photography/academy-ophthalmic-exam.webp" type="image/webp" />
+            <img
+              src="/photography/academy-ophthalmic-exam.jpg"
+              alt="Specialist ophthalmic examination of a dog"
+              width="1600"
+              height="1064"
+              loading="lazy"
+              class="w-full h-auto aspect-[3/2] object-cover object-[60%_50%] border border-black/10"
+            />
+          </picture>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Direction — restrained rule-separated list, same pattern as the
+       homepage Learn section's right-hand column. Not cards, not a
+       feature-tile grid. -->
+  <section class="bg-[var(--brand-cloud-white)] border-t border-black/10">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-24">
+      <div class="max-w-2xl mb-12">
+        <div class="eyebrow-brand mb-4">Direction</div>
+        <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15]">
+          What the Academy is being built around.
+        </h2>
+      </div>
+      <ul class="grid sm:grid-cols-2 sm:divide-x sm:divide-black/10 border-t border-black/10">
+        <li class="py-8 sm:pr-10 border-b border-black/10 sm:border-b-0">
+          <div class="font-brand-serif text-[var(--brand-midnight-navy)] text-xl mb-2">Expert-led programmes</div>
+          <p class="text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed text-sm">Developed with specialist input, not generated at scale.</p>
+        </li>
+        <li class="py-8 sm:pl-10 border-b border-black/10">
+          <div class="font-brand-serif text-[var(--brand-midnight-navy)] text-xl mb-2">Masterclasses</div>
+          <p class="text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed text-sm">Focused, in-depth sessions on specific areas of clinical practice.</p>
+        </li>
+        <li class="py-8 sm:pr-10 sm:border-b-0">
+          <div class="font-brand-serif text-[var(--brand-midnight-navy)] text-xl mb-2">Case-based learning</div>
+          <p class="text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed text-sm">Built from real clinical scenarios rather than abstract theory.</p>
+        </li>
+        <li class="py-8 sm:pl-10">
+          <div class="font-brand-serif text-[var(--brand-midnight-navy)] text-xl mb-2">Clinically relevant development</div>
+          <p class="text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed text-sm">Designed around the parts of the job formal education doesn&rsquo;t fully cover.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4. Learn vs Academy — locked distinction, stated plainly. -->
+  <section class="bg-white border-t border-black/10">
+    <div class="mx-auto max-w-6xl px-6 py-16 md:py-20">
+      <div class="max-w-2xl">
+        <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-2xl md:text-3xl leading-[1.15] mb-6">
+          How this relates to Learn.
+        </h2>
+        <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-4">
+          Learn is VAI&rsquo;s learning capability inside the professional platform &mdash; part of using VAI day to day. VAI Veterinary Academy is a separate, dedicated destination for structured veterinary education. They are related, but they are not the same thing.
+        </p>
+        <a href={LEARN_URL} class="text-sm uppercase tracking-[0.08em] text-[var(--brand-clinical-blue)] hover:opacity-70 transition-opacity">See Learn on the VAI platform &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Final CTA -->
+  <section class="bg-[var(--brand-cloud-white)] border-t border-black/10">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-24 text-center">
+      <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] max-w-2xl mx-auto mb-10">
+        Register your interest in VAI Veterinary Academy.
+      </h2>
+      <a href={CONTACT_URL} class="btn-brand btn-brand-primary">Register Your Interest</a>
+    </div>
+  </section>
+</Base>

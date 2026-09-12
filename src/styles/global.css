@@ -24,7 +24,10 @@
  */
 
 @theme {
-  /* Foundation aligned to Academia Europa for family consistency */
+  /* Current palette, unchanged in this iteration. Colour unification against
+     the Brand Book (single source of truth) is a deferred dependency, not
+     resolved here — see the Platform Architecture Map, and --brand-* below
+     for the actual Brand Book values pending that migration. */
   --color-navy: #102341;
   --color-navy-deep: #0E1B33;
   --color-navy-soft: #1B2E50;
@@ -37,7 +40,11 @@
   --color-champagne: #B89863;
   --color-champagne-soft: #C8AC7E;
 
-  /* Teal — scientific accent unique to VAI */
+  /* Teal — scientific accent unique to VAI. NOT DEFINED IN BRAND BOOK — a
+     pre-existing product-design decision, not a brand-book colour. Keep
+     using it deliberately (e.g. for AI-vs-human-content distinction, see
+     vai-product-design-v1.0.md) rather than treating it as brand drift to
+     silently remove. */
   --color-teal: #3E6E7A;
   --color-teal-hover: #508593;
   --color-teal-soft: #E5ECEE;
@@ -48,6 +55,80 @@
 
   --font-serif: "Cormorant Garamond", "Libre Caslon Text", Georgia, serif;
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+
+  /* ---------------------------------------------------------------------
+   * BRAND BOOK CANONICAL TOKENS (added: Action 2A.1 Continue-Build, 2026-08-24)
+   * ---------------------------------------------------------------------
+   * Verbatim from Final BrandBook VAI August 2026.pdf, "Color Palette" page
+   * (in-document p.18) — re-verified directly against the source PDF this
+   * session, not assumed from the earlier VAI-Brand-System-v1.0.md summary.
+   * This is the single source of truth for what the brand book actually
+   * specifies. It does NOT yet replace --color-navy/--color-champagne/
+   * --color-ivory above — that migration is Part 4's audit territory, a
+   * deliberate future decision, not done silently here. New product
+   * surfaces (e.g. /ask-vai) should prefer these --brand-* tokens over the
+   * legacy --color-* ones where practical.
+   */
+  --brand-midnight-navy: #0b1c34;   /* Primary. Brand book RGB(11,28,52) */
+  --brand-clinical-blue: #2959a8;   /* Secondary. Brand book RGB(41,89,168) */
+  --brand-cloud-white: #f3f3f1;     /* Neutral. Brand book RGB(243,243,241) */
+  --brand-gold: #be9659;            /* Accent. Brand book RGB(190,150,89) */
+
+  /* Typography, per the brand book's Typography page (in-document p.19).
+     Canto is the preferred brand serif; Cormorant Garamond is the book's
+     own named free-web fallback (already in use above as --font-serif —
+     this is confirmed correct, not a violation). Inter is confirmed live
+     on the actual VAI website per the book's own footnote. */
+  --brand-font-headline: "Canto", "Cormorant Garamond", Georgia, serif;
+  --brand-font-body: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+@layer components {
+  /* ---------------------------------------------------------------------
+   * REDESIGN (Phase 4A) — brand-book-scoped component classes.
+   * ---------------------------------------------------------------------
+   * Deliberately separate from .btn/.btn-primary/.eyebrow/.rule-gold and
+   * the base h1-h6/html rules above, which every still-live legacy page
+   * depends on for its current appearance. These new .btn-brand-*/
+   * .eyebrow-brand/.font-brand-* classes exist so the redesign (Nav,
+   * Footer, homepage) can use the real --brand-* tokens without touching
+   * — or visually altering — any page that has not been redesigned yet.
+   * Mirrors the app.vai.vet product header own .btn/.btn-primary pill
+   * convention exactly (same padding, radius, letter-spacing, and hover
+   * darken values) so the two sites read as one brand.
+   */
+  .font-brand-serif { font-family: var(--brand-font-headline); }
+  .font-brand-sans { font-family: var(--brand-font-body); }
+
+  .eyebrow-brand {
+    font-family: var(--brand-font-body);
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brand-clinical-blue);
+    font-weight: 500;
+  }
+
+  .btn-brand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--brand-font-body);
+    font-size: 0.8125rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.85rem 1.75rem;
+    border-radius: 9999px;
+    border: 1px solid var(--brand-gold);
+    color: var(--brand-midnight-navy);
+    background: transparent;
+    transition: all 160ms ease;
+  }
+  .btn-brand:hover { background: var(--brand-gold); color: var(--brand-midnight-navy); }
+  .btn-brand-primary { background: var(--brand-gold); color: var(--brand-midnight-navy); }
+  .btn-brand-primary:hover { background: #a8814a; }
+  .btn-brand-on-dark { border-color: var(--brand-cloud-white); color: var(--brand-cloud-white); }
+  .btn-brand-on-dark:hover { background: var(--brand-cloud-white); color: var(--brand-midnight-navy); }
 }
 
 @layer base {
@@ -161,16 +242,4 @@
     pointer-events: none;
     box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.55);
   }
-
-  .institutional-bar {
-    background: var(--color-navy-deep);
-    color: var(--color-platinum);
-    font-size: 0.7rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    padding: 0.55rem 0;
-    text-align: center;
-  }
-  .institutional-bar a { color: var(--color-champagne-soft); }
-  .institutional-bar a:hover { color: var(--color-ivory); }
 }

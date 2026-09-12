@@ -1,192 +1,355 @@
 ---
 import Base from '../layouts/Base.astro';
-import Section from '../components/Section.astro';
+
+// Phase 4A redesign — full homepage rewrite. Deliberately does not import
+// Section.astro: that component is hardwired to the legacy --color-navy/
+// ivory/champagne tokens (bg-navy-deep, .eyebrow, .rule-gold), which is
+// exactly right for every page that hasn't been redesigned yet, but wrong
+// for this one. Every section below is hand-built against --brand-*
+// tokens and the new .btn-brand-*/.eyebrow-brand classes instead, so nothing
+// here can visually drift the still-legacy pages that keep using Section.astro.
+//
+// isHome intentionally passed as false: Base.astro's isHome=true path
+// emits a hardcoded homeSchema (JSON-LD) with stale Academy-era copy and
+// an "Academic Director" founder title that this phase's scope doesn't
+// touch Base.astro to fix. Passing isHome={false} uses Base's other
+// schema block instead, which correctly reads the description prop below
+// rather than a hardcoded string — the accurate result, achieved without
+// touching a file outside this phase's remit. Flagged in the report, not
+// done silently.
+const OPEN_VAI_URL = 'https://app.vai.vet';
+
+// Phase 4A.7 — real Ask VAI/Practice product screenshots are not approved
+// yet, and the dev-only placeholder panel must never ship. Set these to a
+// real image path once one is approved; both sections switch back to their
+// copy+screenshot two-column composition automatically (see the section
+// markup below) with no other change required.
+const ASK_VAI_CAPTURE: string | null = null;
+const PRACTICE_CAPTURE: string | null = null;
 ---
 <Base
-  title="VAI · Veterinary Academy International"
-  description="Veterinary Academy International is the veterinary education arm of Academia Europa. Structured, evidence-based postgraduate education for veterinarians and veterinary teams."
-  ogDescription="Postgraduate veterinary education, built for mastery. Veterinary education by Academia Europa."
-  isHome={true}
+  title="VAI — Reason, Practise, Learn"
+  description="VAI is the professional capability platform for veterinarians — built to strengthen how they reason through real cases, rehearse difficult conversations, and keep developing their professional judgement."
+  ogDescription="There's a case that's still on your mind. VAI is where that goes."
+  isHome={false}
 >
-  <!-- Hero — dark canvas with ghosted Bridges (1771) horse anatomy plate bleeding right.
-       Engraving acts as a watermark; text sits on the left. -->
-  <section class="relative overflow-hidden bg-navy-deep text-ivory border-b border-navy-soft heritage-frame">
-    <img
-      src="/heritage-horse-anatomy.jpg"
-      alt=""
-      aria-hidden="true"
-      class="heritage-engraving pointer-events-none select-none absolute top-1/2 -translate-y-1/2 right-[-12%] md:right-[-8%] h-[120%] md:h-[130%] w-auto max-w-none opacity-[0.18] md:opacity-[0.22] object-cover"
-      style="object-position: 50% 25%;"
-      loading="eager"
-      decoding="async"
-    />
-    <div class="relative container-prose py-16 md:py-24">
-      <div class="max-w-3xl">
-        <h1 class="font-serif text-ivory text-5xl md:text-7xl leading-[1.02]">
-          Postgraduate Veterinary Education, Built for Mastery.
+  <!-- 1. Hero -->
+  <section class="bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]">
+    <div class="mx-auto max-w-6xl px-6 py-24 md:py-32">
+      <div class="max-w-4xl">
+        <h1 class="font-brand-serif text-[var(--brand-cloud-white)] text-5xl md:text-7xl leading-[1.08] mb-8">
+          There&rsquo;s a case that&rsquo;s still on your mind.
         </h1>
-        <p class="mt-10 text-lg md:text-xl leading-relaxed text-platinum">
-          VAI is the veterinary education arm of Academia Europa: structured, evidence-based, expert-led education for veterinarians and veterinary teams seeking depth, progression, and lasting clinical authority.
+        <p class="text-lg md:text-2xl leading-relaxed opacity-90 max-w-2xl">
+          VAI helps veterinarians reason through real cases, rehearse difficult conversations, and keep developing their professional judgement &mdash; all in one place.
         </p>
-        <div class="mt-12 flex flex-wrap gap-4">
-          <a href="/programmes" class="btn btn-light-primary">Study with VAI</a>
-          <a href="/faculty" class="btn btn-light">Join our Faculty</a>
+        <p class="mt-4 text-base md:text-lg opacity-70 max-w-xl">
+          Built for the parts of the job formal education never quite covered.
+        </p>
+        <div class="mt-10">
+          <a href={OPEN_VAI_URL} rel="noopener noreferrer" class="btn-brand btn-brand-primary">Open VAI</a>
         </div>
-        <p class="mt-16 text-[10px] md:text-[11px] italic text-ivory/40 leading-snug">Engraving by Jeremiah Bridges, 1771. Wellcome Collection. CC BY 4.0</p>
       </div>
     </div>
   </section>
 
-  <Section eyebrow="Beyond Fragmented CPD" title="Education that progresses.">
-    <div class="prose-editorial max-w-5xl">
-      <p>Veterinary continuing education has become an inventory of isolated hours: webinars without progression, certificates without architecture, knowledge without translation into practice. VAI was created to offer something different: a deliberate, sequenced path from clinical competence to mastery, and beyond, to leadership in the profession.</p>
-    </div>
-  </Section>
+  <!-- 2. Platform introduction — editorial triptych, not dashboard cards.
+       Three equal-weight columns separated only by a hairline divider (no
+       borders, no fill, no numbering/arrows), so the domains read as three
+       facets of one platform rather than a linear onboarding sequence. -->
+  <section class="bg-[var(--brand-cloud-white)]">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <div class="max-w-3xl mb-16">
+        <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-6">
+          One platform, built around your judgement.
+        </h2>
+        <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed">
+          Veterinary work asks you to reason through uncertain cases, communicate with worried clients, and keep learning long after formal education ends. VAI is built around all three, as one professional capability platform rather than three separate tools.
+        </p>
+      </div>
 
-  <Section eyebrow="What Makes VAI Different">
-    <div class="grid md:grid-cols-3 gap-10 max-w-5xl">
-      {[
-        { t: 'Case-Based Teaching', d: 'Every concept tested against the realities of clinical practice.' },
-        { t: 'Expert-Led Faculty', d: 'Programmes developed with experienced clinicians, educators, and subject-matter experts.' },
-        { t: 'Documented Evidence', d: 'Evidence levels are identified clearly, helping learners distinguish established knowledge from emerging or hypothetical concepts.' },
-      ].map((s, i) => (
-        <div>
-          <div class="font-serif text-navy-deep text-sm tracking-[0.3em] mb-3">0{i + 1}</div>
-          <h3 class="font-serif text-2xl text-navy-deep mb-3">{s.t}</h3>
-          <p class="text-graphite leading-relaxed">{s.d}</p>
+      <div class="grid md:grid-cols-3 md:divide-x md:divide-black/10">
+        <div class="md:pr-10 pb-10 md:pb-0">
+          <div class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl mb-3">Reason</div>
+          <div class="eyebrow-brand mb-4">Ask VAI</div>
+          <p class="text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed">Bring a real case. VAI confirms what it understood, then reasons through it with you &mdash; evidence-cited where evidence applies.</p>
         </div>
-      ))}
+        <div class="md:px-10 py-10 md:py-0">
+          <div class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl mb-3">Practise</div>
+          <div class="eyebrow-brand mb-4">Practice</div>
+          <p class="text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed">Rehearse the client conversations that are hardest to get right, with honest, specific feedback afterward.</p>
+        </div>
+        <div class="md:pl-10 pt-10 md:pt-0">
+          <div class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl mb-3">Develop</div>
+          <div class="eyebrow-brand mb-4">Learn</div>
+          <p class="text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed">Structured, case-based, expert-led development for the parts of the job nobody has time to teach you properly.</p>
+        </div>
+      </div>
     </div>
-  </Section>
+  </section>
 
-  <!-- P0.8 — First Programme callout: The Trusted Vet Method -->
-  <section class="bg-navy-deep text-ivory">
-    <div class="container-prose py-10 md:py-14">
-      <div class="grid md:grid-cols-12 gap-12 items-start max-w-5xl">
-        <div class="md:col-span-7">
-          <div class="eyebrow text-champagne-soft mb-6">First Programme · Opening Q2 2026</div>
-          <h2 class="font-serif text-ivory text-4xl md:text-5xl leading-[1.05]">The Trusted Vet Method.</h2>
+  <!-- 3. Ask VAI — Phase 4A.7: the dev-only placeholder panel is removed
+       for production (it must never ship as visible content). Structured
+       for a zero-rewrite upgrade once a real, approved screenshot exists:
+       set ASK_VAI_CAPTURE below to that image's path and this reverts to
+       the copy-left/product-right two-column composition automatically —
+       no other markup changes needed. Until then this is a deliberately
+       elegant, single-column, text-led treatment, not a stretched-full-
+       width version of the old copy column. -->
+  <section id="ask-vai" class="bg-white border-t border-black/10">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <div class="grid md:grid-cols-12 gap-10 md:gap-14 items-center">
+        <div class={ASK_VAI_CAPTURE ? "md:col-span-5" : "md:col-span-12 max-w-2xl"}>
+          <div class="eyebrow-brand mb-4">Ask VAI</div>
+          <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-6">
+            Bring a case. VAI reasons through it with you.
+          </h2>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-4">
+            Describe a real case in your own words. VAI confirms what it understood before it reasons about it, so you&rsquo;re never correcting a misunderstanding after the fact.
+          </p>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-4">
+            Where evidence supports a conclusion, it&rsquo;s cited and checked against the source, not assumed. Where it doesn&rsquo;t, VAI reasons generally and says so plainly.
+          </p>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-8">
+            You stay the one making the call.
+          </p>
+          <a href={`${OPEN_VAI_URL}/ask-vai`} rel="noopener noreferrer" class="btn-brand btn-brand-primary">Start with Ask VAI</a>
         </div>
-        <div class="md:col-span-5">
-          <p class="text-lg leading-relaxed text-platinum">A structured CPD programme in ethical clinical communication for veterinarians and veterinary teams. Ten modules. Case-based. Evidence-aware. Prepared for review under VetCEE at EQF Level 7, Non-Medical category.</p>
-          <div class="mt-8 flex flex-col sm:flex-row flex-wrap gap-4">
-            <a href="/contact?programme=trusted-vet-method" class="btn btn-light-primary">Register Interest</a>
-            <a href="/academic-standards" class="btn btn-light">View Programme Architecture</a>
+        {ASK_VAI_CAPTURE && (
+          <div class="md:col-span-7">
+            <img src={ASK_VAI_CAPTURE} alt="Ask VAI" class="w-full h-auto border border-black/10" />
           </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Practice — same zero-rewrite pattern as Ask VAI above: set
+       PRACTICE_CAPTURE to a real, approved screenshot path to restore the
+       mirrored product-left/copy-right composition. -->
+  <section id="practice" class="bg-[var(--brand-cloud-white)] border-t border-black/10">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <div class="grid md:grid-cols-12 gap-10 md:gap-14 items-center">
+        {PRACTICE_CAPTURE && (
+          <div class="md:col-span-7 md:order-1">
+            <img src={PRACTICE_CAPTURE} alt="Practice" class="w-full h-auto border border-black/10" />
+          </div>
+        )}
+        <div class={PRACTICE_CAPTURE ? "md:col-span-5 md:order-2" : "md:col-span-12 max-w-2xl"}>
+          <div class="text-xs uppercase tracking-[0.14em] text-[var(--brand-midnight-navy)] opacity-70 mb-4">Practice</div>
+          <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-6">
+            Rehearse the conversation before you&rsquo;re in it.
+          </h2>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-4">
+            Some of the hardest moments in practice aren&rsquo;t clinical at all &mdash; they&rsquo;re the conversation with a worried owner, the one about cost, the one you&rsquo;ve been putting off. Practice gives you a realistic, simulated consultation to work through it beforehand, with useful, honest feedback afterward.
+          </p>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-8">
+            Nothing here is graded. It&rsquo;s a place to get it wrong safely, as many times as it takes.
+          </p>
+          <a href={`${OPEN_VAI_URL}/practice`} rel="noopener noreferrer" class="btn-brand">Try Practice</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- P1.2 — Foundation/Mastery/Leadership as a horizontal stepper -->
-  <Section eyebrow="Learning Pathways" title="Foundation. Mastery. Leadership." tone="ivory" align="center">
-    <div class="max-w-5xl mx-auto grid md:grid-cols-[1fr_auto_1fr_auto_1fr] items-stretch gap-y-6 md:gap-0">
-      <!-- Step 01 — Foundation -->
-      <div class="bg-paper border border-platinum p-8 md:p-10">
-        <div class="font-serif text-navy-deep text-xs tracking-[0.3em] mb-4">01</div>
-        <h3 class="font-serif text-2xl text-navy-deep mb-3">Foundation</h3>
-        <p class="text-graphite leading-relaxed text-[15px]">Conceptual clarity and structured grounding in core veterinary domains.</p>
-      </div>
-      <!-- Arrow -->
-      <div class="hidden md:flex items-center justify-center px-4 text-champagne text-2xl">→</div>
-      <!-- Step 02 — Mastery -->
-      <div class="bg-paper border border-platinum p-8 md:p-10">
-        <div class="font-serif text-navy-deep text-xs tracking-[0.3em] mb-4">02</div>
-        <h3 class="font-serif text-2xl text-navy-deep mb-3">Mastery</h3>
-        <p class="text-graphite leading-relaxed text-[15px]">Advanced clinical reasoning, case-based learning, and refined decision-making.</p>
-      </div>
-      <!-- Arrow -->
-      <div class="hidden md:flex items-center justify-center px-4 text-champagne text-2xl">→</div>
-      <!-- Step 03 — Leadership (dark, the strategic culmination) -->
-      <div class="bg-navy-deep text-ivory p-8 md:p-10">
-        <div class="font-serif text-champagne-soft text-xs tracking-[0.3em] mb-4">03</div>
-        <h3 class="font-serif text-2xl text-ivory mb-3">Leadership</h3>
-        <p class="text-platinum leading-relaxed text-[15px]">For practitioners who teach, lead practices, mentor, and shape the profession.</p>
+  <!-- 5. Learn — editorial, asymmetric; still one of the three core
+       domains, so it is not shrunk to a narrow centered text block. The
+       right column uses restrained, rule-separated labels (not cards, not
+       a fabricated interface) to hint at Learn's future shape while being
+       explicit that it isn't built yet. -->
+  <section id="learn" class="bg-white border-t border-black/10">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <div class="grid md:grid-cols-12 gap-10 md:gap-14">
+        <div class="md:col-span-7">
+          <div class="text-xs uppercase tracking-[0.14em] text-[var(--brand-midnight-navy)] opacity-70 mb-4">Learn</div>
+          <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-6">
+            Structured development, still being built.
+          </h2>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-4">
+            Learn is VAI&rsquo;s learning capability inside the platform &mdash; case-based, sequenced and designed around the realities of clinical work. It is still being built, and we&rsquo;re saying that plainly.
+          </p>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-8">
+            As it develops, Learn will connect with VAI Academy and with the reasoning and communication skills veterinarians use every day.
+          </p>
+          <a href="/contact" class="btn-brand">Tell us you&rsquo;re interested</a>
+        </div>
+        <div class="md:col-span-5 md:pt-2">
+          <ul class="divide-y divide-black/10 border-t border-black/10">
+            <li class="py-6">
+              <div class="eyebrow-brand mb-2">Structured Clinical Learning</div>
+              <p class="text-sm text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed">Sequenced around real clinical reasoning, not a course catalogue.</p>
+            </li>
+            <li class="py-6">
+              <div class="eyebrow-brand mb-2">Case-Based Learning</div>
+              <p class="text-sm text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed">Built from real clinical scenarios rather than abstract theory.</p>
+            </li>
+            <li class="py-6">
+              <div class="eyebrow-brand mb-2">Expert-Led Content</div>
+              <p class="text-sm text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed">Developed with specialist input, not generated at scale.</p>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-  </Section>
+  </section>
 
-  <Section eyebrow="Flexible Learning Formats" title="Designed for multiple modes of professional learning.">
-    <div class="prose-editorial max-w-5xl">
-      <p>VAI supports veterinary education across multiple learning formats: self-paced online courses, live online teaching, hybrid programmes, and selected in-person learning experiences. Each format is developed around defined learning objectives, academic documentation, and practical professional relevance, so the delivery serves the educational purpose rather than the other way around.</p>
-      <div class="mt-8">
-        <a href="/programmes" class="inline-block text-sm tracking-[0.14em] uppercase text-navy hover:text-champagne">Explore Programme Delivery Formats →</a>
+  <!-- 5.4 VAI Academy relationship — immediately after Learn, deliberately
+       its own lower-weight section rather than a change to Learn's layout.
+       Learn = the learning capability inside the VAI platform; VAI Academy
+       = a separate, dedicated destination for structured veterinary
+       education.
+       Phase 4A.11 — academy.vai.vet (standalone subdomain) has no real
+       deployment behind it (4A.10/4A.10A). Interim architecture: Academy
+       lives at /academy inside this site until a genuine standalone
+       deployment exists to migrate/redirect to.
+       Phase 4A.7A — adds one founder-supplied clinical photograph
+       (specialist ophthalmic examination), text-left/image-right, the
+       same pairing pattern already established for Ask VAI/Practice. -->
+  <section class="bg-[var(--brand-cloud-white)] border-t border-black/10">
+    <div class="mx-auto max-w-6xl px-6 py-14 md:py-16">
+      <div class="grid md:grid-cols-12 gap-10 md:gap-14 items-center">
+        <div class="md:col-span-6">
+          <div class="eyebrow-brand mb-3">VAI Academy</div>
+          <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-2xl md:text-3xl leading-[1.15] mb-4">
+            Structured veterinary education for modern clinical practice.
+          </h2>
+          <p class="text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed mb-6">
+            Expert-led programmes, masterclasses and case-based learning designed to strengthen the judgement and skills veterinarians use in real clinical work.
+          </p>
+          <a href="/academy" class="text-sm uppercase tracking-[0.08em] text-[var(--brand-clinical-blue)] hover:opacity-70 transition-opacity">Explore VAI Academy &rarr;</a>
+        </div>
+        <div class="md:col-span-6">
+          <picture>
+            <source srcset="/photography/academy-ophthalmic-exam.webp" type="image/webp" />
+            <img
+              src="/photography/academy-ophthalmic-exam.jpg"
+              alt="Specialist ophthalmic examination of a dog"
+              width="1600"
+              height="1064"
+              loading="lazy"
+              class="w-full h-auto aspect-[3/2] object-cover object-[60%_50%] border border-black/10"
+            />
+          </picture>
+        </div>
       </div>
     </div>
-  </Section>
+  </section>
 
-  <!-- Heritage — comparative anatomy plate (Waterhouse Hawkins, 19th C.) left,
-       editorial pull quote right. Engraving cropped to hide publisher caption. -->
-  <Section eyebrow="Heritage" title="Built on centuries of veterinary knowledge." tone="ivory">
-    <div class="grid md:grid-cols-12 gap-10 md:gap-14 items-center max-w-5xl">
-      <div class="md:col-span-7">
-        <figure class="heritage-frame aspect-[4/3] bg-platinum-soft">
-          <img
-            src="/heritage-comparative-anatomy.jpg"
-            alt=""
-            aria-hidden="true"
-            class="heritage-engraving block w-full h-full object-cover"
-            style="object-position: 50% 35%;"
-            loading="lazy"
-            decoding="async"
-          />
-        </figure>
-        <p class="mt-3 text-[10px] md:text-[11px] italic text-graphite/40 leading-snug">Waterhouse Hawkins, Comparative View of the Human and Animal Frame, Plate V. Wellcome Collection. CC BY 4.0</p>
+  <!-- 5.5 VAI for Organisations — secondary commercial path. No dedicated
+       /for-organisations page yet (out of scope this phase), so both the
+       nav entry and this section's id serve as the destination directly.
+       Phase 4A.7A — adds one founder-supplied clinical photograph
+       (advanced diagnostic imaging review) to ground the commercial/
+       professional-platform story in real clinical sophistication;
+       image-left/content-right, mirroring Practice's pairing direction.
+       The existing Clinics/Enterprise hairline-divided sub-layout is
+       preserved unchanged, just nested inside the new content column. -->
+  <section id="for-organisations" class="bg-[var(--brand-cloud-white)] border-t border-black/10">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-24">
+      <div class="grid md:grid-cols-12 gap-10 md:gap-14 items-center">
+        <div class="md:col-span-5">
+          <picture>
+            <source srcset="/photography/clinical-diagnostic-imaging.webp" type="image/webp" />
+            <img
+              src="/photography/clinical-diagnostic-imaging.jpg"
+              alt="Veterinary specialist reviewing advanced diagnostic imaging"
+              width="1600"
+              height="1064"
+              loading="lazy"
+              class="w-full h-auto aspect-[4/3] object-cover border border-black/10"
+            />
+          </picture>
+        </div>
+        <div class="md:col-span-7">
+          <div class="eyebrow-brand mb-4">VAI for Teams</div>
+          <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-6">
+            Built for individual judgement. Ready to grow with the team.
+          </h2>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-10">
+            VAI begins with the individual professional. Clinics, veterinary groups and larger organisations can talk to us about extending access, professional development and organisational use to their teams.
+          </p>
+
+          <div class="grid sm:grid-cols-2 sm:divide-x sm:divide-black/10 mb-10">
+            <div class="sm:pr-10 pb-8 sm:pb-0">
+              <div class="font-brand-serif text-[var(--brand-midnight-navy)] text-xl mb-2">For Clinics</div>
+              <p class="text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed text-sm">Independent practices, hospitals and veterinary groups interested in providing VAI access to their teams.</p>
+            </div>
+            <div class="sm:pl-10 pt-8 sm:pt-0">
+              <div class="font-brand-serif text-[var(--brand-midnight-navy)] text-xl mb-2">Enterprise &amp; Institutions</div>
+              <p class="text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed text-sm">Larger veterinary organisations, universities, associations and strategic or institutional partners.</p>
+            </div>
+          </div>
+
+          <a href="/contact" class="btn-brand">Talk to VAI</a>
+        </div>
       </div>
-      <div class="md:col-span-5">
-        <p class="font-serif text-navy-deep text-2xl md:text-3xl leading-[1.25]">
-          The clinical disciplines we practise today rest on an inheritance: anatomy mapped by hand, principles refined across generations.
+    </div>
+  </section>
+
+  <!-- 6. Responsible boundary / future human escalation — copy corrected
+       Phase 4A.3 per founder wording; "In Development" tag uses the same
+       restrained eyebrow language as elsewhere, not a badge/pill, so it
+       doesn't compete visually with Ask VAI/Practice/Learn. -->
+  <section class="bg-[var(--brand-cloud-white)] border-t border-black/10">
+    <div class="mx-auto max-w-6xl px-6 py-16 md:py-20">
+      <div class="max-w-2xl">
+        <div class="text-xs uppercase tracking-[0.14em] text-[var(--brand-midnight-navy)] opacity-50 mb-4">In Development</div>
+        <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-2xl md:text-3xl leading-[1.15] mb-6">
+          Some questions deserve a person, not a model.
+        </h2>
+        <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed">
+          VAI is being designed to recognise when AI support has reached its responsible limit. A future Expert Opinion pathway will provide structured escalation to specialist expertise when a case needs a person.
         </p>
-        <p class="mt-6 text-graphite leading-relaxed">VAI continues that lineage with the rigour of contemporary academic structure: comparative reasoning, documented evidence, and sequenced progression. Practitioners enter the profession's standing tradition with clarity, not nostalgia.</p>
       </div>
-    </div>
-  </Section>
-
-  <!-- P1.4 — Professional Review Roadmap visible without click -->
-  <Section eyebrow="Professional Review Roadmap" title="Built for external review.">
-    <div class="prose-editorial max-w-5xl">
-      <p>VAI programmes are developed with defined learning objectives, sequenced modules, evidence-level distinctions, assessment components, faculty documentation, and reference versioning.</p>
-      <p>The first programme is being prepared for submission to VetCEE (European veterinary CPD review) in 2026, with subsequent recognition pathways planned in line with each programme's target region. Any granted recognition will be stated on the relevant programme page.</p>
-      <div class="mt-8 flex flex-wrap gap-4">
-        <a href="/academic-standards" class="btn">Academic Standards</a>
-        <a href="/cpd-ce-alignment" class="btn">CPD/CE Alignment</a>
-      </div>
-    </div>
-  </Section>
-
-  <!-- P1.7 — Social proof / trust strip -->
-  <section class="bg-ivory border-y border-platinum-soft">
-    <div class="container-prose py-12 text-center">
-      <p class="text-sm tracking-[0.16em] uppercase text-muted leading-relaxed">
-        Veterinary education by Academia Europa · Operated by Solex Education Unipessoal LDA, Portugal · First programme submitted to VetCEE in 2026
-      </p>
     </div>
   </section>
 
-  <!-- P1.1 — Bottom CTA reframed as Three Audiences -->
-  <section class="bg-navy-deep text-ivory">
-    <div class="container-prose py-10 md:py-14">
-      <div class="text-center mb-16">
-        <div class="eyebrow text-champagne-soft mb-6">Three Audiences. One Academy.</div>
+  <!-- 7. Related initiative — Veterinary Longevity. Deliberately
+       lower-weight than the platform sections above: no image, narrower
+       measure, smaller vertical rhythm, and a plain text link rather than
+       a gold primary button, so it reads as an adjacent initiative, not a
+       fourth VAI capability or a competing conversion path. Per founder
+       instruction, the homepage founder section is removed entirely —
+       founder background now lives only on /about. -->
+  <section class="bg-white border-t border-black/10">
+    <div class="mx-auto max-w-6xl px-6 py-14 md:py-16">
+      <div class="max-w-2xl">
+        <div class="eyebrow-brand mb-3">A VAI Initiative</div>
+        <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-2xl md:text-3xl leading-[1.15] mb-4">
+          Veterinary Longevity
+        </h2>
+        <p class="text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed mb-2">
+          Exploring how veterinary medicine can add healthier years, not simply more years.
+        </p>
+        <p class="text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed mb-6">
+          Veterinary Longevity explores animal healthspan, preventive medicine and the translation of longevity science into veterinary practice.
+        </p>
+        <a href="https://veterinarylongevity.com" rel="noopener noreferrer" class="text-sm uppercase tracking-[0.08em] text-[var(--brand-clinical-blue)] hover:opacity-70 transition-opacity">Explore Veterinary Longevity &rarr;</a>
       </div>
-      <div class="grid md:grid-cols-3 gap-10 max-w-5xl mx-auto">
-        <div>
-          <h3 class="font-serif text-2xl text-ivory mb-4">For Veterinarians</h3>
-          <p class="text-platinum leading-relaxed text-[15px]">Structured postgraduate programmes for clinicians seeking depth, progression, and recognised CPD.</p>
-        </div>
-        <div>
-          <h3 class="font-serif text-2xl text-ivory mb-4">For Faculty</h3>
-          <p class="text-platinum leading-relaxed text-[15px]">Teach within a documented academic framework with editorial and production support.</p>
-        </div>
-        <div>
-          <h3 class="font-serif text-2xl text-ivory mb-4">For Institutions</h3>
-          <p class="text-platinum leading-relaxed text-[15px]">Partner with VAI on programme delivery, clinic-team development, and recognised certification.</p>
-        </div>
+    </div>
+  </section>
+
+  <!-- 8. Trust / privacy / professional integrity -->
+  <section class="bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]">
+    <div class="mx-auto max-w-6xl px-6 py-16 md:py-24">
+      <div class="max-w-3xl">
+        <h2 class="font-brand-serif text-[var(--brand-cloud-white)] text-3xl md:text-4xl leading-[1.15] mb-6">
+          Your cases deserve professional privacy.
+        </h2>
+        <p class="opacity-85 leading-relaxed text-lg">
+          VAI is designed around the trust required to think honestly about real clinical work. Access to your professional activity is controlled, and your case information is not treated as advertising inventory or public content. Privacy, professional independence and clear consent are intended to be part of the product architecture, not an afterthought.
+        </p>
       </div>
-      <div class="mt-14 flex flex-wrap gap-4 justify-center">
-        <a href="/contact" class="btn btn-light-primary">Register Interest</a>
-        <a href="/faculty" class="btn btn-light">Join our Faculty</a>
-      </div>
+    </div>
+  </section>
+
+  <!-- 9. Final CTA -->
+  <section class="bg-[var(--brand-cloud-white)] border-t border-black/10">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-24 text-center">
+      <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] max-w-2xl mx-auto mb-10">
+        Bring the case that&rsquo;s on your mind.
+      </h2>
+      <a href={OPEN_VAI_URL} rel="noopener noreferrer" class="btn-brand btn-brand-primary">Open VAI</a>
     </div>
   </section>
 </Base>

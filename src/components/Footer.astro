@@ -1,90 +1,116 @@
 ---
-import SocialLinks from './SocialLinks.astro';
-
+// Phase 4A.2 — footer updated per explicit 2B instruction to distinguish
+// Product / Solutions / Company.
+//
+// Phase 4A.2A — added an Initiatives column (Veterinary Longevity) per
+// founder instruction: a related initiative, not a VAI product, so it's
+// kept in its own grouping rather than folded into Product or Solutions.
+//
+// Phase 4A.4 — Product links converted from /ask-vai (a stale, unrelated
+// preview stub page), and /practice, /learn (both 404 — no such pages
+// exist) to homepage section anchors (#ask-vai/#practice/#learn), which
+// are real, verified ids on src/pages/index.astro. Zero broken/stale
+// public links takes priority over deep-linking to pages that don't exist.
+//
+// Phase 4A.5 — Education column (VAI Academy) restored to the *target*
+// footer architecture.
+//
+// Phase 4A.6B — VAI Academy is now a real <a href> like every other footer
+// link, no longer greyed out or labeled "coming soon."
+//
+// Phase 4A.11 — academy.vai.vet (standalone subdomain) has no real
+// deployment behind it (4A.10/4A.10A). Interim architecture: points at
+// /academy inside this site until a genuine standalone deployment exists
+// to migrate/redirect to.
+//
+// Instagram omitted (legacy handle, "veterinaryacademyinternational",
+// pending a rename decision) — LinkedIn kept as-is, using the same
+// confirmed URL already in src/components/SocialLinks.astro (that
+// component itself is left untouched, just not called from here, since
+// filtering it would mean modifying a file outside this phase's scope).
+// No Privacy/Terms links — neither page exists yet; not invented here.
 const year = new Date().getFullYear();
-const cols = [
-  {
-    title: 'Academy',
-    links: [
-      { href: '/about', label: 'About VAI' },
-      { href: '/about/leadership', label: 'Leadership' },
-      { href: '/programmes', label: 'Programmes' },
-      { href: '/faculty', label: 'Faculty' },
-    ],
-  },
-  {
-    title: 'Standards',
-    links: [
-      { href: '/academic-standards', label: 'Academic Standards' },
-      { href: '/certificate-policy', label: 'Certificate Policy' },
-      { href: '/cpd-ce-alignment', label: 'CPD/CE Alignment' },
-    ],
-  },
-  {
-    title: 'Engage',
-    links: [
-      { href: '/contact', label: 'Contact' },
-      { href: '/faq', label: 'FAQ' },
-      { href: 'https://academiaeuropa.com', label: 'Academia Europa', external: true },
-    ],
-  },
+const productLinks = [
+  { href: '/#ask-vai', label: 'Ask VAI' },
+  { href: '/#practice', label: 'Practice' },
+  { href: '/#learn', label: 'Learn' },
+];
+const solutionsLinks = [
+  { href: '/#for-organisations', label: 'For Clinics' },
+  { href: '/#for-organisations', label: 'Enterprise & Institutions' },
+];
+const educationLinks = [
+  { href: '/academy', label: 'VAI Academy' },
+];
+const initiativesLinks = [
+  { href: 'https://veterinarylongevity.com', label: 'Veterinary Longevity', external: true },
+];
+const companyLinks = [
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
 ];
 ---
-<footer class="bg-navy-deep text-ivory">
-  <div class="container-prose py-14">
-    <!-- Brand bar -->
-    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 pb-12 border-b border-navy-soft">
-      <a href="/" class="flex items-center gap-5">
-        <span class="relative inline-block">
-          <picture>
-            <source srcset="/vai-logo-light.webp" type="image/webp" />
-            <img src="/vai-logo-light.png" alt="VAI" class="h-8 w-auto" />
-          </picture>
-          <span class="absolute top-0 -right-3 text-[10px] font-sans text-ivory" style="line-height: 1;">™</span>
-        </span>
-        <span class="text-[11px] tracking-[0.22em] uppercase text-champagne-soft border-l border-navy-soft pl-5">Veterinary Academy International</span>
-      </a>
-      <div class="text-[11px] tracking-[0.18em] uppercase text-platinum/80">
-        Veterinary education by <a href="https://academiaeuropa.com" rel="noopener" class="text-champagne-soft hover:text-ivory">Academia Europa</a>
+<footer class="bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]">
+  <div class="mx-auto max-w-6xl px-6 py-14">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10 pb-12 border-b border-white/10">
+      <div>
+        <div class="eyebrow-brand mb-4">Product</div>
+        <ul class="space-y-3 text-sm">
+          {productLinks.map((l) => (
+            <li><a href={l.href} class="opacity-80 hover:opacity-100 transition-opacity">{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <div class="eyebrow-brand mb-4">Solutions</div>
+        <ul class="space-y-3 text-sm">
+          {solutionsLinks.map((l) => (
+            <li><a href={l.href} class="opacity-80 hover:opacity-100 transition-opacity">{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <div class="eyebrow-brand mb-4">Education</div>
+        <ul class="space-y-3 text-sm">
+          {educationLinks.map((l) => (
+            <li><a href={l.href} rel={l.external ? 'noopener noreferrer' : undefined} target={l.external ? '_blank' : undefined} class="opacity-80 hover:opacity-100 transition-opacity">{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <div class="eyebrow-brand mb-4">Initiatives</div>
+        <ul class="space-y-3 text-sm">
+          {initiativesLinks.map((l) => (
+            <li><a href={l.href} rel={l.external ? 'noopener noreferrer' : undefined} target={l.external ? '_blank' : undefined} class="opacity-80 hover:opacity-100 transition-opacity">{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <div class="eyebrow-brand mb-4">Company</div>
+        <ul class="space-y-3 text-sm">
+          {companyLinks.map((l) => (
+            <li><a href={l.href} class="opacity-80 hover:opacity-100 transition-opacity">{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+      <div class="col-span-2 md:col-span-3 lg:col-span-1 lg:text-right">
+        <div class="eyebrow-brand mb-4">Connect</div>
+        <a
+          href="https://www.linkedin.com/company/112349450/"
+          rel="noopener"
+          target="_blank"
+          aria-label="VAI on LinkedIn"
+          class="inline-flex opacity-80 hover:opacity-100 transition-opacity"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+            <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/>
+          </svg>
+        </a>
       </div>
     </div>
 
-    <!-- Link columns -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 pt-14">
-      {cols.map((c) => (
-        <div>
-          <div class="eyebrow text-champagne-soft mb-5">{c.title}</div>
-          <ul class="space-y-3 text-sm text-platinum">
-            {c.links.map((l) => (
-              <li>
-                <a
-                  href={l.href}
-                  class="hover:text-ivory transition-colors"
-                  {...(l.external ? { rel: 'noopener', target: '_blank' } : {})}
-                >{l.label}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
-
-    <!-- Legal & flagship strip -->
-    <div class="mt-16 pt-8 border-t border-navy-soft">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
-        <div class="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 text-[11px] tracking-[0.18em] uppercase">
-          <div class="text-champagne-soft">Flagship Direction</div>
-          <a href="https://www.veterinarylongevity.com" rel="noopener" target="_blank" class="text-platinum hover:text-ivory transition-colors">Visit VeterinaryLongevity.com ↗</a>
-        </div>
-        <SocialLinks />
-      </div>
-      <p class="max-w-4xl text-xs text-platinum/80 leading-relaxed">
-        Veterinary Academy International is veterinary education by Academia Europa, operated by Solex Education Unipessoal LDA, Portugal. Programmes are developed for postgraduate professional education and may be submitted for CPD/CE review where applicable.
-      </p>
-      <div class="mt-6 flex flex-col gap-2 text-xs text-platinum/60">
-        <div>© {year} Veterinary Academy International.</div>
-        <div>Historical engravings courtesy of the <a href="https://wellcomecollection.org" rel="noopener" target="_blank" class="hover:text-ivory">Wellcome Collection</a>, London. <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener" target="_blank" class="hover:text-ivory">CC BY 4.0</a>.</div>
-      </div>
+    <div class="pt-8">
+      <p class="text-xs opacity-70">© {year} VAI. Operated by Solex Education Unipessoal Lda, Portugal.</p>
     </div>
   </div>
 </footer>

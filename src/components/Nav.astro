@@ -1,146 +1,76 @@
 ---
-type NavLink = { href: string; label: string };
-type NavItem = NavLink & { children?: NavLink[] };
-const items: NavItem[] = [
-  { href: '/', label: 'Home', children: [
-    { href: '/about', label: 'About' },
-  ] },
-  { href: '/programmes', label: 'Programmes' },
-  { href: '/academic-standards', label: 'Academic Standards' },
-  { href: '/faculty', label: 'Faculty' },
-  { href: '/cpd-ce-alignment', label: 'CPD/CE' },
-  { href: '/contact', label: 'Contact' },
+// Phase 4A.2A correction — Ask VAI removed from the public header per
+// founder instruction: vai.vet = understand/discover/evaluate VAI,
+// app.vai.vet = use VAI, and Open VAI is the single primary transition
+// between the two. Ask VAI keeps its full homepage section; it just isn't
+// a header shortcut into the app anymore.
+//
+// Phase 4A.4 — Practice and Learn removed from the header too: they
+// pointed at public /practice and /learn routes that don't exist in this
+// repo yet (both 404'd). Zero-broken-links takes priority over completeness
+// here — both come back once those pages (or a different destination
+// decision) exist. Their homepage sections are unaffected and unchanged.
+//
+// Phase 4A.6B — Academy restored to the header as a real, active link.
+//
+// Phase 4A.11 — academy.vai.vet (the standalone subdomain) turned out not
+// to have a real deployment behind it after all (4A.10/4A.10A). Interim
+// architecture: Academy lives at /academy inside this same site until a
+// genuine standalone deployment exists to migrate/redirect to. Internal
+// route, so no `external`/`rel` treatment.
+//
+// "For Organisations" has no standalone page yet and building one is out of
+// scope for this phase, so it points at the #for-organisations section on
+// the homepage rather than a 404.
+const NAV_LINKS = [
+  { href: '/academy', label: 'Academy' },
+  { href: '/#for-organisations', label: 'For Organisations' },
+  { href: '/about', label: 'About' },
 ];
-
-const lmsUrl = import.meta.env.PUBLIC_LMS_URL ?? 'https://learn.vai.vet/login';
-const lmsEnabled = import.meta.env.PUBLIC_LMS_ENABLED === 'true';
+const OPEN_VAI_URL = 'https://app.vai.vet';
 ---
-<header class="border-b border-platinum-soft bg-paper">
-  <!-- Top row: logo + tagline (centered on desktop, left on mobile) + mobile menu button -->
-  <div class="container-prose flex items-center justify-between lg:justify-center py-6 lg:py-8">
-    <a href="/" class="flex flex-col md:flex-row md:items-center gap-1.5 md:gap-5">
-      <span class="relative inline-block self-start">
-        <picture>
-          <source srcset="/vai-logo-color.webp" type="image/webp" />
-          <img
-            src="/vai-logo-color.png"
-            alt="VAI · Veterinary Academy International"
-            class="h-9 md:h-11 w-auto"
-          />
-        </picture>
-        <span class="absolute top-0 -right-3 text-[10px] font-sans" style="color: #101114; line-height: 1;">™</span>
-      </span>
-      <span class="text-[9.5px] md:text-[11px] tracking-[0.22em] uppercase md:border-l md:border-platinum md:pl-5 leading-tight" style="color: #101114;">
-        Veterinary Academy International
-      </span>
+<header class="border-b border-black/10 bg-[var(--brand-cloud-white)]">
+  <div class="mx-auto max-w-6xl px-6 py-5 md:py-6 flex items-center justify-between gap-4 md:gap-6">
+    <a href="/" class="shrink-0" aria-label="VAI Veterinary — Home">
+      <picture>
+        <source srcset="/vai-veterinary-lockup.webp" type="image/webp" />
+        <img
+          src="/vai-veterinary-lockup.png"
+          alt="VAI Veterinary"
+          width="1600"
+          height="480"
+          class="w-[150px] sm:w-[170px] md:w-[190px] lg:w-[210px] h-auto"
+        />
+      </picture>
     </a>
-    <button id="nav-toggle" class="lg:hidden text-navy text-xs tracking-[0.18em] uppercase" aria-label="Menu">Menu</button>
+
+    <nav class="hidden md:flex items-center gap-5 lg:gap-8 flex-1 justify-end mr-2 lg:mr-4">
+      {NAV_LINKS.map((l) => (
+        <a
+          href={l.href}
+          rel={l.external ? 'noopener noreferrer' : undefined}
+          class="text-sm uppercase tracking-[0.08em] whitespace-nowrap font-medium text-[var(--brand-midnight-navy)] hover:text-[var(--brand-clinical-blue)] transition-colors"
+        >{l.label}</a>
+      ))}
+    </nav>
+
+    <a href={OPEN_VAI_URL} rel="noopener noreferrer" class="hidden md:inline-flex btn-brand btn-brand-primary shrink-0">Open VAI</a>
+
+    <button id="nav-toggle" class="md:hidden text-[var(--brand-midnight-navy)] text-xs tracking-[0.18em] uppercase" aria-label="Menu">Menu</button>
   </div>
 
-  <!-- Bottom row: nav items (desktop only) -->
-  <nav class="hidden lg:block border-t border-platinum-soft/70">
-    <div class="container-prose grid grid-cols-[1fr_auto_1fr] items-center py-4 text-[12px] xl:text-[12.5px] tracking-[0.13em] uppercase text-graphite">
-      <div></div>
-      <div class="flex items-center justify-center gap-x-7 xl:gap-x-9">
-        {items.map((it) => (
-          it.children && it.children.length > 0 ? (
-            <div class="nav-group relative inline-flex items-center gap-1.5" data-nav-group>
-              <a href={it.href} class="whitespace-nowrap hover:text-navy transition-colors">{it.label}</a>
-              <button type="button" class="nav-trigger inline-flex items-center justify-center p-1 -m-1 text-graphite hover:text-navy transition-colors cursor-pointer" aria-haspopup="true" aria-expanded="false" aria-label={`Open ${it.label} submenu`}>
-                <svg class="w-2.5 h-2.5 opacity-60 transition-transform" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>
-              </button>
-              <div class="nav-submenu absolute left-1/2 -translate-x-1/2 top-full pt-3 min-w-[10rem] opacity-0 invisible transition-opacity z-50">
-                <div class="bg-paper border border-platinum-soft shadow-sm py-2">
-                  {it.children.map((c) => (
-                    <a href={c.href} class="block whitespace-nowrap px-5 py-2 text-graphite hover:text-navy hover:bg-platinum-soft/40 transition-colors">{c.label}</a>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ) : (
-            <a href={it.href} class="whitespace-nowrap hover:text-navy transition-colors">{it.label}</a>
-          )
-        ))}
-      </div>
-      <div class="flex justify-end">
-        {lmsEnabled && (
-          <a
-            href={lmsUrl}
-            rel="noopener noreferrer"
-            aria-label="Student login — opens the VAI Learning Management System"
-            class="inline-block whitespace-nowrap border border-navy text-navy hover:bg-navy hover:text-ivory transition-colors px-4 py-2 text-[11px] xl:text-[11.5px] tracking-[0.16em] uppercase focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
-          >Login</a>
-        )}
-      </div>
-    </div>
-  </nav>
-
   <!-- Mobile menu -->
-  <div id="nav-mobile" class="hidden lg:hidden border-t border-platinum-soft">
-    <nav class="container-prose flex flex-col gap-3 py-6 text-sm tracking-[0.1em] uppercase text-graphite">
-      {items.map((it) => (
-        <>
-          <a href={it.href} class="hover:text-navy">{it.label}</a>
-          {it.children && it.children.map((c) => (
-            <a href={c.href} class="pl-5 text-xs tracking-[0.14em] text-muted hover:text-navy">{c.label}</a>
-          ))}
-        </>
+  <div id="nav-mobile" class="hidden md:hidden border-t border-black/10">
+    <nav class="mx-auto max-w-6xl px-6 flex flex-col gap-4 py-6 text-sm tracking-[0.08em] uppercase">
+      {NAV_LINKS.map((l) => (
+        <a href={l.href} rel={l.external ? 'noopener noreferrer' : undefined} class="font-medium text-[var(--brand-midnight-navy)]">{l.label}</a>
       ))}
-      {lmsEnabled && (
-        <a
-          href={lmsUrl}
-          rel="noopener noreferrer"
-          aria-label="Student login — opens the VAI Learning Management System"
-          class="mt-4 inline-block text-center border border-navy text-navy hover:bg-navy hover:text-ivory transition-colors px-5 py-3 text-sm tracking-[0.16em] uppercase focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
-        >Login</a>
-      )}
+      <a href={OPEN_VAI_URL} rel="noopener noreferrer" class="btn-brand btn-brand-primary mt-2 justify-center">Open VAI</a>
     </nav>
   </div>
 </header>
-<style>
-  .nav-group:hover > .nav-submenu,
-  .nav-group.is-open > .nav-submenu {
-    opacity: 1;
-    visibility: visible;
-  }
-  .nav-group.is-open .nav-trigger svg {
-    transform: rotate(180deg);
-  }
-</style>
 <script>
   const t = document.getElementById('nav-toggle');
   const m = document.getElementById('nav-mobile');
   t?.addEventListener('click', () => m?.classList.toggle('hidden'));
-
-  const groups = document.querySelectorAll<HTMLElement>('[data-nav-group]');
-  groups.forEach((g) => {
-    const btn = g.querySelector<HTMLButtonElement>('.nav-trigger');
-    btn?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const open = g.classList.toggle('is-open');
-      btn.setAttribute('aria-expanded', String(open));
-      groups.forEach((other) => {
-        if (other !== g) {
-          other.classList.remove('is-open');
-          other.querySelector('.nav-trigger')?.setAttribute('aria-expanded', 'false');
-        }
-      });
-    });
-  });
-  document.addEventListener('click', (e) => {
-    groups.forEach((g) => {
-      if (!g.contains(e.target as Node)) {
-        g.classList.remove('is-open');
-        g.querySelector('.nav-trigger')?.setAttribute('aria-expanded', 'false');
-      }
-    });
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      groups.forEach((g) => {
-        g.classList.remove('is-open');
-        g.querySelector('.nav-trigger')?.setAttribute('aria-expanded', 'false');
-      });
-    }
-  });
 </script>
