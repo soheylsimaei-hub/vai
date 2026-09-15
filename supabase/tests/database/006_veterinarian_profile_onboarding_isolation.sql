@@ -51,15 +51,27 @@ select throws_ok(
 
 -- Vet A still cannot reach Vet B's row to onboard on their behalf — RLS
 -- from 0001 is untouched by this migration.
+--
+-- Fixture setup needs the elevated pgTAP context, not the `authenticated`
+-- session line 16 downgraded to — `authenticated` correctly has no INSERT
+-- grant on auth.users (that schema is GoTrue-managed), so creating Vet B's
+-- rows must happen after resetting role, not by widening that grant.
+reset role;
+
 insert into auth.users (id, email) values
   ('22222222-2222-2222-2222-222222222222', 'vet-b@example.com');
 insert into veterinarians (id, email, name) values
   ('22222222-2222-2222-2222-222222222222', 'vet-b@example.com', 'vet-b@example.com');
 
+-- Restore Vet A's authenticated session before the actual cross-user
+-- assertion below — it must run as Vet A, not as the elevated fixture role,
+-- for RLS to be the thing actually being tested.
+set local role authenticated;
+select set_config('request.jwt.claims', json_build_object('sub', '11111111-1111-1111-1111-111111111111')::text, true);
+
 update veterinarians set first_name = 'Hacked' where id = '22222222-2222-2222-2222-222222222222';
-select results_eq(
+select is_empty(
   $$ select first_name from veterinarians where id = '22222222-2222-2222-2222-222222222222' $$,
-  $$ values (null::text) $$,
   'Vet A''s onboarding update against Vet B''s row affects zero rows (row invisible under RLS, not just unauthorized)'
 );
 
