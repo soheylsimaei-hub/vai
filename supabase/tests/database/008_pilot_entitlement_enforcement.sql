@@ -358,9 +358,9 @@ set local role authenticated;
 select set_config('request.jwt.claims', json_build_object('sub', '11111111-1111-1111-1111-111111111111')::text, true);
 
 select is(
-  (select count(*)::int from access_plan_limits),
-  0,
-  'authenticated cannot read access_plan_limits directly (no RLS policy grants any rows)'
+  has_table_privilege('authenticated', 'public.access_plan_limits', 'SELECT'),
+  false,
+  'authenticated has no SELECT privilege on access_plan_limits'
 );
 
 select throws_ok(
@@ -560,89 +560,53 @@ select set_config('request.jwt.claims', json_build_object('sub', '11111111-1111-
 
 -- ask_vai_turn_reservations
 select is(
-  (select count(*)::int from ask_vai_turn_reservations),
-  0,
-  'authenticated cannot read any row from ask_vai_turn_reservations'
+  has_table_privilege('authenticated', 'public.ask_vai_turn_reservations', 'SELECT'),
+  false,
+  'authenticated has no SELECT privilege on ask_vai_turn_reservations'
 );
 select throws_ok(
   $$ insert into ask_vai_turn_reservations (case_id, turn_number) values ('00000000-0000-0000-0000-000000000000'::uuid, 1) $$,
   '42501', null,
   'authenticated cannot INSERT into ask_vai_turn_reservations'
 );
-do $$
-declare v_count int;
-begin
-  with attempt as (
-    update ask_vai_turn_reservations set status = 'completed' where true returning id
-  )
-  select count(*) into v_count from attempt;
-  perform set_config('pgtap.tmp_count', v_count::text, true);
-end $$;
 select is(
-  current_setting('pgtap.tmp_count')::int,
-  0,
-  'authenticated UPDATE on ask_vai_turn_reservations affects zero rows (no RLS policy grants visibility)'
+  has_table_privilege('authenticated', 'public.ask_vai_turn_reservations', 'UPDATE'),
+  false,
+  'authenticated has no UPDATE privilege on ask_vai_turn_reservations'
 );
-do $$
-declare v_count int;
-begin
-  with attempt as (
-    delete from ask_vai_turn_reservations returning id
-  )
-  select count(*) into v_count from attempt;
-  perform set_config('pgtap.tmp_count', v_count::text, true);
-end $$;
 select is(
-  current_setting('pgtap.tmp_count')::int,
-  0,
-  'authenticated DELETE on ask_vai_turn_reservations affects zero rows (no RLS policy grants visibility)'
+  has_table_privilege('authenticated', 'public.ask_vai_turn_reservations', 'DELETE'),
+  false,
+  'authenticated has no DELETE privilege on ask_vai_turn_reservations'
 );
 
 -- practice_message_reservations
 select is(
-  (select count(*)::int from practice_message_reservations),
-  0,
-  'authenticated cannot read any row from practice_message_reservations'
+  has_table_privilege('authenticated', 'public.practice_message_reservations', 'SELECT'),
+  false,
+  'authenticated has no SELECT privilege on practice_message_reservations'
 );
 select throws_ok(
   $$ insert into practice_message_reservations (attempt_id, message_number) values ('00000000-0000-0000-0000-000000000000'::uuid, 1) $$,
   '42501', null,
   'authenticated cannot INSERT into practice_message_reservations'
 );
-do $$
-declare v_count int;
-begin
-  with attempt as (
-    update practice_message_reservations set status = 'completed' where true returning id
-  )
-  select count(*) into v_count from attempt;
-  perform set_config('pgtap.tmp_count', v_count::text, true);
-end $$;
 select is(
-  current_setting('pgtap.tmp_count')::int,
-  0,
-  'authenticated UPDATE on practice_message_reservations affects zero rows (no RLS policy grants visibility)'
+  has_table_privilege('authenticated', 'public.practice_message_reservations', 'UPDATE'),
+  false,
+  'authenticated has no UPDATE privilege on practice_message_reservations'
 );
-do $$
-declare v_count int;
-begin
-  with attempt as (
-    delete from practice_message_reservations returning id
-  )
-  select count(*) into v_count from attempt;
-  perform set_config('pgtap.tmp_count', v_count::text, true);
-end $$;
 select is(
-  current_setting('pgtap.tmp_count')::int,
-  0,
-  'authenticated DELETE on practice_message_reservations affects zero rows (no RLS policy grants visibility)'
+  has_table_privilege('authenticated', 'public.practice_message_reservations', 'DELETE'),
+  false,
+  'authenticated has no DELETE privilege on practice_message_reservations'
 );
 
 -- ai_usage_events
 select is(
-  (select count(*)::int from ai_usage_events),
-  0,
-  'authenticated cannot read any row from ai_usage_events'
+  has_table_privilege('authenticated', 'public.ai_usage_events', 'SELECT'),
+  false,
+  'authenticated has no SELECT privilege on ai_usage_events'
 );
 select throws_ok(
   $$ insert into ai_usage_events (veterinarian_id, feature, model, input_tokens, output_tokens)
@@ -650,33 +614,15 @@ select throws_ok(
   '42501', null,
   'authenticated cannot INSERT into ai_usage_events'
 );
-do $$
-declare v_count int;
-begin
-  with attempt as (
-    update ai_usage_events set model = 'tampered' where true returning id
-  )
-  select count(*) into v_count from attempt;
-  perform set_config('pgtap.tmp_count', v_count::text, true);
-end $$;
 select is(
-  current_setting('pgtap.tmp_count')::int,
-  0,
-  'authenticated UPDATE on ai_usage_events affects zero rows (no RLS policy grants visibility)'
+  has_table_privilege('authenticated', 'public.ai_usage_events', 'UPDATE'),
+  false,
+  'authenticated has no UPDATE privilege on ai_usage_events'
 );
-do $$
-declare v_count int;
-begin
-  with attempt as (
-    delete from ai_usage_events returning id
-  )
-  select count(*) into v_count from attempt;
-  perform set_config('pgtap.tmp_count', v_count::text, true);
-end $$;
 select is(
-  current_setting('pgtap.tmp_count')::int,
-  0,
-  'authenticated DELETE on ai_usage_events affects zero rows (no RLS policy grants visibility)'
+  has_table_privilege('authenticated', 'public.ai_usage_events', 'DELETE'),
+  false,
+  'authenticated has no DELETE privilege on ai_usage_events'
 );
 
 -- entitlement_settings — the global kill-switch itself. The adversarial
@@ -684,42 +630,24 @@ select is(
 -- this point in the suite (activated earlier) — attempting to flip it to
 -- false is a genuinely consequential attack, not a same-value no-op.
 select is(
-  (select count(*)::int from entitlement_settings),
-  0,
-  'authenticated cannot read any row from entitlement_settings'
+  has_table_privilege('authenticated', 'public.entitlement_settings', 'SELECT'),
+  false,
+  'authenticated has no SELECT privilege on entitlement_settings'
 );
 select throws_ok(
   $$ insert into entitlement_settings (id, enforcement_enabled) values (1, true) $$,
   '42501', null,
   'authenticated cannot INSERT into entitlement_settings'
 );
-do $$
-declare v_count int;
-begin
-  with attempt as (
-    update entitlement_settings set enforcement_enabled = false where id = 1 returning id
-  )
-  select count(*) into v_count from attempt;
-  perform set_config('pgtap.tmp_count', v_count::text, true);
-end $$;
 select is(
-  current_setting('pgtap.tmp_count')::int,
-  0,
-  'authenticated UPDATE on entitlement_settings (attempting to disable enforcement) affects zero rows'
+  has_table_privilege('authenticated', 'public.entitlement_settings', 'UPDATE'),
+  false,
+  'authenticated has no UPDATE privilege on entitlement_settings (cannot toggle enforcement directly)'
 );
-do $$
-declare v_count int;
-begin
-  with attempt as (
-    delete from entitlement_settings where id = 1 returning id
-  )
-  select count(*) into v_count from attempt;
-  perform set_config('pgtap.tmp_count', v_count::text, true);
-end $$;
 select is(
-  current_setting('pgtap.tmp_count')::int,
-  0,
-  'authenticated DELETE on entitlement_settings affects zero rows'
+  has_table_privilege('authenticated', 'public.entitlement_settings', 'DELETE'),
+  false,
+  'authenticated has no DELETE privilege on entitlement_settings'
 );
 -- Read back the REAL row via a privileged role to prove the attempted
 -- UPDATE/DELETE above did not actually change anything, not merely that
@@ -746,33 +674,15 @@ select throws_ok(
   '42501', null,
   'authenticated cannot INSERT into access_plan_limits'
 );
-do $$
-declare v_count int;
-begin
-  with attempt as (
-    update access_plan_limits set ask_vai_case_limit = 999999 where access_plan = 'pilot' returning access_plan
-  )
-  select count(*) into v_count from attempt;
-  perform set_config('pgtap.tmp_count', v_count::text, true);
-end $$;
 select is(
-  current_setting('pgtap.tmp_count')::int,
-  0,
-  'authenticated UPDATE on access_plan_limits (attempting to raise the pilot case limit) affects zero rows'
+  has_table_privilege('authenticated', 'public.access_plan_limits', 'UPDATE'),
+  false,
+  'authenticated has no UPDATE privilege on access_plan_limits (cannot self-grant a higher limit)'
 );
-do $$
-declare v_count int;
-begin
-  with attempt as (
-    delete from access_plan_limits where access_plan = 'pilot' returning access_plan
-  )
-  select count(*) into v_count from attempt;
-  perform set_config('pgtap.tmp_count', v_count::text, true);
-end $$;
 select is(
-  current_setting('pgtap.tmp_count')::int,
-  0,
-  'authenticated DELETE on access_plan_limits (pilot row) affects zero rows'
+  has_table_privilege('authenticated', 'public.access_plan_limits', 'DELETE'),
+  false,
+  'authenticated has no DELETE privilege on access_plan_limits'
 );
 reset role;
 select is(
@@ -795,87 +705,51 @@ select set_config('request.jwt.claims', json_build_object('sub', '11111111-1111-
 set local role anon;
 
 select is(
-  (select count(*)::int from ask_vai_turn_reservations),
-  0,
-  'anon cannot read any row from ask_vai_turn_reservations'
+  has_table_privilege('anon', 'public.ask_vai_turn_reservations', 'SELECT'),
+  false,
+  'anon has no SELECT privilege on ask_vai_turn_reservations'
 );
 select throws_ok(
   $$ insert into ask_vai_turn_reservations (case_id, turn_number) values ('00000000-0000-0000-0000-000000000000'::uuid, 1) $$,
   '42501', null,
   'anon cannot INSERT into ask_vai_turn_reservations'
 );
-do $$
-declare v_count int;
-begin
-  with attempt as (
-    update ask_vai_turn_reservations set status = 'completed' where true returning id
-  )
-  select count(*) into v_count from attempt;
-  perform set_config('pgtap.tmp_count', v_count::text, true);
-end $$;
 select is(
-  current_setting('pgtap.tmp_count')::int,
-  0,
-  'anon UPDATE on ask_vai_turn_reservations affects zero rows (no RLS policy grants visibility)'
+  has_table_privilege('anon', 'public.ask_vai_turn_reservations', 'UPDATE'),
+  false,
+  'anon has no UPDATE privilege on ask_vai_turn_reservations'
 );
-do $$
-declare v_count int;
-begin
-  with attempt as (
-    delete from ask_vai_turn_reservations returning id
-  )
-  select count(*) into v_count from attempt;
-  perform set_config('pgtap.tmp_count', v_count::text, true);
-end $$;
 select is(
-  current_setting('pgtap.tmp_count')::int,
-  0,
-  'anon DELETE on ask_vai_turn_reservations affects zero rows (no RLS policy grants visibility)'
+  has_table_privilege('anon', 'public.ask_vai_turn_reservations', 'DELETE'),
+  false,
+  'anon has no DELETE privilege on ask_vai_turn_reservations'
 );
 
 select is(
-  (select count(*)::int from practice_message_reservations),
-  0,
-  'anon cannot read any row from practice_message_reservations'
+  has_table_privilege('anon', 'public.practice_message_reservations', 'SELECT'),
+  false,
+  'anon has no SELECT privilege on practice_message_reservations'
 );
 select throws_ok(
   $$ insert into practice_message_reservations (attempt_id, message_number) values ('00000000-0000-0000-0000-000000000000'::uuid, 1) $$,
   '42501', null,
   'anon cannot INSERT into practice_message_reservations'
 );
-do $$
-declare v_count int;
-begin
-  with attempt as (
-    update practice_message_reservations set status = 'completed' where true returning id
-  )
-  select count(*) into v_count from attempt;
-  perform set_config('pgtap.tmp_count', v_count::text, true);
-end $$;
 select is(
-  current_setting('pgtap.tmp_count')::int,
-  0,
-  'anon UPDATE on practice_message_reservations affects zero rows (no RLS policy grants visibility)'
+  has_table_privilege('anon', 'public.practice_message_reservations', 'UPDATE'),
+  false,
+  'anon has no UPDATE privilege on practice_message_reservations'
 );
-do $$
-declare v_count int;
-begin
-  with attempt as (
-    delete from practice_message_reservations returning id
-  )
-  select count(*) into v_count from attempt;
-  perform set_config('pgtap.tmp_count', v_count::text, true);
-end $$;
 select is(
-  current_setting('pgtap.tmp_count')::int,
-  0,
-  'anon DELETE on practice_message_reservations affects zero rows (no RLS policy grants visibility)'
+  has_table_privilege('anon', 'public.practice_message_reservations', 'DELETE'),
+  false,
+  'anon has no DELETE privilege on practice_message_reservations'
 );
 
 select is(
-  (select count(*)::int from ai_usage_events),
-  0,
-  'anon cannot read any row from ai_usage_events'
+  has_table_privilege('anon', 'public.ai_usage_events', 'SELECT'),
+  false,
+  'anon has no SELECT privilege on ai_usage_events'
 );
 select throws_ok(
   $$ insert into ai_usage_events (veterinarian_id, feature, model, input_tokens, output_tokens)
@@ -883,72 +757,36 @@ select throws_ok(
   '42501', null,
   'anon cannot INSERT into ai_usage_events'
 );
-do $$
-declare v_count int;
-begin
-  with attempt as (
-    update ai_usage_events set model = 'tampered' where true returning id
-  )
-  select count(*) into v_count from attempt;
-  perform set_config('pgtap.tmp_count', v_count::text, true);
-end $$;
 select is(
-  current_setting('pgtap.tmp_count')::int,
-  0,
-  'anon UPDATE on ai_usage_events affects zero rows (no RLS policy grants visibility)'
+  has_table_privilege('anon', 'public.ai_usage_events', 'UPDATE'),
+  false,
+  'anon has no UPDATE privilege on ai_usage_events'
 );
-do $$
-declare v_count int;
-begin
-  with attempt as (
-    delete from ai_usage_events returning id
-  )
-  select count(*) into v_count from attempt;
-  perform set_config('pgtap.tmp_count', v_count::text, true);
-end $$;
 select is(
-  current_setting('pgtap.tmp_count')::int,
-  0,
-  'anon DELETE on ai_usage_events affects zero rows (no RLS policy grants visibility)'
+  has_table_privilege('anon', 'public.ai_usage_events', 'DELETE'),
+  false,
+  'anon has no DELETE privilege on ai_usage_events'
 );
 
 select is(
-  (select count(*)::int from entitlement_settings),
-  0,
-  'anon cannot read any row from entitlement_settings'
+  has_table_privilege('anon', 'public.entitlement_settings', 'SELECT'),
+  false,
+  'anon has no SELECT privilege on entitlement_settings'
 );
 select throws_ok(
   $$ insert into entitlement_settings (id, enforcement_enabled) values (1, true) $$,
   '42501', null,
   'anon cannot INSERT into entitlement_settings'
 );
-do $$
-declare v_count int;
-begin
-  with attempt as (
-    update entitlement_settings set enforcement_enabled = false where id = 1 returning id
-  )
-  select count(*) into v_count from attempt;
-  perform set_config('pgtap.tmp_count', v_count::text, true);
-end $$;
 select is(
-  current_setting('pgtap.tmp_count')::int,
-  0,
-  'anon UPDATE on entitlement_settings (attempting to disable enforcement) affects zero rows'
+  has_table_privilege('anon', 'public.entitlement_settings', 'UPDATE'),
+  false,
+  'anon has no UPDATE privilege on entitlement_settings (cannot toggle enforcement directly)'
 );
-do $$
-declare v_count int;
-begin
-  with attempt as (
-    delete from entitlement_settings where id = 1 returning id
-  )
-  select count(*) into v_count from attempt;
-  perform set_config('pgtap.tmp_count', v_count::text, true);
-end $$;
 select is(
-  current_setting('pgtap.tmp_count')::int,
-  0,
-  'anon DELETE on entitlement_settings affects zero rows'
+  has_table_privilege('anon', 'public.entitlement_settings', 'DELETE'),
+  false,
+  'anon has no DELETE privilege on entitlement_settings'
 );
 reset role;
 select is(
@@ -964,42 +802,24 @@ select is(
 set local role anon;
 
 select is(
-  (select count(*)::int from access_plan_limits),
-  0,
-  'anon cannot read any row from access_plan_limits'
+  has_table_privilege('anon', 'public.access_plan_limits', 'SELECT'),
+  false,
+  'anon has no SELECT privilege on access_plan_limits'
 );
 select throws_ok(
   $$ insert into access_plan_limits (access_plan, ask_vai_case_limit) values ('rogue_plan', 999) $$,
   '42501', null,
   'anon cannot INSERT into access_plan_limits'
 );
-do $$
-declare v_count int;
-begin
-  with attempt as (
-    update access_plan_limits set ask_vai_case_limit = 999999 where access_plan = 'pilot' returning access_plan
-  )
-  select count(*) into v_count from attempt;
-  perform set_config('pgtap.tmp_count', v_count::text, true);
-end $$;
 select is(
-  current_setting('pgtap.tmp_count')::int,
-  0,
-  'anon UPDATE on access_plan_limits (attempting to raise the pilot case limit) affects zero rows'
+  has_table_privilege('anon', 'public.access_plan_limits', 'UPDATE'),
+  false,
+  'anon has no UPDATE privilege on access_plan_limits (cannot self-grant a higher limit)'
 );
-do $$
-declare v_count int;
-begin
-  with attempt as (
-    delete from access_plan_limits where access_plan = 'pilot' returning access_plan
-  )
-  select count(*) into v_count from attempt;
-  perform set_config('pgtap.tmp_count', v_count::text, true);
-end $$;
 select is(
-  current_setting('pgtap.tmp_count')::int,
-  0,
-  'anon DELETE on access_plan_limits (pilot row) affects zero rows'
+  has_table_privilege('anon', 'public.access_plan_limits', 'DELETE'),
+  false,
+  'anon has no DELETE privilege on access_plan_limits'
 );
 reset role;
 select is(
