@@ -28,37 +28,40 @@ const NAV_LINKS = [
 const OPEN_VAI_URL = 'https://app.vai.vet';
 ---
 <header class="border-b border-black/10 bg-[var(--brand-cloud-white)]">
-  <div class="mx-auto max-w-6xl px-4 py-5 md:py-6 flex items-center justify-between gap-4 md:gap-4">
-    <a href="/" class="shrink-0" aria-label="VAI Veterinary — Home">
+  <div class="mx-auto max-w-6xl px-6 py-5 md:py-6 flex items-center justify-between gap-4 md:gap-6">
+    <!-- lg-only negative margin compensates for this asset's own left-side
+         transparent padding (its alpha channel shows visible ink starting
+         at x=366 of a 1600px-wide canvas, ~22.9% in) so the VISIBLE blue
+         "V" — not the <img> box's left edge — lands flush with the same
+         content-grid edge the hero heading sits on (both header and hero
+         use max-w-6xl + px-6, so their container edges already coincide;
+         this margin is the one remaining, asset-specific offset). At the
+         lg width below (610px), 22.9% of that is ~139.6px — see the
+         logo-audit report for the derivation. Only applied at lg: base/
+         sm/md keep their default (unshifted) position, matching their
+         own unchanged compact sizing. -->
+    <a href="/" class="shrink-0 lg:-ml-[140px]" aria-label="VAI Veterinary — Home">
       <picture>
         <source srcset="/vai-veterinary-lockup.webp" type="image/webp" />
-        <!-- lg (desktop) width matches the VISIBLE VAI mark's prominence,
-             not the whole image box. This asset has ~46% transparent
-             padding baked into its canvas (the "VAI" wordmark + separator
-             + "VETERINARY" text occupy roughly the middle 54%x40% of a
-             1600x480 canvas) — an equal image-box height (previously
-             lg:w-[344px], a 103px box) rendered the actual blue/gold "VAI"
-             mark at only ~42px tall, well short of Academy's own ~83px
-             mark at its own desktop box. 682px is the width that makes
-             this asset's visible mark ~83px tall, pixel-measured against
-             both assets' alpha channels — see the logo-audit report for
-             the derivation. The wider "VETERINARY" text this drags along
-             is expected and accepted (the reference brief explicitly
-             allows it). Base/sm/md are left at their existing, already-
-             compact values — Academy and app.vai.vet are likewise compact
-             below their own desktop tier, so there's no case for growing
-             this site's logo there too. -->
+        <!-- lg (desktop) width sized so the VISIBLE VAI mark (not the
+             image box) is ~74px tall — modestly smaller than the
+             previous ~83px (which read as slightly too large next to the
+             hero/nav), while still far more prominent than the original
+             ~42px. This asset has ~46% transparent padding baked into
+             its canvas, so image-box height alone doesn't reflect the
+             visible mark's size — see the logo-audit report. Base/sm/md
+             unchanged — already compact and not part of this pass. -->
         <img
           src="/vai-veterinary-lockup.png"
           alt="VAI Veterinary"
           width="1600"
           height="480"
-          class="w-[150px] sm:w-[170px] md:w-[190px] lg:w-[682px] h-auto"
+          class="w-[150px] sm:w-[170px] md:w-[190px] lg:w-[610px] h-auto"
         />
       </picture>
     </a>
 
-    <nav class="hidden md:flex items-center gap-5 lg:gap-5 flex-1 justify-end mr-2 lg:mr-0">
+    <nav class="hidden md:flex items-center gap-5 lg:gap-8 flex-1 justify-end mr-2 lg:mr-4">
       {NAV_LINKS.map((l) => (
         <a
           href={l.href}
