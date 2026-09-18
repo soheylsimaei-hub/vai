@@ -13,17 +13,15 @@
 //
 // Phase 4A.6B — Academy restored to the header as a real, active link.
 //
-// Phase 4A.11 — academy.vai.vet (the standalone subdomain) turned out not
-// to have a real deployment behind it after all (4A.10/4A.10A). Interim
-// architecture: Academy lives at /academy inside this same site until a
-// genuine standalone deployment exists to migrate/redirect to. Internal
-// route, so no `external`/`rel` treatment.
+// Phase 4A.13 — academy.vai.vet is now live as a real standalone
+// deployment (the VAI Academy LMS). Academy nav item repointed from the
+// interim /academy in-site page to the real subdomain.
 //
 // "For Organisations" has no standalone page yet and building one is out of
 // scope for this phase, so it points at the #for-organisations section on
 // the homepage rather than a 404.
 const NAV_LINKS = [
-  { href: '/academy', label: 'Academy' },
+  { href: 'https://academy.vai.vet/', label: 'Academy', external: true },
   { href: '/#for-organisations', label: 'For Organisations' },
   { href: '/about', label: 'About' },
 ];

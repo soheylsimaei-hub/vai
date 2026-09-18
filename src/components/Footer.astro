@@ -18,10 +18,11 @@
 // Phase 4A.6B — VAI Academy is now a real <a href> like every other footer
 // link, no longer greyed out or labeled "coming soon."
 //
-// Phase 4A.11 — academy.vai.vet (standalone subdomain) has no real
-// deployment behind it (4A.10/4A.10A). Interim architecture: points at
-// /academy inside this site until a genuine standalone deployment exists
-// to migrate/redirect to.
+// Phase 4A.13 — academy.vai.vet is now live as a real standalone
+// deployment (the VAI Academy LMS). Repointed from the interim in-site
+// /academy page to the real subdomain. Kept same-tab (no `external` flag,
+// which would also add target="_blank") per explicit instruction to prefer
+// normal navigation with no unnecessary intermediate screens.
 //
 // Instagram omitted (legacy handle, "veterinaryacademyinternational",
 // pending a rename decision) — LinkedIn kept as-is, using the same
@@ -40,7 +41,7 @@ const solutionsLinks = [
   { href: '/#for-organisations', label: 'Enterprise & Institutions' },
 ];
 const educationLinks = [
-  { href: '/academy', label: 'VAI Academy' },
+  { href: 'https://academy.vai.vet/', label: 'VAI Academy' },
 ];
 const initiativesLinks = [
   { href: 'https://veterinarylongevity.com', label: 'Veterinary Longevity', external: true },
