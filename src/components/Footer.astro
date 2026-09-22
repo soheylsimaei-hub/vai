@@ -29,8 +29,25 @@
 // confirmed URL already in src/components/SocialLinks.astro (that
 // component itself is left untouched, just not called from here, since
 // filtering it would mean modifying a file outside this phase's scope).
-// No Privacy/Terms links — neither page exists yet; not invented here.
+//
+// Phase 6J.2 (vai-app) — Privacy Policy, Early Access Terms, and Cookie
+// & Tracking Policy now exist, real and reachable, but live at
+// app.vai.vet (the Next.js product app), not on this Astro site — the
+// Early Access request flow and its acceptance checkbox live there.
+// These are therefore external links to a real page, not internal
+// routes this repo doesn't have. No "Cookie Preferences" link here: this
+// site has no analytics, marketing, or other optional cookie/tracking
+// technology today (the audit behind Phase 6J.2 found only inert,
+// local-only form-caching on a couple of pages), so there is nothing for
+// a preferences control to manage — adding one anyway would be a dead
+// control with nothing behind it, the same "don't claim technology that
+// doesn't exist" principle that also kept a consent banner off this site.
 const year = new Date().getFullYear();
+const legalLinks = [
+  { href: 'https://app.vai.vet/privacy', label: 'Privacy Policy' },
+  { href: 'https://app.vai.vet/early-access-terms', label: 'Early Access Terms' },
+  { href: 'https://app.vai.vet/cookies', label: 'Cookie & Tracking Policy' },
+];
 const productLinks = [
   { href: '/#ask-vai', label: 'Ask VAI' },
   { href: '/#practice', label: 'Practice' },
@@ -110,8 +127,13 @@ const companyLinks = [
       </div>
     </div>
 
-    <div class="pt-8">
+    <div class="pt-8 flex flex-wrap items-center justify-between gap-4">
       <p class="text-xs opacity-70">© {year} VAI. Operated by Solex Education Unipessoal Lda, Portugal.</p>
+      <ul class="flex flex-wrap gap-x-6 gap-y-2 text-xs">
+        {legalLinks.map((l) => (
+          <li><a href={l.href} class="opacity-70 hover:opacity-100 transition-opacity">{l.label}</a></li>
+        ))}
+      </ul>
     </div>
   </div>
 </footer>
