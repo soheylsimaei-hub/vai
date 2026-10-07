@@ -48,7 +48,8 @@ jobs:
           PUBLIC_LMS_URL: ${{ vars.PUBLIC_LMS_URL || 'https://learn.vai.vet/login' }}
           PUBLIC_LMS_ENABLED: ${{ vars.PUBLIC_LMS_ENABLED || 'false' }}
           # VAI Pulse -> NCBI E-utilities. Build-time only; never embedded in the site. Both optional.
-          VAI_PUBMED_CONTACT_EMAIL: ${{ vars.VAI_PUBMED_CONTACT_EMAIL }}
+          # operational VAI mailbox (a repository variable of the same name overrides this default)
+          VAI_PUBMED_CONTACT_EMAIL: ${{ vars.VAI_PUBMED_CONTACT_EMAIL || 'vai@vai.vet' }}
           NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
       - name: Verify VAI Pulse output
         run: node scripts/verify-pulse-build.mjs dist
