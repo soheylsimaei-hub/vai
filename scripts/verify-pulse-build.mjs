@@ -46,6 +46,14 @@ check(pages.length === 0 || unavailablePages < pages.length * 0.1, `${unavailabl
 // the default pages must have real content
 for (const p of ["pulse/index.html", "pulse/guidelines/index.html"]) if (existsSync(join(dist, p))) check((read(p).match(/<article/g)?.length ?? 0) >= 5, `${p}: fewer than 5 records`);
 
+// spacing tiers: every sec-* class used in the HTML must exist in the built CSS (a missing rule silently collapses a section's padding to 0)
+{
+  const css = readdirSync(join(dist, "_astro")).filter((f) => f.endsWith(".css")).map((f) => readFileSync(join(dist, "_astro", f), "utf-8")).join("\n");
+  const used = new Set([...read("index.html").matchAll(/\bsec-(hero|feature|standard|compact)\b/g)].map((m) => m[1]));
+  for (const tier of used) check(new RegExp(`\\.sec-${tier}\\{padding-block:`).test(css), `spacing tier sec-${tier} is used on the homepage but missing from the built CSS`);
+  check(used.size >= 3, "homepage uses fewer than 3 spacing tiers");
+}
+
 // homepage
 const home = read("index.html");
 const homeSection = home.match(/<section id="pulse"[\s\S]*?<\/section>/)?.[0] ?? "";

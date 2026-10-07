@@ -36,7 +36,7 @@ const PRACTICE_CAPTURE: string | null = null;
 >
   <!-- 1. Hero -->
   <section class="bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]">
-    <div class="mx-auto max-w-6xl px-6 py-24 md:py-32">
+    <div class="mx-auto max-w-6xl px-6 sec-hero">
       <div class="max-w-4xl">
         <h1 class="font-brand-serif text-[var(--brand-cloud-white)] text-5xl md:text-7xl leading-[1.08] mb-8">
           There&rsquo;s a case that&rsquo;s still on your mind.
@@ -59,8 +59,8 @@ const PRACTICE_CAPTURE: string | null = null;
        borders, no fill, no numbering/arrows), so the domains read as three
        facets of one platform rather than a linear onboarding sequence. -->
   <section class="bg-[var(--brand-cloud-white)]">
-    <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
-      <div class="max-w-3xl mb-16">
+    <div class="mx-auto max-w-6xl px-6 sec-feature">
+      <div class="max-w-3xl mb-10 md:mb-12">
         <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-6">
           One platform, built around your judgement.
         </h2>
@@ -70,17 +70,17 @@ const PRACTICE_CAPTURE: string | null = null;
       </div>
 
       <div class="grid md:grid-cols-3 md:divide-x md:divide-black/10">
-        <div class="md:pr-10 pb-10 md:pb-0">
+        <div class="md:pr-10 pb-7 md:pb-0">
           <div class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl mb-3">Reason</div>
           <div class="eyebrow-brand mb-4">Ask VAI</div>
           <p class="text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed">Bring a real case. VAI confirms what it understood, then reasons through it with you &mdash; evidence-cited where evidence applies.</p>
         </div>
-        <div class="md:px-10 py-10 md:py-0">
+        <div class="md:px-10 py-7 md:py-0">
           <div class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl mb-3">Practise</div>
           <div class="eyebrow-brand mb-4">Practice</div>
           <p class="text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed">Rehearse the client conversations that are hardest to get right, with honest, specific feedback afterward.</p>
         </div>
-        <div class="md:pl-10 pt-10 md:pt-0">
+        <div class="md:pl-10 pt-7 md:pt-0">
           <div class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl mb-3">Develop</div>
           <div class="eyebrow-brand mb-4">Learn</div>
           <p class="text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed">Structured, case-based, expert-led development for the parts of the job nobody has time to teach you properly.</p>
@@ -101,7 +101,7 @@ const PRACTICE_CAPTURE: string | null = null;
        elegant, single-column, text-led treatment, not a stretched-full-
        width version of the old copy column. -->
   <section id="ask-vai" class="bg-white border-t border-black/10">
-    <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+    <div class="mx-auto max-w-6xl px-6 sec-standard">
       <div class="grid md:grid-cols-12 gap-10 md:gap-14 items-center">
         <div class={ASK_VAI_CAPTURE ? "md:col-span-5" : "md:col-span-12 max-w-2xl"}>
           <div class="eyebrow-brand mb-4">Ask VAI</div>
@@ -132,7 +132,7 @@ const PRACTICE_CAPTURE: string | null = null;
        PRACTICE_CAPTURE to a real, approved screenshot path to restore the
        mirrored product-left/copy-right composition. -->
   <section id="practice" class="bg-[var(--brand-cloud-white)] border-t border-black/10">
-    <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+    <div class="mx-auto max-w-6xl px-6 sec-standard">
       <div class="grid md:grid-cols-12 gap-10 md:gap-14 items-center">
         {PRACTICE_CAPTURE && (
           <div class="md:col-span-7 md:order-1">
@@ -162,7 +162,7 @@ const PRACTICE_CAPTURE: string | null = null;
        a fabricated interface) to hint at Learn's future shape while being
        explicit that it isn't built yet. -->
   <section id="learn" class="bg-white border-t border-black/10">
-    <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+    <div class="mx-auto max-w-6xl px-6 sec-standard">
       <div class="grid md:grid-cols-12 gap-10 md:gap-14">
         <div class="md:col-span-7">
           <div class="text-xs uppercase tracking-[0.14em] text-[var(--brand-midnight-navy)] opacity-70 mb-4">Learn</div>
@@ -210,8 +210,8 @@ const PRACTICE_CAPTURE: string | null = null;
        (specialist ophthalmic examination), text-left/image-right, the
        same pairing pattern already established for Ask VAI/Practice. -->
   <section class="bg-[var(--brand-cloud-white)] border-t border-black/10">
-    <div class="mx-auto max-w-6xl px-6 py-14 md:py-16">
-      <div class="grid md:grid-cols-12 gap-10 md:gap-14 items-center">
+    <div class="mx-auto max-w-6xl px-6 sec-standard">
+      <div class="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
         <div class="md:col-span-6">
           <div class="eyebrow-brand mb-3">VAI Academy</div>
           <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-2xl md:text-3xl leading-[1.15] mb-4">
@@ -249,8 +249,8 @@ const PRACTICE_CAPTURE: string | null = null;
        The existing Clinics/Enterprise hairline-divided sub-layout is
        preserved unchanged, just nested inside the new content column. -->
   <section id="for-organisations" class="bg-[var(--brand-cloud-white)] border-t border-black/10">
-    <div class="mx-auto max-w-6xl px-6 py-20 md:py-24">
-      <div class="grid md:grid-cols-12 gap-10 md:gap-14 items-center">
+    <div class="mx-auto max-w-6xl px-6 sec-feature">
+      <div class="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
         <div class="md:col-span-5">
           <picture>
             <source srcset="/photography/clinical-diagnostic-imaging.webp" type="image/webp" />
@@ -295,7 +295,7 @@ const PRACTICE_CAPTURE: string | null = null;
        restrained eyebrow language as elsewhere, not a badge/pill, so it
        doesn't compete visually with Ask VAI/Practice/Learn. -->
   <section class="bg-[var(--brand-cloud-white)] border-t border-black/10">
-    <div class="mx-auto max-w-6xl px-6 py-16 md:py-20">
+    <div class="mx-auto max-w-6xl px-6 sec-standard">
       <div class="max-w-2xl">
         <div class="text-xs uppercase tracking-[0.14em] text-[var(--brand-midnight-navy)] opacity-50 mb-4">In Development</div>
         <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-2xl md:text-3xl leading-[1.15] mb-6">
@@ -316,7 +316,7 @@ const PRACTICE_CAPTURE: string | null = null;
        instruction, the homepage founder section is removed entirely —
        founder background now lives only on /about. -->
   <section class="bg-white border-t border-black/10">
-    <div class="mx-auto max-w-6xl px-6 py-14 md:py-16">
+    <div class="mx-auto max-w-6xl px-6 sec-compact">
       <div class="max-w-2xl">
         <div class="eyebrow-brand mb-3">A VAI Initiative</div>
         <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-2xl md:text-3xl leading-[1.15] mb-4">
@@ -335,7 +335,7 @@ const PRACTICE_CAPTURE: string | null = null;
 
   <!-- 8. Trust / privacy / professional integrity -->
   <section class="bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]">
-    <div class="mx-auto max-w-6xl px-6 py-16 md:py-24">
+    <div class="mx-auto max-w-6xl px-6 sec-feature">
       <div class="max-w-3xl">
         <h2 class="font-brand-serif text-[var(--brand-cloud-white)] text-3xl md:text-4xl leading-[1.15] mb-6">
           Your cases deserve professional privacy.
@@ -349,7 +349,7 @@ const PRACTICE_CAPTURE: string | null = null;
 
   <!-- 9. Final CTA -->
   <section class="bg-[var(--brand-cloud-white)] border-t border-black/10">
-    <div class="mx-auto max-w-6xl px-6 py-20 md:py-24 text-center">
+    <div class="mx-auto max-w-6xl px-6 sec-standard text-center">
       <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] max-w-2xl mx-auto mb-10">
         Bring the case that&rsquo;s on your mind.
       </h2>

@@ -22,16 +22,16 @@ const indexable = Astro.params.slug === undefined || Astro.params.slug === 'guid
   noindex={!indexable}
 >
   <section class="bg-[var(--brand-cloud-white)]">
-    <div class="mx-auto max-w-5xl px-6 pt-14 md:pt-20 pb-16 md:pb-24">
+    <div class="mx-auto max-w-5xl px-6 pt-8 md:pt-12 pb-10 md:pb-14">
       <div class="eyebrow-brand mb-4">VAI Veterinary</div>
-      <h1 class="font-brand-serif text-[var(--brand-midnight-navy)] text-5xl md:text-6xl leading-[1.08] mb-4">VAI Pulse</h1>
+      <h1 class="font-brand-serif text-[var(--brand-midnight-navy)] text-5xl md:text-6xl leading-[1.08] mb-3">VAI Pulse</h1>
       <p class="font-brand-serif text-[var(--brand-midnight-navy)] text-2xl md:text-3xl leading-snug mb-4">What&rsquo;s new in veterinary medicine.</p>
-      <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed max-w-2xl mb-10">Stay current with the latest veterinary research, guidelines and consensus statements.</p>
+      <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed max-w-2xl mb-7">Stay current with the latest veterinary research, guidelines and consensus statements.</p>
 
       <PulseFilters request={request} />
       <PulseBody request={request} loaded={loaded} />
 
-      <p class="mt-12 border-t border-black/10 pt-6 text-xs leading-relaxed text-[var(--color-muted)]">
+      <p class="mt-10 border-t border-black/10 pt-6 text-xs leading-relaxed text-[var(--color-muted)]">
         Records are listed from PubMed, courtesy of the U.S. National Library of Medicine, and refreshed every few hours. VAI Pulse is a
         discovery tool: VAI has not reviewed these papers and does not endorse or interpret them. A label such as &ldquo;Practice guideline&rdquo; or &ldquo;Consensus
         statement&rdquo; appears only when PubMed itself types the record that way. Read the original paper before it informs a clinical decision.

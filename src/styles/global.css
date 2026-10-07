@@ -83,6 +83,28 @@
   --brand-font-body: "Inter", system-ui, -apple-system, sans-serif;
 }
 
+/* ---------------------------------------------------------------------
+ * SECTION RHYTHM (spacing polish). Four responsive tiers replace the old
+ * mix of py-14 / 16 / 20 / 24 / 28 / 32 values, so neighbouring sections
+ * keep a deliberate relationship. Each is a clamp(): it shrinks smoothly
+ * on phones and never exceeds its desktop cap. A gap between two sections
+ * is the bottom tier of one plus the top tier of the next.
+ *                         375px   768px   1280px  1440px+
+ *   sec-hero      (hero)   48      59      77      80
+ *   sec-feature   (key)    40      50      62      64
+ *   sec-standard  (body)   36      44      52      56
+ *   sec-compact   (quiet)  32      38      42      44
+ * Content, not these values, determines a section's height: no min-height
+ * or vh is used anywhere on the page.
+ * Defined with Tailwind v4 @utility so each class is generated reliably
+ * whenever it is used (plain rules in @layer components were silently
+ * dropped for .sec-hero by the CSS pipeline).
+ * ------------------------------------------------------------------- */
+@utility sec-hero { padding-block: clamp(3rem, 2rem + 3.5vw, 5rem); }
+@utility sec-feature { padding-block: clamp(2.5rem, 1.5rem + 3vw, 4rem); }
+@utility sec-standard { padding-block: clamp(2.25rem, 1.25rem + 2.5vw, 3.5rem); }
+@utility sec-compact { padding-block: clamp(2rem, 1rem + 2vw, 2.75rem); }
+
 @layer components {
   /* ---------------------------------------------------------------------
    * REDESIGN (Phase 4A) — brand-book-scoped component classes.
