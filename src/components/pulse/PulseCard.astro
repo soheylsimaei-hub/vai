@@ -35,9 +35,9 @@ const ext = { target: '_blank', rel: 'noopener noreferrer' };
   {!compact && (
     <p class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-[var(--color-muted)]">
       <span>PMID {r.pmid}</span>
-      {r.doi && r.doiUrl && <span>DOI <a href={r.doiUrl} {...ext} class="underline decoration-black/25 underline-offset-2 hover:text-[var(--brand-clinical-blue)]">{r.doi}</a></span>}
-      {r.freeFullTextUrl && <a href={r.freeFullTextUrl} {...ext} class="font-medium text-[var(--brand-clinical-blue)] underline underline-offset-2">Free full text (PMC)</a>}
-      <a href={r.pubmedUrl} {...ext} class="ml-auto font-medium text-[var(--brand-midnight-navy)] underline decoration-black/25 underline-offset-2 hover:text-[var(--brand-clinical-blue)]">View on PubMed ↗</a>
+      {r.doi && r.doiUrl && <span>DOI <a href={r.doiUrl} {...ext} class="link-ink link-ink--muted">{r.doi}</a></span>}
+      {r.freeFullTextUrl && <a href={r.freeFullTextUrl} {...ext} class="link-ink">Free full text (PMC)</a>}
+      <a href={r.pubmedUrl} {...ext} class="ml-auto link-ink">View on PubMed ↗</a>
     </p>
   )}
 </article>

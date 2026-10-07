@@ -5,7 +5,6 @@ import ReasoningLines from '../components/texture/ReasoningLines.astro';
 import Photo from '../components/photo/Photo.astro';
 import PhotoCluster from '../components/photo/PhotoCluster.astro';
 import PhotoRow from '../components/photo/PhotoRow.astro';
-import { PHOTO_DISCLOSURE, PHOTO_DISCLOSURE_SHORT } from '../lib/photography/library';
 
 // About VAI — institutional page. Deliberately not founder- or Academy-centred: it states what VAI is, why it exists, how its capabilities
 // connect, what it is built around and where it is going. Built against the same --brand-* tokens, spacing tiers (sec-*) and texture system
@@ -14,7 +13,7 @@ import { PHOTO_DISCLOSURE, PHOTO_DISCLOSURE_SHORT } from '../lib/photography/lib
 // Photography: illustrative imagery of the profession (src/lib/photography/library.ts, PHOTOGRAPHY SYSTEM block in global.css), used for exactly
 // three restrained moments: one editorial cluster after the opening, a two-image breadth row, and one Academy image (a generated placeholder until a
 // real Trusted Vet Method photograph replaces it). Hero, Why VAI, Platform, How we build, Pulse, Direction and the closing CTA carry no photography.
-// The people shown are never presented as VAI faculty, team or members; the disclosure accompanies the cluster.
+// The people shown are never presented as VAI faculty, team or members: no copy or caption assigns them an identity or role.
 //
 // Tense rule: Ask VAI, Practice and VAI Pulse are described as they exist today; Learn / Academy-connected development and the closing
 // "direction" are written as direction, never as available functionality. No partnerships, faculty, validation, numbers or regulatory
@@ -106,7 +105,6 @@ const breadth = ['Across species', 'Across disciplines', 'Across professional se
         lead="imaging-teaching-scrubs"
         second="vet-with-dog-classroom"
         third="surgeon-mentor-team"
-        caption={PHOTO_DISCLOSURE}
       />
     </div>
   </section>
@@ -133,7 +131,7 @@ const breadth = ['Across species', 'Across disciplines', 'Across professional se
               <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed max-w-xl">{p.body}</p>
               {p.pulse && (
                 <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed max-w-xl mt-3">
-                  <a href="/pulse/" class="text-[var(--brand-clinical-blue)] underline decoration-[var(--brand-gold)] underline-offset-4 hover:opacity-70 transition-opacity">VAI Pulse</a> is the continuously updated window into recent veterinary literature.
+                  <a href="/pulse/" class="link-ink">VAI Pulse</a> is the continuously updated window into recent veterinary literature.
                 </p>
               )}
             </div>
@@ -189,7 +187,6 @@ const breadth = ['Across species', 'Across disciplines', 'Across professional se
               Species, disciplines and settings are carried by the typography on the left, and can be joined by deliberately chosen imagery later. */}
           <PhotoRow
             items={[{ id: 'surgeon-theatre', ratio: 'landscape', m: 'full', mOrder: 0 }]}
-            caption={PHOTO_DISCLOSURE_SHORT}
           />
         </div>
       </div>
@@ -231,7 +228,6 @@ const breadth = ['Across species', 'Across disciplines', 'Across professional se
         </div>
         <figure class="md:col-span-6">
           <Photo id="seminar-discussion" ratio="landscape" sizes="(min-width: 768px) 46vw, 92vw" />
-          <figcaption class="ph-caption">{PHOTO_DISCLOSURE_SHORT}</figcaption>
         </figure>
       </div>
     </div>

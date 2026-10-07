@@ -2,8 +2,8 @@
 //
 // A curated set of 33 illustrative images of the veterinary profession (educators, clinicians, teaching rooms, diagnostic and clinical settings).
 // They are GENERATED imagery, supplied by the founder. They must never be presented as, or captioned as, VAI faculty, experts, team, community
-// or members, and must not imply affiliation or endorsement. Every placement that shows people carries the standard disclosure
-// (PHOTO_DISCLOSURE) at least once per page section group; see src/components/photo/*.
+// or members, and must not imply affiliation or endorsement. That is achieved editorially (no copy, caption or alt text assigns the people an identity or
+// role), not with a disclaimer under each image.
 //
 // Files live in /public/photography/library/{id}-{480|800|1024}.webp and are produced by scripts/photo-library/build-library.py from the original
 // 1024px square sources. Files are uncropped squares: placements crop in CSS (aspect-ratio + object-position), using the per-image focal points here.
@@ -43,8 +43,6 @@ export const PHOTO_BASE = '/photography/library';
 /** Authentic photographs are never captioned with a person's name or role, and carry only this factual line when a caption is used. */
 export const AUTHENTIC_CAPTION = 'Filmed during production of the Trusted Vet Method\u2122.';
 
-export const PHOTO_DISCLOSURE = 'Illustrative imagery generated for VAI. The people shown are not VAI faculty, team or members.';
-export const PHOTO_DISCLOSURE_SHORT = 'Illustrative image.';
 
 export const PHOTOS: readonly PhotoEntry[] = [
   // ---- authentic VAI photography (real, from the production of the Trusted Vet Method) ---------------------------------------------

@@ -33,7 +33,7 @@ const label = request.discipline === 'all' ? null : disciplineLabel(request.disc
           <h2 class="font-brand-serif mb-2 text-xl text-[var(--brand-midnight-navy)]">No papers match this selection</h2>
           <p class="max-w-2xl text-sm leading-relaxed text-[var(--color-muted)]">
             Nothing was added to PubMed in the last {period.label} for this combination.{' '}
-            {widen ? <>Try <a class="underline underline-offset-2" href={pulseHref({ ...request, period: widen.id })}>the last {widen.label}</a> or choose another discipline.</> : <>Try another discipline.</>}
+            {widen ? <>Try <a class="link-ink" href={pulseHref({ ...request, period: widen.id })}>the last {widen.label}</a> or choose another discipline.</> : <>Try another discipline.</>}
           </p>
         </div>
       ) : (

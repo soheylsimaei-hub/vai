@@ -195,6 +195,13 @@
   .font-brand-serif { font-family: var(--brand-font-headline); }
   .font-brand-sans { font-family: var(--brand-font-body); }
 
+  /* Inline text link: Clinical Blue, weight 600 (distinguishable from body text without relying on colour alone), no underline, a quiet opacity
+     change on hover and the global focus ring. One class for every in-copy link on the site. */
+  .link-ink { color: var(--brand-clinical-blue); font-weight: 600; text-decoration: none; transition: opacity 160ms ease; }
+  .link-ink:hover { opacity: .72; }
+  .link-ink--muted { color: var(--brand-midnight-navy); font-weight: 500; }
+  .link-ink--muted:hover { color: var(--brand-clinical-blue); opacity: 1; }
+
   .eyebrow-brand {
     font-family: var(--brand-font-body);
     font-size: 0.75rem;
@@ -272,7 +279,8 @@
     font-weight: 500;
   }
 
-  .rule-gold { height: 1px; background: var(--color-champagne); width: 3rem; }
+  /* Retired (2026-10-08 visual cleanup): a short gold rule directly under a heading reads as an underline, so it is no longer rendered anywhere. */
+  .rule-gold { display: none; }
 
   .btn {
     display: inline-block;
@@ -351,7 +359,7 @@
  *   Spacing      photographs sit inside the same sec-* vertical tiers and max-w-6xl container as text; gaps 12px (8px < 768px).
  *   Loading      lazy + async decode everywhere except an image in the first viewport. width/height attributes and an aspect-ratio box reserve space.
  *   Motion       none. Photographs are static; the system's motion budget stays with the VAI geometry.
- *   People       the imagery is illustrative; the disclosure (PHOTO_DISCLOSURE) accompanies every composition. Never captioned as faculty/team/members.
+ *   People       the imagery illustrates the profession; no copy, caption or alt text assigns the people an identity or role (faculty, team, members).
  * ===================================================================================================================== */
 /* In @layer components so Tailwind utilities (hidden, md:hidden, ...) can still override display. */
 @layer components {
@@ -406,3 +414,6 @@
   .ph-cell--hide { display: none; }
 }
 }
+
+/* Keyboard focus: always visible and consistent across links, buttons and fields (the underline cleanup must never reduce it). */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible { outline: 2px solid var(--brand-clinical-blue, #2959a8); outline-offset: 3px; }

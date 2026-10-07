@@ -4,14 +4,14 @@ import SignatureGeometry from '../components/texture/SignatureGeometry.astro';
 import ReasoningLines from '../components/texture/ReasoningLines.astro';
 import Photo from '../components/photo/Photo.astro';
 import PhotoRow from '../components/photo/PhotoRow.astro';
-import { PHOTO_DISCLOSURE, AUTHENTIC_CAPTION } from '../lib/photography/library';
+import { AUTHENTIC_CAPTION } from '../lib/photography/library';
 
 // VAI VETERINARY ACADEMY — the public Academy presence, hosted on vai.vet at /academy/ while the full programme videos and the learning
 // environment are completed. Written as the home of an institution, not a placeholder: no "coming soon" banners, no enrol/buy actions, no
 // dates, prices, durations, faculty, accreditation, learner numbers or partnerships (none are verified, so none appear).
 //
 // Photography (src/lib/photography/library.ts): two AUTHENTIC photographs from the production of the Trusted Vet Method (documentation of real VAI
-// educational work, never framed as founder imagery) and three illustrative generated images of the profession (disclosed; never presented as VAI
+// educational work, never framed as founder imagery) and three illustrative generated images of the profession (never presented as VAI
 // faculty, experts, instructors, students or community). The photograph with large EU / Portuguese flags is deliberately not used.
 //
 // Texture: hero, learning-experience flow, the "within VAI" convergence and the closing band. Everything else is typography and whitespace.
@@ -244,7 +244,6 @@ const schema = {
               { id: 'professor-seminar', ratio: 'landscape', m: 'full', mOrder: 0, alt: '' },
               { id: 'educator-imaging-screen', ratio: 'portrait', m: 'hide', mOrder: 1, alt: '' },
             ]}
-            caption={PHOTO_DISCLOSURE}
           />
         </div>
       </div>

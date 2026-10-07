@@ -76,7 +76,7 @@ for (const p of ["pulse/index.html", "pulse/guidelines/index.html"]) if (existsS
   const about = read("about/index.html");
   const css = readdirSync(join(dist, "_astro")).filter((f) => f.endsWith(".css")).map((f) => readFileSync(join(dist, "_astro", f), "utf-8")).join("\n");
   check(!/Simaei|founder-portrait|Founder-led|Founder &amp; Academic|leadership note/i.test(about), "about: founder-centric content has returned");
-  check(!/VAI (faculty|experts?|team|members|community)\b/i.test(about.replace(/The people shown are not VAI faculty, team or members\./g, "")), "about: imagery or copy implies VAI faculty/team/members");
+  check(!/VAI (faculty|experts?|team|members|community)\b/i.test(about), "about: imagery or copy implies VAI faculty/team/members");
   const imgs = [...about.matchAll(/<img\b[^>]*>/g)].map((m) => m[0]).filter((t) => /photography\/library/.test(t));
   check(imgs.length >= 5 && imgs.length <= 9, `about: photography must stay restrained (5-9 library images), found ${imgs.length}`);
   check(!/enterprise-clinic-team/.test(about), "about: the clinic-team image is reserved for Enterprise / VAI for Teams");
@@ -89,7 +89,7 @@ for (const p of ["pulse/index.html", "pulse/guidelines/index.html"]) if (existsS
     check(/loading="lazy"/.test(t), "about: library image is not lazy-loaded");
     check(/\balt(=|\s|>)/.test(t), "about: image without an alt attribute (decorative images render a bare alt, which is an empty alt)");
   }
-  check(/Illustrative imagery generated for VAI\./.test(about), "about: photography disclosure missing");
+  check(!/Illustrative image|illustrative purposes|not VAI (faculty|team)|Illustrative imagery generated/i.test(about), "about: image disclaimers must not return");
   check(!/ph-track|ph-drift/.test(css + about), "photography must be static (no moving stream)");
   check(/\.font-brand-serif\{/.test(css) && /\.eyebrow-brand\{/.test(css), "css: .font-brand-serif / .eyebrow-brand missing from the build (premature comment terminator?)");
   const leadership = read("about/leadership/index.html");
@@ -105,10 +105,12 @@ for (const p of ["pulse/index.html", "pulse/guidelines/index.html"]) if (existsS
   check(/Education for the decisions that matter\./.test(academy), "academy: hero headline missing");
   check(!/Simaei|founder|Founder|Academic Director|Academia Europa/.test(text), "academy: founder-centric or Academia Europa content");
   check(!/Coming soon|coming soon|Enrol|enrol|Buy now|Add to cart|\u20ac\s?\d|\$\s?\d|accredit|CPD|ratings?\b|students enrolled|learners/i.test(text), "academy: unsupported commercial / accreditation / numbers claim");
-  check(!/VAI (faculty|experts?|instructors?|students|customers|community)\b/i.test(text.replace(/The people shown are not VAI faculty, team or members\./g, "")), "academy: generated imagery implied to be VAI faculty/experts/students");
+  check(!/VAI (faculty|experts?|instructors?|students|customers|community)\b/i.test(text), "academy: generated imagery implied to be VAI faculty/experts/students");
   const imgs = [...academy.matchAll(/<img\b[^>]*>/g)].map((m) => m[0]).filter((t) => /photography\/library/.test(t));
   check(imgs.length >= 4 && imgs.length <= 8, `academy: photography must stay curated (4-8 images), found ${imgs.length}`);
   check(imgs.some((t) => /trusted-vet-method-teaching/.test(t)), "academy: the authentic teaching photograph is missing");
+  for (const [n, h] of [["academy", academy], ["home", read("index.html")]]) check(!/Illustrative image|illustrative purposes|not VAI (faculty|team|members)|Illustrative imagery generated/i.test(h), `${n}: image disclaimers must not return`);
+  check(!/\bunderline\b/.test([...academy.matchAll(/class="([^"]*)"/g)].map((m) => m[1]).join(" ")), "academy: underline classes must not return");
   check(!/trusted-vet-method-flags/.test(academy + about_html()), "the flags photograph is reserved and must not be used");
   check(!/enterprise-clinic-team/.test(academy), "academy: the clinic-team image is reserved for Enterprise");
   for (const t of imgs) { check(/\bwidth="\d+"/.test(t) && /\bheight="\d+"/.test(t), "academy: image without width/height"); check(/loading="lazy"/.test(t), "academy: image not lazy"); }
