@@ -15,6 +15,9 @@ import { PHOTO_DISCLOSURE, AUTHENTIC_CAPTION } from '../lib/photography/library'
 // faculty, experts, instructors, students or community). The photograph with large EU / Portuguese flags is deliberately not used.
 //
 // Texture: hero, learning-experience flow, the "within VAI" convergence and the closing band. Everything else is typography and whitespace.
+// The learning-experience section is image-ready. Leave null until an appropriate, licensed or original photograph of professional veterinary
+// education in practice (clinicians teaching or discussing a case together) is supplied; an unsuitable image must not be used to fill the space.
+const LEARNING_IMAGE_ID: string | null = null;
 const OPEN_VAI_URL = 'https://app.vai.vet';
 const CONTACT_URL = '/contact/';
 
@@ -156,31 +159,33 @@ const schema = {
     </div>
   </section>
 
-  <!-- 4. The learning experience — the intended shape of education here, distinct from currently available platform functionality -->
+  <!-- 4. The learning experience — the intended shape of education here, distinct from currently available platform functionality.
+       Composition: heading and the status note on the left, the four-part thread on the right. An image can join the left column later by setting
+       LEARNING_IMAGE_ID (it needs a candid, professional-education photograph: clinicians teaching or discussing a case together). -->
   <section class="tx-host bg-[var(--brand-cloud-white)] border-t border-black/10">
     <ReasoningLines variant="flow" tone="light" place="flow" />
     <div class="tx-content mx-auto max-w-6xl px-6 sec-feature">
-      <div class="max-w-3xl mb-8 md:mb-10">
-        <div class="eyebrow-brand mb-4">The learning experience</div>
-        <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15]">From understanding to professional practice.</h2>
-      </div>
-      <div class="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
-        <div class="md:col-span-8">
-          <ol class="border-t border-black/10">
-            {experience.map((e) => (
-              <li class="grid md:grid-cols-12 gap-x-10 gap-y-1 py-5 md:py-6 border-b border-black/10">
-                <h3 class="md:col-span-4 font-brand-serif text-[var(--brand-midnight-navy)] text-3xl leading-none">{e.w}</h3>
-                <p class="md:col-span-8 text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed md:pt-0.5">{e.d}</p>
-              </li>
-            ))}
-          </ol>
-          <p class="mt-6 text-sm text-[var(--brand-midnight-navy)] opacity-60 leading-relaxed max-w-xl">
+      <div class="grid md:grid-cols-12 gap-8 md:gap-14 items-start">
+        <div class="md:col-span-4">
+          <div class="eyebrow-brand mb-4">The learning experience</div>
+          <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-6">From understanding to professional practice.</h2>
+          <p class="text-sm text-[var(--brand-midnight-navy)] opacity-60 leading-relaxed max-w-xs">
             This describes the intended shape of education within the Academy. Digital learning features are described only as they become available.
           </p>
+          {LEARNING_IMAGE_ID && (
+            <div class="hidden md:block mt-8">
+              <Photo id={LEARNING_IMAGE_ID} ratio="landscape" sizes="(min-width: 768px) 30vw, 0px" />
+            </div>
+          )}
         </div>
-        <div class="hidden md:block md:col-span-4">
-          <Photo id="educator-heart-model" ratio="portrait" decorative sizes="(min-width: 768px) 30vw, 0px" />
-        </div>
+        <ol class="md:col-span-8 border-t border-black/10">
+          {experience.map((e) => (
+            <li class="grid md:grid-cols-12 gap-x-10 gap-y-1 py-6 md:py-8 border-b border-black/10">
+              <h3 class="md:col-span-4 font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-none">{e.w}</h3>
+              <p class="md:col-span-8 text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed md:pt-1">{e.d}</p>
+            </li>
+          ))}
+        </ol>
       </div>
     </div>
   </section>

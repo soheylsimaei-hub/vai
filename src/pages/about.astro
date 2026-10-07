@@ -185,11 +185,10 @@ const breadth = ['Across species', 'Across disciplines', 'Across professional se
           </p>
         </div>
         <div class="md:col-span-8">
+          {/* One clinical photograph, given the whole column: the people shown illustrate professional practice, they do not stand for the profession.
+              Species, disciplines and settings are carried by the typography on the left, and can be joined by deliberately chosen imagery later. */}
           <PhotoRow
-            items={[
-              { id: 'surgeon-theatre', ratio: 'landscape', m: 'full', mOrder: 0 },
-              { id: 'senior-vet-radiograph', ratio: 'portrait', m: 'hide', mOrder: 1 },
-            ]}
+            items={[{ id: 'surgeon-theatre', ratio: 'landscape', m: 'full', mOrder: 0 }]}
             caption={PHOTO_DISCLOSURE_SHORT}
           />
         </div>

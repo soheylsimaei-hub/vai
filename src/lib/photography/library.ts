@@ -56,19 +56,20 @@ export const PHOTOS: readonly PhotoEntry[] = [
 
   // ---- placements (decided 2026-10-07; the library is a SITE-WIDE asset, not an About gallery) ---------------------------------------
   //   /about/            first editorial composition: imaging-teaching-scrubs, vet-with-dog-classroom, surgeon-mentor-team
-  //                      breadth: surgeon-theatre, senior-vet-radiograph      academy: seminar-discussion (placeholder for a real course photo)
+  //                      breadth: surgeon-theatre (alone; senior-vet-radiograph removed as a near-duplicate subject)      academy: seminar-discussion (placeholder for a real course photo)
   //   homepage Teams     enterprise-clinic-team
-  //   /academy/          trusted-vet-method-teaching, trusted-vet-method-desk (authentic); professor-seminar, educator-imaging-screen, educator-heart-model
+  //   /academy/          trusted-vet-method-teaching, trusted-vet-method-desk (authentic); professor-seminar, educator-imaging-screen
+//                      (the learning-experience section is deliberately image-free until a suitable professional-education photograph exists)
 //   everything else below is processed and RESERVED for future pages. Do not repeat the same person across nearby pages.
   { id: 'enterprise-clinic-team', use: 'enterprise', ready: true, alt: 'A veterinary clinic team of around twenty people in dark scrubs, with their dogs, gathered outside a white-columned building', focus: { portrait: '50% 50%', landscape: '50% 52%', square: '50% 50%' }, note: 'Enterprise / clinic-team asset only. Never on About; never implies the people shown are VAI customers or staff.' },
   { id: 'scholar-whiteboard', use: 'profession', ready: true, alt: 'A veterinary educator in a white coat standing in front of a whiteboard of notes', focus: { portrait: '46% 50%', landscape: '50% 30%' } },
   { id: 'imaging-teaching-scrubs', use: 'diagnostic', ready: true, alt: 'A veterinary clinician in scrubs teaching a group in front of a radiograph', focus: { portrait: '40% 50%', landscape: '50% 24%' } },
-  { id: 'educator-heart-model', use: 'diagnostic', ready: true, alt: 'An educator beside an anatomical model of a heart in a teaching laboratory', focus: { portrait: '100% 50%', landscape: '50% 45%' } },
+  { id: 'educator-heart-model', use: 'diagnostic', ready: true, note: 'Withdrawn from /academy/ (2026-10-08): a posed portrait beside a model does not communicate professional education in practice.', alt: 'An educator beside an anatomical model of a heart in a teaching laboratory', focus: { portrait: '100% 50%', landscape: '50% 45%' } },
   { id: 'lecturer-woman-screen', use: 'education', ready: true, alt: 'A veterinary lecturer addressing a seated class in front of a projected image', focus: { portrait: '64% 50%', landscape: '50% 32%' } },
   { id: 'surgeon-mentor-team', use: 'profession', ready: true, alt: 'An experienced veterinary surgeon in scrubs listening to colleagues in a clinical setting', focus: { portrait: '56% 50%', landscape: '50% 28%' } },
   { id: 'woman-library-black', use: 'institutional', ready: true, alt: 'A professional standing among the shelves of an academic library', focus: { portrait: '52% 50%', landscape: '50% 30%' } },
   { id: 'vet-with-dog-classroom', use: 'animal', ready: true, alt: 'A veterinarian gently holding a dog during a teaching session', focus: { portrait: '62% 50%', landscape: '50% 55%' } },
-  { id: 'senior-vet-radiograph', use: 'diagnostic', ready: true, alt: 'A senior veterinarian in a white coat beside a diagnostic imaging monitor', focus: { portrait: '52% 50%', landscape: '50% 30%' } },
+  { id: 'senior-vet-radiograph', use: 'diagnostic', ready: true, note: 'Withdrawn from /about/ (2026-10-08): reads as the same older man as surgeon-theatre in the adjacent breadth composition.', alt: 'A senior veterinarian in a white coat beside a diagnostic imaging monitor', focus: { portrait: '52% 50%', landscape: '50% 30%' } },
   { id: 'educator-imaging-screen', use: 'diagnostic', ready: true, alt: 'An educator beside a large screen showing diagnostic images', focus: { portrait: '62% 50%', landscape: '50% 38%' } },
   { id: 'educator-laughing-classroom', use: 'profession', ready: true, alt: 'A veterinarian in a white coat smiling in front of a seated class', focus: { portrait: '50% 50%', landscape: '50% 32%' } },
   { id: 'lecturer-lecture-hall', use: 'education', ready: true, alt: 'A veterinary lecturer speaking to a room of students in white coats', focus: { portrait: '36% 50%', landscape: '50% 32%' } },
