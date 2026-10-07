@@ -83,6 +83,70 @@
   --brand-font-body: "Inter", system-ui, -apple-system, sans-serif;
 }
 
+/* =====================================================================================================================
+ * VAI TEXTURE SYSTEM
+ * Decorative SVG motifs behind selected sections. Everything here is presentation only: pointer-events none, hidden from
+ * assistive technology (aria-hidden on every SVG), no animation, no images, no layout impact (absolutely positioned
+ * inside an overflow-hidden host; content sits above in .tx-content).
+ *
+ * Four motif families (components in src/components/texture/):
+ *   SignatureGeometry  PRIMARY   offset sweeps converging on a vertex + a 65deg->57deg blade fan + crossing arcs, drawn
+ *                                from the vocabulary of the VAI mark (flared sweep, tapered blade, crescent notch)
+ *   ReasoningLines     SECONDARY flow (Reason/Practise/Develop), network (Pulse), converge (Ask VAI)
+ *   AnatomicalGhost    ACCENT    one original canine thoracic-limb plate fragment (Learn)
+ *   OrganicScience     VARIATION growth-ring contours and cells (Veterinary Longevity)
+ *
+ * Intensity: stroke opacity tokens below x --tx-k (per placement). Light backgrounds 3-7%, navy 7-10% at the hero,
+ * lower elsewhere. If a motif is the first thing noticed it is too strong: lower --tx-k, never the artwork's detail.
+ * ================================================================================================================== */
+.tx-host { position: relative; overflow: hidden; isolation: isolate; }
+.tx-content { position: relative; z-index: 1; }
+.tx { position: absolute; z-index: 0; pointer-events: none; user-select: none; contain: paint; }
+.tx svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.tx path, .tx circle, .tx rect { vector-effect: non-scaling-stroke; }
+.tx .s, .tx .s2, .tx .g, .tx .gr { fill: none; stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; }
+.tx .s  { stroke: var(--tx-p); stroke-opacity: calc(var(--tx-p-o) * var(--tx-k, 1)); }
+.tx .s2 { stroke: var(--tx-s); stroke-opacity: calc(var(--tx-s-o) * var(--tx-k, 1)); }
+.tx .g, .tx .gr { stroke: var(--tx-g); stroke-opacity: calc(var(--tx-g-o) * var(--tx-k, 1)); }
+.tx .gr { stroke-opacity: calc(var(--tx-g-o) * var(--tx-k, 1) * 0.8); }
+.tx .nd { fill: var(--tx-s); fill-opacity: calc(var(--tx-s-o) * var(--tx-k, 1) * 2.2); stroke: none; }
+.tx .fl { fill: var(--tx-s); fill-opacity: calc(var(--tx-s-o) * var(--tx-k, 1) * 0.32); stroke: none; }
+.tx .dash { stroke-dasharray: 2 7; }
+.tx .drift { stroke: url(#txn-fade); }
+
+/* Light surfaces: Midnight Navy + Clinical Blue at very low opacity, a rare fine gold hairline. */
+.tx--light { color:#2959a8; --tx-p: #0b1c34; --tx-p-o: .095; --tx-s: #2959a8; --tx-s-o: .15; --tx-g: #be9659; --tx-g-o: .38; }
+/* Navy surfaces: Clinical Blue + Cloud White + restrained Gold; no glow, no gradient except the mask that protects text. */
+.tx--navy  { color:#f3f3f1; --tx-p: #2959a8; --tx-p-o: .46; --tx-s: #f3f3f1; --tx-s-o: .075; --tx-g: #be9659; --tx-g-o: .30; }
+.tx--light .drift { color: #2959a8; }
+.tx--navy .drift { color: #f3f3f1; }
+
+/* Mobile: simpler compositions (the .dense layers are removed), cropped harder, placed where text is not. */
+@media (max-width: 767px) { .tx .dense, .tx-p-pulse .drift { display: none; } }
+
+/* ---- Placements. Desktop first; every placement has an intentionally different, simpler mobile composition (not a shrunk copy). ---- */
+.tx-p-hero      { top: -8%;  right: -5%;  width: 64%; height: 116%; --tx-k: .95; -webkit-mask-image: linear-gradient(to left, #000 36%, transparent 94%); mask-image: linear-gradient(to left, #000 36%, transparent 94%); }
+.tx-p-trust     { top: -55%; right: -10%; width: 54%; height: 210%; --tx-k: .66;  -webkit-mask-image: linear-gradient(to left, #000 34%, transparent 92%); mask-image: linear-gradient(to left, #000 34%, transparent 92%); }
+.tx-p-cta       { left: -8%; bottom: -80%; width: 52%; height: 230%; --tx-k: .72;  transform: scaleX(-1); -webkit-mask-image: linear-gradient(to left, #000 30%, transparent 90%); mask-image: linear-gradient(to left, #000 30%, transparent 90%); }
+.tx-p-teams     { top: -35%; right: -12%; width: 46%; height: 160%; --tx-k: .8;  -webkit-mask-image: linear-gradient(to left, #000 40%, transparent 96%); mask-image: linear-gradient(to left, #000 40%, transparent 96%); }
+.tx-p-flow      { left: 0; right: 0; top: 24%; height: 76%; --tx-k: .9; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 28%, #000 72%, transparent); mask-image: linear-gradient(to bottom, transparent, #000 28%, #000 72%, transparent); }
+.tx-p-pulse     { inset: 0; --tx-k: 1; }
+.tx-p-ask       { top: 0; bottom: 0; right: -3%; width: 60%; --tx-k: 1; -webkit-mask-image: linear-gradient(to left, #000 52%, transparent 100%); mask-image: linear-gradient(to left, #000 52%, transparent 100%); }
+.tx-p-learn     { top: -14%; right: -2%; width: 30%; height: 140%; --tx-k: .9; -webkit-mask-image: linear-gradient(to left, #000 45%, transparent 100%); mask-image: linear-gradient(to left, #000 45%, transparent 100%); }
+.tx-p-longevity { top: -60%; right: -14%; width: 62%; height: 220%; --tx-k: .85; -webkit-mask-image: linear-gradient(to left, #000 40%, transparent 96%); mask-image: linear-gradient(to left, #000 40%, transparent 96%); }
+
+@media (max-width: 767px) {
+  .tx-p-hero      { top: auto; bottom: -14%; right: -52%; width: 170%; height: 40%; --tx-k: .7; -webkit-mask-image: linear-gradient(to left, #000 40%, transparent 100%); mask-image: linear-gradient(to left, #000 40%, transparent 100%); }
+  .tx-p-trust     { top: auto; bottom: -30%; right: -60%; width: 170%; height: 70%; --tx-k: .55; }
+  .tx-p-cta       { left: -35%; bottom: -38%; width: 100%; height: 76%; --tx-k: .5; }
+  .tx-p-teams     { top: -20%; right: -50%; width: 120%; height: 70%; --tx-k: .55; }
+  .tx-p-flow      { top: 30%; height: 70%; --tx-k: .7; }
+  .tx-p-pulse     { inset: auto; top: 0; right: -6%; width: 72%; height: 15%; --tx-k: .85; }
+  .tx-p-ask       { top: auto; bottom: -4%; height: 42%; right: -40%; width: 150%; --tx-k: .7; -webkit-mask-image: linear-gradient(to left, #000 35%, transparent 100%); mask-image: linear-gradient(to left, #000 35%, transparent 100%); }
+  .tx-p-learn     { top: auto; bottom: -6%; right: -30%; width: 66%; height: 40%; --tx-k: .45; }
+  .tx-p-longevity { top: auto; bottom: -50%; right: -60%; width: 150%; height: 150%; --tx-k: .6; }
+}
+
 /* ---------------------------------------------------------------------
  * SECTION RHYTHM (spacing polish). Four responsive tiers replace the old
  * mix of py-14 / 16 / 20 / 24 / 28 / 32 values, so neighbouring sections

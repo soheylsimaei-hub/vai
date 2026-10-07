@@ -5,14 +5,16 @@
 import { loadSnapshot } from '../../lib/pulse/snapshot';
 import { pickHighlights } from '../../lib/pulse/highlights';
 import PulseCard from './PulseCard.astro';
+import ReasoningLines from '../texture/ReasoningLines.astro';
 
 const loaded = await loadSnapshot();
 const items = loaded.snapshot ? pickHighlights(loaded.snapshot, 6) : [];
 const updated = loaded.snapshot ? `${new Date(loaded.snapshot.generatedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })}` : '';
 ---
 {items.length >= 3 && (
-  <section id="pulse" class="bg-white border-t border-black/10">
-    <div class="mx-auto max-w-6xl px-6 sec-standard">
+  <section id="pulse" class="tx-host bg-white border-t border-black/10">
+    <ReasoningLines variant="network" tone="light" place="pulse" />
+    <div class="tx-content mx-auto max-w-6xl px-6 sec-standard">
       <div class="grid md:grid-cols-12 gap-6 md:gap-10">
         <div class="md:col-span-4">
           <div class="eyebrow-brand mb-4">VAI Pulse</div>

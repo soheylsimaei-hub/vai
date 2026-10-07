@@ -1,6 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
 import PulseHome from '../components/pulse/PulseHome.astro';
+import SignatureGeometry from '../components/texture/SignatureGeometry.astro';
+import ReasoningLines from '../components/texture/ReasoningLines.astro';
+import AnatomicalGhost from '../components/texture/AnatomicalGhost.astro';
+import OrganicScience from '../components/texture/OrganicScience.astro';
 
 // Phase 4A redesign — full homepage rewrite. Deliberately does not import
 // Section.astro: that component is hardwired to the legacy --color-navy/
@@ -35,8 +39,9 @@ const PRACTICE_CAPTURE: string | null = null;
   isHome={false}
 >
   <!-- 1. Hero -->
-  <section class="bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]">
-    <div class="mx-auto max-w-6xl px-6 sec-hero">
+  <section class="tx-host bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]">
+    <SignatureGeometry tone="navy" place="hero" />
+    <div class="tx-content mx-auto max-w-6xl px-6 sec-hero">
       <div class="max-w-4xl">
         <h1 class="font-brand-serif text-[var(--brand-cloud-white)] text-5xl md:text-7xl leading-[1.08] mb-8">
           There&rsquo;s a case that&rsquo;s still on your mind.
@@ -58,8 +63,9 @@ const PRACTICE_CAPTURE: string | null = null;
        Three equal-weight columns separated only by a hairline divider (no
        borders, no fill, no numbering/arrows), so the domains read as three
        facets of one platform rather than a linear onboarding sequence. -->
-  <section class="bg-[var(--brand-cloud-white)]">
-    <div class="mx-auto max-w-6xl px-6 sec-feature">
+  <section class="tx-host bg-[var(--brand-cloud-white)]">
+    <ReasoningLines variant="flow" tone="light" place="flow" />
+    <div class="tx-content mx-auto max-w-6xl px-6 sec-feature">
       <div class="max-w-3xl mb-10 md:mb-12">
         <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-6">
           One platform, built around your judgement.
@@ -100,8 +106,9 @@ const PRACTICE_CAPTURE: string | null = null;
        no other markup changes needed. Until then this is a deliberately
        elegant, single-column, text-led treatment, not a stretched-full-
        width version of the old copy column. -->
-  <section id="ask-vai" class="bg-white border-t border-black/10">
-    <div class="mx-auto max-w-6xl px-6 sec-standard">
+  <section id="ask-vai" class="tx-host bg-white border-t border-black/10">
+    <ReasoningLines variant="converge" tone="light" place="ask" />
+    <div class="tx-content mx-auto max-w-6xl px-6 sec-standard">
       <div class="grid md:grid-cols-12 gap-10 md:gap-14 items-center">
         <div class={ASK_VAI_CAPTURE ? "md:col-span-5" : "md:col-span-12 max-w-2xl"}>
           <div class="eyebrow-brand mb-4">Ask VAI</div>
@@ -161,8 +168,9 @@ const PRACTICE_CAPTURE: string | null = null;
        right column uses restrained, rule-separated labels (not cards, not
        a fabricated interface) to hint at Learn's future shape while being
        explicit that it isn't built yet. -->
-  <section id="learn" class="bg-white border-t border-black/10">
-    <div class="mx-auto max-w-6xl px-6 sec-standard">
+  <section id="learn" class="tx-host bg-white border-t border-black/10">
+    <AnatomicalGhost tone="light" place="learn" />
+    <div class="tx-content mx-auto max-w-6xl px-6 sec-standard">
       <div class="grid md:grid-cols-12 gap-10 md:gap-14">
         <div class="md:col-span-7">
           <div class="text-xs uppercase tracking-[0.14em] text-[var(--brand-midnight-navy)] opacity-70 mb-4">Learn</div>
@@ -248,8 +256,9 @@ const PRACTICE_CAPTURE: string | null = null;
        image-left/content-right, mirroring Practice's pairing direction.
        The existing Clinics/Enterprise hairline-divided sub-layout is
        preserved unchanged, just nested inside the new content column. -->
-  <section id="for-organisations" class="bg-[var(--brand-cloud-white)] border-t border-black/10">
-    <div class="mx-auto max-w-6xl px-6 sec-feature">
+  <section id="for-organisations" class="tx-host bg-[var(--brand-cloud-white)] border-t border-black/10">
+    <SignatureGeometry tone="light" place="teams" />
+    <div class="tx-content mx-auto max-w-6xl px-6 sec-feature">
       <div class="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
         <div class="md:col-span-5">
           <picture>
@@ -315,8 +324,9 @@ const PRACTICE_CAPTURE: string | null = null;
        fourth VAI capability or a competing conversion path. Per founder
        instruction, the homepage founder section is removed entirely —
        founder background now lives only on /about. -->
-  <section class="bg-white border-t border-black/10">
-    <div class="mx-auto max-w-6xl px-6 sec-compact">
+  <section class="tx-host bg-white border-t border-black/10">
+    <OrganicScience tone="light" place="longevity" />
+    <div class="tx-content mx-auto max-w-6xl px-6 sec-compact">
       <div class="max-w-2xl">
         <div class="eyebrow-brand mb-3">A VAI Initiative</div>
         <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-2xl md:text-3xl leading-[1.15] mb-4">
@@ -334,8 +344,9 @@ const PRACTICE_CAPTURE: string | null = null;
   </section>
 
   <!-- 8. Trust / privacy / professional integrity -->
-  <section class="bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]">
-    <div class="mx-auto max-w-6xl px-6 sec-feature">
+  <section class="tx-host bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]">
+    <SignatureGeometry tone="navy" place="trust" />
+    <div class="tx-content mx-auto max-w-6xl px-6 sec-feature">
       <div class="max-w-3xl">
         <h2 class="font-brand-serif text-[var(--brand-cloud-white)] text-3xl md:text-4xl leading-[1.15] mb-6">
           Your cases deserve professional privacy.
@@ -348,8 +359,9 @@ const PRACTICE_CAPTURE: string | null = null;
   </section>
 
   <!-- 9. Final CTA -->
-  <section class="bg-[var(--brand-cloud-white)] border-t border-black/10">
-    <div class="mx-auto max-w-6xl px-6 sec-standard text-center">
+  <section class="tx-host bg-[var(--brand-cloud-white)] border-t border-black/10">
+    <SignatureGeometry tone="light" place="cta" />
+    <div class="tx-content mx-auto max-w-6xl px-6 sec-standard text-center">
       <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] max-w-2xl mx-auto mb-10">
         Bring the case that&rsquo;s on your mind.
       </h2>

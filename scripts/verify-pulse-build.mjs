@@ -54,6 +54,23 @@ for (const p of ["pulse/index.html", "pulse/guidelines/index.html"]) if (existsS
   check(used.size >= 3, "homepage uses fewer than 3 spacing tiers");
 }
 
+// texture system: decorative only (hidden from assistive tech), no raster images or scripts, every placement class defined in the built CSS
+{
+  const home = read("index.html");
+  const css = readdirSync(join(dist, "_astro")).filter((f) => f.endsWith(".css")).map((f) => readFileSync(join(dist, "_astro", f), "utf-8")).join("\n");
+  const layers = [...home.matchAll(/<div class="tx tx--[a-z]+ tx-p-([a-z]+)"[^>]*>/g)];
+  check(layers.length >= 8, `homepage has ${layers.length} texture layers (expected 8+)`);
+  for (const m of layers) {
+    check(/aria-hidden="true"/.test(m[0]), `texture layer tx-p-${m[1]} is not aria-hidden`);
+    check(new RegExp(`\\.tx-p-${m[1]}\\{`).test(css), `placement tx-p-${m[1]} is used but missing from the built CSS`);
+  }
+  check(/\.tx\{[^}]*pointer-events:none/.test(css), "texture layers must be pointer-events:none");
+  const decorativeSvgs = home.match(/<svg[^>]*aria-hidden="true"[^>]*focusable="false"/g) ?? [];
+  check(decorativeSvgs.length === layers.length, "every texture SVG must be aria-hidden and not focusable");
+  check(!/<svg[^>]*aria-hidden="true"[^>]*>(?:(?!<\/svg>)[\s\S])*?<(title|desc|text|image)\b/.test(home), "texture SVGs must contain no title/desc/text/image");
+  check(!/background(-image)?:[^;"]*url\([^)]*(png|jpe?g|webp|gif)/.test(css.split(".tx")[1] ?? ""), "texture must not use raster backgrounds");
+}
+
 // homepage
 const home = read("index.html");
 const homeSection = home.match(/<section id="pulse"[\s\S]*?<\/section>/)?.[0] ?? "";

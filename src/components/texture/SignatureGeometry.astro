@@ -1,0 +1,12 @@
+---
+// VAI SIGNATURE GEOMETRY (primary motif). Original artwork derived from the vocabulary of the VAI mark: a flared leaf-like sweep (a ribbon of
+// translated curves), a narrow tapered blade family at ~64 degrees that crosses it (one fine gold edge), two OFFSET (never concentric) arcs and a
+// crescent of negative space. It is never a repeated logo. Purely decorative: aria-hidden, pointer-events none (see the TEXTURE SYSTEM block in
+// src/styles/global.css for intensity tokens and placements).
+interface Props { tone?: 'light' | 'navy'; place: string; }
+const { tone = 'light', place } = Astro.props;
+const ART = {
+  signature: `<svg viewBox="0 0 1000 800" preserveAspectRatio="xMaxYMax slice" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><g><path class="s" d="M-120 190 C190 20 540 90 650 400 C700 540 700 690 676 860"/><path class="s dense" d="M-107 216 C203 46 553 116 663 426 C713 566 713 716 689 886"/><path class="s" d="M-94 242 C216 72 566 142 676 452 C726 592 726 742 702 912"/><path class="s dense" d="M-81 268 C229 98 579 168 689 478 C739 618 739 768 715 938"/><path class="s" d="M-68 294 C242 124 592 194 702 504 C752 644 752 794 728 964"/><path class="s dense" d="M-55 320 C255 150 605 220 715 530 C765 670 765 820 741 990"/><path class="s" d="M-42 346 C268 176 618 246 728 556 C778 696 778 846 754 1016"/><path class="s dense" d="M-29 372 C281 202 631 272 741 582 C791 722 791 872 767 1042"/><path class="s" d="M-16 398 C294 228 644 298 754 608 C804 748 804 898 780 1068"/></g><g><path class="s2" d="M466 900 Q686 430 976 -170"/><path class="s2 dense" d="M512 900 Q732 430 1022 -170"/><path class="s2" d="M984.1 329.3 A610 610 0 0 0 503.6 1098.1"/><path class="s2 dense" d="M255.5 982.5 A540 540 0 0 0 218.4 274.9"/></g><path class="g" d="M420 900 Q640 430 930 -170"/><path class="fl" d="M598 402 A118 118 0 0 0 700 528 A86 86 0 0 1 598 402Z"/></svg>`,
+} as const;
+---
+<div class={`tx tx--${tone} tx-p-${place}`} aria-hidden="true" set:html={ART.signature} />
