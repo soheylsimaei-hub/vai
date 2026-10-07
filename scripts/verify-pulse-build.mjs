@@ -78,17 +78,19 @@ for (const p of ["pulse/index.html", "pulse/guidelines/index.html"]) if (existsS
   check(!/Simaei|founder-portrait|Founder-led|Founder &amp; Academic|leadership note/i.test(about), "about: founder-centric content has returned");
   check(!/VAI (faculty|experts?|team|members|community)\b/i.test(about.replace(/The people shown are not VAI faculty, team or members\./g, "")), "about: imagery or copy implies VAI faculty/team/members");
   const imgs = [...about.matchAll(/<img\b[^>]*>/g)].map((m) => m[0]).filter((t) => /photography\/library/.test(t));
-  check(imgs.length >= 15, `about: expected the photography compositions, found ${imgs.length} images`);
+  check(imgs.length >= 5 && imgs.length <= 9, `about: photography must stay restrained (5-9 library images), found ${imgs.length}`);
+  check(!/enterprise-clinic-team/.test(about), "about: the clinic-team image is reserved for Enterprise / VAI for Teams");
+  for (const h of ["Built around how veterinary", "Veterinary knowledge is growing", "From evidence to capability", "Professional trust has to be earned", "The evidence keeps moving", "A professional system that learns", "Bring the case that"]) {
+    const sec = about.split("<section").find((x) => x.includes(h)) ?? "";
+    check(sec !== "" && !/photography\/library/.test(sec), `about: the section "${h}" must carry no photography`);
+  }
   for (const t of imgs) {
     check(/\bwidth="\d+"/.test(t) && /\bheight="\d+"/.test(t), "about: image without width/height (layout shift)");
     check(/loading="lazy"/.test(t), "about: library image is not lazy-loaded");
     check(/\balt(=|\s|>)/.test(t), "about: image without an alt attribute (decorative images render a bare alt, which is an empty alt)");
   }
-  const dupSets = about.match(/<div class="ph-set" data-dup="true" aria-hidden="true">/g) ?? [];
-  check(dupSets.length === 4, `about: expected 4 aria-hidden duplicate stream sets, found ${dupSets.length}`);
   check(/Illustrative imagery generated for VAI\./.test(about), "about: photography disclosure missing");
-  check(/@media\s*\(prefers-reduced-motion:\s*reduce\)[^@]*\.ph-track\{[^}]*animation:\s*none/.test(css), "css: reduced-motion rule for the photo stream is missing");
-  check(!/<script[^>]*>[^<]*(ph-track|photo-stream)/.test(about), "about: the photo stream must be CSS-only");
+  check(!/ph-track|ph-drift/.test(css + about), "photography must be static (no moving stream)");
   check(/\.font-brand-serif\{/.test(css) && /\.eyebrow-brand\{/.test(css), "css: .font-brand-serif / .eyebrow-brand missing from the build (premature comment terminator?)");
   const leadership = read("about/leadership/index.html");
   check(/http-equiv="refresh"[^>]*url=\/about\//.test(leadership) && /noindex/.test(leadership), "about/leadership must be a noindex redirect to /about/");

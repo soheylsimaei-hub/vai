@@ -18,6 +18,7 @@ export type PhotoUse =
   | 'communication'   // consultation / conversation
   | 'profession'      // the people of the profession
   | 'animal'          // animal + veterinarian
+  | 'enterprise'      // clinic / organisation / team scale -> VAI for Teams
   | 'editorial'       // research / literature -> Pulse
   | 'supporting'      // background / texture, not a lead image
   | 'unsuitable';     // do not use (see note)
@@ -40,7 +41,12 @@ export const PHOTO_DISCLOSURE = 'Illustrative imagery generated for VAI. The peo
 export const PHOTO_DISCLOSURE_SHORT = 'Illustrative image.';
 
 export const PHOTOS: readonly PhotoEntry[] = [
-  // ---- in use on /about/ ---------------------------------------------------------------------------------------------------------
+  // ---- placements (decided 2026-10-07; the library is a SITE-WIDE asset, not an About gallery) ---------------------------------------
+  //   /about/            first editorial composition: imaging-teaching-scrubs, vet-with-dog-classroom, surgeon-mentor-team
+  //                      breadth: surgeon-theatre, senior-vet-radiograph      academy: seminar-discussion (placeholder for a real course photo)
+  //   homepage Teams     enterprise-clinic-team
+  //   everything else below is processed and RESERVED for future pages. Do not repeat the same person across nearby pages.
+  { id: 'enterprise-clinic-team', use: 'enterprise', ready: true, alt: 'A veterinary clinic team of around twenty people in dark scrubs, with their dogs, gathered outside a white-columned building', focus: { portrait: '50% 50%', landscape: '50% 52%', square: '50% 50%' }, note: 'Enterprise / clinic-team asset only. Never on About; never implies the people shown are VAI customers or staff.' },
   { id: 'scholar-whiteboard', use: 'profession', ready: true, alt: 'A veterinary educator in a white coat standing in front of a whiteboard of notes', focus: { portrait: '46% 50%', landscape: '50% 30%' } },
   { id: 'imaging-teaching-scrubs', use: 'diagnostic', ready: true, alt: 'A veterinary clinician in scrubs teaching a group in front of a radiograph', focus: { portrait: '40% 50%', landscape: '50% 24%' } },
   { id: 'educator-heart-model', use: 'diagnostic', ready: true, alt: 'An educator beside an anatomical model of a heart in a teaching laboratory', focus: { portrait: '100% 50%', landscape: '50% 45%' } },

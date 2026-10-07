@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import SignatureGeometry from '../components/texture/SignatureGeometry.astro';
 import ReasoningLines from '../components/texture/ReasoningLines.astro';
 import Photo from '../components/photo/Photo.astro';
-import PhotoStream from '../components/photo/PhotoStream.astro';
+import PhotoCluster from '../components/photo/PhotoCluster.astro';
 import PhotoRow from '../components/photo/PhotoRow.astro';
 import { PHOTO_DISCLOSURE, PHOTO_DISCLOSURE_SHORT } from '../lib/photography/library';
 
@@ -11,9 +11,10 @@ import { PHOTO_DISCLOSURE, PHOTO_DISCLOSURE_SHORT } from '../lib/photography/lib
 // connect, what it is built around and where it is going. Built against the same --brand-* tokens, spacing tiers (sec-*) and texture system
 // as the homepage (see the TEXTURE SYSTEM block in src/styles/global.css); texture is used on five sections only, the rest are left at rest.
 //
-// Photography: illustrative imagery of the profession (see src/lib/photography/library.ts and the PHOTOGRAPHY SYSTEM block in global.css). It is
-// used for a few deliberate moments only (stream after the opening, breadth, Pulse, Academy, closing composition) and is never presented as VAI
-// faculty, team or members; the disclosure travels with every composition.
+// Photography: illustrative imagery of the profession (src/lib/photography/library.ts, PHOTOGRAPHY SYSTEM block in global.css), used for exactly
+// three restrained moments: one editorial cluster after the opening, a two-image breadth row, and one Academy image (a generated placeholder until a
+// real Trusted Vet Method photograph replaces it). Hero, Why VAI, Platform, How we build, Pulse, Direction and the closing CTA carry no photography.
+// The people shown are never presented as VAI faculty, team or members; the disclosure accompanies the cluster.
 //
 // Tense rule: Ask VAI, Practice and VAI Pulse are described as they exist today; Learn / Academy-connected development and the closing
 // "direction" are written as direction, never as available functionality. No partnerships, faculty, validation, numbers or regulatory
@@ -98,36 +99,14 @@ const breadth = ['Across species', 'Across disciplines', 'Across professional se
     </div>
   </section>
 
-  <!-- 2b. The profession — editorial photograph stream (desktop: two offset rows drifting in opposite directions; mobile: static two-column mosaic) -->
+  <!-- 2b. First photographic moment — one asymmetric editorial cluster: the people and environments of veterinary medicine -->
   <section class="bg-[var(--brand-cloud-white)]" aria-label="The veterinary profession">
-    <div class="pb-8 md:pb-12">
-      <PhotoStream
-        rowA={[
-          { id: 'scholar-whiteboard', ratio: 'portrait' },
-          { id: 'imaging-teaching-scrubs', ratio: 'landscape' },
-          { id: 'educator-heart-model', ratio: 'portrait' },
-          { id: 'lecturer-woman-screen', ratio: 'landscape' },
-          { id: 'surgeon-mentor-team', ratio: 'portrait' },
-        ]}
-        rowB={[
-          { id: 'woman-library-black', ratio: 'portrait' },
-          { id: 'vet-with-dog-classroom', ratio: 'landscape' },
-          { id: 'senior-vet-radiograph', ratio: 'portrait' },
-          { id: 'educator-imaging-screen', ratio: 'landscape' },
-          { id: 'educator-laughing-classroom', ratio: 'portrait' },
-        ]}
-        mobile={[
-          [
-            { id: 'scholar-whiteboard', ratio: 'portrait' },
-            { id: 'imaging-teaching-scrubs', ratio: 'square' },
-            { id: 'surgeon-mentor-team', ratio: 'portrait' },
-          ],
-          [
-            { id: 'educator-heart-model', ratio: 'portrait' },
-            { id: 'vet-with-dog-classroom', ratio: 'square' },
-            { id: 'senior-vet-radiograph', ratio: 'portrait' },
-          ],
-        ]}
+    <div class="mx-auto max-w-6xl px-6 pb-10 md:pb-14">
+      <PhotoCluster
+        lead="imaging-teaching-scrubs"
+        second="vet-with-dog-classroom"
+        third="surgeon-mentor-team"
+        caption={PHOTO_DISCLOSURE}
       />
     </div>
   </section>
@@ -209,8 +188,7 @@ const breadth = ['Across species', 'Across disciplines', 'Across professional se
           <PhotoRow
             items={[
               { id: 'surgeon-theatre', ratio: 'landscape', m: 'full', mOrder: 0 },
-              { id: 'professor-seminar', ratio: 'portrait', m: 'half', mOrder: 1 },
-              { id: 'clinic-floor-dogs', ratio: 'portrait', m: 'half', mOrder: 2 },
+              { id: 'senior-vet-radiograph', ratio: 'portrait', m: 'hide', mOrder: 1 },
             ]}
             caption={PHOTO_DISCLOSURE_SHORT}
           />
@@ -219,26 +197,20 @@ const breadth = ['Across species', 'Across disciplines', 'Across professional se
     </div>
   </section>
 
-  <!-- 6. Continuously current — VAI Pulse (keeps its own network motif; one editorial image) -->
+  <!-- 6. Continuously current — VAI Pulse: no photography; the literature and its own network motif are the visual subject -->
   <section class="tx-host bg-white border-t border-black/10">
     <ReasoningLines variant="network" tone="light" place="pulse" />
     <div class="tx-content mx-auto max-w-6xl px-6 sec-standard">
-      <div class="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
-        <div class="md:col-span-7">
-          <div class="eyebrow-brand mb-4">Continuously current</div>
-          <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-6">The evidence keeps moving. VAI should too.</h2>
-          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-4">
-            Veterinary literature changes continuously. VAI Pulse provides a live view of newly indexed veterinary research and professional guidance, while VAI&rsquo;s evidence systems are being developed to support carefully sourced clinical reasoning.
-          </p>
-          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-7">
-            The two are separate: Pulse is a discovery tool, and the papers it lists have not been reviewed or endorsed by VAI.
-          </p>
-          <a href="/pulse/" class="text-sm uppercase tracking-[0.08em] text-[var(--brand-clinical-blue)] hover:opacity-70 transition-opacity">Explore VAI Pulse &rarr;</a>
-        </div>
-        <figure class="md:col-span-4 md:col-start-9 lg:col-span-3 lg:col-start-10">
-          <Photo id="man-archive-papers" ratio="portrait" class="ph--m-landscape" sizes="(min-width: 768px) 24vw, 92vw" />
-          <figcaption class="ph-caption">{PHOTO_DISCLOSURE_SHORT}</figcaption>
-        </figure>
+      <div class="max-w-2xl">
+        <div class="eyebrow-brand mb-4">Continuously current</div>
+        <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-6">The evidence keeps moving. VAI should too.</h2>
+        <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-4">
+          Veterinary literature changes continuously. VAI Pulse provides a live view of newly indexed veterinary research and professional guidance, while VAI&rsquo;s evidence systems are being developed to support carefully sourced clinical reasoning.
+        </p>
+        <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-7">
+          The two are separate: Pulse is a discovery tool, and the papers it lists have not been reviewed or endorsed by VAI.
+        </p>
+        <a href="/pulse/" class="text-sm uppercase tracking-[0.08em] text-[var(--brand-clinical-blue)] hover:opacity-70 transition-opacity">Explore VAI Pulse &rarr;</a>
       </div>
     </div>
   </section>
@@ -283,24 +255,8 @@ const breadth = ['Across species', 'Across disciplines', 'Across professional se
     </div>
   </section>
 
-  <!-- 8b. Closing composition — the profession, set as a quiet editorial row before the call to action -->
-  <section class="bg-[var(--brand-cloud-white)] border-t border-black/10">
-    <div class="mx-auto max-w-[84rem] px-6 sec-standard">
-      <PhotoRow
-        stagger
-        items={[
-          { id: 'educator-anatomy-monitor', ratio: 'portrait', alt: '', m: 'half', mOrder: 1 },
-          { id: 'lecturer-lecture-hall', ratio: 'landscape', alt: '', m: 'full', mOrder: 0 },
-          { id: 'man-whiteboard-classroom', ratio: 'portrait', alt: '', m: 'half', mOrder: 2 },
-          { id: 'senior-man-screen', ratio: 'landscape', alt: '', m: 'full', mOrder: 3 },
-        ]}
-        caption={`The people, knowledge and environments of veterinary medicine. ${PHOTO_DISCLOSURE}`}
-      />
-    </div>
-  </section>
-
   <!-- 9. Final CTA -->
-  <section class="tx-host bg-[var(--brand-cloud-white)]">
+  <section class="tx-host bg-[var(--brand-cloud-white)] border-t border-black/10">
     <SignatureGeometry tone="light" place="cta" />
     <div class="tx-content mx-auto max-w-6xl px-6 sec-standard text-center">
       <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] max-w-2xl mx-auto mb-10">

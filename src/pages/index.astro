@@ -5,6 +5,8 @@ import SignatureGeometry from '../components/texture/SignatureGeometry.astro';
 import ReasoningLines from '../components/texture/ReasoningLines.astro';
 import AnatomicalGhost from '../components/texture/AnatomicalGhost.astro';
 import OrganicScience from '../components/texture/OrganicScience.astro';
+import Photo from '../components/photo/Photo.astro';
+import { PHOTO_DISCLOSURE_SHORT } from '../lib/photography/library';
 
 // Phase 4A redesign — full homepage rewrite. Deliberately does not import
 // Section.astro: that component is hardwired to the legacy --color-navy/
@@ -247,7 +249,8 @@ const PRACTICE_CAPTURE: string | null = null;
     </div>
   </section>
 
-  <!-- 5.5 VAI for Organisations — secondary commercial path. No dedicated
+  <!-- 5.5 VAI for Organisations (image: the clinic-team asset from the VAI photography library; the former MRI-console photograph
+       public/photography/clinical-diagnostic-imaging.* is retained, unused, as the strongest candidate for a future Reason moment) — — secondary commercial path. No dedicated
        /for-organisations page yet (out of scope this phase), so both the
        nav entry and this section's id serve as the destination directly.
        Phase 4A.7A — adds one founder-supplied clinical photograph
@@ -260,19 +263,10 @@ const PRACTICE_CAPTURE: string | null = null;
     <SignatureGeometry tone="light" place="teams" />
     <div class="tx-content mx-auto max-w-6xl px-6 sec-feature">
       <div class="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
-        <div class="md:col-span-5">
-          <picture>
-            <source srcset="/photography/clinical-diagnostic-imaging.webp" type="image/webp" />
-            <img
-              src="/photography/clinical-diagnostic-imaging.jpg"
-              alt="Veterinary specialist reviewing advanced diagnostic imaging"
-              width="1600"
-              height="1064"
-              loading="lazy"
-              class="w-full h-auto aspect-[4/3] object-cover border border-black/10"
-            />
-          </picture>
-        </div>
+        <figure class="md:col-span-5">
+          <Photo id="enterprise-clinic-team" ratio="square" sizes="(min-width: 768px) 40vw, 92vw" />
+          <figcaption class="ph-caption">{PHOTO_DISCLOSURE_SHORT}</figcaption>
+        </figure>
         <div class="md:col-span-7">
           <div class="eyebrow-brand mb-4">VAI for Teams</div>
           <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-6">

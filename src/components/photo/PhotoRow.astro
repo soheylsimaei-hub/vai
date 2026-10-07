@@ -7,8 +7,8 @@ import Photo from './Photo.astro';
 interface Item {
   id: string;
   ratio: 'portrait' | 'landscape';
-  /** < 768px: 'full' spans both columns (shown 3:2), 'half' takes one column (shown 4:5). Defaults: landscape -> full, portrait -> half. */
-  m?: 'full' | 'half';
+  /** < 768px: 'full' spans both columns (shown 3:2), 'half' takes one column (shown 4:5), 'hide' is not shown. Defaults: landscape -> full, portrait -> half. */
+  m?: 'full' | 'half' | 'hide';
   /** < 768px visual order. */
   mOrder?: number;
   alt?: string;

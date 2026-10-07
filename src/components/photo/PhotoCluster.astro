@@ -1,0 +1,22 @@
+---
+// VAI PHOTO CLUSTER — one asymmetric editorial composition of three images at three scales (large landscape, mid portrait set lower, small
+// portrait aligned to the base) with generous space to the right. Static: no motion. On < 768px it reduces to two images (the lead at full
+// width, the second at ~60% width on the right) so the page does not get longer; the third is not rendered (display:none, so never fetched).
+import Photo from './Photo.astro';
+
+interface Props {
+  lead: string;
+  second: string;
+  third: string;
+  caption?: string;
+}
+const { lead, second, third, caption } = Astro.props;
+---
+<figure class="ph-cluster-fig">
+  <div class="ph-cluster">
+    <div class="ph-cluster__lead"><Photo id={lead} ratio="landscape" decorative sizes="(min-width: 768px) 56vw, 92vw" /></div>
+    <div class="ph-cluster__second"><Photo id={second} ratio="portrait" decorative sizes="(min-width: 768px) 24vw, 56vw" /></div>
+    <div class="ph-cluster__third"><Photo id={third} ratio="portrait" decorative sizes="16vw" /></div>
+  </div>
+  {caption && <figcaption class="ph-caption">{caption}</figcaption>}
+</figure>

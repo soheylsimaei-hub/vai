@@ -342,7 +342,7 @@
 /* =====================================================================================================================
  * VAI PHOTOGRAPHY SYSTEM
  * One set of rules so the library reads as a single commissioned campaign. Rendered only through src/components/photo/
- * (Photo, PhotoStream, PhotoRow); manifest and crop focal points in src/lib/photography/library.ts.
+ * (Photo, PhotoCluster, PhotoRow); manifest and crop focal points in src/lib/photography/library.ts.
  *
  *   Crops        portrait 4:5 | landscape 3:2 | wide 2:1 | square 1:1. Never anything taller than 4:5 or wider than 2:1. Faces stay in the upper
  *                half of the frame (object-position y is per image in the manifest).
@@ -350,7 +350,7 @@
  *   Treatment    saturate .94 / contrast 1.02 and a very light navy veil (3.5%) with a faint lower falloff. Realism is preserved; no filters beyond that.
  *   Spacing      photographs sit inside the same sec-* vertical tiers and max-w-6xl container as text; gaps 12px (8px < 768px).
  *   Loading      lazy + async decode everywhere except an image in the first viewport. width/height attributes and an aspect-ratio box reserve space.
- *   Motion       only the About stream moves: CSS transform, 70-90s per loop, opposite directions, paused on hover, off under prefers-reduced-motion.
+ *   Motion       none. Photographs are static; the system's motion budget stays with the VAI geometry.
  *   People       the imagery is illustrative; the disclosure (PHOTO_DISCLOSURE) accompanies every composition. Never captioned as faculty/team/members.
  * ===================================================================================================================== */
 /* In @layer components so Tailwind utilities (hidden, md:hidden, ...) can still override display. */
@@ -359,9 +359,6 @@
   --ph-radius: 2px;
   --ph-gap: 12px;
   --ph-filter: saturate(.94) contrast(1.02);
-  --ph-h: clamp(180px, 17vw, 340px);
-  --ph-dur-a: 80s;
-  --ph-dur-b: 96s;
 }
 @media (max-width: 767px) { :root { --ph-gap: 8px; } }
 
@@ -396,30 +393,15 @@
   .ph-grid--stagger > .ph-cell:nth-child(even) { margin-top: 28px; }
 }
 
-/* ---- moving stream (desktop) ----------------------------------------------------------------------------------------------- */
-.ph-rows {
-  display: flex; flex-direction: column; gap: var(--ph-gap); overflow: hidden;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+/* ---- asymmetric cluster (About, first editorial moment) -------------------------------------------------------------------- */
+.ph-cluster { display: grid; gap: var(--ph-gap); grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: start; }
+.ph-cluster__lead   { grid-column: 1 / 8; }
+.ph-cluster__second { grid-column: 8 / 11; margin-top: 3.5rem; }
+.ph-cluster__third  { grid-column: 11 / 13; align-self: end; }
+@media (max-width: 767px) {
+  .ph-cluster__lead   { grid-column: 1 / -1; }
+  .ph-cluster__second { grid-column: 5 / -1; margin-top: 0; }
+  .ph-cluster__third  { display: none; }
+  .ph-cell--hide { display: none; }
 }
-.ph-row { overflow: hidden; }
-.ph-track { display: flex; width: max-content; will-change: transform; animation: ph-drift-left var(--ph-dur-a) linear infinite; }
-.ph-row--b .ph-track { animation-name: ph-drift-right; animation-duration: var(--ph-dur-b); animation-delay: -31s; }
-.ph-set { display: flex; flex: none; }
-.ph-item { flex: none; height: var(--ph-h); margin-right: var(--ph-gap); }
-.ph-item--portrait  { aspect-ratio: 4 / 5; }
-.ph-item--landscape { aspect-ratio: 3 / 2; }
-.ph-stream:hover .ph-track { animation-play-state: paused; }
-@keyframes ph-drift-left  { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-33.3333%, 0, 0); } }
-@keyframes ph-drift-right { from { transform: translate3d(-33.3333%, 0, 0); } to { transform: translate3d(0, 0, 0); } }
-@media (prefers-reduced-motion: reduce) {
-  .ph-track { animation: none !important; }
-  .ph-set[data-dup] { display: none; }
-  .ph-row--b .ph-track { transform: translate3d(-14%, 0, 0); }
-}
-
-/* ---- intentional mobile composition (< 768px): two offset columns, no motion ------------------------------------------------ */
-.ph-stream-mobile { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ph-gap); padding-inline: 1.5rem; }
-.ph-mcol { display: flex; flex-direction: column; gap: var(--ph-gap); min-width: 0; }
-.ph-mcol--offset { padding-top: 1.75rem; }
 }
