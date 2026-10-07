@@ -97,6 +97,31 @@ for (const p of ["pulse/index.html", "pulse/guidelines/index.html"]) if (existsS
   check(!/about\/leadership/.test(existsSync(join(dist, "sitemap-0.xml")) ? read("sitemap-0.xml") : ""), "sitemap: retired /about/leadership/ is still listed");
 }
 
+// Academy (temporary in-site presentation) + routing
+{
+  const academy = read("academy/index.html");
+  const text = academy.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<style[\s\S]*?<\/style>/g, "");
+  check((academy.match(/<h1[\s>]/g) ?? []).length === 1, "academy: expected exactly one h1");
+  check(/Education for the decisions that matter\./.test(academy), "academy: hero headline missing");
+  check(!/Simaei|founder|Founder|Academic Director|Academia Europa/.test(text), "academy: founder-centric or Academia Europa content");
+  check(!/Coming soon|coming soon|Enrol|enrol|Buy now|Add to cart|\u20ac\s?\d|\$\s?\d|accredit|CPD|ratings?\b|students enrolled|learners/i.test(text), "academy: unsupported commercial / accreditation / numbers claim");
+  check(!/VAI (faculty|experts?|instructors?|students|customers|community)\b/i.test(text.replace(/The people shown are not VAI faculty, team or members\./g, "")), "academy: generated imagery implied to be VAI faculty/experts/students");
+  const imgs = [...academy.matchAll(/<img\b[^>]*>/g)].map((m) => m[0]).filter((t) => /photography\/library/.test(t));
+  check(imgs.length >= 4 && imgs.length <= 8, `academy: photography must stay curated (4-8 images), found ${imgs.length}`);
+  check(imgs.some((t) => /trusted-vet-method-teaching/.test(t)), "academy: the authentic teaching photograph is missing");
+  check(!/trusted-vet-method-flags/.test(academy + about_html()), "the flags photograph is reserved and must not be used");
+  check(!/enterprise-clinic-team/.test(academy), "academy: the clinic-team image is reserved for Enterprise");
+  for (const t of imgs) { check(/\bwidth="\d+"/.test(t) && /\bheight="\d+"/.test(t), "academy: image without width/height"); check(/loading="lazy"/.test(t), "academy: image not lazy"); }
+  check(/<link rel="canonical" href="https:\/\/www\.vai\.vet\/academy\/"/.test(academy), "academy: canonical must be https://www.vai.vet/academy/");
+  check(!/<meta name="robots" content="[^"]*noindex/.test(academy), "academy: must be indexable");
+  check(/application\/ld\+json/.test(academy) && /EducationalOrganization/.test(academy), "academy: structured data missing");
+  for (const f of ["index.html", "about/index.html", "academy/index.html", "pulse/index.html"]) {
+    check(!/href="https:\/\/academy\.vai\.vet/.test(read(f)), `${f}: still links to the external Academy`);
+    check(/href="\/academy\/"/.test(read(f)), `${f}: missing the internal /academy/ link`);
+  }
+}
+function about_html() { return read("about/index.html"); }
+
 // homepage
 const home = read("index.html");
 const homeSection = home.match(/<section id="pulse"[\s\S]*?<\/section>/)?.[0] ?? "";

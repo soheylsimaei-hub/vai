@@ -344,7 +344,7 @@
  * One set of rules so the library reads as a single commissioned campaign. Rendered only through src/components/photo/
  * (Photo, PhotoCluster, PhotoRow); manifest and crop focal points in src/lib/photography/library.ts.
  *
- *   Crops        portrait 4:5 | landscape 3:2 | wide 2:1 | square 1:1. Never anything taller than 4:5 or wider than 2:1. Faces stay in the upper
+ *   Crops        portrait 4:5 | landscape 3:2 | video 16:9 | wide 2:1 | square 1:1. Never anything taller than 4:5 or wider than 2:1. Faces stay in the upper
  *                half of the frame (object-position y is per image in the manifest).
  *   Shape        2px radius, no card chrome, no drop shadows. A 1px navy hairline sits inside the edge.
  *   Treatment    saturate .94 / contrast 1.02 and a very light navy veil (3.5%) with a faint lower falloff. Realism is preserved; no filters beyond that.
@@ -365,6 +365,7 @@
 .ph { position: relative; overflow: hidden; background: #e3e1db; border-radius: var(--ph-radius); }
 .ph--portrait  { aspect-ratio: 4 / 5; }
 .ph--landscape { aspect-ratio: 3 / 2; }
+.ph--video     { aspect-ratio: 16 / 9; }
 .ph--wide      { aspect-ratio: 2 / 1; }
 .ph--square    { aspect-ratio: 1 / 1; }
 .ph--fill      { width: 100%; height: 100%; }

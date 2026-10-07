@@ -134,5 +134,35 @@
  "enterprise-clinic-team": {
   "source": "enterprise-clinic-team.png",
   "process": true
+ },
+ "trusted-vet-method-teaching": {
+  "source": "trusted-vet-method-teaching.png",
+  "process": true,
+  "native": true,
+  "widths": [
+   800,
+   1280,
+   2000
+  ]
+ },
+ "trusted-vet-method-desk": {
+  "source": "trusted-vet-method-desk.png",
+  "process": true,
+  "native": true,
+  "widths": [
+   800,
+   1280,
+   2000
+  ]
+ },
+ "trusted-vet-method-flags": {
+  "source": "trusted-vet-method-flags.png",
+  "process": false,
+  "native": true,
+  "widths": [
+   800,
+   1280,
+   2000
+  ]
  }
 }

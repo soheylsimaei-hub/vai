@@ -32,12 +32,13 @@ for i in ids:
     if not os.path.exists(path):
         sys.exit(f"missing source for {i}: {path}")
     im = Image.open(path).convert("RGB")
-    if im.width != im.height:
+    native = sources[i].get("native", False)   # authentic photographs keep their own (16:9) aspect ratio
+    if not native and im.width != im.height:
         sys.exit(f"{i}: expected a square source, got {im.size}")
-    for w in WIDTHS:
-        r = im if im.width <= w else im.resize((w, w), Image.LANCZOS)
+    for w in sources[i].get("widths", WIDTHS):
         if im.width < w:  # never upscale
             continue
+        r = im if im.width == w else im.resize((w, round(im.height * w / im.width)), Image.LANCZOS)
         dest = os.path.join(OUT, f"{i}-{w}.webp")
         r.save(dest, "WEBP", quality=78, method=6)
         total += os.path.getsize(dest)

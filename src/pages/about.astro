@@ -20,7 +20,7 @@ import { PHOTO_DISCLOSURE, PHOTO_DISCLOSURE_SHORT } from '../lib/photography/lib
 // "direction" are written as direction, never as available functionality. No partnerships, faculty, validation, numbers or regulatory
 // status are claimed.
 const OPEN_VAI_URL = 'https://app.vai.vet';
-const ACADEMY_URL = 'https://academy.vai.vet/';
+const ACADEMY_URL = '/academy/'; // temporary: in-site Academy presentation until the full learning environment is ready
 
 const platform = [
   {
@@ -228,7 +228,7 @@ const breadth = ['Across species', 'Across disciplines', 'Across professional se
           <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-7">
             It is one part of the wider VAI platform, not the whole of it.
           </p>
-          <a href={ACADEMY_URL} rel="noopener noreferrer" class="text-sm uppercase tracking-[0.08em] text-[var(--brand-clinical-blue)] hover:opacity-70 transition-opacity">Explore VAI Academy &rarr;</a>
+          <a href={ACADEMY_URL} class="text-sm uppercase tracking-[0.08em] text-[var(--brand-clinical-blue)] hover:opacity-70 transition-opacity">Explore VAI Academy &rarr;</a>
         </div>
         <figure class="md:col-span-6">
           <Photo id="seminar-discussion" ratio="landscape" sizes="(min-width: 768px) 46vw, 92vw" />

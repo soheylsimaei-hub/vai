@@ -2,7 +2,7 @@
 // VAI PHOTO — the one way a library image is rendered. See the PHOTOGRAPHY SYSTEM block in src/styles/global.css for the shared look
 // (crop ratios, radius, treatment, loading) and src/lib/photography/library.ts for the manifest (ids, alt text, focal points).
 //
-//   ratio  portrait 4:5 | landscape 3:2 | wide 2:1 | square 1:1 | fill (parent sets the box, e.g. the moving stream)
+//   ratio  portrait 4:5 | landscape 3:2 | video 16:9 | wide 2:1 | square 1:1 | fill (parent sets the box, e.g. the moving stream)
 //   decorative  alt="" (the image repeats or illustrates nothing the text does not already say). Otherwise the manifest alt is used.
 //   Width/height attributes + an aspect-ratio box mean the space is reserved before the file arrives: no layout shift.
 //   Everything is lazy by default; pass loading="eager" only for an image that is in the first viewport.
@@ -10,7 +10,7 @@ import { getPhoto, PHOTO_BASE, PHOTO_WIDTHS } from '../../lib/photography/librar
 
 interface Props {
   id: string;
-  ratio?: 'portrait' | 'landscape' | 'wide' | 'square' | 'fill';
+  ratio?: 'portrait' | 'landscape' | 'video' | 'wide' | 'square' | 'fill';
   sizes?: string;
   loading?: 'lazy' | 'eager';
   decorative?: boolean;
@@ -22,16 +22,18 @@ const p = getPhoto(id);
 // A square source cropped to portrait only loses width (x matters), cropped to landscape only loses height (y matters): so one object-position
 // built from the portrait x and the landscape y is right for every ratio, including a CSS ratio swap at a breakpoint.
 const pos = `${p.focus.portrait.split(' ')[0]} ${p.focus.landscape.split(' ')[1]}`;
+const widths = p.widths ?? PHOTO_WIDTHS;
+const mid = widths.includes(800) ? 800 : widths[widths.length - 1];
 const src = (w: number) => `${PHOTO_BASE}/${id}-${w}.webp`;
-const srcset = PHOTO_WIDTHS.map((w) => `${src(w)} ${w}w`).join(', ');
+const srcset = widths.map((w) => `${src(w)} ${w}w`).join(', ');
 ---
 <div class={`ph ph--${ratio} ${cls}`.trim()}>
   <img
-    src={src(800)}
+    src={src(mid)}
     srcset={srcset}
     sizes={sizes}
-    width="1024"
-    height="1024"
+    width={p.w ?? 1024}
+    height={p.h ?? 1024}
     alt={decorative ? '' : (alt ?? p.alt)}
     loading={loading}
     decoding="async"

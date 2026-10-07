@@ -19,6 +19,7 @@ export type PhotoUse =
   | 'profession'      // the people of the profession
   | 'animal'          // animal + veterinarian
   | 'enterprise'      // clinic / organisation / team scale -> VAI for Teams
+  | 'authentic'       // real photographs of VAI's own educational work (the only images that may be described as such)
   | 'editorial'       // research / literature -> Pulse
   | 'supporting'      // background / texture, not a lead image
   | 'unsuitable';     // do not use (see note)
@@ -32,20 +33,33 @@ export interface PhotoEntry {
   /** CSS object-position per crop family. portrait = 4:5, landscape = 3:2 / 2:1 / 16:9, square = 1:1. */
   focus: { portrait: string; landscape: string; square?: string };
   note?: string;
+  /** Native pixel size and available widths when the file is not one of the standard square 1024px library images (authentic photographs are 16:9). */
+  w?: number; h?: number; widths?: readonly number[];
 }
 
 export const PHOTO_WIDTHS = [480, 800, 1024] as const;
 export const PHOTO_BASE = '/photography/library';
 
+/** Authentic photographs are never captioned with a person's name or role, and carry only this factual line when a caption is used. */
+export const AUTHENTIC_CAPTION = 'Filmed during production of the Trusted Vet Method\u2122.';
+
 export const PHOTO_DISCLOSURE = 'Illustrative imagery generated for VAI. The people shown are not VAI faculty, team or members.';
 export const PHOTO_DISCLOSURE_SHORT = 'Illustrative image.';
 
 export const PHOTOS: readonly PhotoEntry[] = [
+  // ---- authentic VAI photography (real, from the production of the Trusted Vet Method) ---------------------------------------------
+  // Different role from everything below: these document real VAI educational work. They are not founder portraits and are never captioned,
+  // named or framed that way. Do not repeat the same one across nearby pages.
+  { id: 'trusted-vet-method-teaching', use: 'authentic', ready: true, w: 2000, h: 1125, widths: [800, 1280, 2000], alt: 'An educator explaining a point to camera in front of shelves of veterinary textbooks and a microscope', focus: { portrait: '52% 50%', landscape: '50% 38%' }, note: 'Primary authentic image (Academy, educational philosophy). Small EU / Portuguese desk flags sit at left of frame.' },
+  { id: 'trusted-vet-method-desk', use: 'authentic', ready: true, w: 2000, h: 1125, widths: [800, 1280, 2000], alt: 'A veterinary educator seated at a desk with a laptop and a veterinary surgery textbook, in a study lined with books', focus: { portrait: '54% 50%', landscape: '50% 42%' }, note: 'Formal / institutional frame. Secondary use only (Academy programme row). Small EU / Portuguese desk flags on the upper-left shelf.' },
+  { id: 'trusted-vet-method-flags', use: 'authentic', ready: false, w: 2000, h: 1125, widths: [800, 1280, 2000], alt: 'An educator standing in front of a European Union flag and a Portuguese flag', focus: { portrait: '55% 50%', landscape: '50% 30%' }, note: 'RESERVED, deliberately unused: large EU and Portuguese flags could imply governmental or EU affiliation.' },
+
   // ---- placements (decided 2026-10-07; the library is a SITE-WIDE asset, not an About gallery) ---------------------------------------
   //   /about/            first editorial composition: imaging-teaching-scrubs, vet-with-dog-classroom, surgeon-mentor-team
   //                      breadth: surgeon-theatre, senior-vet-radiograph      academy: seminar-discussion (placeholder for a real course photo)
   //   homepage Teams     enterprise-clinic-team
-  //   everything else below is processed and RESERVED for future pages. Do not repeat the same person across nearby pages.
+  //   /academy/          trusted-vet-method-teaching, trusted-vet-method-desk (authentic); professor-seminar, educator-imaging-screen, educator-heart-model
+//   everything else below is processed and RESERVED for future pages. Do not repeat the same person across nearby pages.
   { id: 'enterprise-clinic-team', use: 'enterprise', ready: true, alt: 'A veterinary clinic team of around twenty people in dark scrubs, with their dogs, gathered outside a white-columned building', focus: { portrait: '50% 50%', landscape: '50% 52%', square: '50% 50%' }, note: 'Enterprise / clinic-team asset only. Never on About; never implies the people shown are VAI customers or staff.' },
   { id: 'scholar-whiteboard', use: 'profession', ready: true, alt: 'A veterinary educator in a white coat standing in front of a whiteboard of notes', focus: { portrait: '46% 50%', landscape: '50% 30%' } },
   { id: 'imaging-teaching-scrubs', use: 'diagnostic', ready: true, alt: 'A veterinary clinician in scrubs teaching a group in front of a radiograph', focus: { portrait: '40% 50%', landscape: '50% 24%' } },
@@ -80,7 +94,7 @@ export const PHOTOS: readonly PhotoEntry[] = [
   { id: 'man-library-portrait', use: 'unsuitable', ready: false, alt: 'A man in a dark suit in a library', focus: { portrait: '50% 50%', landscape: '50% 35%' }, note: 'Corporate-headshot feel and a repeat of the same subject; not VAI-appropriate.' },
   { id: 'man-whiteboard-text', use: 'unsuitable', ready: false, alt: 'A man beside a whiteboard covered in writing', focus: { portrait: '62% 50%', landscape: '50% 35%' }, note: 'Large garbled "Veterinary CLASS" lettering dominates the frame.' },
   { id: 'woman-whiteboard-smile', use: 'profession', ready: false, alt: 'A smiling woman beside a whiteboard', focus: { portrait: '40% 50%', landscape: '50% 35%' }, note: 'Near-duplicate of the arms-crossed educator portraits.' },
-  { id: 'educator-anatomy-sketches', use: 'diagnostic', ready: false, alt: 'An educator beside a wall of anatomical sketches', focus: { portrait: '48% 50%', landscape: '50% 30%' }, note: 'Good anatomy setting; held back because the stream already carries three similar portraits.' },
+  { id: 'educator-anatomy-sketches', use: 'diagnostic', ready: true, alt: 'An educator beside a wall of anatomical sketches', focus: { portrait: '48% 50%', landscape: '50% 30%' }, note: 'Good anatomy setting; held back because the stream already carries three similar portraits.' },
   { id: 'mentor-trainee-pair', use: 'unsuitable', ready: false, alt: 'Two colleagues posing together in front of a screen', focus: { portrait: '60% 50%', landscape: '50% 30%' }, note: 'Posed pair reads as a real mentor/trainee relationship or a testimonial; risks implying affiliation.' },
 ];
 
