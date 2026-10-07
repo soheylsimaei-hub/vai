@@ -136,33 +136,36 @@
   "process": true
  },
  "trusted-vet-method-teaching": {
-  "source": "trusted-vet-method-teaching.png",
+  "source": "design-assets/photography-masters/trusted-vet-method-teaching-master.webp",
   "process": true,
   "native": true,
   "widths": [
    800,
    1280,
-   2000
-  ]
+   1672
+  ],
+  "quality": 92
  },
  "trusted-vet-method-desk": {
-  "source": "trusted-vet-method-desk.png",
+  "source": "design-assets/photography-masters/trusted-vet-method-desk-master.webp",
   "process": true,
   "native": true,
   "widths": [
    800,
    1280,
-   2000
-  ]
+   1672
+  ],
+  "quality": 92
  },
  "trusted-vet-method-flags": {
-  "source": "trusted-vet-method-flags.png",
+  "source": "design-assets/photography-masters/trusted-vet-method-flags-master.webp",
   "process": false,
   "native": true,
   "widths": [
    800,
    1280,
-   2000
-  ]
+   1672
+  ],
+  "quality": 92
  }
 }
