@@ -115,7 +115,8 @@
 .tx .drift { stroke: url(#txn-fade); }
 
 /* Light surfaces: Midnight Navy + Clinical Blue at very low opacity, a rare fine gold hairline. */
-.tx--light { color:#2959a8; --tx-p: #0b1c34; --tx-p-o: .095; --tx-s: #2959a8; --tx-s-o: .15; --tx-g: #be9659; --tx-g-o: .38; }
+/* light surfaces: line opacity x0.85 (was .095 / .15 / .38) */
+.tx--light { color:#2959a8; --tx-p: #0b1c34; --tx-p-o: .081; --tx-s: #2959a8; --tx-s-o: .128; --tx-g: #be9659; --tx-g-o: .323; }
 /* Navy surfaces: Clinical Blue + Cloud White + restrained Gold; no glow, no gradient except the mask that protects text. */
 .tx--navy  { color:#f3f3f1; --tx-p: #2959a8; --tx-p-o: .46; --tx-s: #f3f3f1; --tx-s-o: .075; --tx-g: #be9659; --tx-g-o: .30; }
 .tx--light .drift { color: #2959a8; }
