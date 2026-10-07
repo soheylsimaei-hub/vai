@@ -71,6 +71,30 @@ for (const p of ["pulse/index.html", "pulse/guidelines/index.html"]) if (existsS
   check(!/background(-image)?:[^;"]*url\([^)]*(png|jpe?g|webp|gif)/.test(css.split(".tx")[1] ?? ""), "texture must not use raster backgrounds");
 }
 
+// About page + photography: institutional positioning, honest imagery, no layout shift, no accessibility regression
+{
+  const about = read("about/index.html");
+  const css = readdirSync(join(dist, "_astro")).filter((f) => f.endsWith(".css")).map((f) => readFileSync(join(dist, "_astro", f), "utf-8")).join("\n");
+  check(!/Simaei|founder-portrait|Founder-led|Founder &amp; Academic|leadership note/i.test(about), "about: founder-centric content has returned");
+  check(!/VAI (faculty|experts?|team|members|community)\b/i.test(about.replace(/The people shown are not VAI faculty, team or members\./g, "")), "about: imagery or copy implies VAI faculty/team/members");
+  const imgs = [...about.matchAll(/<img\b[^>]*>/g)].map((m) => m[0]).filter((t) => /photography\/library/.test(t));
+  check(imgs.length >= 15, `about: expected the photography compositions, found ${imgs.length} images`);
+  for (const t of imgs) {
+    check(/\bwidth="\d+"/.test(t) && /\bheight="\d+"/.test(t), "about: image without width/height (layout shift)");
+    check(/loading="lazy"/.test(t), "about: library image is not lazy-loaded");
+    check(/\balt(=|\s|>)/.test(t), "about: image without an alt attribute (decorative images render a bare alt, which is an empty alt)");
+  }
+  const dupSets = about.match(/<div class="ph-set" data-dup="true" aria-hidden="true">/g) ?? [];
+  check(dupSets.length === 4, `about: expected 4 aria-hidden duplicate stream sets, found ${dupSets.length}`);
+  check(/Illustrative imagery generated for VAI\./.test(about), "about: photography disclosure missing");
+  check(/@media\s*\(prefers-reduced-motion:\s*reduce\)[^@]*\.ph-track\{[^}]*animation:\s*none/.test(css), "css: reduced-motion rule for the photo stream is missing");
+  check(!/<script[^>]*>[^<]*(ph-track|photo-stream)/.test(about), "about: the photo stream must be CSS-only");
+  check(/\.font-brand-serif\{/.test(css) && /\.eyebrow-brand\{/.test(css), "css: .font-brand-serif / .eyebrow-brand missing from the build (premature comment terminator?)");
+  const leadership = read("about/leadership/index.html");
+  check(/http-equiv="refresh"[^>]*url=\/about\//.test(leadership) && /noindex/.test(leadership), "about/leadership must be a noindex redirect to /about/");
+  check(!/about\/leadership/.test(existsSync(join(dist, "sitemap-0.xml")) ? read("sitemap-0.xml") : ""), "sitemap: retired /about/leadership/ is still listed");
+}
+
 // homepage
 const home = read("index.html");
 const homeSection = home.match(/<section id="pulse"[\s\S]*?<\/section>/)?.[0] ?? "";

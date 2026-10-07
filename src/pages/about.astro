@@ -2,10 +2,18 @@
 import Base from '../layouts/Base.astro';
 import SignatureGeometry from '../components/texture/SignatureGeometry.astro';
 import ReasoningLines from '../components/texture/ReasoningLines.astro';
+import Photo from '../components/photo/Photo.astro';
+import PhotoStream from '../components/photo/PhotoStream.astro';
+import PhotoRow from '../components/photo/PhotoRow.astro';
+import { PHOTO_DISCLOSURE, PHOTO_DISCLOSURE_SHORT } from '../lib/photography/library';
 
 // About VAI — institutional page. Deliberately not founder- or Academy-centred: it states what VAI is, why it exists, how its capabilities
 // connect, what it is built around and where it is going. Built against the same --brand-* tokens, spacing tiers (sec-*) and texture system
 // as the homepage (see the TEXTURE SYSTEM block in src/styles/global.css); texture is used on five sections only, the rest are left at rest.
+//
+// Photography: illustrative imagery of the profession (see src/lib/photography/library.ts and the PHOTOGRAPHY SYSTEM block in global.css). It is
+// used for a few deliberate moments only (stream after the opening, breadth, Pulse, Academy, closing composition) and is never presented as VAI
+// faculty, team or members; the disclosure travels with every composition.
 //
 // Tense rule: Ask VAI, Practice and VAI Pulse are described as they exist today; Learn / Academy-connected development and the closing
 // "direction" are written as direction, never as available functionality. No partnerships, faculty, validation, numbers or regulatory
@@ -57,7 +65,7 @@ const breadth = ['Across species', 'Across disciplines', 'Across professional se
     <div class="tx-content mx-auto max-w-6xl px-6 sec-hero">
       <div class="max-w-4xl">
         <div class="eyebrow-brand mb-5" style="color: var(--brand-gold);">About VAI</div>
-        <h1 class="font-serif text-[var(--brand-cloud-white)] text-4xl md:text-6xl leading-[1.08] mb-7">
+        <h1 class="font-brand-serif text-[var(--brand-cloud-white)] text-4xl md:text-6xl leading-[1.08] mb-7">
           Built around how veterinary professionals think, practise and develop.
         </h1>
         <p class="text-lg md:text-xl leading-relaxed opacity-90 max-w-2xl">
@@ -73,7 +81,7 @@ const breadth = ['Across species', 'Across disciplines', 'Across professional se
       <div class="grid md:grid-cols-12 gap-6 md:gap-14">
         <div class="md:col-span-6">
           <div class="eyebrow-brand mb-4">Why VAI</div>
-          <h2 class="font-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15]">
+          <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15]">
             Veterinary knowledge is growing. The challenge is turning it into better professional judgement.
           </h2>
         </div>
@@ -81,12 +89,46 @@ const breadth = ['Across species', 'Across disciplines', 'Across professional se
           <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-5">
             Veterinary professionals work in an environment of expanding scientific literature, complex clinical decisions, difficult client conversations and continuous expectations to remain current.
           </p>
-          <p class="font-serif text-[var(--brand-midnight-navy)] text-2xl leading-snug mb-5">Knowledge alone is not enough.</p>
+          <p class="font-brand-serif text-[var(--brand-midnight-navy)] text-2xl leading-snug mb-5">Knowledge alone is not enough.</p>
           <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed">
             VAI is being built to help connect evidence with reasoning, reasoning with practice, and practice with continued professional development.
           </p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- 2b. The profession — editorial photograph stream (desktop: two offset rows drifting in opposite directions; mobile: static two-column mosaic) -->
+  <section class="bg-[var(--brand-cloud-white)]" aria-label="The veterinary profession">
+    <div class="pb-8 md:pb-12">
+      <PhotoStream
+        rowA={[
+          { id: 'scholar-whiteboard', ratio: 'portrait' },
+          { id: 'imaging-teaching-scrubs', ratio: 'landscape' },
+          { id: 'educator-heart-model', ratio: 'portrait' },
+          { id: 'lecturer-woman-screen', ratio: 'landscape' },
+          { id: 'surgeon-mentor-team', ratio: 'portrait' },
+        ]}
+        rowB={[
+          { id: 'woman-library-black', ratio: 'portrait' },
+          { id: 'vet-with-dog-classroom', ratio: 'landscape' },
+          { id: 'senior-vet-radiograph', ratio: 'portrait' },
+          { id: 'educator-imaging-screen', ratio: 'landscape' },
+          { id: 'educator-laughing-classroom', ratio: 'portrait' },
+        ]}
+        mobile={[
+          [
+            { id: 'scholar-whiteboard', ratio: 'portrait' },
+            { id: 'imaging-teaching-scrubs', ratio: 'square' },
+            { id: 'surgeon-mentor-team', ratio: 'portrait' },
+          ],
+          [
+            { id: 'educator-heart-model', ratio: 'portrait' },
+            { id: 'vet-with-dog-classroom', ratio: 'square' },
+            { id: 'senior-vet-radiograph', ratio: 'portrait' },
+          ],
+        ]}
+      />
     </div>
   </section>
 
@@ -96,7 +138,7 @@ const breadth = ['Across species', 'Across disciplines', 'Across professional se
     <div class="tx-content mx-auto max-w-6xl px-6 sec-feature">
       <div class="max-w-3xl mb-8 md:mb-10">
         <div class="eyebrow-brand mb-4">The platform</div>
-        <h2 class="font-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15]">From evidence to capability.</h2>
+        <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15]">From evidence to capability.</h2>
       </div>
 
       <ol class="relative pl-7 md:pl-10">
@@ -105,7 +147,7 @@ const breadth = ['Across species', 'Across disciplines', 'Across professional se
           <li class="relative grid md:grid-cols-12 gap-x-12 gap-y-2 py-5 md:py-6 border-t border-black/10 first:border-t-0">
             <span class="absolute -left-7 md:-left-10 top-[2.05rem] md:top-[2.3rem] w-[7px] h-[7px] rounded-full border border-[var(--brand-gold)] bg-white" aria-hidden="true"></span>
             <div class="md:col-span-4">
-              <div class="font-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-none mb-2">{p.word}</div>
+              <div class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-none mb-2">{p.word}</div>
               <div class="eyebrow-brand">{p.label}</div>
             </div>
             <div class="md:col-span-8 md:pt-1">
@@ -128,12 +170,12 @@ const breadth = ['Across species', 'Across disciplines', 'Across professional se
     <div class="tx-content mx-auto max-w-6xl px-6 sec-feature">
       <div class="max-w-3xl mb-8 md:mb-10">
         <div class="eyebrow-brand mb-4" style="color: var(--brand-gold);">How we build</div>
-        <h2 class="font-serif text-[var(--brand-cloud-white)] text-3xl md:text-4xl leading-[1.15]">Professional trust has to be earned.</h2>
+        <h2 class="font-brand-serif text-[var(--brand-cloud-white)] text-3xl md:text-4xl leading-[1.15]">Professional trust has to be earned.</h2>
       </div>
       <ul class="border-t border-white/15 divide-y divide-white/15">
         {principles.map((p) => (
           <li class="grid md:grid-cols-12 gap-x-12 gap-y-1.5 py-5">
-            <h3 class="md:col-span-5 font-serif text-xl md:text-2xl leading-snug text-[var(--brand-cloud-white)]">{p.t}</h3>
+            <h3 class="md:col-span-5 font-brand-serif text-xl md:text-2xl leading-snug text-[var(--brand-cloud-white)]">{p.t}</h3>
             <p class="md:col-span-7 opacity-80 leading-relaxed max-w-xl">{p.d}</p>
           </li>
         ))}
@@ -141,62 +183,85 @@ const breadth = ['Across species', 'Across disciplines', 'Across professional se
     </div>
   </section>
 
-  <!-- 5. Breadth — at rest; the three-part hairline layout is its only ornament. No specialties are listed. -->
+  <!-- 5. Breadth — headline across the top; the three scopes and the explanation on the left, a deliberate photographic row on the right.
+       No specialties are listed, and no image is tied to a particular label (the people shown are illustrative). -->
   <section class="bg-[var(--brand-cloud-white)]">
     <div class="mx-auto max-w-6xl px-6 sec-feature">
       <div class="max-w-3xl mb-8 md:mb-10">
         <div class="eyebrow-brand mb-4">Veterinary medicine</div>
-        <h2 class="font-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15]">Built for the breadth of the profession.</h2>
+        <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15]">Built for the breadth of the profession.</h2>
       </div>
-      <div class="grid md:grid-cols-3 md:divide-x md:divide-black/10 border-t border-black/10 mb-8 md:mb-10">
-        {breadth.map((b, i) => (
-          <div class={`py-4 md:py-6 ${i === 0 ? 'md:pr-8' : i === 1 ? 'md:px-8' : 'md:pl-8'} ${i > 0 ? 'border-t border-black/10 md:border-t-0' : ''}`}>
-            <div class="font-serif text-[var(--brand-midnight-navy)] text-2xl">{b}</div>
-          </div>
-        ))}
-      </div>
-      <div class="max-w-2xl">
-        <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-4">
-          VAI Veterinary is being developed with veterinary medicine as its long-term scope &mdash; across species, disciplines and professional settings.
-        </p>
-        <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed">
-          Its initial capabilities are deliberately being built and validated in focused clinical areas before broader expansion.
-        </p>
+      <div class="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
+        <div class="md:col-span-4">
+          <ul class="border-t border-black/10 divide-y divide-black/10 mb-6">
+            {breadth.map((b) => (
+              <li class="py-3 font-brand-serif text-[var(--brand-midnight-navy)] text-2xl">{b}</li>
+            ))}
+          </ul>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-4">
+            VAI Veterinary is being developed with veterinary medicine as its long-term scope &mdash; across species, disciplines and professional settings.
+          </p>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed">
+            Its initial capabilities are deliberately being built and validated in focused clinical areas before broader expansion.
+          </p>
+        </div>
+        <div class="md:col-span-8">
+          <PhotoRow
+            items={[
+              { id: 'surgeon-theatre', ratio: 'landscape', m: 'full', mOrder: 0 },
+              { id: 'professor-seminar', ratio: 'portrait', m: 'half', mOrder: 1 },
+              { id: 'clinic-floor-dogs', ratio: 'portrait', m: 'half', mOrder: 2 },
+            ]}
+            caption={PHOTO_DISCLOSURE_SHORT}
+          />
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 6. Continuously current — VAI Pulse -->
+  <!-- 6. Continuously current — VAI Pulse (keeps its own network motif; one editorial image) -->
   <section class="tx-host bg-white border-t border-black/10">
     <ReasoningLines variant="network" tone="light" place="pulse" />
     <div class="tx-content mx-auto max-w-6xl px-6 sec-standard">
-      <div class="max-w-2xl">
-        <div class="eyebrow-brand mb-4">Continuously current</div>
-        <h2 class="font-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-6">The evidence keeps moving. VAI should too.</h2>
-        <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-4">
-          Veterinary literature changes continuously. VAI Pulse provides a live view of newly indexed veterinary research and professional guidance, while VAI&rsquo;s evidence systems are being developed to support carefully sourced clinical reasoning.
-        </p>
-        <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-7">
-          The two are separate: Pulse is a discovery tool, and the papers it lists have not been reviewed or endorsed by VAI.
-        </p>
-        <a href="/pulse/" class="text-sm uppercase tracking-[0.08em] text-[var(--brand-clinical-blue)] hover:opacity-70 transition-opacity">Explore VAI Pulse &rarr;</a>
+      <div class="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
+        <div class="md:col-span-7">
+          <div class="eyebrow-brand mb-4">Continuously current</div>
+          <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-6">The evidence keeps moving. VAI should too.</h2>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-4">
+            Veterinary literature changes continuously. VAI Pulse provides a live view of newly indexed veterinary research and professional guidance, while VAI&rsquo;s evidence systems are being developed to support carefully sourced clinical reasoning.
+          </p>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-7">
+            The two are separate: Pulse is a discovery tool, and the papers it lists have not been reviewed or endorsed by VAI.
+          </p>
+          <a href="/pulse/" class="text-sm uppercase tracking-[0.08em] text-[var(--brand-clinical-blue)] hover:opacity-70 transition-opacity">Explore VAI Pulse &rarr;</a>
+        </div>
+        <figure class="md:col-span-4 md:col-start-9 lg:col-span-3 lg:col-start-10">
+          <Photo id="man-archive-papers" ratio="portrait" class="ph--m-landscape" sizes="(min-width: 768px) 24vw, 92vw" />
+          <figcaption class="ph-caption">{PHOTO_DISCLOSURE_SHORT}</figcaption>
+        </figure>
       </div>
     </div>
   </section>
 
-  <!-- 7. Education — at rest -->
+  <!-- 7. Education — teaching and discussion -->
   <section class="bg-[var(--brand-cloud-white)] border-t border-black/10">
     <div class="mx-auto max-w-6xl px-6 sec-standard">
-      <div class="max-w-2xl">
-        <div class="eyebrow-brand mb-4">VAI Veterinary Academy</div>
-        <h2 class="font-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-6">Education connected to professional practice.</h2>
-        <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-4">
-          VAI Veterinary Academy is the educational arm of VAI Veterinary, focused on structured professional development, case-based learning and expert-led education.
-        </p>
-        <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-7">
-          It is one part of the wider VAI platform, not the whole of it.
-        </p>
-        <a href={ACADEMY_URL} rel="noopener noreferrer" class="text-sm uppercase tracking-[0.08em] text-[var(--brand-clinical-blue)] hover:opacity-70 transition-opacity">Explore VAI Academy &rarr;</a>
+      <div class="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
+        <div class="md:col-span-6">
+          <div class="eyebrow-brand mb-4">VAI Veterinary Academy</div>
+          <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-6">Education connected to professional practice.</h2>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-4">
+            VAI Veterinary Academy is the educational arm of VAI Veterinary, focused on structured professional development, case-based learning and expert-led education.
+          </p>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-7">
+            It is one part of the wider VAI platform, not the whole of it.
+          </p>
+          <a href={ACADEMY_URL} rel="noopener noreferrer" class="text-sm uppercase tracking-[0.08em] text-[var(--brand-clinical-blue)] hover:opacity-70 transition-opacity">Explore VAI Academy &rarr;</a>
+        </div>
+        <figure class="md:col-span-6">
+          <Photo id="seminar-discussion" ratio="landscape" sizes="(min-width: 768px) 46vw, 92vw" />
+          <figcaption class="ph-caption">{PHOTO_DISCLOSURE_SHORT}</figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -207,7 +272,7 @@ const breadth = ['Across species', 'Across disciplines', 'Across professional se
     <div class="tx-content mx-auto max-w-6xl px-6 sec-standard">
       <div class="max-w-2xl">
         <div class="eyebrow-brand mb-4">Where we are going</div>
-        <h2 class="font-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-6">A professional system that learns where development is needed.</h2>
+        <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-6">A professional system that learns where development is needed.</h2>
         <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-4">
           VAI&rsquo;s longer-term direction is to connect evidence, reasoning, practice, assessment and education so that professional development can become more relevant to the individual clinician.
         </p>
@@ -218,11 +283,27 @@ const breadth = ['Across species', 'Across disciplines', 'Across professional se
     </div>
   </section>
 
+  <!-- 8b. Closing composition — the profession, set as a quiet editorial row before the call to action -->
+  <section class="bg-[var(--brand-cloud-white)] border-t border-black/10">
+    <div class="mx-auto max-w-[84rem] px-6 sec-standard">
+      <PhotoRow
+        stagger
+        items={[
+          { id: 'educator-anatomy-monitor', ratio: 'portrait', alt: '', m: 'half', mOrder: 1 },
+          { id: 'lecturer-lecture-hall', ratio: 'landscape', alt: '', m: 'full', mOrder: 0 },
+          { id: 'man-whiteboard-classroom', ratio: 'portrait', alt: '', m: 'half', mOrder: 2 },
+          { id: 'senior-man-screen', ratio: 'landscape', alt: '', m: 'full', mOrder: 3 },
+        ]}
+        caption={`The people, knowledge and environments of veterinary medicine. ${PHOTO_DISCLOSURE}`}
+      />
+    </div>
+  </section>
+
   <!-- 9. Final CTA -->
-  <section class="tx-host bg-[var(--brand-cloud-white)] border-t border-black/10">
+  <section class="tx-host bg-[var(--brand-cloud-white)]">
     <SignatureGeometry tone="light" place="cta" />
     <div class="tx-content mx-auto max-w-6xl px-6 sec-standard text-center">
-      <h2 class="font-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] max-w-2xl mx-auto mb-10">
+      <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] max-w-2xl mx-auto mb-10">
         Bring the case that&rsquo;s on your mind.
       </h2>
       <a href={OPEN_VAI_URL} rel="noopener noreferrer" class="btn-brand btn-brand-primary">Open VAI</a>

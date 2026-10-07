@@ -176,13 +176,21 @@
    * ---------------------------------------------------------------------
    * Deliberately separate from .btn/.btn-primary/.eyebrow/.rule-gold and
    * the base h1-h6/html rules above, which every still-live legacy page
-   * depends on for its current appearance. These new .btn-brand-*/
-   * .eyebrow-brand/.font-brand-* classes exist so the redesign (Nav,
-   * Footer, homepage) can use the real --brand-* tokens without touching
-   * — or visually altering — any page that has not been redesigned yet.
-   * Mirrors the app.vai.vet product header own .btn/.btn-primary pill
-   * convention exactly (same padding, radius, letter-spacing, and hover
-   * darken values) so the two sites read as one brand.
+   * depends on for its current appearance. The new .btn-brand family, the
+   * .eyebrow-brand class and the .font-brand-serif / .font-brand-sans
+   * classes exist so the redesign (Nav, Footer, homepage) can use the real
+   * --brand-* tokens without touching — or visually altering — any page
+   * that has not been redesigned yet. Mirrors the app.vai.vet product
+   * header own .btn/.btn-primary pill convention exactly (same padding,
+   * radius, letter-spacing, and hover darken values) so the two sites read
+   * as one brand.
+   *
+   * NEVER write a star followed by a slash inside one of these comments
+   * (for example a class-name wildcard right before a slash): that pair
+   * ends the comment early, the remaining words become a bogus selector
+   * and the next real rule is silently dropped from the build. That is
+   * exactly why .font-brand-serif used to be missing from production CSS
+   * (the homepage "Reason / Practise / Develop" labels fell back to sans).
    */
   .font-brand-serif { font-family: var(--brand-font-headline); }
   .font-brand-sans { font-family: var(--brand-font-body); }
@@ -329,4 +337,89 @@
     pointer-events: none;
     box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.55);
   }
+}
+
+/* =====================================================================================================================
+ * VAI PHOTOGRAPHY SYSTEM
+ * One set of rules so the library reads as a single commissioned campaign. Rendered only through src/components/photo/
+ * (Photo, PhotoStream, PhotoRow); manifest and crop focal points in src/lib/photography/library.ts.
+ *
+ *   Crops        portrait 4:5 | landscape 3:2 | wide 2:1 | square 1:1. Never anything taller than 4:5 or wider than 2:1. Faces stay in the upper
+ *                half of the frame (object-position y is per image in the manifest).
+ *   Shape        2px radius, no card chrome, no drop shadows. A 1px navy hairline sits inside the edge.
+ *   Treatment    saturate .94 / contrast 1.02 and a very light navy veil (3.5%) with a faint lower falloff. Realism is preserved; no filters beyond that.
+ *   Spacing      photographs sit inside the same sec-* vertical tiers and max-w-6xl container as text; gaps 12px (8px < 768px).
+ *   Loading      lazy + async decode everywhere except an image in the first viewport. width/height attributes and an aspect-ratio box reserve space.
+ *   Motion       only the About stream moves: CSS transform, 70-90s per loop, opposite directions, paused on hover, off under prefers-reduced-motion.
+ *   People       the imagery is illustrative; the disclosure (PHOTO_DISCLOSURE) accompanies every composition. Never captioned as faculty/team/members.
+ * ===================================================================================================================== */
+/* In @layer components so Tailwind utilities (hidden, md:hidden, ...) can still override display. */
+@layer components {
+:root {
+  --ph-radius: 2px;
+  --ph-gap: 12px;
+  --ph-filter: saturate(.94) contrast(1.02);
+  --ph-h: clamp(180px, 17vw, 340px);
+  --ph-dur-a: 80s;
+  --ph-dur-b: 96s;
+}
+@media (max-width: 767px) { :root { --ph-gap: 8px; } }
+
+.ph { position: relative; overflow: hidden; background: #e3e1db; border-radius: var(--ph-radius); }
+.ph--portrait  { aspect-ratio: 4 / 5; }
+.ph--landscape { aspect-ratio: 3 / 2; }
+.ph--wide      { aspect-ratio: 2 / 1; }
+.ph--square    { aspect-ratio: 1 / 1; }
+.ph--fill      { width: 100%; height: 100%; }
+.ph > img { display: block; width: 100%; height: 100%; object-fit: cover; filter: var(--ph-filter); }
+.ph::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
+  background: linear-gradient(180deg, rgba(11,28,52,0) 62%, rgba(11,28,52,.09)), rgba(11,28,52,.035);
+  box-shadow: inset 0 0 0 1px rgba(11,28,52,.10);
+}
+@media (max-width: 767px) {
+  .ph--m-landscape { aspect-ratio: 3 / 2; }
+  .ph--m-portrait  { aspect-ratio: 4 / 5; }
+}
+
+.ph-caption { margin-top: .85rem; font-size: .75rem; line-height: 1.5; letter-spacing: .01em; color: var(--brand-midnight-navy); opacity: .62; }
+.ph-disclosure { display: block; opacity: .85; }
+
+/* ---- static editorial row -------------------------------------------------------------------------------------------------- */
+.ph-grid { display: grid; gap: var(--ph-gap); align-items: start; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ph-cell { order: var(--ph-order); min-width: 0; }
+.ph-cell--full { grid-column: 1 / -1; }
+@media (min-width: 768px) {
+  .ph-grid { grid-template-columns: var(--ph-cols); }
+  .ph-cell { order: 0; }
+  .ph-cell--full { grid-column: auto; }
+  .ph-grid--stagger > .ph-cell:nth-child(even) { margin-top: 28px; }
+}
+
+/* ---- moving stream (desktop) ----------------------------------------------------------------------------------------------- */
+.ph-rows {
+  display: flex; flex-direction: column; gap: var(--ph-gap); overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.ph-row { overflow: hidden; }
+.ph-track { display: flex; width: max-content; will-change: transform; animation: ph-drift-left var(--ph-dur-a) linear infinite; }
+.ph-row--b .ph-track { animation-name: ph-drift-right; animation-duration: var(--ph-dur-b); animation-delay: -31s; }
+.ph-set { display: flex; flex: none; }
+.ph-item { flex: none; height: var(--ph-h); margin-right: var(--ph-gap); }
+.ph-item--portrait  { aspect-ratio: 4 / 5; }
+.ph-item--landscape { aspect-ratio: 3 / 2; }
+.ph-stream:hover .ph-track { animation-play-state: paused; }
+@keyframes ph-drift-left  { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-33.3333%, 0, 0); } }
+@keyframes ph-drift-right { from { transform: translate3d(-33.3333%, 0, 0); } to { transform: translate3d(0, 0, 0); } }
+@media (prefers-reduced-motion: reduce) {
+  .ph-track { animation: none !important; }
+  .ph-set[data-dup] { display: none; }
+  .ph-row--b .ph-track { transform: translate3d(-14%, 0, 0); }
+}
+
+/* ---- intentional mobile composition (< 768px): two offset columns, no motion ------------------------------------------------ */
+.ph-stream-mobile { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ph-gap); padding-inline: 1.5rem; }
+.ph-mcol { display: flex; flex-direction: column; gap: var(--ph-gap); min-width: 0; }
+.ph-mcol--offset { padding-top: 1.75rem; }
 }

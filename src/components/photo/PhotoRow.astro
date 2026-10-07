@@ -1,0 +1,40 @@
+---
+// VAI PHOTO ROW — a static editorial row: items share one height on desktop (columns are proportional to each crop's aspect ratio), optionally
+// staggered; on < 768px it becomes a two-column grid where landscape items span the full width. Used for the breadth strip and the closing
+// composition on /about/, and intended for any other "a few images, set deliberately" moment on the site.
+import Photo from './Photo.astro';
+
+interface Item {
+  id: string;
+  ratio: 'portrait' | 'landscape';
+  /** < 768px: 'full' spans both columns (shown 3:2), 'half' takes one column (shown 4:5). Defaults: landscape -> full, portrait -> half. */
+  m?: 'full' | 'half';
+  /** < 768px visual order. */
+  mOrder?: number;
+  alt?: string;
+}
+interface Props { items: Item[]; stagger?: boolean; caption?: string; class?: string }
+const { items, stagger = false, caption, class: cls = '' } = Astro.props;
+const RATIO = { portrait: 0.8, landscape: 1.5 } as const;
+const cols = items.map((i) => `${RATIO[i.ratio]}fr`).join(' ');
+---
+<figure class={`ph-row-static ${cls}`.trim()}>
+  <div class={`ph-grid ${stagger ? 'ph-grid--stagger' : ''}`} style={`--ph-cols: ${cols};`}>
+    {items.map((it, n) => {
+      const m = it.m ?? (it.ratio === 'landscape' ? 'full' : 'half');
+      return (
+        <div class={`ph-cell ph-cell--${m}`} style={`--ph-order: ${it.mOrder ?? n};`}>
+          <Photo
+            id={it.id}
+            ratio={it.ratio}
+            alt={it.alt}
+            decorative={it.alt === ''}
+            class={m === 'full' ? 'ph--m-landscape' : 'ph--m-portrait'}
+            sizes={it.ratio === 'landscape' ? '(min-width: 768px) 38vw, 92vw' : '(min-width: 768px) 22vw, 46vw'}
+          />
+        </div>
+      );
+    })}
+  </div>
+  {caption && <figcaption class="ph-caption">{caption}</figcaption>}
+</figure>
