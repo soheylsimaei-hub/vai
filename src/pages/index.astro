@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import PulseHome from '../components/pulse/PulseHome.astro';
 
 // Phase 4A redesign — full homepage rewrite. Deliberately does not import
 // Section.astro: that component is hardwired to the legacy --color-navy/
@@ -87,6 +88,9 @@ const PRACTICE_CAPTURE: string | null = null;
       </div>
     </div>
   </section>
+
+  <!-- 2b. VAI Pulse — compact public literature highlights (build-time PubMed snapshot; omitted automatically if unavailable). -->
+  <PulseHome />
 
   <!-- 3. Ask VAI — Phase 4A.7: the dev-only placeholder panel is removed
        for production (it must never ship as visible content). Structured

@@ -1,0 +1,18 @@
+{
+  "source": "vai-app/src/lib/scientific-radar",
+  "sourceCommit": "9a4b99d",
+  "sourceHadUncommittedChanges": false,
+  "strippedImports": [
+    "import \"server-only\""
+  ],
+  "files": {
+    "config.ts": "f79bc26c6fe5bd2fbdbb72df2cdfa972e6e10e8ef6e0da739e27bfa7f4713de7",
+    "pubmed.ts": "d019d3f5626b18a633a3aca6b37fadf018cebe6c98f326dfdc7873d87e39b6ea",
+    "journals.ts": "1bd35ad681dbde45220f462414f4194789a86204243d9704ec72601ee70fc528",
+    "disciplines.ts": "97f286704531bd4ecf564af478f7a6d69d45adf3c6c45f99a371b8f421328162",
+    "query.ts": "ff6fee8eb6345bd5cf81401afd33a6926f916828d4c1a929f0a57fabdd34f22e",
+    "classify.ts": "fcf91980b15c85cf86b1b4833379b8e87b96f73d40a60f4a9a1441267cd10954",
+    "records.ts": "e3570195eea1bcc2054813ae65f75851a2ffc41512241e8e446c3be8da4f0c5e",
+    "fetch.ts": "59688966573eace835b953b3f8754dc69305642fed90afb3e18a49724309df4e"
+  }
+}

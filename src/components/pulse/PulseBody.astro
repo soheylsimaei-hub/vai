@@ -1,0 +1,51 @@
+---
+// The results area as a pure function of (request, loaded snapshot): records, empty state, "temporarily unavailable" and "showing the last
+// snapshot" states. Static HTML only; nothing here talks to PubMed at view time.
+import { PERIODS } from '../../lib/pulse/engine/query';
+import { disciplineLabel, pulseHref, type PulseRequest } from '../../lib/pulse/routes';
+import { comboRecords, type LoadedSnapshot } from '../../lib/pulse/snapshot';
+import PulseCard from './PulseCard.astro';
+
+interface Props { request: PulseRequest; loaded: LoadedSnapshot }
+const { request, loaded } = Astro.props;
+const fmt = (iso: string) => `${new Date(iso).toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'UTC' })} UTC`;
+const period = PERIODS.find((p) => p.id === request.period)!;
+const widen = PERIODS.find((p) => p.days > period.days);
+const snap = loaded.snapshot;
+const data = snap ? comboRecords(snap, request) : null;
+const label = request.discipline === 'all' ? null : disciplineLabel(request.discipline);
+---
+<section class="mt-8" aria-live="polite">
+  {(!snap || !data || !data.ok) && (
+    <div role="status" class="border border-black/10 bg-white p-6 md:p-8">
+      <h2 class="font-brand-serif mb-2 text-xl text-[var(--brand-midnight-navy)]">PubMed isn&rsquo;t responding right now</h2>
+      <p class="max-w-2xl text-sm leading-relaxed text-[var(--color-muted)]">VAI Pulse refreshes every few hours and will pick up again on its own. Please check back shortly.</p>
+    </div>
+  )}
+
+  {snap && data && data.ok && (
+    <>
+      {loaded.source === 'cached' && (
+        <p class="mb-4 border border-black/10 bg-white px-4 py-3 text-sm text-[var(--color-muted)]">PubMed was unreachable at the last refresh. Showing the most recent snapshot ({fmt(snap.generatedAt)}).</p>
+      )}
+      {data.records.length === 0 ? (
+        <div role="status" class="border border-black/10 bg-white p-6 md:p-8">
+          <h2 class="font-brand-serif mb-2 text-xl text-[var(--brand-midnight-navy)]">No papers match this selection</h2>
+          <p class="max-w-2xl text-sm leading-relaxed text-[var(--color-muted)]">
+            Nothing was added to PubMed in the last {period.label} for this combination.{' '}
+            {widen ? <>Try <a class="underline underline-offset-2" href={pulseHref({ ...request, period: widen.id })}>the last {widen.label}</a> or choose another discipline.</> : <>Try another discipline.</>}
+          </p>
+        </div>
+      ) : (
+        <>
+          <p class="mb-4 text-sm text-[var(--color-muted)]">
+            {data.total > data.records.length ? `Showing the ${data.records.length} most recently added of ${data.total.toLocaleString('en-GB')}` : `${data.total.toLocaleString('en-GB')} ${data.total === 1 ? 'paper' : 'papers'}`}{label ? ` · ${label}` : ''} · updated {fmt(snap.generatedAt)}
+          </p>
+          <ul class="space-y-4">
+            {data.records.map((r) => <li><PulseCard record={r} /></li>)}
+          </ul>
+        </>
+      )}
+    </>
+  )}
+</section>

@@ -3,7 +3,16 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  # VAI Pulse is a build-time PubMed snapshot on a static host, so the site is rebuilt on a schedule to keep it current.
+  # (GitHub pauses scheduled runs on a repository with no activity for 60 days; any push or manual run resumes them.)
+  schedule:
+    - cron: '23 */3 * * *'
   workflow_dispatch:
+    inputs:
+      allow_degraded:
+        description: 'Publish even if PubMed is unreachable AND no cached Pulse snapshot exists (Pulse pages will show a "temporarily unavailable" notice)'
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -26,11 +35,25 @@ jobs:
           node-version: 20
       - name: Install dependencies
         run: npm install
+      # The last good PubMed snapshot, so a PubMed outage during a build falls back to it instead of blocking or breaking the deploy.
+      - name: Restore VAI Pulse snapshot cache
+        uses: actions/cache@v4
+        with:
+          path: .pulse-cache
+          key: pulse-snapshot-${{ github.run_id }}
+          restore-keys: pulse-snapshot-
       - name: Build
         run: npm run build
         env:
           PUBLIC_LMS_URL: ${{ vars.PUBLIC_LMS_URL || 'https://learn.vai.vet/login' }}
           PUBLIC_LMS_ENABLED: ${{ vars.PUBLIC_LMS_ENABLED || 'false' }}
+          # VAI Pulse -> NCBI E-utilities. Build-time only; never embedded in the site. Both optional.
+          VAI_PUBMED_CONTACT_EMAIL: ${{ vars.VAI_PUBMED_CONTACT_EMAIL }}
+          NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
+      - name: Verify VAI Pulse output
+        run: node scripts/verify-pulse-build.mjs dist
+        env:
+          PULSE_ALLOW_DEGRADED: ${{ inputs.allow_degraded && '1' || '0' }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

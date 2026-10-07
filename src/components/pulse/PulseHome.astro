@@ -1,0 +1,32 @@
+---
+// Homepage section: a compact "pulse" of about six PubMed records. Selection is the deterministic, PubMed-metadata-based rule in
+// lib/pulse/highlights.ts. If PubMed data is unavailable at build time the section is simply omitted: the homepage never breaks and never
+// shows a placeholder.
+import { loadSnapshot } from '../../lib/pulse/snapshot';
+import { pickHighlights } from '../../lib/pulse/highlights';
+import PulseCard from './PulseCard.astro';
+
+const loaded = await loadSnapshot();
+const items = loaded.snapshot ? pickHighlights(loaded.snapshot, 6) : [];
+const updated = loaded.snapshot ? `${new Date(loaded.snapshot.generatedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })}` : '';
+---
+{items.length >= 3 && (
+  <section id="pulse" class="bg-white border-t border-black/10">
+    <div class="mx-auto max-w-6xl px-6 py-14 md:py-16">
+      <div class="grid md:grid-cols-12 gap-8 md:gap-12">
+        <div class="md:col-span-4">
+          <div class="eyebrow-brand mb-4">VAI Pulse</div>
+          <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-4">What&rsquo;s new in veterinary medicine.</h2>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-6">Stay current with the latest veterinary research, guidelines and consensus statements.</p>
+          <a href="/pulse/" class="btn-brand btn-brand-primary">Explore VAI Pulse &rarr;</a>
+          <p class="mt-4 text-xs text-[var(--color-muted)]">From PubMed &middot; updated {updated}</p>
+        </div>
+        <div class="md:col-span-8">
+          <ul class="divide-y divide-black/10 border-y border-black/10">
+            {items.map((r, i) => <li class={i >= 4 ? 'hidden md:block' : undefined}><PulseCard record={r} compact /></li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+)}

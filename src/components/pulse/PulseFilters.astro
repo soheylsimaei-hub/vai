@@ -1,0 +1,46 @@
+---
+// Filters are plain links to pre-rendered pages: no JavaScript, every combination is a real, shareable URL.
+import { ALL_FILTERS, PERIODS, VIEWS, defaultPeriodFor } from '../../lib/pulse/engine/query';
+import { pulseHref, type PulseRequest } from '../../lib/pulse/routes';
+
+interface Props { request: PulseRequest }
+const { request } = Astro.props;
+const chip = 'whitespace-nowrap rounded-full border px-3.5 py-1.5 text-sm transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand-clinical-blue)]';
+const chipOn = `${chip} border-[var(--brand-midnight-navy)] bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]`;
+const chipOff = `${chip} border-black/15 text-[var(--brand-midnight-navy)] hover:border-[var(--brand-clinical-blue)] hover:text-[var(--brand-clinical-blue)]`;
+---
+<div class="space-y-5">
+  <nav aria-label="Pulse view" class="grid grid-cols-2 gap-2 md:max-w-xl">
+    {VIEWS.map((v) => {
+      const on = request.view === v.id;
+      const prominent = v.id === 'guidelines';
+      const cls = on
+        ? 'border-[var(--brand-midnight-navy)] bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]'
+        : prominent
+          ? 'border-[var(--brand-gold)] bg-[var(--brand-gold)]/10 text-[var(--brand-midnight-navy)] hover:bg-[var(--brand-gold)]/20'
+          : 'border-black/15 text-[var(--brand-midnight-navy)] hover:border-[var(--brand-clinical-blue)]';
+      return <a href={pulseHref({ view: v.id, discipline: request.discipline, period: defaultPeriodFor(v.id) })} aria-current={on ? 'page' : undefined} class={`rounded-lg border px-4 py-3 text-center text-sm font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand-clinical-blue)] ${cls}`}>{v.label}</a>;
+    })}
+  </nav>
+
+  {request.view === 'guidelines' && (
+    <p class="text-sm text-[var(--color-muted)]">Showing records PubMed types as a guideline or consensus statement, plus titles that mention them.</p>
+  )}
+
+  <nav aria-label="Discipline" class="-mx-6 overflow-x-auto px-6 pb-1 md:mx-0 md:overflow-visible md:px-0">
+    <ul class="flex gap-2 md:flex-wrap">
+      {ALL_FILTERS.map((f) => {
+        const on = request.discipline === f.id;
+        return <li><a href={pulseHref({ ...request, discipline: f.id })} aria-current={on ? 'page' : undefined} class={on ? chipOn : chipOff}>{f.label}</a></li>;
+      })}
+    </ul>
+  </nav>
+
+  <nav aria-label="Time period" class="flex flex-wrap items-center gap-2 text-sm">
+    <span class="mr-1 text-[var(--color-muted)]">Added to PubMed in the last</span>
+    {PERIODS.map((p) => {
+      const on = request.period === p.id;
+      return <a href={pulseHref({ ...request, period: p.id })} aria-current={on ? 'page' : undefined} class={on ? chipOn : chipOff}>{p.label}</a>;
+    })}
+  </nav>
+</div>

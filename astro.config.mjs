@@ -8,7 +8,8 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
-      filter: (page) => !page.includes('/founding-faculty'),
+      // /pulse/{view}/{discipline}/{period}/ are thin filter variations of the two indexable Pulse pages (/pulse/, /pulse/guidelines/).
+      filter: (page) => !page.includes('/founding-faculty') && !/\/pulse\/(latest|guidelines)\/[^/]+/.test(page),
     }),
   ],
   vite: {

@@ -40,6 +40,8 @@ and variables → Actions → Variables).
 | Variable | Purpose | Default |
 | --- | --- | --- |
 | `PUBLIC_LMS_URL` | Student sign-in URL for the VAI Learning Management System. Update to the final URL once confirmed with the IT team (Omer / Faisal). | `https://learn.vai.vet/login` |
+| `VAI_PUBMED_CONTACT_EMAIL` | VAI Pulse. Operational mailbox sent to NCBI (PubMed) as the contact for this software. Build-time only, never in the site. Optional; recommended: `vai@vai.vet`. Set as a repository **variable**. | unset |
+| `NCBI_API_KEY` | VAI Pulse. Optional NCBI API key (3 -> 10 requests/second; not needed). Set as a repository **secret**. | unset |
 | `PUBLIC_LMS_ENABLED` | When `true`, the **Login** button is rendered in the main nav and mobile menu. When `false` (default), it is not rendered. Flip to `true` in the production repo variables once the LMS is publicly reachable. | `false` |
 
 ## Pages
@@ -52,7 +54,21 @@ and variables → Actions → Variables).
 /faculty                — teach with VAI
 /academic-standards     — programme docs, evidence hierarchy, ethics
 /contact                — enquiry pathways
+/pulse/                 — VAI Pulse: what's new in veterinary medicine (public, no login)
+/pulse/guidelines/      — VAI Pulse, Guidelines & Consensus
+/pulse/{view}/{discipline}/{period}/ — every filter combination (noindex)
 ```
+
+## VAI Pulse
+
+Public literature feature at `/pulse/` and a highlights section on the homepage. The site is static, so **there is no server cache**: each build takes ONE
+snapshot of PubMed (official NCBI E-utilities, no LLM, no scraping) and pre-renders all 120 view x discipline x period pages as plain HTML. The workflow
+rebuilds every 3 hours. The last good snapshot is kept in the Actions cache (`.pulse-cache/`); if PubMed is down the build falls back to it and the page
+says so. `scripts/verify-pulse-build.mjs` runs after every build and blocks the deploy if the output is unsound (manual override: run the workflow with
+`allow_degraded`).
+
+`src/lib/pulse/engine/` is a **generated copy** of the Scientific Radar engine from the `vai-app` repo (`scripts/sync-pulse-engine.mjs` there). Do not edit it
+here: change `vai-app`, re-sync, and commit the result. `npm test` fails if the copy was edited by hand.
 
 ## Relationship to Academia Europa
 

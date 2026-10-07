@@ -1,0 +1,41 @@
+---
+// VAI Pulse — public, no login. One pre-rendered static page per filter combination (see lib/pulse/routes.ts). The data is one PubMed
+// snapshot taken at build time (lib/pulse/snapshot.ts), so visitors never trigger a PubMed call.
+import Base from '../../layouts/Base.astro';
+import PulseFilters from '../../components/pulse/PulseFilters.astro';
+import PulseBody from '../../components/pulse/PulseBody.astro';
+import { parseSlug, staticSlugs } from '../../lib/pulse/routes';
+import { loadSnapshot } from '../../lib/pulse/snapshot';
+
+export async function getStaticPaths() {
+  return staticSlugs().map((slug) => ({ params: { slug } }));
+}
+const request = parseSlug(Astro.params.slug)!;
+const loaded = await loadSnapshot();
+// The two short defaults are the indexable pages. Every other combination is a thin variation of them: reachable and shareable, but kept out of
+// search results (and out of the sitemap, see astro.config.mjs).
+const indexable = Astro.params.slug === undefined || Astro.params.slug === 'guidelines';
+---
+<Base
+  title="VAI Pulse — What's new in veterinary medicine"
+  description="Stay current with the latest veterinary research, guidelines and consensus statements. Recent records from PubMed, by specialty, updated every few hours."
+  noindex={!indexable}
+>
+  <section class="bg-[var(--brand-cloud-white)]">
+    <div class="mx-auto max-w-5xl px-6 pt-14 md:pt-20 pb-16 md:pb-24">
+      <div class="eyebrow-brand mb-4">VAI Veterinary</div>
+      <h1 class="font-brand-serif text-[var(--brand-midnight-navy)] text-5xl md:text-6xl leading-[1.08] mb-4">VAI Pulse</h1>
+      <p class="font-brand-serif text-[var(--brand-midnight-navy)] text-2xl md:text-3xl leading-snug mb-4">What&rsquo;s new in veterinary medicine.</p>
+      <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed max-w-2xl mb-10">Stay current with the latest veterinary research, guidelines and consensus statements.</p>
+
+      <PulseFilters request={request} />
+      <PulseBody request={request} loaded={loaded} />
+
+      <p class="mt-12 border-t border-black/10 pt-6 text-xs leading-relaxed text-[var(--color-muted)]">
+        Records are listed from PubMed, courtesy of the U.S. National Library of Medicine, and refreshed every few hours. VAI Pulse is a
+        discovery tool: VAI has not reviewed these papers and does not endorse or interpret them. A label such as &ldquo;Practice guideline&rdquo; or &ldquo;Consensus
+        statement&rdquo; appears only when PubMed itself types the record that way. Read the original paper before it informs a clinical decision.
+      </p>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,43 @@
+---
+// One literature card. Bibliographic metadata only: no abstract, no full text, no generated interpretation. Every link leaves vai.vet for the
+// original PubMed record (or its DOI / PMC copy). A badge such as "Practice guideline" appears only when PubMed itself types the record that way.
+import { EMPHASIZED_TYPE_LABELS } from '../../lib/pulse/engine/classify';
+import type { RadarRecord } from '../../lib/pulse/engine/records';
+
+interface Props { record: RadarRecord; compact?: boolean }
+const { record: r, compact = false } = Astro.props;
+const titleMention = r.evidenceKind === 'title-mention';
+const showBadges = r.pubTypes.length > 0 || titleMention || r.retracted;
+const ext = { target: '_blank', rel: 'noopener noreferrer' };
+---
+<article class={compact ? 'py-4' : 'border border-black/10 bg-white p-5 md:p-6'} aria-labelledby={`pulse-${r.pmid}${compact ? '-c' : ''}`}>
+  {showBadges && (
+    <div class={`${compact ? 'mb-2' : 'mb-3'} flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[0.1em]`}>
+      {r.pubTypes.map((t) => (
+        <span class={EMPHASIZED_TYPE_LABELS.has(t) ? 'rounded-full border border-[var(--brand-gold)] bg-[var(--brand-gold)]/10 px-2.5 py-0.5 font-medium text-[var(--brand-midnight-navy)]' : 'rounded-full border border-black/15 px-2.5 py-0.5 text-[var(--color-muted)]'}>{t}</span>
+      ))}
+      {titleMention && <span class="rounded-full border border-dashed border-black/25 px-2.5 py-0.5 normal-case tracking-normal text-[var(--color-muted)]">Title mentions guidelines or consensus</span>}
+      {r.retracted && <span class="rounded-full border border-[var(--brand-midnight-navy)] px-2.5 py-0.5 font-semibold text-[var(--brand-midnight-navy)]">Retracted</span>}
+    </div>
+  )}
+  <h3 id={`pulse-${r.pmid}${compact ? '-c' : ''}`} class={`font-brand-serif leading-snug text-[var(--brand-midnight-navy)] ${compact ? 'text-base md:text-lg' : 'text-xl md:text-2xl'}`}>
+    <a href={r.pubmedUrl} {...ext} class="hover:text-[var(--brand-clinical-blue)]">{r.title}</a>
+  </h3>
+  <p class={`${compact ? 'mt-1.5 text-xs' : 'mt-2 text-sm'} text-[var(--brand-midnight-navy)]`}>
+    <span class="font-medium">{r.journal}</span>{r.pubDate && <span class="text-[var(--color-muted)]"> · {r.pubDate}</span>}
+  </p>
+  {!compact && r.authors && <p class="mt-1 text-sm text-[var(--color-muted)]">{r.authors}</p>}
+  {!compact && r.specialties.length > 0 && (
+    <ul class="mt-3 flex flex-wrap gap-1.5" aria-label="Topics">
+      {r.specialties.map((s) => <li class="rounded-full bg-[var(--brand-clinical-blue)]/10 px-2.5 py-0.5 text-xs text-[var(--brand-clinical-blue)]">{s.label}</li>)}
+    </ul>
+  )}
+  {!compact && (
+    <p class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-[var(--color-muted)]">
+      <span>PMID {r.pmid}</span>
+      {r.doi && r.doiUrl && <span>DOI <a href={r.doiUrl} {...ext} class="underline decoration-black/25 underline-offset-2 hover:text-[var(--brand-clinical-blue)]">{r.doi}</a></span>}
+      {r.freeFullTextUrl && <a href={r.freeFullTextUrl} {...ext} class="font-medium text-[var(--brand-clinical-blue)] underline underline-offset-2">Free full text (PMC)</a>}
+      <a href={r.pubmedUrl} {...ext} class="ml-auto font-medium text-[var(--brand-midnight-navy)] underline decoration-black/25 underline-offset-2 hover:text-[var(--brand-clinical-blue)]">View on PubMed ↗</a>
+    </p>
+  )}
+</article>
