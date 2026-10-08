@@ -53,7 +53,7 @@ export const PHOTOS: readonly PhotoEntry[] = [
   { id: 'trusted-vet-method-flags', use: 'authentic', ready: false, w: 1672, h: 941, widths: [800, 1280, 1672], alt: 'An educator standing in front of a European Union flag and a Portuguese flag', focus: { portrait: '55% 50%', landscape: '50% 30%' }, note: 'RESERVED, deliberately unused: large EU and Portuguese flags could imply governmental or EU affiliation. A colour-corrected master is stored in design-assets/photography-masters/ (not shipped to public/).' },
 
   // ---- placements (decided 2026-10-07; the library is a SITE-WIDE asset, not an About gallery) ---------------------------------------
-  //   /about/            first editorial composition: imaging-teaching-scrubs, vet-with-dog-classroom, surgeon-mentor-team
+  //   /about/            first editorial composition: imaging-teaching-scrubs, vet-with-dog-classroom, man-library-suit
   //                      breadth: surgeon-theatre (alone; senior-vet-radiograph removed as a near-duplicate subject)      academy: seminar-discussion (placeholder for a real course photo)
   //   homepage Teams     enterprise-clinic-team
   //   /academy/          trusted-vet-method-teaching, trusted-vet-method-desk (authentic); professor-seminar, educator-imaging-screen
@@ -88,7 +88,7 @@ export const PHOTOS: readonly PhotoEntry[] = [
   { id: 'educator-lanyard-whiteboard', use: 'profession', ready: false, alt: 'An educator with a lanyard beside a whiteboard', focus: { portrait: '62% 50%', landscape: '50% 30%' }, note: 'Reserve; near-duplicate of the arms-crossed educator portraits already used.' },
   { id: 'woman-library-smile', use: 'institutional', ready: false, alt: 'A woman smiling in an academic library', focus: { portrait: '52% 50%', landscape: '50% 35%' }, note: 'Near-duplicate of woman-library-black.' },
   { id: 'lecturer-man-screen', use: 'education', ready: false, alt: 'A lecturer in a white coat addressing a class with a projected image behind', focus: { portrait: '30% 50%', landscape: '50% 25%' }, note: 'Near-duplicate of the other lecturer-in-front-of-class frames.' },
-  { id: 'man-library-suit', use: 'institutional', ready: false, alt: 'A man in a dark suit in a long academic library', focus: { portrait: '56% 50%', landscape: '50% 25%' }, note: 'Same library setting as man-archive-papers; corporate suit look.' },
+  { id: 'man-library-suit', use: 'institutional', ready: true, w: 560, h: 700, widths: [560], alt: 'A man in a dark suit and tie standing in a long academic library', focus: { portrait: '50% 30%', landscape: '50% 30%' }, note: 'Chosen by the founder (2026-10-08) for the right-hand image of the About cluster. Generated archive image, pre-cropped to a 4:5 head-and-shoulders frame (the full frame is a wide library scene). No attribution required.' },
   { id: 'man-suit-anatomy-screen', use: 'profession', ready: false, alt: 'A man in a suit beside a screen showing an anatomical image', focus: { portrait: '62% 50%', landscape: '50% 35%' }, note: 'Appears to be the same subject as man-whiteboard-classroom.' },
   { id: 'man-library-portrait', use: 'unsuitable', ready: false, alt: 'A man in a dark suit in a library', focus: { portrait: '50% 50%', landscape: '50% 35%' }, note: 'Corporate-headshot feel and a repeat of the same subject; not VAI-appropriate.' },
   { id: 'man-whiteboard-text', use: 'unsuitable', ready: false, alt: 'A man beside a whiteboard covered in writing', focus: { portrait: '62% 50%', landscape: '50% 35%' }, note: 'Large garbled "Veterinary CLASS" lettering dominates the frame.' },
