@@ -54,7 +54,7 @@ export const PHOTOS: readonly PhotoEntry[] = [
   //   /about/            first editorial composition: imaging-teaching-scrubs, vet-with-dog-classroom, man-library-suit
   //                      breadth: surgeon-theatre (alone; senior-vet-radiograph removed as a near-duplicate subject)      academy: seminar-discussion (placeholder for a real course photo)
   //   homepage Teams     enterprise-clinic-team
-  //   /academy/          trusted-vet-method-teaching-r2, trusted-vet-method-desk-r2 (authentic; the -r2 suffix busts the 4-hour CDN/browser cache of the earlier same-named files); professor-seminar, educator-imaging-screen
+  //   /academy/          trusted-vet-method-teaching-r2, trusted-vet-method-desk-r2 (authentic; the -r2 suffix busts the 4-hour CDN/browser cache of the earlier same-named files); academy-expert-led, educator-imaging-screen
 //                      (the learning-experience section is deliberately image-free until a suitable professional-education photograph exists)
 //   everything else below is processed and RESERVED for future pages. Do not repeat the same person across nearby pages.
   { id: 'enterprise-clinic-team', use: 'enterprise', ready: true, alt: 'A veterinary clinic team of around twenty people in dark scrubs, with their dogs, gathered outside a white-columned building', focus: { portrait: '50% 50%', landscape: '50% 52%', square: '50% 50%' }, note: 'Enterprise / clinic-team asset only. Never on About; never implies the people shown are VAI customers or staff.' },
@@ -73,6 +73,7 @@ export const PHOTOS: readonly PhotoEntry[] = [
   { id: 'man-whiteboard-classroom', use: 'profession', ready: true, alt: 'A professional leaning against a whiteboard with a busy teaching room behind', focus: { portrait: '62% 50%', landscape: '50% 38%' } },
   { id: 'senior-man-screen', use: 'profession', ready: true, alt: 'A senior professional beside a wall screen showing an anatomical diagram', focus: { portrait: '58% 50%', landscape: '50% 30%' } },
   { id: 'surgeon-theatre', use: 'profession', ready: true, alt: 'A surgeon in scrubs standing with a clinical team in an operating theatre', focus: { portrait: '52% 50%', landscape: '50% 32%' } },
+  { id: 'academy-expert-led', use: 'education', ready: true, alt: 'A veterinarian in a white coat and clinical staff in scrubs gathered around dogs on a clinic floor', focus: { portrait: '50% 30%', landscape: '50% 24%' }, note: 'Supplied by the founder 2026-10-08 as the large image of /academy/ Expert-led education. Same photograph as the library entry clinic-floor-dogs, delivered from the supplied file (design-assets/photography-masters/academy-expert-led-master.webp). No attribution required.' },
   { id: 'professor-seminar', use: 'education', ready: true, alt: 'A professor in a white coat discussing a case with seated students', focus: { portrait: '52% 50%', landscape: '50% 34%' } },
   { id: 'clinic-floor-dogs', use: 'animal', ready: true, alt: 'Veterinary staff and a vet examining dogs together on a clinic floor', focus: { portrait: '44% 50%', landscape: '50% 45%' } },
   { id: 'man-archive-papers', use: 'editorial', ready: true, alt: 'A professional holding papers among stacks of documents in an old library', focus: { portrait: '50% 50%', landscape: '50% 38%' } },
