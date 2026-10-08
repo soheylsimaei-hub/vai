@@ -40,23 +40,21 @@ export interface PhotoEntry {
 export const PHOTO_WIDTHS = [480, 800, 1024] as const;
 export const PHOTO_BASE = '/photography/library';
 
-/** Authentic photographs are never captioned with a person's name or role, and carry only this factual line when a caption is used. */
-export const AUTHENTIC_CAPTION = 'Filmed during production of the Trusted Vet Method\u2122.';
 
 
 export const PHOTOS: readonly PhotoEntry[] = [
   // ---- authentic VAI photography (real, from the production of the Trusted Vet Method) ---------------------------------------------
   // Different role from everything below: these document real VAI educational work. They are not founder portraits and are never captioned,
   // named or framed that way. Do not repeat the same one across nearby pages.
-  { id: 'trusted-vet-method-teaching', use: 'authentic', ready: true, w: 1672, h: 941, widths: [800, 1280, 1672], alt: 'An educator explaining a point to camera in front of shelves of veterinary textbooks and a microscope', focus: { portrait: '52% 50%', landscape: '50% 38%' }, note: 'Primary authentic image (Academy, educational philosophy). Colour-corrected master supplied 2026-10-08 (design-assets/photography-masters/); small EU / Portuguese desk flags sit at left of frame.' },
-  { id: 'trusted-vet-method-desk', use: 'authentic', ready: true, w: 1672, h: 941, widths: [800, 1280, 1672], alt: 'A veterinary educator seated at a desk with a laptop and a veterinary surgery textbook, in a study lined with books', focus: { portrait: '54% 50%', landscape: '50% 42%' }, note: 'Formal / institutional frame. Secondary use only (Academy programme row). Colour-corrected master supplied 2026-10-08; small EU / Portuguese desk flags on the upper-left shelf.' },
+  { id: 'trusted-vet-method-teaching-r2', use: 'authentic', ready: true, w: 1672, h: 941, widths: [800, 1280, 1672], alt: 'An educator explaining a point to camera in front of shelves of veterinary textbooks and a microscope', focus: { portrait: '52% 50%', landscape: '50% 38%' }, note: 'Primary authentic image (Academy, educational philosophy). Colour-corrected master supplied 2026-10-08 (design-assets/photography-masters/); small EU / Portuguese desk flags sit at left of frame.' },
+  { id: 'trusted-vet-method-desk-r2', use: 'authentic', ready: true, w: 1672, h: 941, widths: [800, 1280, 1672], alt: 'A veterinary educator seated at a desk with a laptop and a veterinary surgery textbook, in a study lined with books', focus: { portrait: '54% 50%', landscape: '50% 42%' }, note: 'Formal / institutional frame. Secondary use only (Academy programme row). Colour-corrected master supplied 2026-10-08; small EU / Portuguese desk flags on the upper-left shelf.' },
   { id: 'trusted-vet-method-flags', use: 'authentic', ready: false, w: 1672, h: 941, widths: [800, 1280, 1672], alt: 'An educator standing in front of a European Union flag and a Portuguese flag', focus: { portrait: '55% 50%', landscape: '50% 30%' }, note: 'RESERVED, deliberately unused: large EU and Portuguese flags could imply governmental or EU affiliation. A colour-corrected master is stored in design-assets/photography-masters/ (not shipped to public/).' },
 
   // ---- placements (decided 2026-10-07; the library is a SITE-WIDE asset, not an About gallery) ---------------------------------------
   //   /about/            first editorial composition: imaging-teaching-scrubs, vet-with-dog-classroom, man-library-suit
   //                      breadth: surgeon-theatre (alone; senior-vet-radiograph removed as a near-duplicate subject)      academy: seminar-discussion (placeholder for a real course photo)
   //   homepage Teams     enterprise-clinic-team
-  //   /academy/          trusted-vet-method-teaching, trusted-vet-method-desk (authentic); professor-seminar, educator-imaging-screen
+  //   /academy/          trusted-vet-method-teaching-r2, trusted-vet-method-desk-r2 (authentic; the -r2 suffix busts the 4-hour CDN/browser cache of the earlier same-named files); professor-seminar, educator-imaging-screen
 //                      (the learning-experience section is deliberately image-free until a suitable professional-education photograph exists)
 //   everything else below is processed and RESERVED for future pages. Do not repeat the same person across nearby pages.
   { id: 'enterprise-clinic-team', use: 'enterprise', ready: true, alt: 'A veterinary clinic team of around twenty people in dark scrubs, with their dogs, gathered outside a white-columned building', focus: { portrait: '50% 50%', landscape: '50% 52%', square: '50% 50%' }, note: 'Enterprise / clinic-team asset only. Never on About; never implies the people shown are VAI customers or staff.' },

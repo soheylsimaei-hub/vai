@@ -108,7 +108,7 @@ for (const p of ["pulse/index.html", "pulse/guidelines/index.html"]) if (existsS
   check(!/VAI (faculty|experts?|instructors?|students|customers|community)\b/i.test(text), "academy: generated imagery implied to be VAI faculty/experts/students");
   const imgs = [...academy.matchAll(/<img\b[^>]*>/g)].map((m) => m[0]).filter((t) => /photography\/library/.test(t));
   check(imgs.length >= 4 && imgs.length <= 8, `academy: photography must stay curated (4-8 images), found ${imgs.length}`);
-  check(imgs.some((t) => /trusted-vet-method-teaching/.test(t)), "academy: the authentic teaching photograph is missing");
+  check(imgs.some((t) => /trusted-vet-method-teaching-r2/.test(t)), "academy: the authentic teaching photograph is missing");
   for (const [n, h] of [["academy", academy], ["home", read("index.html")]]) check(!/Illustrative image|illustrative purposes|not VAI (faculty|team|members)|Illustrative imagery generated/i.test(h), `${n}: image disclaimers must not return`);
   check(!/\bunderline\b/.test([...academy.matchAll(/class="([^"]*)"/g)].map((m) => m[1]).join(" ")), "academy: underline classes must not return");
   check(!/trusted-vet-method-flags/.test(academy + about_html()), "the flags photograph is reserved and must not be used");

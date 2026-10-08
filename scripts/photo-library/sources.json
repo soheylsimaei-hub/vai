@@ -136,7 +136,18 @@
   "source": "enterprise-clinic-team.png",
   "process": true
  },
- "trusted-vet-method-teaching": {
+ "trusted-vet-method-flags": {
+  "source": "design-assets/photography-masters/trusted-vet-method-flags-master.webp",
+  "process": false,
+  "native": true,
+  "widths": [
+   800,
+   1280,
+   1672
+  ],
+  "quality": 92
+ },
+ "trusted-vet-method-teaching-r2": {
   "source": "design-assets/photography-masters/trusted-vet-method-teaching-master.webp",
   "process": true,
   "native": true,
@@ -147,20 +158,9 @@
   ],
   "quality": 92
  },
- "trusted-vet-method-desk": {
+ "trusted-vet-method-desk-r2": {
   "source": "design-assets/photography-masters/trusted-vet-method-desk-master.webp",
   "process": true,
-  "native": true,
-  "widths": [
-   800,
-   1280,
-   1672
-  ],
-  "quality": 92
- },
- "trusted-vet-method-flags": {
-  "source": "design-assets/photography-masters/trusted-vet-method-flags-master.webp",
-  "process": false,
   "native": true,
   "widths": [
    800,
