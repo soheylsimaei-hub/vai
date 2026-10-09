@@ -225,6 +225,7 @@
   /* Body paragraphs site-wide are left-aligned. Justify caused uneven
      word spacing on narrow columns. */
   main p {
+    text-wrap: pretty; /* avoids a single word alone on the last line; headings are untouched */
     text-align: left;
     hyphens: none;
     -webkit-hyphens: none;
