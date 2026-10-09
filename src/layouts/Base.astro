@@ -72,6 +72,8 @@ const homeSchema = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- iOS Safari otherwise turns anything that looks like a phone number or a date (PMIDs, DOI numbers, "9 Oct 2026, 20:41 UTC", and similar) into an underlined, blue "link". Real phone and email links are written explicitly. -->
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
 
     {/* Favicons */}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

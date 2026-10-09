@@ -47,7 +47,8 @@ const OPEN_VAI_URL = 'https://app.vai.vet';
          own unchanged compact sizing. -->
     <!-- lg:-my-[38px]: the lockup canvas is ~29.6% transparent at top and bottom (~54px each at this width). A negative vertical margin removes
          most of that empty box so the header is shorter while the VISIBLE mark keeps exactly the same size. -->
-    <a href="/" class="shrink-0 lg:-ml-[96px] lg:-my-[26px] xl:-ml-[140px] xl:-mr-[118px] xl:-my-[38px]" aria-label="VAI Veterinary — Home">
+    <!-- Phones and tablets (below lg): the lockup is drawn about a third larger than before and the canvas's empty top and bottom padding is pulled in (-my) so the header does not get taller. -->
+    <a href="/" class="shrink-0 -my-2 -ml-[46px] min-[430px]:-my-[10px] min-[430px]:-ml-[49px] sm:-my-[10px] sm:-ml-[53px] md:-my-3 md:-ml-[59px] lg:-ml-[96px] lg:-my-[26px] xl:-ml-[140px] xl:-mr-[118px] xl:-my-[38px]" aria-label="VAI Veterinary — Home">
       <picture>
         <source srcset="/vai-veterinary-lockup.webp" type="image/webp" />
         <!-- lg (desktop) width sized so the VISIBLE VAI mark (not the
@@ -63,7 +64,7 @@ const OPEN_VAI_URL = 'https://app.vai.vet';
           alt="VAI Veterinary"
           width="1600"
           height="480"
-          class="logo-dimensional w-[150px] sm:w-[170px] md:w-[190px] lg:w-[420px] xl:w-[610px] h-auto"
+          class="logo-dimensional w-[200px] min-[430px]:w-[216px] sm:w-[232px] md:w-[260px] lg:w-[420px] xl:w-[610px] h-auto"
         />
       </picture>
     </a>
