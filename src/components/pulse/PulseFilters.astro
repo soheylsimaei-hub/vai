@@ -5,21 +5,17 @@ import { pulseHref, type PulseRequest } from '../../lib/pulse/routes';
 
 interface Props { request: PulseRequest }
 const { request } = Astro.props;
-const chip = 'whitespace-nowrap rounded-full border px-3.5 py-1.5 text-sm transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand-clinical-blue)]';
-const chipOn = `${chip} border-[var(--brand-midnight-navy)] bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]`;
-const chipOff = `${chip} border-black/15 text-[var(--brand-midnight-navy)] hover:border-[var(--brand-clinical-blue)] hover:text-[var(--brand-clinical-blue)]`;
+// The VAI tactile button language (see global.css): chips are compact tactile pills, the view tabs use the shared .btn family. Selected = Midnight Navy; the Guidelines tab keeps its gold emphasis.
+const chipOn = 'btn-chip btn-chip--on';
+const chipOff = 'btn-chip';
 ---
 <div class="space-y-5">
   <nav aria-label="Pulse view" class="grid grid-cols-2 gap-2 md:max-w-xl">
     {VIEWS.map((v) => {
       const on = request.view === v.id;
       const prominent = v.id === 'guidelines';
-      const cls = on
-        ? 'border-[var(--brand-midnight-navy)] bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]'
-        : prominent
-          ? 'border-[var(--brand-gold)] bg-[var(--brand-gold)]/10 text-[var(--brand-midnight-navy)] hover:bg-[var(--brand-gold)]/20'
-          : 'border-black/15 text-[var(--brand-midnight-navy)] hover:border-[var(--brand-clinical-blue)]';
-      return <a href={pulseHref({ view: v.id, discipline: request.discipline, period: defaultPeriodFor(v.id) })} aria-current={on ? 'page' : undefined} class={`rounded-lg border px-4 py-3 text-center text-sm font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand-clinical-blue)] ${cls}`}>{v.label}</a>;
+      const cls = on ? 'btn btn-primary' : prominent ? 'btn btn-brand btn-brand-primary' : 'btn';
+      return <a href={pulseHref({ view: v.id, discipline: request.discipline, period: defaultPeriodFor(v.id) })} aria-current={on ? 'page' : undefined} class={`w-full ${cls}`}>{v.label}</a>;
     })}
   </nav>
 

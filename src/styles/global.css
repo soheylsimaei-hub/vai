@@ -266,6 +266,39 @@
      No gradient, bevel, gloss, extrusion, perspective or animation. Used for the primary header logo only. */
   .logo-dimensional { filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.85)) drop-shadow(0 1px 1px rgba(11, 28, 52, 0.12)) drop-shadow(0 2px 4px rgba(11, 28, 52, 0.05)); }
 
+  /* Pulse filter chips and record tags (2026-10-09): the same tactile language as the buttons below, kept compact and in sentence case so a long row of filters stays readable.
+     .btn-chip is interactive (a link to a pre-rendered page); aria-current marks the selected one. .tag-tactile is a static label: raised surface, no hover or press behaviour. */
+  .btn-chip {
+    position: relative; display: inline-flex; align-items: center; justify-content: center; white-space: nowrap;
+    min-height: 2.25rem; padding: 0.4rem 0.95rem; border: 1px solid rgba(11, 28, 52, 0.16); border-radius: 9999px;
+    font-size: 0.875rem; font-weight: 500; line-height: 1.1; color: var(--brand-midnight-navy);
+    background: linear-gradient(180deg, #ffffff 0%, var(--brand-cloud-white) 100%);
+    box-shadow: inset 0 1px 0 #fff, 0 1px 1px rgba(11, 28, 52, 0.05), 0 2px 5px -3px rgba(11, 28, 52, 0.082);
+    -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+    transition: transform 140ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease, color 180ms ease;
+  }
+  @media (pointer: coarse) { .btn-chip { min-height: 2.75rem; } }
+  .btn-chip:hover { transform: translateY(-1px); color: var(--brand-clinical-blue); border-color: rgba(41, 89, 168, 0.5); box-shadow: inset 0 1px 0 #fff, 0 2px 2px rgba(11, 28, 52, 0.07), 0 7px 12px -6px rgba(11, 28, 52, 0.2); }
+  .btn-chip:active { transform: translateY(0.5px); background: var(--brand-cloud-white); box-shadow: inset 0 2px 4px rgba(11, 28, 52, 0.14); transition-duration: 60ms; }
+  .btn-chip--on, .btn-chip--on:hover {
+    color: var(--brand-cloud-white); border-color: #07121f;
+    background: linear-gradient(180deg, #1b3a66 0%, #12284a 46%, var(--brand-midnight-navy) 100%);
+    box-shadow: inset 0 1px 0 rgba(243, 243, 241, 0.18), inset 0 -1px 0 rgba(0, 0, 0, 0.25), 0 1px 1px rgba(11, 28, 52, 0.165), 0 4px 8px -4px rgba(11, 28, 52, 0.265);
+  }
+  .btn-chip--on:active { background: linear-gradient(180deg, #0b1c34 0%, #12284a 100%); box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.45), 0 1px 1px rgba(11, 28, 52, 0.2); }
+  .tag-tactile {
+    display: inline-flex; align-items: center; border: 1px solid rgba(11, 28, 52, 0.16); border-radius: 9999px; padding: 0.15rem 0.7rem;
+    color: rgba(11, 28, 52, 0.78); background: linear-gradient(180deg, #ffffff 0%, var(--brand-cloud-white) 100%);
+    box-shadow: inset 0 1px 0 #fff, 0 1px 1px rgba(11, 28, 52, 0.05), 0 2px 4px -2px rgba(11, 28, 52, 0.1);
+  }
+  .tag-tactile--gold { color: var(--brand-midnight-navy); font-weight: 500; border-color: rgba(160, 122, 61, 0.7); background: linear-gradient(180deg, rgba(210, 178, 122, 0.34) 0%, rgba(190, 150, 89, 0.2) 100%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 1px 1px rgba(11, 28, 52, 0.07), 0 2px 4px -2px rgba(160, 122, 61, 0.35); }
+  .tag-tactile--navy { color: var(--brand-cloud-white); font-weight: 600; border-color: #07121f; background: linear-gradient(180deg, #1b3a66 0%, var(--brand-midnight-navy) 100%); box-shadow: inset 0 1px 0 rgba(243, 243, 241, 0.18), 0 1px 1px rgba(11, 28, 52, 0.2); }
+  .tag-tactile--dashed { border-style: dashed; border-color: rgba(11, 28, 52, 0.28); box-shadow: inset 0 1px 0 #fff, 0 1px 1px rgba(11, 28, 52, 0.04); }
+  @media (prefers-reduced-motion: reduce) {
+    .btn-chip { transition: none; }
+    .btn-chip:hover, .btn-chip:active { transform: none; }
+  }
+
   /* ---------------------------------------------------------------------
    * VAI BUTTON SYSTEM (2026-10-09), shared with app.vai.vet.
    * One tactile pill: restrained two-stop gradients built from the four brand colours, a fine top-edge highlight, soft layered shadows,

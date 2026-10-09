@@ -14,10 +14,10 @@ const ext = { target: '_blank', rel: 'noopener noreferrer' };
   {showBadges && (
     <div class={`${compact ? 'mb-2' : 'mb-3'} flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[0.1em]`}>
       {r.pubTypes.map((t) => (
-        <span class={EMPHASIZED_TYPE_LABELS.has(t) ? 'rounded-full border border-[var(--brand-gold)] bg-[var(--brand-gold)]/10 px-2.5 py-0.5 font-medium text-[var(--brand-midnight-navy)]' : 'rounded-full border border-black/15 px-2.5 py-0.5 text-[var(--color-muted)]'}>{t}</span>
+        <span class={EMPHASIZED_TYPE_LABELS.has(t) ? 'tag-tactile tag-tactile--gold' : 'tag-tactile'}>{t}</span>
       ))}
-      {titleMention && <span class="rounded-full border border-dashed border-black/25 px-2.5 py-0.5 normal-case tracking-normal text-[var(--color-muted)]">Title mentions guidelines or consensus</span>}
-      {r.retracted && <span class="rounded-full border border-[var(--brand-midnight-navy)] px-2.5 py-0.5 font-semibold text-[var(--brand-midnight-navy)]">Retracted</span>}
+      {titleMention && <span class="tag-tactile tag-tactile--dashed normal-case tracking-normal">Title mentions guidelines or consensus</span>}
+      {r.retracted && <span class="tag-tactile tag-tactile--navy">Retracted</span>}
     </div>
   )}
   <h3 id={`pulse-${r.pmid}${compact ? '-c' : ''}`} class={`font-brand-serif leading-snug text-[var(--brand-midnight-navy)] ${compact ? 'text-base md:text-lg' : 'text-xl md:text-2xl'}`}>
