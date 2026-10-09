@@ -1,0 +1,195 @@
+---
+import Base from '../layouts/Base.astro';
+import SignatureGeometry from '../components/texture/SignatureGeometry.astro';
+
+// VAI EXPERT CONNECT, an informational "coming soon" page. Nothing on this page is operational: there is no form, no upload, no payment and
+// no request flow, and no price, response time, expert availability or number of experts is stated. Every step is labelled as planned.
+//
+// "Register Your Interest" is intentionally NOT a link. The only candidate route is /contact/, whose form posts to a Formspree endpoint that is
+// still the placeholder YOUR_FORMSPREE_ID (src/components/ContactForm.astro), so a submission would not reach anyone, and the form carries no
+// privacy notice beyond a one-line consent. Until a working, privacy-reviewed route exists the section stays non-transactional.
+const steps = [
+  {
+    n: 1,
+    t: 'Submit a clinical case',
+    d: 'Set out the case and the question you want a second perspective on.',
+    icon: '<path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10.5A.5.5 0 0 1 6.5 20V4a.5.5 0 0 1 .5-.5Z"/><path d="M14 3.5V8h4.5"/><path d="M12 11.5v5M9.5 14h5"/>',
+  },
+  {
+    n: 2,
+    t: 'Share relevant medical records and diagnostic materials',
+    d: 'Provide the history, results and imaging that bear on the question.',
+    icon: '<path d="M3.5 7.5a1 1 0 0 1 1-1h4.2l1.8 2h8a1 1 0 0 1 1 1V18a1 1 0 0 1-1 1h-14a1 1 0 0 1-1-1Z"/><path d="M8 13.5h8M8 16h5"/>',
+  },
+  {
+    n: 3,
+    t: 'Connect with an appropriate veterinary expert',
+    d: 'Be matched to a specialist or experienced clinician suited to the case.',
+    icon: '<circle cx="6.5" cy="12" r="2.5"/><circle cx="17.5" cy="12" r="2.5"/><path d="M9 12h6"/>',
+  },
+  {
+    n: 4,
+    t: 'Receive a structured specialist response',
+    d: 'Read a considered, organised answer to the question you asked.',
+    icon: '<rect x="4.5" y="4" width="15" height="16" rx="1.5"/><path d="M8 9h8M8 12.5h8M8 16h4.5"/>',
+  },
+  {
+    n: 5,
+    t: 'Continue patient management with greater clarity',
+    d: 'Take the perspective back to the patient and the owner, and carry on.',
+    icon: '<path d="M4 12h13"/><path d="m12.5 6.5 5.5 5.5-5.5 5.5"/>',
+  },
+];
+---
+<Base
+  title="VAI Expert Connect"
+  description="VAI Expert Connect is a planned way for veterinary professionals to seek additional specialist perspectives on challenging clinical cases. Coming soon."
+  ogDescription="A planned way for veterinary professionals to seek additional specialist perspectives on challenging clinical cases. Coming soon."
+>
+  <!-- 1. Hero -->
+  <section class="tx-host bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]">
+    <SignatureGeometry tone="navy" place="hero" />
+    <div class="tx-content mx-auto max-w-6xl px-6 sec-hero">
+      <div class="max-w-4xl">
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-3 mb-6">
+          <span class="coming-soon-badge" data-coming-soon>
+            <span class="coming-soon-dot" aria-hidden="true"></span>Coming soon
+          </span>
+          <span class="eyebrow-brand" style="color: var(--brand-gold);">VAI Expert Connect</span>
+        </div>
+        <h1 class="font-brand-serif text-[var(--brand-cloud-white)] text-4xl md:text-7xl leading-[1.06] mb-7">
+          Expertise Beyond the Consultation
+        </h1>
+        <p class="text-lg md:text-xl leading-relaxed opacity-90 max-w-2xl">
+          A new way for veterinary professionals to seek additional specialist perspectives on challenging clinical cases.
+        </p>
+        <p class="mt-6 text-sm leading-relaxed opacity-70 max-w-xl">
+          VAI Expert Connect is in planning. It is not yet open, and no consultations are being offered.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. How it is planned to work -->
+  <section class="bg-[var(--brand-cloud-white)]">
+    <div class="mx-auto max-w-6xl px-6 sec-feature">
+      <div class="max-w-3xl mb-10 md:mb-12">
+        <div class="eyebrow-brand mb-4">How it is planned to work</div>
+        <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-5">Five intended steps, from case to clarity.</h2>
+        <p class="text-[var(--brand-midnight-navy)] opacity-75 leading-relaxed">
+          These are the steps the service is designed around. They describe an intended future experience, and none of them can be used today.
+        </p>
+      </div>
+
+      <ol class="ec-steps">
+        {steps.map((s) => (
+          <li class="ec-step">
+            <div class="ec-step__marker">
+              <span class="ec-step__icon">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" set:html={s.icon}></svg>
+              </span>
+            </div>
+            <div class="ec-step__body">
+              <div class="ec-step__num"><span class="sr-only">Step </span>{String(s.n).padStart(2, '0')}<span class="ec-step__planned">Planned</span></div>
+              <h3 class="font-brand-serif text-[var(--brand-midnight-navy)] text-xl md:text-[1.35rem] leading-snug mb-2">{s.t}</h3>
+              <p class="text-sm text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed">{s.d}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- 3. Fees note -->
+  <section class="bg-white border-t border-black/10">
+    <div class="mx-auto max-w-6xl px-6 sec-standard">
+      <div class="grid md:grid-cols-12 gap-6 md:gap-14">
+        <div class="md:col-span-5">
+          <div class="eyebrow-brand mb-4">A note on fees</div>
+          <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15]">Nothing is charged today.</h2>
+        </div>
+        <div class="md:col-span-6 md:col-start-7 md:pt-9">
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-4">
+            Future consultations may involve a fee. Nothing is offered today, and the terms of the service have not been set.
+          </p>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed">
+            Details will be published here once the service is ready, and not before.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Join the network (non-transactional: see the comment at the top of this file) -->
+  <section class="tx-host bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]">
+    <SignatureGeometry tone="navy" place="trust" />
+    <div class="tx-content mx-auto max-w-6xl px-6 sec-hero">
+      <div class="max-w-3xl">
+        <div class="eyebrow-brand mb-4" style="color: var(--brand-gold);">For specialists and experienced clinicians</div>
+        <h2 class="font-brand-serif text-[var(--brand-cloud-white)] text-3xl md:text-5xl leading-[1.1] mb-6">Join the VAI Expert Network</h2>
+        <p class="text-lg md:text-xl leading-relaxed opacity-90 mb-8">
+          We are building a network of veterinary specialists and experienced clinicians to help shape the next generation of professional clinical support.
+        </p>
+        <div class="inline-flex flex-wrap items-center gap-x-4 gap-y-2 border border-white/25 rounded-full px-5 py-3">
+          <span class="text-[11px] uppercase tracking-[0.16em]" style="color: var(--brand-gold);">Coming soon</span>
+          <span class="text-sm opacity-80">Registration of interest is not open yet.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Status -->
+  <section class="bg-[var(--brand-cloud-white)]">
+    <div class="mx-auto max-w-6xl px-6 sec-standard">
+      <div class="max-w-2xl">
+        <div class="eyebrow-brand mb-4">Current status</div>
+        <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-6">
+          VAI Expert Connect is a planned part of VAI. This page describes the intention, not a live service. To see what VAI offers today, open VAI.
+        </p>
+        <a href="https://app.vai.vet" rel="noopener noreferrer" class="btn-brand btn-brand-primary">Open VAI</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .coming-soon-badge {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.5rem 1.1rem; border-radius: 9999px;
+    border: 1px solid var(--brand-gold);
+    background: linear-gradient(180deg, rgba(190, 150, 89, 0.22), rgba(190, 150, 89, 0.08));
+    color: #e6cfa3; font-family: var(--brand-font-body); font-size: 0.8125rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase; line-height: 1;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  }
+  .coming-soon-dot { width: 7px; height: 7px; border-radius: 9999px; background: var(--brand-gold); }
+
+  .ec-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; position: relative; }
+  .ec-step { position: relative; display: grid; grid-template-columns: 3rem 1fr; column-gap: 1.25rem; padding-bottom: 2rem; }
+  .ec-step:last-child { padding-bottom: 0; }
+  .ec-step::before { /* vertical connector on narrow screens */
+    content: ''; position: absolute; left: calc(1.5rem - 0.5px); top: 3.25rem; bottom: 0.25rem; width: 1px;
+    background: linear-gradient(180deg, rgba(190, 150, 89, 0.8), rgba(41, 89, 168, 0.25));
+  }
+  .ec-step:last-child::before { display: none; }
+  .ec-step__icon {
+    width: 3rem; height: 3rem; border-radius: 9999px; display: grid; place-items: center;
+    color: var(--brand-clinical-blue); background: #fff; border: 1px solid rgba(41, 89, 168, 0.35);
+    box-shadow: inset 0 1px 0 #fff, 0 1px 2px rgba(11, 28, 52, 0.06), 0 6px 12px -8px rgba(11, 28, 52, 0.25);
+  }
+  .ec-step__num {
+    display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;
+    font-family: var(--brand-font-headline); font-size: 1.05rem; color: var(--brand-gold); letter-spacing: 0.06em;
+  }
+  .ec-step__planned {
+    font-family: var(--brand-font-body); font-size: 0.625rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--brand-clinical-blue); border: 1px solid rgba(41, 89, 168, 0.4); border-radius: 9999px; padding: 0.2rem 0.5rem; line-height: 1;
+  }
+  @media (min-width: 768px) {
+    .ec-steps { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .ec-step { display: block; padding: 0 1.25rem 0 0; }
+    .ec-step__marker { margin-bottom: 1.25rem; }
+    .ec-step::before { left: 3.75rem; right: 0.9rem; top: calc(1.5rem - 0.5px); bottom: auto; width: auto; height: 1px;
+      background: linear-gradient(90deg, rgba(190, 150, 89, 0.8), rgba(41, 89, 168, 0.25)); }
+  }
+</style>

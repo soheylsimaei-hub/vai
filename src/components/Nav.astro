@@ -27,6 +27,7 @@
 const NAV_LINKS = [
   { href: '/pulse/', label: 'Pulse' },
   { href: '/academy/', label: 'Academy' },
+  { href: '/expert-connect/', label: 'Ask an Expert' },
   { href: '/#for-organisations', label: 'For Organisations' },
   { href: '/about', label: 'About' },
 ];
@@ -47,7 +48,7 @@ const OPEN_VAI_URL = 'https://app.vai.vet';
          own unchanged compact sizing. -->
     <!-- lg:-my-[38px]: the lockup canvas is ~29.6% transparent at top and bottom (~54px each at this width). A negative vertical margin removes
          most of that empty box so the header is shorter while the VISIBLE mark keeps exactly the same size. -->
-    <a href="/" class="shrink-0 lg:-ml-[96px] lg:-my-[26px] xl:-ml-[140px] xl:-my-[38px]" aria-label="VAI Veterinary — Home">
+    <a href="/" class="shrink-0 lg:-ml-[96px] lg:-my-[26px] xl:-ml-[140px] xl:-mr-[118px] xl:-my-[38px]" aria-label="VAI Veterinary — Home">
       <picture>
         <source srcset="/vai-veterinary-lockup.webp" type="image/webp" />
         <!-- lg (desktop) width sized so the VISIBLE VAI mark (not the
@@ -68,30 +69,29 @@ const OPEN_VAI_URL = 'https://app.vai.vet';
       </picture>
     </a>
 
-    <!-- Logo: 190px (md), 420px (lg 1024-1279), 610px (xl 1280+). The negative margins are proportional to the lockup's transparent padding (22.9% left, 29.6% top/bottom), so the visible V stays flush with the content edge at every size. Without the lg step the header overflowed horizontally between ~1024 and ~1150px once the Pulse link was added.
-    md (768-1023px): tighter link gaps and no right margin so five items (Pulse was added) fit without horizontal overflow -->
-    <nav class="hidden md:flex items-center gap-3 min-[900px]:gap-5 lg:gap-5 xl:gap-8 flex-1 justify-end lg:mr-4">
+    <!-- Header layout by width: below 768px the logo and a Menu button; 768-1279px the logo, the Open VAI button and the Menu button (the full link list is in the menu, because six links and the logo cannot fit side by side at tablet width); 1280px and above the full link row. The logo keeps its original sizes: 190px (md), 420px (lg 1024-1279) and 610px (xl 1280+). At xl a negative right margin (-118px) removes the lockup's empty right-hand canvas (about 22% of its width) so six links fit beside the full-size logo.; its negative margins are proportional to the lockup's transparent padding (22.9% left, 29.6% top/bottom), so the visible V stays flush with the content edge at every size. -->
+    <nav class="hidden xl:flex items-center gap-4 flex-1 justify-end" aria-label="Primary">
       {NAV_LINKS.map((l) => (
         <a
           href={l.href}
           rel={l.external ? 'noopener noreferrer' : undefined}
-          class="text-sm uppercase tracking-[0.08em] whitespace-nowrap font-medium text-[var(--brand-midnight-navy)] hover:text-[var(--brand-clinical-blue)] transition-colors"
+          class="text-[12.5px] uppercase tracking-[0.05em] whitespace-nowrap font-medium text-[var(--brand-midnight-navy)] hover:text-[var(--brand-clinical-blue)] transition-colors"
         >{l.label}</a>
       ))}
     </nav>
 
-    <a href={OPEN_VAI_URL} rel="noopener noreferrer" class="hidden md:inline-flex btn-brand btn-brand-primary shrink-0 md:!px-5 lg:!px-7">Open VAI</a>
+    <a href={OPEN_VAI_URL} rel="noopener noreferrer" class="hidden md:inline-flex md:ml-auto xl:ml-0 btn-brand btn-brand-primary shrink-0 md:!px-5 xl:!px-6">Open VAI</a>
 
-    <button id="nav-toggle" class="md:hidden text-[var(--brand-midnight-navy)] text-xs tracking-[0.18em] uppercase" aria-label="Menu">Menu</button>
+    <button id="nav-toggle" class="xl:hidden text-[var(--brand-midnight-navy)] text-xs tracking-[0.18em] uppercase" aria-label="Menu">Menu</button>
   </div>
 
   <!-- Mobile menu -->
-  <div id="nav-mobile" class="hidden md:hidden border-t border-black/10">
+  <div id="nav-mobile" class="hidden xl:hidden border-t border-black/10">
     <nav class="mx-auto max-w-6xl px-6 flex flex-col gap-4 py-6 text-sm tracking-[0.08em] uppercase">
       {NAV_LINKS.map((l) => (
         <a href={l.href} rel={l.external ? 'noopener noreferrer' : undefined} class="font-medium text-[var(--brand-midnight-navy)]">{l.label}</a>
       ))}
-      <a href={OPEN_VAI_URL} rel="noopener noreferrer" class="btn-brand btn-brand-primary mt-2 justify-center">Open VAI</a>
+      <a href={OPEN_VAI_URL} rel="noopener noreferrer" class="btn-brand btn-brand-primary mt-2 justify-center md:hidden">Open VAI</a>
     </nav>
   </div>
 </header>
