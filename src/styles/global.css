@@ -264,7 +264,12 @@
   /* Header logo (2026-10-09): a very restrained optical lift so the official lockup sits slightly proud of the header beside the tactile interface. A drop-shadow FILTER only: it paints a
      hairline highlight and two faint navy shadows OUTSIDE the artwork and never touches the artwork's own pixels, so the official blue and gold, proportions and clear space are exactly as supplied.
      No gradient, bevel, gloss, extrusion, perspective or animation. Used for the primary header logo only. */
-  .logo-dimensional { filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.85)) drop-shadow(0 1px 1px rgba(11, 28, 52, 0.12)) drop-shadow(0 2px 4px rgba(11, 28, 52, 0.05)); }
+  /* Below 768px (phones) the lift is a faint, even halo with no downward offset: a shadow falling below the thin "VETERINARY" lettering reads as an underline at phone sizes. From 768px up it is the
+     original hairline highlight plus two faint navy shadows below the lockup. */
+  .logo-dimensional { filter: drop-shadow(0 0 1.5px rgba(11, 28, 52, 0.14)); }
+  @media (min-width: 768px) {
+    .logo-dimensional { filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.85)) drop-shadow(0 1px 1px rgba(11, 28, 52, 0.12)) drop-shadow(0 2px 4px rgba(11, 28, 52, 0.05)); }
+  }
 
   /* Pulse filter chips and record tags (2026-10-09): the same tactile language as the buttons below, kept compact and in sentence case so a long row of filters stays readable.
      .btn-chip is interactive (a link to a pre-rendered page); aria-current marks the selected one. .tag-tactile is a static label: raised surface, no hover or press behaviour. */
