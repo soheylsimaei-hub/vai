@@ -70,7 +70,7 @@ const OPEN_VAI_URL = 'https://app.vai.vet';
       </picture>
     </a>
 
-    <!-- Header layout by width: below 768px the logo and a Menu button; 768-1279px the logo, the Open VAI button and the Menu button (the full link list is in the menu, because six links and the logo cannot fit side by side at tablet width); 1280px and above the full link row. The logo keeps its original sizes: 190px (md), 420px (lg 1024-1279) and 610px (xl 1280+). At xl a negative right margin (-118px) removes the lockup's empty right-hand canvas (about 22% of its width) so six links fit beside the full-size logo.; its negative margins are proportional to the lockup's transparent padding (22.9% left, 29.6% top/bottom), so the visible V stays flush with the content edge at every size. -->
+    <!-- Header layout by width: below 768px the logo and a Menu button (all links in the menu); 768-1279px the logo bar (logo and Open VAI) with every link on a row beneath it; 1280px and above one row with the links beside the logo. -->
     <nav class="hidden xl:flex items-center gap-4 flex-1 justify-end" aria-label="Primary">
       {NAV_LINKS.map((l) => (
         <a
@@ -83,11 +83,20 @@ const OPEN_VAI_URL = 'https://app.vai.vet';
 
     <a href={OPEN_VAI_URL} rel="noopener noreferrer" class="hidden md:inline-flex md:ml-auto xl:ml-0 btn-brand btn-brand-primary shrink-0 md:!px-5 xl:!px-6">Open VAI</a>
 
-    <button id="nav-toggle" class="xl:hidden text-[var(--brand-midnight-navy)] text-xs tracking-[0.18em] uppercase" aria-label="Menu">Menu</button>
+    <button id="nav-toggle" class="md:hidden text-[var(--brand-midnight-navy)] text-xs tracking-[0.18em] uppercase" aria-label="Menu">Menu</button>
   </div>
 
+  <!-- 768-1279px: the logo bar above, and every link on a row of its own below it, so no destination is ever hidden behind a menu on a tablet or a narrower laptop window. -->
+  <nav class="hidden md:block xl:hidden border-t border-black/10" aria-label="Primary">
+    <div class="mx-auto max-w-6xl px-6 py-2.5 flex items-center justify-between gap-3">
+      {NAV_LINKS.map((l) => (
+        <a href={l.href} class="text-[12px] uppercase tracking-[0.05em] whitespace-nowrap font-medium text-[var(--brand-midnight-navy)] hover:text-[var(--brand-clinical-blue)] transition-colors">{l.label}</a>
+      ))}
+    </div>
+  </nav>
+
   <!-- Mobile menu -->
-  <div id="nav-mobile" class="hidden xl:hidden border-t border-black/10">
+  <div id="nav-mobile" class="hidden md:hidden border-t border-black/10">
     <nav class="mx-auto max-w-6xl px-6 flex flex-col gap-4 py-6 text-sm tracking-[0.08em] uppercase">
       {NAV_LINKS.map((l) => (
         <a href={l.href} rel={l.external ? 'noopener noreferrer' : undefined} class="font-medium text-[var(--brand-midnight-navy)]">{l.label}</a>
