@@ -1,6 +1,6 @@
-# VAI — Veterinary Academy International
+# VAI Veterinary
 
-Public website for Veterinary Academy International (vai.vet), the veterinary academy of Academia Europa. Operated by Solex Education Unipessoal LDA, Portugal.
+Public website for VAI (vai.vet): a veterinary professional development platform and educational ecosystem, operated by Solex Education Unipessoal Lda, a company registered in Portugal.
 
 ## Tech stack
 
@@ -41,9 +41,13 @@ Pages map directly to routes: `/`, `/about`, `/programmes`, `/veterinary-longevi
 - Custom domain `vai.vet` is persisted via `public/CNAME`. DNS: apex `A` records to GitHub Pages IPs, `www` `CNAME` to the GitHub Pages host.
 - **This is not Vercel.** Pushing to `main` is what ships to production — there is no separate deploy step.
 
-## Relationship to Academia Europa
+## Identity and affiliations
 
-VAI is positioned inside Academia Europa, never alongside it. Every page carries an institutional bar linking back to Academia Europa. Do not link to or reference Noble Veterinary Clinic. Do not claim accreditation that has not been formally granted.
+- Brand architecture: **VAI** is the master brand, **VAI Veterinary** is the professional platform, and **VAI Veterinary Academy** is the educational division. Never use the expanded name "Veterinary Academy International".
+- **Academia Europa must not appear anywhere on this website** (copy, links, metadata, structured data, images, documents). VAI is not presented as part of, a subsidiary of, or the educational arm of any other institution. (Updated by the founder, 2026-10-10.)
+- The only public contact addresses are **vai@vai.vet** (general enquiries) and **faculty@vai.vet** (faculty and academic collaboration). Do not publish any other address.
+- Legal identity line: "VAI is a veterinary professional development platform and educational ecosystem operated by Solex Education Unipessoal Lda, a company registered in Portugal." Do not invent registration numbers, addresses, accreditations or affiliations.
+- Do not link to or reference Noble Veterinary Clinic. Do not claim accreditation that has not been formally granted.
 
 ## Brand and copy rules
 

@@ -1,11 +1,10 @@
-# VAI — Veterinary Academy International
+# VAI Veterinary
 
-Public website for **Veterinary Academy International** — the veterinary academy of Academia Europa.
+Public website for **VAI**: a veterinary professional development platform and educational ecosystem.
 
 - **Production domain:** [vai.vet](https://vai.vet)
-- **Parent institution:** [Academia Europa](https://academiaeuropa.com)
 - **Stack:** Astro 5 · Tailwind v4 · MDX · GitHub Pages
-- **Operating entity:** Solex Education Unipessoal LDA, Portugal
+- **Operating entity:** Solex Education Unipessoal Lda, a company registered in Portugal
 
 ## Local development
 
@@ -48,12 +47,12 @@ and variables → Actions → Variables).
 
 ```
 /                       — homepage
-/about                  — what VAI is, who we serve, relationship to Academia Europa
+/about                  — what VAI is and who it serves
 /programmes             — five programme directions
 /veterinary-longevity   — flagship direction, five pillars
 /faculty                — teach with VAI
 /academic-standards     — programme docs, evidence hierarchy, ethics
-/contact                — enquiry pathways
+/contact                — contact form (delivers to vai@vai.vet / faculty@vai.vet through the VAI app) and the two public addresses
 /pulse/                 — VAI Pulse: what's new in veterinary medicine (public, no login)
 /pulse/guidelines/      — VAI Pulse, Guidelines & Consensus
 /pulse/{view}/{discipline}/{period}/ — every filter combination (noindex)
@@ -70,18 +69,11 @@ says so. `scripts/verify-pulse-build.mjs` runs after every build and blocks the 
 `src/lib/pulse/engine/` is a **generated copy** of the Scientific Radar engine from the `vai-app` repo (`scripts/sync-pulse-engine.mjs` there). Do not edit it
 here: change `vai-app`, re-sync, and commit the result. `npm test` fails if the copy was edited by hand.
 
-## Relationship to Academia Europa
+## Identity
 
-VAI is positioned **inside** Academia Europa, never alongside it. Every page carries:
-
-- An **institutional bar** at the top: *"A specialised academy of Academia Europa."*
-- Reciprocal linkage to `academiaeuropa.com` in the nav, footer, and contact page.
-- The same design language (palette, type, tone) as Academia Europa, with a slightly warmer navy.
-
-When the Academia Europa site activates the live `Visit VAI →` external link, this site is ready to receive that traffic.
+VAI is the master brand; VAI Veterinary is the professional platform; VAI Veterinary Academy is the educational division. Academia Europa and the name "Veterinary Academy International" must not appear on this site. The only public email addresses are `vai@vai.vet` and `faculty@vai.vet`.
 
 ## Notes
 
 - Do not link to or reference Noble Veterinary Clinic.
 - Do not claim accreditation that has not been formally granted.
-- Use the founder's institutional phrasing only (mirrors Academia Europa).

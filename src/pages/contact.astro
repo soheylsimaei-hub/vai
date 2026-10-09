@@ -4,41 +4,47 @@ import PageHero from '../components/PageHero.astro';
 import Section from '../components/Section.astro';
 import ContactForm from '../components/ContactForm.astro';
 
-const pathways = [
+// The two public contact addresses. These are the ONLY addresses shown on this site; the contact form delivers to the same two inboxes (see ContactForm.astro and src/app/api/public-contact in vai-app).
+//
+// FORM_LIVE: the form is built, tested and wired to the VAI app's delivery endpoint, but it is switched OFF until the two mailboxes exist. On 2026-10-10 Google's mail servers answered "550 5.1.1 account does not
+// exist" for BOTH vai@vai.vet and faculty@vai.vet (the same answer as for a made-up address), so a submitted enquiry would be accepted by the email provider and then bounce unseen. Set this to true once
+// both addresses exist and a test enquiry has been confirmed in each inbox. (An earlier version posted to a Formspree placeholder, YOUR_FORMSPREE_ID, which returns "Form not found".)
+const FORM_LIVE = false;
+const channels = [
   {
-    t: 'VAI Enquiries',
+    t: 'General Enquiries',
     e: 'vai@vai.vet',
-    d: 'For course interest, programme questions, learner enquiries, and general VAI communication.',
+    d: 'For platform enquiries, partnerships, organisations, general questions and professional communication.',
   },
   {
-    t: 'Academic & CPD/CE Review',
-    e: 'academic@academiaeuropa.com',
-    d: 'For academic review, programme documentation, CPD/CE-related enquiries, and institutional review.',
-  },
-  {
-    t: 'Partnerships & Faculty Collaboration',
-    e: 'partnerships@academiaeuropa.com',
-    d: 'For faculty collaboration, programme co-development, institutional partnerships, and professional association dialogue.',
+    t: 'Faculty & Academic Collaboration',
+    e: 'faculty@vai.vet',
+    d: 'For faculty applications, veterinary specialists, educators, academic collaboration and educational programme development.',
   },
 ];
 ---
 <Base
   title="Contact VAI"
-  description="Programme, academic review, and partnership enquiries for Veterinary Academy International."
+  description="Contact VAI: general enquiries, the VAI platform, VAI Veterinary Academy, faculty and academic collaboration, and partnerships with organisations."
 >
   <PageHero
-    eyebrow="Contact"
-    title="Contact VAI."
-    lede="For programme enquiries, academic review, or faculty collaboration, please use the appropriate pathway below."
+    eyebrow="Contact VAI"
+    title="Let’s Start a Conversation"
+    lede="Whether you’re exploring VAI, interested in professional education, or considering contributing your expertise, we’d be pleased to hear from you."
   />
 
-  <Section eyebrow="Send an Enquiry" title="Use the form below, or reach the relevant office directly.">
-    <ContactForm />
-  </Section>
+  {FORM_LIVE && (
+    <Section eyebrow="Send an Enquiry" title="Use the form below, or write to us directly.">
+      <ContactForm />
+    </Section>
+  )}
 
-  <Section eyebrow="Direct Pathways" title="Reach the appropriate office directly." tone="ivory">
+  <Section eyebrow="Write to Us" title={FORM_LIVE ? 'Two ways to reach VAI.' : 'Write to VAI directly.'} tone={FORM_LIVE ? 'ivory' : undefined}>
+    {!FORM_LIVE && (
+      <p class="max-w-3xl mb-8 text-graphite leading-relaxed">The online contact form is being set up. Until it opens, please write to us at the address that fits your enquiry.</p>
+    )}
     <ul class="max-w-5xl border-t border-platinum">
-      {pathways.map((p) => (
+      {channels.map((p) => (
         <li class="grid md:grid-cols-12 gap-6 md:gap-10 items-baseline py-8 border-b border-platinum">
           <div class="md:col-span-4">
             <div class="eyebrow">{p.t}</div>
@@ -52,15 +58,9 @@ const pathways = [
     </ul>
   </Section>
 
-  <Section eyebrow="Relationship to Academia Europa">
+  <Section eyebrow="About VAI">
     <div class="prose-editorial max-w-5xl">
-      <p>As veterinary education by <a href="https://academiaeuropa.com" rel="noopener" class="link-ink">Academia Europa</a>, VAI coordinates academic review and partnership enquiries through the institutional office of Academia Europa. Programme-level and learner enquiries are handled directly by VAI.</p>
-    </div>
-  </Section>
-
-  <Section eyebrow="Institutional Information" tone="ivory">
-    <div class="prose-editorial max-w-5xl">
-      <p>Veterinary Academy International is veterinary education by Academia Europa, owned and operated by <strong class="text-navy-deep font-medium">Solex Education Unipessoal LDA</strong>, registered in Portugal.</p>
+      <p>VAI is a veterinary professional development platform and educational ecosystem operated by <strong class="text-navy-deep font-medium">Solex Education Unipessoal Lda</strong>, a company registered in Portugal.</p>
     </div>
   </Section>
 </Base>

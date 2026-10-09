@@ -1,7 +1,7 @@
 {
-  "name": "Veterinary Academy International",
+  "name": "VAI Veterinary",
   "short_name": "VAI",
-  "description": "The veterinary academy of Academia Europa. Structured postgraduate veterinary education.",
+  "description": "A veterinary professional development platform and educational ecosystem.",
   "icons": [
     { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
