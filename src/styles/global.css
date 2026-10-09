@@ -261,6 +261,11 @@
   /* Retired (2026-10-08 visual cleanup): a short gold rule directly under a heading reads as an underline, so it is no longer rendered anywhere. */
   .rule-gold { display: none; }
 
+  /* Header logo (2026-10-09): a very restrained optical lift so the official lockup sits slightly proud of the header beside the tactile interface. A drop-shadow FILTER only: it paints a
+     hairline highlight and two faint navy shadows OUTSIDE the artwork and never touches the artwork's own pixels, so the official blue and gold, proportions and clear space are exactly as supplied.
+     No gradient, bevel, gloss, extrusion, perspective or animation. Used for the primary header logo only. */
+  .logo-dimensional { filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.85)) drop-shadow(0 1px 1px rgba(11, 28, 52, 0.12)) drop-shadow(0 2px 4px rgba(11, 28, 52, 0.05)); }
+
   /* ---------------------------------------------------------------------
    * VAI BUTTON SYSTEM (2026-10-09), shared with app.vai.vet.
    * One tactile pill: restrained two-stop gradients built from the four brand colours, a fine top-edge highlight, soft layered shadows,
