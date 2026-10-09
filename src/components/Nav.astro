@@ -32,7 +32,7 @@ const NAV_LINKS = [
 ];
 const OPEN_VAI_URL = 'https://app.vai.vet';
 ---
-<header class="border-b border-black/10 bg-[var(--brand-cloud-white)]">
+<header class="bg-[var(--brand-cloud-white)]">
   <div class="mx-auto max-w-6xl px-6 py-3 md:py-4 flex items-center justify-between gap-4 lg:gap-6">
     <!-- lg-only negative margin compensates for this asset's own left-side
          transparent padding (its alpha channel shows visible ink starting
@@ -47,8 +47,8 @@ const OPEN_VAI_URL = 'https://app.vai.vet';
          own unchanged compact sizing. -->
     <!-- lg:-my-[38px]: the lockup canvas is ~29.6% transparent at top and bottom (~54px each at this width). A negative vertical margin removes
          most of that empty box so the header is shorter while the VISIBLE mark keeps exactly the same size. -->
-    <!-- Phones and tablets (below lg): the lockup is drawn about a third larger than before and the canvas's empty top and bottom padding is pulled in (-my) so the header does not get taller. -->
-    <a href="/" class="shrink-0 -my-2 -ml-[46px] min-[430px]:-my-[10px] min-[430px]:-ml-[49px] sm:-my-[10px] sm:-ml-[53px] md:-my-3 md:-ml-[59px] lg:-ml-[96px] lg:-my-[26px] xl:-ml-[140px] xl:-mr-[118px] xl:-my-[38px]" aria-label="VAI Veterinary — Home">
+    <!-- Phones and tablets (below lg): the lockup is drawn at about 1.9x its original phone size (the visible mark is about 150px wide at 390px). The canvas's empty top, bottom and left padding is pulled in (-my, -ml) so the header stays about 70px tall and the visible mark lines up with the page's left text edge, as on desktop. The header has no bottom rule. -->
+    <a href="/" class="shrink-0 -my-[18px] -ml-[64px] min-[430px]:-my-[19px] min-[430px]:-ml-[69px] sm:-my-[21px] sm:-ml-[76px] md:-my-[22px] md:-ml-[78px] lg:-ml-[96px] lg:-my-[26px] xl:-ml-[140px] xl:-mr-[118px] xl:-my-[38px]" aria-label="VAI Veterinary — Home">
       <picture>
         <source srcset="/vai-veterinary-lockup.webp" type="image/webp" />
         <!-- lg (desktop) width sized so the VISIBLE VAI mark (not the
@@ -64,7 +64,7 @@ const OPEN_VAI_URL = 'https://app.vai.vet';
           alt="VAI Veterinary"
           width="1600"
           height="480"
-          class="logo-dimensional w-[200px] min-[430px]:w-[216px] sm:w-[232px] md:w-[260px] lg:w-[420px] xl:w-[610px] h-auto"
+          class="logo-dimensional w-[280px] min-[430px]:w-[300px] sm:w-[330px] md:w-[340px] lg:w-[420px] xl:w-[610px] h-auto"
         />
       </picture>
     </a>
