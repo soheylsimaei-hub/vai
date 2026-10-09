@@ -132,9 +132,10 @@
   "source": "u8438738795_create_ultra_srealistic_cinematic_photo_of_a_youn_f6009f20-4827-4577-bd35-5903c1467e48_1.png",
   "process": false
  },
- "enterprise-clinic-team": {
-  "source": "enterprise-clinic-team.png",
-  "process": true
+ "enterprise-clinic-team-r2": {
+  "source": "enterprise-clinic-team-r2.png",
+  "process": false,
+  "note": "Founder-supplied group picture, 2026-10-10 (1254px square). Web files were generated directly (LANCZOS resize, WebP q=78) into public/photography/library; the original is not stored in the repo."
  },
  "trusted-vet-method-flags": {
   "source": "design-assets/photography-masters/trusted-vet-method-flags-master.webp",
