@@ -210,27 +210,6 @@
     color: var(--brand-clinical-blue);
     font-weight: 500;
   }
-
-  .btn-brand {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--brand-font-body);
-    font-size: 0.8125rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.85rem 1.75rem;
-    border-radius: 9999px;
-    border: 1px solid var(--brand-gold);
-    color: var(--brand-midnight-navy);
-    background: transparent;
-    transition: all 160ms ease;
-  }
-  .btn-brand:hover { background: var(--brand-gold); color: var(--brand-midnight-navy); }
-  .btn-brand-primary { background: var(--brand-gold); color: var(--brand-midnight-navy); }
-  .btn-brand-primary:hover { background: #a8814a; }
-  .btn-brand-on-dark { border-color: var(--brand-cloud-white); color: var(--brand-cloud-white); }
-  .btn-brand-on-dark:hover { background: var(--brand-cloud-white); color: var(--brand-midnight-navy); }
 }
 
 @layer base {
@@ -282,37 +261,71 @@
   /* Retired (2026-10-08 visual cleanup): a short gold rule directly under a heading reads as an underline, so it is no longer rendered anywhere. */
   .rule-gold { display: none; }
 
-  .btn {
-    display: inline-block;
-    font-family: var(--font-sans);
-    font-size: 0.8125rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    padding: 0.95rem 1.75rem;
-    border: 1px solid var(--color-navy);
-    color: var(--color-navy);
-    background: transparent;
-    transition: all 200ms ease;
+  /* ---------------------------------------------------------------------
+   * VAI BUTTON SYSTEM (2026-10-09), shared with app.vai.vet.
+   * One tactile pill: restrained two-stop gradients built from the four brand colours, a fine top-edge highlight, soft layered shadows,
+   * a 1px lift on hover, a settle on press, an always-visible focus ring and a desaturated disabled state. 44px minimum height.
+   * Roles keep the meaning each class already had on this site:
+   *   .btn-brand-primary        gold, navy ink            (the main call to action)
+   *   .btn-primary              Midnight Navy, cloud ink  (the main action on the older pages)
+   *   .btn, .btn-brand,
+   *   .btn-brand-on-dark,
+   *   .btn-light-primary        Cloud White paper, blue ink (quiet, still tactile)
+   *   .btn-light                translucent on navy       (secondary action inside dark sections)
+   * Where two classes meet on one element (for example btn plus btn-primary) the later rule below wins.
+   * ------------------------------------------------------------------- */
+  .btn, .btn-brand {
+    --btn-hl: rgba(255, 255, 255, 0.4);
+    position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    min-height: 2.75rem; padding: 0.55rem 1.5rem;
+    border: 1px solid rgba(11, 28, 52, 0.16); border-radius: 9999px;
+    font-family: var(--brand-font-body); font-size: 0.8125rem; font-weight: 500; line-height: 1.1; letter-spacing: 0.1em; text-transform: uppercase; text-align: center;
+    color: var(--brand-clinical-blue);
+    background: linear-gradient(180deg, #ffffff 0%, var(--brand-cloud-white) 100%);
+    box-shadow: inset 0 1px 0 #fff, 0 1px 1px rgba(11, 28, 52, 0.05), 0 2px 5px -3px rgba(11, 28, 52, 0.082);
+    cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+    transition: transform 140ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease, filter 180ms ease, color 180ms ease;
   }
-  .btn:hover { background: var(--color-navy); color: var(--color-ivory); }
+  .btn:hover, .btn-brand:hover { transform: translateY(-1px); border-color: rgba(41, 89, 168, 0.5); box-shadow: inset 0 1px 0 #fff, 0 2px 2px rgba(11, 28, 52, 0.07), 0 7px 12px -6px rgba(11, 28, 52, 0.2); }
+  .btn:active, .btn-brand:active { transform: translateY(0.5px); background: var(--brand-cloud-white); box-shadow: inset 0 2px 4px rgba(11, 28, 52, 0.14); transition-duration: 60ms; }
+
+  /* Cloud White paper on a navy section (these were outlined buttons before). */
+  .btn-brand-on-dark, .btn-light-primary { color: var(--brand-clinical-blue); }
+
+  /* Translucent, for a secondary action inside a navy section. */
+  .btn-light {
+    --btn-hl: rgba(243, 243, 241, 0.22);
+    color: var(--brand-cloud-white); border-color: rgba(243, 243, 241, 0.55);
+    background: linear-gradient(180deg, rgba(243, 243, 241, 0.16) 0%, rgba(243, 243, 241, 0.06) 100%);
+    box-shadow: inset 0 1px 0 var(--btn-hl), 0 1px 1px rgba(0, 0, 0, 0.18), 0 4px 8px -4px rgba(0, 0, 0, 0.3);
+  }
+  .btn-light:hover { color: var(--brand-cloud-white); border-color: var(--brand-cloud-white); background: linear-gradient(180deg, rgba(243, 243, 241, 0.24) 0%, rgba(243, 243, 241, 0.1) 100%); box-shadow: inset 0 1px 0 var(--btn-hl), 0 2px 2px rgba(0, 0, 0, 0.2), 0 9px 16px -6px rgba(0, 0, 0, 0.4); }
+  .btn-light:active { background: rgba(243, 243, 241, 0.05); box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.4); }
+
+  /* Midnight Navy. */
   .btn-primary {
-    background: var(--color-navy);
-    color: var(--color-ivory);
+    --btn-hl: rgba(243, 243, 241, 0.18);
+    color: var(--brand-cloud-white); border-color: #07121f;
+    background: linear-gradient(180deg, #1b3a66 0%, #12284a 46%, var(--brand-midnight-navy) 100%);
+    box-shadow: inset 0 1px 0 var(--btn-hl), inset 0 -1px 0 rgba(0, 0, 0, 0.25), 0 1px 1px rgba(11, 28, 52, 0.165), 0 4px 8px -4px rgba(11, 28, 52, 0.265);
   }
-  .btn-primary:hover {
-    background: var(--color-navy-deep);
-    color: var(--color-ivory);
+  .btn-primary:hover { color: var(--brand-cloud-white); border-color: #07121f; filter: brightness(1.04); box-shadow: inset 0 1px 0 var(--btn-hl), inset 0 -1px 0 rgba(0, 0, 0, 0.25), 0 2px 2px rgba(11, 28, 52, 0.2), 0 9px 16px -6px rgba(11, 28, 52, 0.42); }
+  .btn-primary:active { filter: none; background: linear-gradient(180deg, #0b1c34 0%, #12284a 100%); box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.45), 0 1px 1px rgba(11, 28, 52, 0.2); }
+
+  /* Gold: the main call to action. */
+  .btn-brand-primary {
+    --btn-hl: rgba(255, 255, 255, 0.4);
+    color: var(--brand-midnight-navy); border-color: #a07a3d;
+    background: linear-gradient(180deg, #d2b27a 0%, var(--brand-gold) 54%, #ad8548 100%);
+    box-shadow: inset 0 1px 0 var(--btn-hl), inset 0 -1px 0 rgba(11, 28, 52, 0.1), 0 1px 1px rgba(11, 28, 52, 0.115), 0 4px 8px -4px rgba(11, 28, 52, 0.165);
   }
-  .btn-light { border-color: var(--color-ivory); color: var(--color-ivory); }
-  .btn-light:hover { background: var(--color-ivory); color: var(--color-navy); }
-  .btn-light-primary {
-    background: var(--color-ivory);
-    color: var(--color-navy);
-    border-color: var(--color-ivory);
-  }
-  .btn-light-primary:hover {
-    background: transparent;
-    color: var(--color-ivory);
+  .btn-brand-primary:hover { color: var(--brand-midnight-navy); border-color: #a07a3d; filter: brightness(1.04); box-shadow: inset 0 1px 0 var(--btn-hl), inset 0 -1px 0 rgba(11, 28, 52, 0.1), 0 2px 2px rgba(11, 28, 52, 0.14), 0 9px 16px -6px rgba(11, 28, 52, 0.3); }
+  .btn-brand-primary:active { filter: none; background: linear-gradient(180deg, #ad8548 0%, var(--brand-gold) 100%); box-shadow: inset 0 2px 4px rgba(11, 28, 52, 0.28), 0 1px 1px rgba(11, 28, 52, 0.1); }
+
+  .btn:disabled, .btn[aria-disabled="true"], .btn-brand:disabled { cursor: not-allowed; transform: none; filter: saturate(0.4); opacity: 0.55; box-shadow: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .btn, .btn-brand { transition: none; }
+    .btn:hover, .btn:active, .btn-brand:hover, .btn-brand:active { transform: none; }
   }
 
   /* Body paragraphs — left-aligned for even word spacing. */
