@@ -69,7 +69,7 @@ const OPEN_VAI_URL = 'https://app.vai.vet';
     </a>
 
     <!-- Header layout by width: below 768px the logo and a Menu button (all links in the menu); 768-1279px the logo bar (logo and Open VAI) with every link on a row beneath it; 1280px and above one row with the links beside the logo. -->
-    <nav class="hidden xl:flex items-center gap-4 flex-1 justify-end" aria-label="Primary">
+    <nav class="hidden xl:flex items-center gap-4 flex-1 justify-end relative z-10" aria-label="Primary"><!-- relative z-10: the logo link above has a negative right margin (its image has empty padding), so without this its invisible edge sits on top of the first links and swallows their clicks -->
       {NAV_LINKS.map((l) => (
         <a
           href={l.href}
@@ -79,7 +79,7 @@ const OPEN_VAI_URL = 'https://app.vai.vet';
       ))}
     </nav>
 
-    <a href={OPEN_VAI_URL} rel="noopener noreferrer" class="hidden md:inline-flex md:ml-auto xl:ml-0 btn-brand btn-brand-primary shrink-0 md:!px-5 xl:!px-6">Open VAI</a>
+    <a href={OPEN_VAI_URL} rel="noopener noreferrer" class="hidden md:inline-flex md:ml-auto xl:ml-0 btn-brand btn-brand-primary shrink-0 md:!px-5 xl:!px-6 relative z-10">Open VAI</a>
 
     <button id="nav-toggle" class="md:hidden text-[var(--brand-midnight-navy)] text-xs tracking-[0.18em] uppercase" aria-label="Menu">Menu</button>
   </div>
