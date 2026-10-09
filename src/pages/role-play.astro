@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import SignatureGeometry from '../components/texture/SignatureGeometry.astro';
 import ReasoningLines from '../components/texture/ReasoningLines.astro';
 
-// VAI AI ROLE PLAY, an informational "coming soon" page. Voice role play does not exist today. Nothing here uses a microphone, audio, a player
+// VAI DIALOGUE (route kept as /role-play/ so existing links keep working), an informational "coming soon" page. Voice dialogue does not exist today. Nothing here uses a microphone, audio, a player
 // or a waveform: the page is static. Every capability is labelled as planned. Existing, real functionality (text-based Difficult Conversations
 // training in Practice at app.vai.vet) is described separately and accurately. Original copy and layout.
 const OPEN_VAI_URL = 'https://app.vai.vet';
@@ -31,9 +31,9 @@ const capabilities = [
 ];
 ---
 <Base
-  title="VAI AI Role Play"
-  description="VAI AI Role Play is a planned way for veterinary teams to practise spoken conversations across clinical and team roles. Voice role play is coming soon."
-  ogDescription="Planned voice role play for veterinary teams, extending VAI's text-based Difficult Conversations training. Coming soon."
+  title="VAI Dialogue"
+  description="VAI Dialogue is a planned way for veterinary teams to practise spoken conversations across clinical and team roles. Voice dialogue is coming soon."
+  ogDescription="Planned voice dialogue for veterinary teams, extending VAI's text-based Difficult Conversations training. Coming soon."
 >
   <!-- 1. Hero -->
   <section class="tx-host bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]">
@@ -41,7 +41,7 @@ const capabilities = [
     <div class="tx-content mx-auto max-w-6xl px-6 sec-hero">
       <div class="max-w-4xl">
         <span class="coming-soon-badge mb-6" data-coming-soon>
-          <span class="coming-soon-dot" aria-hidden="true"></span>Voice role play &middot; Coming soon
+          <span class="coming-soon-dot" aria-hidden="true"></span>VAI Dialogue &middot; Voice &middot; Coming soon
         </span>
         <h1 class="font-brand-serif text-[var(--brand-cloud-white)] text-4xl md:text-7xl leading-[1.06] mb-7">
           Practise the Conversations That Shape Veterinary Care
@@ -50,7 +50,7 @@ const capabilities = [
           Realistic AI-powered conversations designed to help veterinary teams develop confidence, communication skills and professional judgement.
         </p>
         <p class="mt-6 text-sm leading-relaxed opacity-70 max-w-xl">
-          VAI AI Role Play is in planning. Spoken role play is not yet part of VAI.
+          VAI Dialogue is in planning. Spoken dialogue is not yet part of VAI.
         </p>
       </div>
     </div>
@@ -64,7 +64,7 @@ const capabilities = [
         <div class="eyebrow-brand mb-4">Planned scenarios</div>
         <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-5">Eight pairings, across the whole practice team.</h2>
         <p class="text-[var(--brand-midnight-navy)] opacity-75 leading-relaxed">
-          Difficult conversations are not only between a veterinarian and a client. These are the pairings AI Role Play is planned to cover.
+          Difficult conversations are not only between a veterinarian and a client. These are the pairings VAI Dialogue is planned to cover.
         </p>
       </div>
 
@@ -120,7 +120,7 @@ const capabilities = [
           VAI already provides text-based Difficult Conversations training within Practice, at app.vai.vet.
         </p>
         <p class="leading-relaxed opacity-80 mb-8">
-          AI Role Play is planned to extend communication training into spoken interactions and additional veterinary-team roles. Spoken conversations are not part of VAI today.
+          VAI Dialogue is planned to extend communication training into spoken interactions and additional veterinary-team roles. Spoken conversations are not part of VAI today.
         </p>
         <a href={OPEN_VAI_URL} rel="noopener noreferrer" class="btn-brand btn-brand-primary">Open VAI</a>
       </div>
