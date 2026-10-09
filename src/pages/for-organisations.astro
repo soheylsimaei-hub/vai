@@ -1,0 +1,170 @@
+---
+import Base from '../layouts/Base.astro';
+import SignatureGeometry from '../components/texture/SignatureGeometry.astro';
+
+// VAI FOR ORGANISATIONS. Explains how clinics, veterinary groups and larger organisations can talk to VAI about extending access to their teams. Every statement on this page either comes from
+// existing VAI copy (the homepage "VAI for Teams" section, About, Expert Connect, VAI Dialogue) or is explicitly labelled as planned. There are no prices, plans, numbers of users, service levels, customer
+// names, security or compliance claims, or timelines, and nothing here is a form: the call to action is the existing /contact/ page and the published address on it.
+const today = [
+  { t: 'Ask VAI', d: 'Evidence-aware clinical reasoning that makes uncertainty and evidence limitations visible. It supports a clinician’s thinking and does not replace it.', href: 'https://app.vai.vet', cta: 'Open VAI', external: true },
+  { t: 'Practice', d: 'A place to rehearse clinical reasoning and difficult professional conversations through realistic scenarios, with feedback afterwards.', href: 'https://app.vai.vet', cta: 'Open VAI', external: true },
+  { t: 'VAI Veterinary Academy', d: 'Structured, expert-led education that connects learning with the skills professionals use in real clinical work.', href: '/academy/', cta: 'Explore the Academy' },
+  { t: 'VAI Pulse', d: 'A live view of newly indexed veterinary research and professional guidance, drawn from PubMed and open to everyone.', href: '/pulse/', cta: 'Explore VAI Pulse' },
+];
+const planned = [
+  { t: 'Team communication training', d: 'VAI Dialogue is planned to extend communication training into spoken conversations across clinical and team roles.', href: '/role-play/', cta: 'About VAI Dialogue' },
+  { t: 'Clinic-level training and reporting', d: 'Training and reporting at the level of a clinic or organisation, rather than only the individual, is planned for the future.' },
+  { t: 'Specialist perspectives', d: 'Expert Connect is a planned way to seek additional specialist perspectives on challenging clinical cases.', href: '/expert-connect/', cta: 'About Expert Connect' },
+];
+---
+<Base
+  title="VAI for Organisations"
+  description="VAI begins with the individual professional. Clinics, veterinary groups and larger organisations can talk to VAI about extending access, professional development and organisational use to their teams."
+  ogDescription="Built for individual judgement. Ready to grow with the team. Clinics, veterinary groups and larger organisations can talk to VAI about extending access to their teams."
+>
+  <!-- 1. Hero -->
+  <section class="tx-host bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]">
+    <SignatureGeometry tone="navy" place="hero" />
+    <div class="tx-content mx-auto max-w-6xl px-6 sec-hero">
+      <div class="max-w-4xl">
+        <div class="eyebrow-brand mb-6" style="color: var(--brand-gold);">VAI for Organisations</div>
+        <h1 class="font-brand-serif text-[var(--brand-cloud-white)] text-4xl md:text-6xl leading-[1.08] mb-7">
+          Built for individual judgement. Ready to grow with the team.
+        </h1>
+        <p class="text-lg md:text-xl leading-relaxed opacity-90 max-w-2xl mb-9">
+          VAI begins with the individual professional. Clinics, veterinary groups and larger organisations can talk to us about extending access, professional development and organisational use to their teams.
+        </p>
+        <div class="flex flex-wrap items-center gap-3">
+          <a href="/contact/" class="btn-brand btn-brand-primary">Talk to VAI</a>
+          <a href="#today" class="btn-brand btn-brand-on-dark">What VAI offers today</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Approach -->
+  <section class="bg-[var(--brand-cloud-white)]">
+    <div class="mx-auto max-w-6xl px-6 sec-feature">
+      <div class="grid md:grid-cols-12 gap-6 md:gap-14">
+        <div class="md:col-span-5">
+          <div class="eyebrow-brand mb-4">How VAI is built</div>
+          <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15]">An individual tool first, then a team resource.</h2>
+        </div>
+        <div class="md:col-span-6 md:col-start-7 md:pt-9">
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-4">
+            VAI is designed around the individual veterinary professional: someone reasoning through a case, rehearsing a difficult conversation or keeping their knowledge current. Organisational use builds on that foundation.
+          </p>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed">
+            Professional judgement remains human. VAI is intended to support veterinary professionals, not replace their clinical responsibility.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. What a team can use today -->
+  <section id="today" class="bg-white border-t border-black/10">
+    <div class="mx-auto max-w-6xl px-6 sec-feature">
+      <div class="max-w-2xl mb-10">
+        <div class="eyebrow-brand mb-4">Available now</div>
+        <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-4">What a team can use today.</h2>
+        <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed">
+          VAI is being introduced in stages. Its capabilities are being built and validated in focused clinical areas before broader expansion.
+        </p>
+      </div>
+      <ul class="grid sm:grid-cols-2 gap-4 md:gap-5">
+        {today.map((x) => (
+          <li class="org-card">
+            <h3 class="font-brand-serif text-[var(--brand-midnight-navy)] text-xl mb-2">{x.t}</h3>
+            <p class="text-sm leading-relaxed text-[var(--brand-midnight-navy)] opacity-75 mb-4">{x.d}</p>
+            <a href={x.href} rel={x.external ? 'noopener noreferrer' : undefined} class="link-ink text-sm">{x.cta} &rarr;</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4. Who we can talk to -->
+  <section class="bg-[var(--brand-cloud-white)] border-t border-black/10">
+    <div class="mx-auto max-w-6xl px-6 sec-feature">
+      <div class="max-w-2xl mb-10">
+        <div class="eyebrow-brand mb-4">Talk to us</div>
+        <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15]">Two ways in, one conversation.</h2>
+      </div>
+      <div class="grid md:grid-cols-2 md:divide-x md:divide-black/10">
+        <div id="clinics" class="md:pr-12 pb-10 md:pb-0 scroll-mt-8">
+          <h3 class="font-brand-serif text-[var(--brand-midnight-navy)] text-2xl mb-3">For Clinics</h3>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-5">Independent practices, hospitals and veterinary groups interested in providing VAI access to their teams.</p>
+          <p class="text-xs uppercase tracking-[0.14em] text-[var(--brand-clinical-blue)] mb-3">A conversation can cover</p>
+          <ul class="org-list">
+            <li>Extending access to the people in your team.</li>
+            <li>How VAI could support professional development in your practice.</li>
+            <li>What is available now, and what is still in development.</li>
+          </ul>
+        </div>
+        <div id="enterprise" class="md:pl-12 pt-10 md:pt-0 border-t border-black/10 md:border-t-0 scroll-mt-8">
+          <h3 class="font-brand-serif text-[var(--brand-midnight-navy)] text-2xl mb-3">Enterprise &amp; Institutions</h3>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-5">Larger veterinary organisations, universities, associations and strategic or institutional partners.</p>
+          <p class="text-xs uppercase tracking-[0.14em] text-[var(--brand-clinical-blue)] mb-3">A conversation can cover</p>
+          <ul class="org-list">
+            <li>Organisational use of VAI across a larger group of professionals.</li>
+            <li>Educational and institutional use.</li>
+            <li>Strategic or institutional partnership.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Planned for teams -->
+  <section class="bg-white border-t border-black/10">
+    <div class="mx-auto max-w-6xl px-6 sec-feature">
+      <div class="max-w-2xl mb-10">
+        <div class="eyebrow-brand mb-4">In planning</div>
+        <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-4">Planned for teams.</h2>
+        <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed">
+          The following are intentions, not services. None of them is available today, and no dates or terms have been set.
+        </p>
+      </div>
+      <ul class="grid md:grid-cols-3 gap-4 md:gap-5">
+        {planned.map((x) => (
+          <li class="org-card">
+            <span class="tag-tactile text-[11px] uppercase tracking-[0.12em] mb-3">Planned</span>
+            <h3 class="font-brand-serif text-[var(--brand-midnight-navy)] text-xl mb-2">{x.t}</h3>
+            <p class="text-sm leading-relaxed text-[var(--brand-midnight-navy)] opacity-75">{x.d}</p>
+            {x.href && <a href={x.href} class="link-ink text-sm inline-block mt-4">{x.cta} &rarr;</a>}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 6. First conversation + CTA -->
+  <section class="tx-host bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]">
+    <SignatureGeometry tone="navy" place="trust" />
+    <div class="tx-content mx-auto max-w-6xl px-6 sec-hero">
+      <div class="max-w-3xl">
+        <div class="eyebrow-brand mb-4" style="color: var(--brand-gold);">A first conversation</div>
+        <h2 class="font-brand-serif text-[var(--brand-cloud-white)] text-3xl md:text-5xl leading-[1.1] mb-6">Start with a conversation.</h2>
+        <p class="text-lg leading-relaxed opacity-90 mb-4">
+          We listen to how your team works, explain plainly what VAI can and cannot do today, and discuss whether extending it to your people makes sense.
+        </p>
+        <p class="leading-relaxed opacity-75 mb-9">A first conversation carries no commitment.</p>
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-4">
+          <a href="/contact/" class="btn-brand btn-brand-primary">Talk to VAI</a>
+          <span class="text-sm opacity-80">Or write to <a href="mailto:vai@vai.vet" class="underline-offset-4 hover:underline" style="color: var(--brand-cloud-white);">vai@vai.vet</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .org-card {
+    list-style: none; padding: 1.5rem; background: var(--brand-cloud-white); border: 1px solid rgba(11, 28, 52, 0.12); border-radius: 0.25rem;
+    display: flex; flex-direction: column; align-items: flex-start;
+  }
+  .org-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+  .org-list li { position: relative; padding-left: 1.25rem; font-size: 0.9375rem; line-height: 1.55; color: var(--brand-midnight-navy); opacity: 0.85; }
+  .org-list li::before { content: ''; position: absolute; left: 0; top: 0.6rem; width: 0.5rem; height: 1px; background: var(--brand-gold); }
+</style>

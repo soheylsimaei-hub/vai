@@ -20,16 +20,14 @@
 // Academy (temporary): the external LMS at academy.vai.vet is not ready for public traffic, so the Academy nav item points to the in-site
 // /academy/ presentation. When the full learning environment is ready, repoint this one entry (and Footer, homepage, About) to it.
 //
-// "For Organisations" has no standalone page yet and building one is out of
-// scope for this phase, so it points at the #for-organisations section on
-// the homepage rather than a 404.
+// "For Organisations" has its own page (/for-organisations/); the homepage keeps its short "VAI for Teams" section, which links to it.
 // Pulse: the public, no-login literature feature (VAI Pulse). Static pages on this site; no account needed.
 const NAV_LINKS = [
   { href: '/pulse/', label: 'Pulse' },
   { href: '/academy/', label: 'Academy' },
   { href: '/expert-connect/', label: 'Expert Connect' },
   { href: '/role-play/', label: 'VAI Dialogue' },
-  { href: '/#for-organisations', label: 'For Organisations' },
+  { href: '/for-organisations/', label: 'For Organisations' },
   { href: '/about', label: 'About' },
 ];
 const OPEN_VAI_URL = 'https://app.vai.vet';
