@@ -1,0 +1,163 @@
+---
+import Base from '../layouts/Base.astro';
+import SignatureGeometry from '../components/texture/SignatureGeometry.astro';
+import ReasoningLines from '../components/texture/ReasoningLines.astro';
+
+// VAI AI ROLE PLAY, an informational "coming soon" page. Voice role play does not exist today. Nothing here uses a microphone, audio, a player
+// or a waveform: the page is static. Every capability is labelled as planned. Existing, real functionality (text-based Difficult Conversations
+// training in Practice at app.vai.vet) is described separately and accurately. Original copy and layout.
+const OPEN_VAI_URL = 'https://app.vai.vet';
+
+const pairings: [string, string][] = [
+  ['Veterinarian', 'Client'],
+  ['Veterinarian', 'Receptionist'],
+  ['Receptionist', 'Client'],
+  ['Receptionist', 'Veterinary Nurse'],
+  ['Veterinary Nurse', 'Veterinarian'],
+  ['Practice Manager', 'Team Member'],
+  ['Veterinarian', 'Veterinarian'],
+  ['Team Member', 'Difficult Colleague'],
+];
+
+const capabilities = [
+  'Natural spoken conversations',
+  'AI-generated realistic scenarios',
+  'Adjustable difficulty',
+  'Different personalities and emotional responses',
+  'Immediate communication feedback',
+  'Structured performance scoring',
+  'Individual development tracking',
+  'Future clinic-level training and reporting',
+];
+---
+<Base
+  title="VAI AI Role Play"
+  description="VAI AI Role Play is a planned way for veterinary teams to practise spoken conversations across clinical and team roles. Voice role play is coming soon."
+  ogDescription="Planned voice role play for veterinary teams, extending VAI's text-based Difficult Conversations training. Coming soon."
+>
+  <!-- 1. Hero -->
+  <section class="tx-host bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]">
+    <SignatureGeometry tone="navy" place="hero" />
+    <div class="tx-content mx-auto max-w-6xl px-6 sec-hero">
+      <div class="max-w-4xl">
+        <span class="coming-soon-badge mb-6" data-coming-soon>
+          <span class="coming-soon-dot" aria-hidden="true"></span>Voice role play &middot; Coming soon
+        </span>
+        <h1 class="font-brand-serif text-[var(--brand-cloud-white)] text-4xl md:text-7xl leading-[1.06] mb-7">
+          Practise the Conversations That Shape Veterinary Care
+        </h1>
+        <p class="text-lg md:text-xl leading-relaxed opacity-90 max-w-2xl">
+          Realistic AI-powered conversations designed to help veterinary teams develop confidence, communication skills and professional judgement.
+        </p>
+        <p class="mt-6 text-sm leading-relaxed opacity-70 max-w-xl">
+          VAI AI Role Play is in planning. Spoken role play is not yet part of VAI.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Planned scenario pairings -->
+  <section class="tx-host bg-[var(--brand-cloud-white)]">
+    <ReasoningLines variant="flow" tone="light" place="flow" />
+    <div class="tx-content mx-auto max-w-6xl px-6 sec-feature">
+      <div class="max-w-3xl mb-10 md:mb-12">
+        <div class="eyebrow-brand mb-4">Planned scenarios</div>
+        <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-5">Eight pairings, across the whole practice team.</h2>
+        <p class="text-[var(--brand-midnight-navy)] opacity-75 leading-relaxed">
+          Difficult conversations are not only between a veterinarian and a client. These are the pairings AI Role Play is planned to cover.
+        </p>
+      </div>
+
+      <ul class="rp-grid">
+        {pairings.map(([a, b], i) => (
+          <li class="rp-card">
+            <span class="rp-card__idx" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <span class="rp-role">{a}</span>
+            <span class="rp-link" aria-hidden="true">
+              <svg viewBox="0 0 48 12" width="48" height="12" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                <path d="M6 6h36"/><path d="M9.5 2.5 6 6l3.5 3.5"/><path d="M38.5 2.5 42 6l-3.5 3.5"/>
+              </svg>
+            </span>
+            <span class="rp-role">{b}</span>
+            <span class="sr-only">Scenario {i + 1}: {a} and {b}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3. Planned capabilities -->
+  <section class="bg-white border-t border-black/10">
+    <div class="mx-auto max-w-6xl px-6 sec-feature">
+      <div class="grid md:grid-cols-12 gap-8 md:gap-14">
+        <div class="md:col-span-5">
+          <div class="eyebrow-brand mb-4">Planned capabilities</div>
+          <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-5">What the service is intended to offer.</h2>
+          <p class="text-sm text-[var(--brand-midnight-navy)] opacity-65 leading-relaxed max-w-xs">
+            Each item below is planned. None of them exists yet.
+          </p>
+        </div>
+        <ul class="md:col-span-7 border-t border-black/10">
+          {capabilities.map((c) => (
+            <li class="flex items-center justify-between gap-4 py-4 border-b border-black/10">
+              <span class="text-[var(--brand-midnight-navy)] leading-snug">{c}</span>
+              <span class="planned-tag">Planned</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Relationship to Practice -->
+  <section class="tx-host bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]">
+    <SignatureGeometry tone="navy" place="trust" />
+    <div class="tx-content mx-auto max-w-6xl px-6 sec-hero">
+      <div class="max-w-3xl">
+        <div class="eyebrow-brand mb-4" style="color: var(--brand-gold);">Relationship to Practice</div>
+        <h2 class="font-brand-serif text-[var(--brand-cloud-white)] text-3xl md:text-5xl leading-[1.1] mb-6">Building on what Practice already does.</h2>
+        <p class="text-lg leading-relaxed opacity-90 mb-4">
+          VAI already provides text-based Difficult Conversations training within Practice, at app.vai.vet.
+        </p>
+        <p class="leading-relaxed opacity-80 mb-8">
+          AI Role Play is planned to extend communication training into spoken interactions and additional veterinary-team roles. Spoken conversations are not part of VAI today.
+        </p>
+        <a href={OPEN_VAI_URL} rel="noopener noreferrer" class="btn-brand btn-brand-primary">Open VAI</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .coming-soon-badge {
+    display: inline-flex; align-items: center; gap: 0.6rem; max-width: 100%;
+    padding: 0.5rem 1.1rem; border-radius: 9999px;
+    border: 1px solid var(--brand-gold);
+    background: linear-gradient(180deg, rgba(190, 150, 89, 0.22), rgba(190, 150, 89, 0.08));
+    color: #e6cfa3; font-family: var(--brand-font-body); font-size: 0.8125rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase; line-height: 1.3;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  }
+  .coming-soon-dot { flex: none; width: 7px; height: 7px; border-radius: 9999px; background: var(--brand-gold); }
+  @media (max-width: 639px) { .rp-card { padding: 1.9rem 1.1rem 1.1rem; gap: 0.45rem; } .rp-role { font-size: 1.25rem; } }
+  @media (max-width: 479px) { .coming-soon-badge { letter-spacing: 0.12em; font-size: 0.75rem; } }
+
+  .rp-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.875rem; grid-template-columns: 1fr; }
+  @media (min-width: 640px) { .rp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; } }
+  @media (min-width: 1024px) { .rp-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .rp-card {
+    position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 0.6rem;
+    padding: 2.25rem 1.25rem 1.5rem; border-radius: 4px; background: #fff;
+    border: 1px solid rgba(11, 28, 52, 0.12);
+    box-shadow: inset 0 1px 0 #fff, 0 1px 2px rgba(11, 28, 52, 0.04), 0 10px 20px -16px rgba(11, 28, 52, 0.25);
+  }
+  .rp-card::before { content: ''; position: absolute; left: 1.25rem; right: 1.25rem; top: 0; height: 2px; background: linear-gradient(90deg, var(--brand-gold), rgba(190, 150, 89, 0)); }
+  .rp-card__idx { position: absolute; top: 0.8rem; right: 1rem; font-family: var(--brand-font-headline); font-size: 0.9rem; color: var(--brand-gold); letter-spacing: 0.06em; }
+  .rp-role { font-family: var(--brand-font-headline); font-size: 1.4rem; line-height: 1.15; color: var(--brand-midnight-navy); }
+  .rp-link { color: var(--brand-clinical-blue); opacity: 0.75; display: block; line-height: 0; }
+
+  .planned-tag {
+    flex: none; font-family: var(--brand-font-body); font-size: 0.625rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--brand-clinical-blue); border: 1px solid rgba(41, 89, 168, 0.4); border-radius: 9999px; padding: 0.3rem 0.65rem; line-height: 1;
+  }
+</style>
