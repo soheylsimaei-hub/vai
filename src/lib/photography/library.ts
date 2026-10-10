@@ -39,8 +39,8 @@ export interface PhotoEntry {
 
 export const PHOTO_WIDTHS = [480, 800, 1024] as const;
 export const PHOTO_BASE = '/photography/library';
-/** Bump when library files are replaced in place: it is appended to every image URL (?v=) so browsers and the CDN fetch the new files instead of serving a cached copy for hours. Last bump: 2026-10-10, the founder's edited versions of the same pictures. */
-export const PHOTO_VERSION = '20261010';
+/** Bump when library files are replaced in place: it is appended to every image URL (?v=) so browsers and the CDN fetch the new files instead of serving a cached copy for hours. Last bump: 2026-10-10 (b), the horse illustration on the screen in seminar-discussion was blurred at the founder's request. */
+export const PHOTO_VERSION = '20261010b';
 
 
 
@@ -80,7 +80,7 @@ export const PHOTOS: readonly PhotoEntry[] = [
   { id: 'professor-seminar', use: 'education', ready: true, alt: 'A professor in a white coat discussing a case with seated students', focus: { portrait: '52% 50%', landscape: '50% 34%' } },
   { id: 'clinic-floor-dogs', use: 'animal', ready: true, alt: 'Veterinary staff and a vet examining dogs together on a clinic floor', focus: { portrait: '44% 50%', landscape: '50% 45%' } },
   { id: 'man-archive-papers', use: 'editorial', ready: true, alt: 'A professional holding papers among stacks of documents in an old library', focus: { portrait: '50% 50%', landscape: '50% 38%' } },
-  { id: 'seminar-discussion', use: 'education', ready: true, alt: 'A veterinary educator in a white coat gesturing mid-discussion with students around a seminar table', focus: { portrait: '54% 50%', landscape: '50% 30%' } },
+  { id: 'seminar-discussion', use: 'education', ready: true, alt: 'A veterinary educator in a white coat gesturing mid-discussion with students around a seminar table', focus: { portrait: '54% 50%', landscape: '50% 30%' }, note: 'The horse illustration on the screen is deliberately blurred (founder request, 2026-10-10); the title, the educator and the students are sharp.' },
 
   // ---- reserve: processed on demand (scripts/photo-library/build-library.py --ids ...) ---------------------------------------------
   { id: 'woman-dog-classroom', use: 'animal', ready: false, alt: 'A woman holding a small dog in a teaching room', focus: { portrait: '58% 50%', landscape: '50% 40%' }, note: 'Garbled "Veterinary Class" writing on the board behind her; crop cannot remove it cleanly.' },
