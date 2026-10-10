@@ -39,8 +39,8 @@ export interface PhotoEntry {
 
 export const PHOTO_WIDTHS = [480, 800, 1024] as const;
 export const PHOTO_BASE = '/photography/library';
-/** Bump when library files are replaced in place: it is appended to every image URL (?v=) so browsers and the CDN fetch the new files instead of serving a cached copy for hours. Last bump: 2026-10-10 (b), the horse illustration on the screen in seminar-discussion was blurred at the founder's request. */
-export const PHOTO_VERSION = '20261010b';
+/** Bump when library files are replaced in place: it is appended to every image URL (?v=) so browsers and the CDN fetch the new files instead of serving a cached copy for hours. Last bump: 2026-10-10 (c), surgeon-theatre was replaced with the founder's corrected picture (no horse, canine thorax radiograph). */
+export const PHOTO_VERSION = '20261010c';
 
 
 
@@ -75,7 +75,7 @@ export const PHOTOS: readonly PhotoEntry[] = [
   { id: 'educator-anatomy-monitor', use: 'diagnostic', ready: true, alt: 'An educator standing by a monitor displaying an anatomical illustration', focus: { portrait: '52% 50%', landscape: '50% 40%' } },
   { id: 'man-whiteboard-classroom', use: 'profession', ready: true, alt: 'A professional leaning against a whiteboard with a busy teaching room behind', focus: { portrait: '62% 50%', landscape: '50% 38%' } },
   { id: 'senior-man-screen', use: 'profession', ready: true, alt: 'A senior professional beside a wall screen showing an anatomical diagram', focus: { portrait: '58% 50%', landscape: '50% 30%' } },
-  { id: 'surgeon-theatre', use: 'profession', ready: true, alt: 'A surgeon in scrubs standing with a clinical team in an operating theatre', focus: { portrait: '52% 50%', landscape: '50% 32%' } },
+  { id: 'surgeon-theatre', use: 'profession', ready: true, alt: 'A surgeon in scrubs standing with his arms crossed in an operating theatre, with a chest radiograph on a monitor behind him and a clinical team at work', focus: { portrait: '52% 50%', landscape: '50% 32%' }, note: 'Replaced 2026-10-10 with the founder-supplied corrected picture (the horse on the table removed; the monitor shows a canine thorax radiograph with all lettering and arrows removed at the founder's request).' },
   { id: 'academy-expert-led', use: 'education', ready: true, alt: 'A veterinarian in a white coat and clinical staff in scrubs gathered around dogs on a clinic floor', focus: { portrait: '50% 30%', landscape: '50% 24%' }, note: 'Supplied by the founder 2026-10-08 as the large image of /academy/ Expert-led education. Same photograph as the library entry clinic-floor-dogs, delivered from the supplied file (design-assets/photography-masters/academy-expert-led-master.webp). No attribution required.' },
   { id: 'professor-seminar', use: 'education', ready: true, alt: 'A professor in a white coat discussing a case with seated students', focus: { portrait: '52% 50%', landscape: '50% 34%' } },
   { id: 'clinic-floor-dogs', use: 'animal', ready: true, alt: 'Veterinary staff and a vet examining dogs together on a clinic floor', focus: { portrait: '44% 50%', landscape: '50% 45%' } },
