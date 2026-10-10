@@ -169,5 +169,10 @@
    1672
   ],
   "quality": 92
+ },
+ "woman-scrubs-classroom": {
+  "source": "woman-scrubs-classroom.png",
+  "process": false,
+  "note": "Founder-supplied picture, 2026-10-10 (1024px square); web files generated directly (WebP q=78)."
  }
 }
