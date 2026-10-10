@@ -39,6 +39,8 @@ export interface PhotoEntry {
 
 export const PHOTO_WIDTHS = [480, 800, 1024] as const;
 export const PHOTO_BASE = '/photography/library';
+/** Bump when library files are replaced in place: it is appended to every image URL (?v=) so browsers and the CDN fetch the new files instead of serving a cached copy for hours. Last bump: 2026-10-10, the founder's edited versions of the same pictures. */
+export const PHOTO_VERSION = '20261010';
 
 
 
@@ -58,7 +60,7 @@ export const PHOTOS: readonly PhotoEntry[] = [
 //                      (the learning-experience section is deliberately image-free until a suitable professional-education photograph exists)
 //   everything else below is processed and RESERVED for future pages. Do not repeat the same person across nearby pages.
   { id: 'enterprise-clinic-team-r2', use: 'enterprise', ready: true, alt: 'A veterinary clinic team of around twenty people in dark scrubs, with two dogs, gathered outside a white-columned building', focus: { portrait: '50% 50%', landscape: '50% 52%', square: '50% 50%' }, note: 'Enterprise / clinic-team asset only. Never on About; never implies the people shown are VAI customers or staff. Supplied by the founder 2026-10-10 as the group picture (replaces the earlier clinic-team image); the -r2 suffix busts the 4-hour CDN/browser cache of the earlier same-named files.' },
-  { id: 'scholar-whiteboard', use: 'profession', ready: true, alt: 'A veterinary educator in a white coat standing in front of a whiteboard of notes', focus: { portrait: '46% 50%', landscape: '50% 30%' } },
+  { id: 'scholar-whiteboard', use: 'profession', ready: true, alt: 'A veterinary educator in a white coat standing in front of a teaching board', focus: { portrait: '46% 50%', landscape: '50% 30%' } },
   { id: 'imaging-teaching-scrubs', use: 'diagnostic', ready: true, alt: 'A veterinary clinician in scrubs teaching a group in front of a radiograph', focus: { portrait: '40% 50%', landscape: '50% 24%' } },
   { id: 'educator-heart-model', use: 'diagnostic', ready: true, note: 'Withdrawn from /academy/ (2026-10-08): a posed portrait beside a model does not communicate professional education in practice.', alt: 'An educator beside an anatomical model of a heart in a teaching laboratory', focus: { portrait: '100% 50%', landscape: '50% 45%' } },
   { id: 'lecturer-woman-screen', use: 'education', ready: true, alt: 'A veterinary lecturer addressing a seated class in front of a projected image', focus: { portrait: '64% 50%', landscape: '50% 32%' } },

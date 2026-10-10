@@ -6,7 +6,7 @@
 //   decorative  alt="" (the image repeats or illustrates nothing the text does not already say). Otherwise the manifest alt is used.
 //   Width/height attributes + an aspect-ratio box mean the space is reserved before the file arrives: no layout shift.
 //   Everything is lazy by default; pass loading="eager" only for an image that is in the first viewport.
-import { getPhoto, PHOTO_BASE, PHOTO_WIDTHS } from '../../lib/photography/library';
+import { getPhoto, PHOTO_BASE, PHOTO_VERSION, PHOTO_WIDTHS } from '../../lib/photography/library';
 
 interface Props {
   id: string;
@@ -24,7 +24,7 @@ const p = getPhoto(id);
 const pos = `${p.focus.portrait.split(' ')[0]} ${p.focus.landscape.split(' ')[1]}`;
 const widths = p.widths ?? PHOTO_WIDTHS;
 const mid = widths.includes(800) ? 800 : widths[widths.length - 1];
-const src = (w: number) => `${PHOTO_BASE}/${id}-${w}.webp`;
+const src = (w: number) => `${PHOTO_BASE}/${id}-${w}.webp?v=${PHOTO_VERSION}`;
 const srcset = widths.map((w) => `${src(w)} ${w}w`).join(', ');
 ---
 <div class={`ph ph--${ratio} ${cls}`.trim()}>
