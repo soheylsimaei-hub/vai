@@ -64,7 +64,17 @@ const platform = [
   { w: 'Evidence', l: 'VAI Pulse' },
   { w: 'Reason', l: 'Ask VAI' },
   { w: 'Practise', l: 'VAI Practice' },
+  { w: 'Exchange', l: 'VAI Exchange', href: '/#exchange' },
   { w: 'Develop', l: 'VAI Veterinary Academy', here: true },
+];
+
+// Column treatment per item: five columns from 1280px; from 768px a balanced 3 + 2 (six-column grid); stacked below. Literal class strings so Tailwind keeps them.
+const platformCell = [
+  'md:col-span-2 xl:col-span-1 md:border-t-0 md:pr-6 xl:pr-5',
+  'md:col-span-2 xl:col-span-1 md:border-t-0 md:border-l md:border-black/10 md:px-6 xl:px-5',
+  'md:col-span-2 xl:col-span-1 md:border-t-0 md:border-l md:border-black/10 md:px-6 xl:px-5',
+  'md:col-span-3 xl:col-span-1 xl:border-t-0 xl:border-l xl:border-black/10 md:pr-6 xl:px-5',
+  'md:col-span-3 xl:col-span-1 md:border-l md:border-black/10 xl:border-t-0 md:pl-6 xl:px-5',
 ];
 
 const schema = {
@@ -255,18 +265,20 @@ const schema = {
         <div class="eyebrow-brand mb-4">Within VAI</div>
         <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-6">One part of a wider platform.</h2>
         <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-4">
-          VAI Veterinary Academy is one part of the wider VAI platform, not the whole of it. The Academy is where professional education is structured; elsewhere in VAI, professionals look for evidence, reason through cases and rehearse difficult conversations.
+          VAI Veterinary Academy is one part of a wider professional platform. Alongside structured education, VAI brings together veterinary evidence, clinical reasoning, practical simulation and professional knowledge exchange.
         </p>
         <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed">
           Learn, VAI&rsquo;s learning capability inside the platform, and the Academy are related but distinct.
         </p>
       </div>
-      <ol class="grid md:grid-cols-4 border-t border-black/10 md:max-w-4xl">
+      <ol class="grid md:grid-cols-6 xl:grid-cols-5 border-t border-black/10">
         {platform.map((s, i) => (
-          <li class={`py-5 md:pr-6 ${i > 0 ? 'md:pl-6 md:border-l md:border-black/10 border-t border-black/10 md:border-t-0' : ''}`}>
+          <li class={`py-5 border-t border-black/10 first:border-t-0 md:first:border-t-0 ${platformCell[i]}`}>
             <div class="flex items-center gap-3 mb-2">
               <span class={`inline-block w-[7px] h-[7px] rounded-full border border-[var(--brand-gold)] ${s.here ? 'bg-[var(--brand-gold)]' : 'bg-white'}`} aria-hidden="true"></span>
-              <h3 class="font-brand-serif text-[var(--brand-midnight-navy)] text-2xl leading-none">{s.w}</h3>
+              <h3 class="font-brand-serif text-[var(--brand-midnight-navy)] text-2xl leading-none">
+                {s.href ? <a href={s.href} class="hover:text-[var(--brand-clinical-blue)] transition-colors">{s.w}</a> : s.w}
+              </h3>
             </div>
             <div class={`eyebrow-brand ${s.here ? '' : 'opacity-80'}`}>{s.l}</div>
           </li>
