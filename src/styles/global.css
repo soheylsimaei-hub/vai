@@ -96,7 +96,7 @@
  *   AnatomicalGhost    ACCENT    one original canine thoracic-limb plate fragment (Learn)
  *   OrganicScience     VARIATION growth-ring contours and cells (Veterinary Longevity)
  *
- * Intensity: stroke opacity tokens below x --tx-k (per placement). Light backgrounds 3-7%, navy 7-10% at the hero,
+ * Intensity: stroke opacity tokens below x --tx-k (per placement). Light backgrounds (x0.40 of the former values), navy (x0.70),
  * lower elsewhere. If a motif is the first thing noticed it is too strong: lower --tx-k, never the artwork's detail.
  * ================================================================================================================== */
 .tx-host { position: relative; overflow: hidden; isolation: isolate; }
@@ -115,10 +115,11 @@
 .tx .drift { stroke: url(#txn-fade); }
 
 /* Light surfaces: Midnight Navy + Clinical Blue at very low opacity, a rare fine gold hairline. */
-/* light surfaces: line opacity x0.85 (was .095 / .15 / .38) */
-.tx--light { color:#2959a8; --tx-p: #0b1c34; --tx-p-o: .081; --tx-s: #2959a8; --tx-s-o: .128; --tx-g: #be9659; --tx-g-o: .323; }
+/* light surfaces (white and Cloud White): line opacity x0.40, a 60% reduction from the previous .081 / .128 / .323 (earlier history: .095 / .15 / .38) */
+.tx--light { color:#2959a8; --tx-p: #0b1c34; --tx-p-o: .0324; --tx-s: #2959a8; --tx-s-o: .0512; --tx-g: #be9659; --tx-g-o: .1292; }
 /* Navy surfaces: Clinical Blue + Cloud White + restrained Gold; no glow, no gradient except the mask that protects text. */
-.tx--navy  { color:#f3f3f1; --tx-p: #2959a8; --tx-p-o: .46; --tx-s: #f3f3f1; --tx-s-o: .075; --tx-g: #be9659; --tx-g-o: .30; }
+/* navy surfaces: line opacity x0.70, a 30% reduction from the previous .46 / .075 / .30 */
+.tx--navy  { color:#f3f3f1; --tx-p: #2959a8; --tx-p-o: .322; --tx-s: #f3f3f1; --tx-s-o: .0525; --tx-g: #be9659; --tx-g-o: .21; }
 .tx--light .drift { color: #2959a8; }
 .tx--navy .drift { color: #f3f3f1; }
 
