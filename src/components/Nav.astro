@@ -27,13 +27,15 @@ const NAV_LINKS = [
   { href: '/academy/', label: 'Academy' },
   { href: '/expert-connect/', label: 'Expert Connect' },
   { href: '/role-play/', label: 'VAI Dialogue' },
+  // Exchange (VAI Exchange, an expert preview inside the signed-in app) is introduced on the homepage first; the section there links into the app.
+  { href: '/#exchange', label: 'Exchange' },
   { href: '/for-organisations/', label: 'For Organisations' },
   { href: '/about', label: 'About' },
 ];
 const OPEN_VAI_URL = 'https://app.vai.vet';
 ---
 <header class="bg-[var(--brand-cloud-white)]">
-  <div class="mx-auto max-w-6xl px-6 py-3 md:py-4 flex items-center justify-between gap-4 lg:gap-6">
+  <div class="mx-auto max-w-6xl xl:max-w-[1400px] px-6 py-3 md:py-4 flex items-center justify-between gap-4 lg:gap-6 xl:gap-8">
     <!-- lg-only negative margin compensates for this asset's own left-side
          transparent padding (its alpha channel shows visible ink starting
          at x=366 of a 1600px-wide canvas, ~22.9% in) so the VISIBLE blue
@@ -48,7 +50,7 @@ const OPEN_VAI_URL = 'https://app.vai.vet';
     <!-- lg:-my-[38px]: the lockup canvas is ~29.6% transparent at top and bottom (~54px each at this width). A negative vertical margin removes
          most of that empty box so the header is shorter while the VISIBLE mark keeps exactly the same size. -->
     <!-- Phones and tablets (below lg): the lockup is drawn at about 1.9x its original phone size (the visible mark is about 150px wide at 390px). The canvas's empty top, bottom and left padding is pulled in (-my, -ml) so the header stays about 70px tall and the visible mark lines up with the page's left text edge, as on desktop. The header has no bottom rule. -->
-    <a href="/" class="shrink-0 -my-[18px] -ml-[64px] min-[430px]:-my-[19px] min-[430px]:-ml-[69px] sm:-my-[21px] sm:-ml-[76px] md:-my-[22px] md:-ml-[78px] lg:-ml-[96px] lg:-my-[26px] xl:-ml-[140px] xl:-mr-[118px] xl:-my-[38px]" aria-label="VAI Veterinary — Home">
+    <a href="/" class="shrink-0 -my-[18px] -ml-[64px] min-[430px]:-my-[19px] min-[430px]:-ml-[69px] sm:-my-[21px] sm:-ml-[76px] md:-my-[22px] md:-ml-[78px] lg:-ml-[96px] lg:-my-[26px] xl:-ml-[110px] xl:-mr-[92px] xl:-my-[30px]" aria-label="VAI Veterinary — Home">
       <picture>
         <source srcset="/vai-veterinary-lockup.webp" type="image/webp" />
         <!-- lg (desktop) width sized so the VISIBLE VAI mark (not the
@@ -64,30 +66,30 @@ const OPEN_VAI_URL = 'https://app.vai.vet';
           alt="VAI Veterinary"
           width="1600"
           height="480"
-          class="logo-dimensional w-[280px] min-[430px]:w-[300px] sm:w-[330px] md:w-[340px] lg:w-[420px] xl:w-[610px] h-auto"
+          class="logo-dimensional w-[280px] min-[430px]:w-[300px] sm:w-[330px] md:w-[340px] lg:w-[420px] xl:w-[480px] h-auto"
         />
       </picture>
     </a>
 
-    <!-- Header layout by width: below 768px the logo and a Menu button (all links in the menu); 768-1279px the logo bar (logo and Open VAI) with every link on a row beneath it; 1280px and above one row with the links beside the logo. -->
-    <nav class="hidden xl:flex items-center gap-4 flex-1 justify-end relative z-10" aria-label="Primary"><!-- relative z-10: the logo link above has a negative right margin (its image has empty padding), so without this its invisible edge sits on top of the first links and swallows their clicks -->
+    <!-- Header layout by width (seven links):  below 768px the logo and a Menu button (all links in the menu); 768-1279px the logo bar (logo and Open VAI) with every link on a row beneath it; 1280px and above one row with the links beside the logo. -->
+    <nav class="hidden xl:flex items-center gap-6 min-[1366px]:gap-8 min-[1400px]:gap-9 flex-1 justify-end relative z-10" aria-label="Primary"><!-- relative z-10: the logo link above has a negative right margin (its image has empty padding), so without this its invisible edge sits on top of the first links and swallows their clicks -->
       {NAV_LINKS.map((l) => (
         <a
           href={l.href}
           rel={l.external ? 'noopener noreferrer' : undefined}
-          class="text-[12.5px] uppercase tracking-[0.05em] whitespace-nowrap font-medium text-[var(--brand-midnight-navy)] hover:text-[var(--brand-clinical-blue)] transition-colors"
+          class="text-[12.5px] min-[1400px]:text-[13px] uppercase tracking-[0.06em] whitespace-nowrap font-medium text-[var(--brand-midnight-navy)] hover:text-[var(--brand-clinical-blue)] transition-colors"
         >{l.label}</a>
       ))}
     </nav>
 
-    <a href={OPEN_VAI_URL} rel="noopener noreferrer" class="hidden md:inline-flex md:ml-auto xl:ml-0 btn-brand btn-brand-primary shrink-0 md:!px-5 xl:!px-6 relative z-10">Open VAI</a>
+    <a href={OPEN_VAI_URL} rel="noopener noreferrer" class="hidden md:inline-flex md:ml-auto xl:ml-0 btn-brand btn-brand-primary shrink-0 md:!px-5 xl:!px-7 relative z-10">Open VAI</a>
 
     <button id="nav-toggle" class="md:hidden text-[var(--brand-midnight-navy)] text-base font-bold tracking-[0.14em] uppercase min-h-11 pl-3" aria-label="Menu">Menu</button>
   </div>
 
   <!-- 768-1279px: the logo bar above, and every link on a row of its own below it, so no destination is ever hidden behind a menu on a tablet or a narrower laptop window. -->
   <nav class="hidden md:block xl:hidden border-t border-black/10" aria-label="Primary">
-    <div class="mx-auto max-w-6xl px-6 py-2.5 flex items-center justify-between gap-3">
+    <div class="mx-auto max-w-6xl px-6 py-2.5 flex items-center justify-between gap-4">
       {NAV_LINKS.map((l) => (
         <a href={l.href} class="text-[12px] uppercase tracking-[0.05em] whitespace-nowrap font-medium text-[var(--brand-midnight-navy)] hover:text-[var(--brand-clinical-blue)] transition-colors">{l.label}</a>
       ))}

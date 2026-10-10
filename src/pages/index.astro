@@ -164,6 +164,92 @@ const PRACTICE_CAPTURE: string | null = null;
     </div>
   </section>
 
+  <!-- 4b. VAI Exchange — placed after Practice and before Learn: Ask VAI (reasoning) → Practice (rehearsal) → Exchange (professional discussion) → Learn / Academy (structured education).
+       Expert Preview inside the signed-in app. The card below is an ILLUSTRATIVE mock with fictional contributors; no statistics, no activity claims.
+       Community perspective is kept visually distinct from validated evidence. -->
+  <section id="exchange" class="tx-host bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)] border-t border-white/10 scroll-mt-24">
+    <SignatureGeometry tone="navy" place="trust" />
+    <div class="tx-content mx-auto max-w-6xl px-6 sec-feature">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-14 items-start">
+        <div class="lg:col-span-6">
+          <div class="flex flex-wrap items-center gap-3 mb-5">
+            <div class="text-xs uppercase tracking-[0.14em] opacity-70">VAI Exchange</div>
+            <span class="tag-tactile !bg-[rgba(190,150,89,0.16)] !bg-none !border-[rgba(190,150,89,0.65)] !text-[var(--brand-gold)] !shadow-none">Expert Preview</span>
+          </div>
+          <h2 class="font-brand-serif text-[var(--brand-cloud-white)] text-3xl md:text-4xl lg:text-5xl leading-[1.12] mb-6">
+            Clinical knowledge, shared.
+          </h2>
+          <p class="text-lg opacity-85 leading-relaxed mb-10 max-w-xl">
+            Discuss challenging clinical cases, exchange perspectives with veterinary colleagues and specialists, and turn professional discussion into structured clinical learning.
+          </p>
+          <ul class="divide-y divide-white/15 border-y border-white/15 mb-10 max-w-xl">
+            <li class="py-5">
+              <div class="text-xs uppercase tracking-[0.14em] text-[var(--brand-gold)] mb-2">Clinical Case Discussions</div>
+              <p class="text-sm opacity-80 leading-relaxed">Discuss challenging real-world cases with veterinary colleagues.</p>
+            </li>
+            <li class="py-5">
+              <div class="text-xs uppercase tracking-[0.14em] text-[var(--brand-gold)] mb-2">Specialist Perspectives</div>
+              <p class="text-sm opacity-80 leading-relaxed">Learn how experienced specialists approach difficult clinical questions.</p>
+            </li>
+            <li class="py-5">
+              <div class="text-xs uppercase tracking-[0.14em] text-[var(--brand-gold)] mb-2">VAI Discussion Synthesis</div>
+              <p class="text-sm opacity-80 leading-relaxed">Turn long discussions into structured areas of agreement, disagreement and unanswered questions.</p>
+            </li>
+          </ul>
+          <a href={`${OPEN_VAI_URL}/exchange`} rel="noopener noreferrer" class="btn-brand btn-brand-primary">Explore VAI Exchange</a>
+          <p class="mt-5 text-xs opacity-60 max-w-md leading-relaxed">Opens inside VAI. Sign in with your approved account to continue.</p>
+        </div>
+
+        <div class="lg:col-span-6">
+          <figure class="m-0" aria-labelledby="exchange-preview-caption">
+            <div class="bg-[var(--brand-cloud-white)] text-[var(--brand-midnight-navy)] border border-white/20 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.65)]">
+              <div class="flex flex-wrap items-center justify-between gap-2 px-5 py-3 border-b border-black/10 bg-white">
+                <span class="text-[11px] uppercase tracking-[0.14em] text-[var(--brand-clinical-blue)] font-medium">Dermatology &middot; Canine</span>
+                <span class="text-[11px] uppercase tracking-[0.12em] opacity-60">Case discussion</span>
+              </div>
+              <div class="px-5 pt-5 pb-6">
+                <h3 class="font-brand-serif text-xl md:text-2xl leading-snug mb-5">Recurrent superficial pyoderma in a 6-year-old Labrador Retriever</h3>
+
+                <div class="border-l-2 border-[var(--brand-clinical-blue)] pl-4 mb-6">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span aria-hidden="true" class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)] text-[11px] font-medium">ER</span>
+                    <div class="leading-tight">
+                      <div class="text-sm font-medium">Dr. Elena Rossi</div>
+                      <div class="text-xs opacity-65">Veterinary Dermatology specialist</div>
+                    </div>
+                  </div>
+                  <p class="text-sm leading-relaxed opacity-90">&ldquo;Recurrent disease changes the clinical question from how to manage this episode to why recurrence is occurring.&rdquo;</p>
+                  <div class="mt-2 text-[11px] uppercase tracking-[0.12em] opacity-55">Professional opinion</div>
+                </div>
+
+                <div class="bg-white border border-black/10 p-4">
+                  <div class="text-[11px] uppercase tracking-[0.14em] text-[var(--brand-clinical-blue)] font-medium mb-3">VAI Discussion Synthesis</div>
+                  <dl class="space-y-3 text-sm">
+                    <div>
+                      <dt class="font-medium">Areas of agreement</dt>
+                      <dd class="opacity-75 leading-relaxed">Recurrent disease warrants investigation beyond management of the current skin lesions.</dd>
+                    </div>
+                    <div>
+                      <dt class="font-medium">Differing perspectives</dt>
+                      <dd class="opacity-75 leading-relaxed">Contributors differ on the order in which underlying allergic, endocrine and infectious factors should be investigated.</dd>
+                    </div>
+                    <div>
+                      <dt class="font-medium">Questions still open</dt>
+                      <dd class="opacity-75 leading-relaxed">Has bacterial culture and susceptibility testing been performed during a recurrent episode?</dd>
+                    </div>
+                  </dl>
+                </div>
+
+                <p class="mt-4 text-xs opacity-60 leading-relaxed">Professional perspectives are shown separately from published evidence. Community opinion is not presented as validated evidence.</p>
+              </div>
+            </div>
+            <figcaption id="exchange-preview-caption" class="mt-3 text-xs opacity-60 leading-relaxed">Illustrative preview. Case and contributors are fictional.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 5. Learn — editorial, asymmetric; still one of the three core
        domains, so it is not shrunk to a narrow centered text block. The
        right column uses restrained, rule-separated labels (not cards, not
