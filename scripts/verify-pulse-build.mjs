@@ -111,7 +111,7 @@ for (const p of ["pulse/index.html", "pulse/guidelines/index.html"]) if (existsS
   check(imgs.some((t) => /trusted-vet-method-teaching-r2/.test(t)), "academy: the authentic teaching photograph is missing");
   for (const [n, h] of [["academy", academy], ["home", read("index.html")]]) check(!/Illustrative image|illustrative purposes|not VAI (faculty|team|members)|Illustrative imagery generated/i.test(h), `${n}: image disclaimers must not return`);
   check(!/\bunderline\b/.test([...academy.matchAll(/class="([^"]*)"/g)].map((m) => m[1]).join(" ")), "academy: underline classes must not return");
-  check(!/trusted-vet-method-flags/.test(academy + about_html()), "the flags photograph is reserved and must not be used");
+  check(!/trusted-vet-method-flags/.test(about_html()), "the flags photograph is not used on About (founder 2026-10-10: it is used only in the /academy/ programme row)");
   check(!/enterprise-clinic-team/.test(academy), "academy: the clinic-team image is reserved for Enterprise");
   for (const t of imgs) { check(/\bwidth="\d+"/.test(t) && /\bheight="\d+"/.test(t), "academy: image without width/height"); check(/loading="lazy"/.test(t), "academy: image not lazy"); }
   check(/<link rel="canonical" href="https:\/\/www\.vai\.vet\/academy\/"/.test(academy), "academy: canonical must be https://www.vai.vet/academy/");
