@@ -179,7 +179,7 @@ const PRACTICE_CAPTURE: string | null = null;
         <div class="lg:col-span-6">
           <div class="flex flex-wrap items-center gap-3 mb-5">
             <div class="text-xs uppercase tracking-[0.14em] opacity-70">VAI Exchange</div>
-            <span class="tag-tactile !bg-[rgba(190,150,89,0.16)] !bg-none !border-[rgba(190,150,89,0.65)] !text-[var(--brand-gold)] !shadow-none">Expert Preview</span>
+            <span class="tag-tactile text-[11px] uppercase tracking-[0.12em] !bg-[rgba(190,150,89,0.16)] !bg-none !border-[rgba(190,150,89,0.65)] !text-[var(--brand-gold)] !shadow-none">Expert Preview</span>
           </div>
           <h2 class="font-brand-serif text-[var(--brand-cloud-white)] text-3xl md:text-4xl lg:text-5xl leading-[1.12] mb-6">
             Clinical knowledge, shared.
@@ -258,22 +258,25 @@ const PRACTICE_CAPTURE: string | null = null;
   <!-- 5. Learn — editorial, asymmetric; still one of the three core
        domains, so it is not shrunk to a narrow centered text block. The
        right column uses restrained, rule-separated labels (not cards, not
-       a fabricated interface) to hint at Learn's future shape while being
-       explicit that it isn't built yet. -->
+       a fabricated interface) to show Learn's shape, with one clear status
+       label (In Development). -->
   <section id="learn" class="tx-host bg-white border-t border-black/10">
     <AnatomicalGhost tone="light" place="learn" />
     <div class="tx-content mx-auto max-w-6xl px-6 sec-standard">
       <div class="grid md:grid-cols-12 gap-10 md:gap-14">
         <div class="md:col-span-7">
-          <div class="text-xs uppercase tracking-[0.14em] text-[var(--brand-midnight-navy)] opacity-70 mb-4">Learn</div>
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <div class="text-xs uppercase tracking-[0.14em] text-[var(--brand-midnight-navy)] opacity-70">Learn</div>
+            <span class="tag-tactile tag-tactile--gold text-[11px] uppercase tracking-[0.12em]">In Development</span>
+          </div>
           <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-6">
-            Structured development, still being built.
+            Structured development, built around clinical reasoning.
           </h2>
           <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-4">
-            Learn is VAI&rsquo;s learning capability inside the platform: case-based, sequenced and designed around the realities of clinical work. It is still being built, and we&rsquo;re saying that plainly.
+            Learn is VAI&rsquo;s learning capability inside the platform: case-based, sequenced and designed around the realities of clinical work.
           </p>
           <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-8">
-            As it develops, Learn will connect with VAI Academy and with the reasoning and communication skills veterinarians use every day.
+            Learn is being developed alongside VAI Veterinary Academy and the reasoning and communication skills veterinarians use every day.
           </p>
           <a href="/contact" class="btn-brand">Tell us you&rsquo;re interested</a>
         </div>
@@ -398,7 +401,7 @@ const PRACTICE_CAPTURE: string | null = null;
           Some questions deserve a person, not a model.
         </h2>
         <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed">
-          VAI is being designed to recognise when AI support has reached its responsible limit. A future Expert Opinion pathway will provide structured escalation to specialist expertise when a case needs a person.
+          VAI is being designed to recognise when AI support has reached its responsible limit. The Expert Opinion pathway, part of VAI Expert Connect, is designed to provide structured escalation to specialist expertise when a case needs a person.
         </p>
       </div>
     </div>

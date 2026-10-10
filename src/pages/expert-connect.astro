@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import SignatureGeometry from '../components/texture/SignatureGeometry.astro';
 
 // VAI EXPERT CONNECT, an informational "coming soon" page. Nothing on this page is operational: there is no form, no upload, no payment and
-// no request flow, and no price, response time, expert availability or number of experts is stated. Every step is labelled as planned.
+// no request flow, and no price, response time, expert availability or number of experts is stated. The page states plainly that the service is not open yet.
 //
 // "Register Your Interest" is intentionally NOT a link. The only candidate route is /contact/, whose form posts to a Formspree endpoint that is
 // still the placeholder YOUR_FORMSPREE_ID (src/components/ContactForm.astro), so a submission would not reach anyone, and the form carries no
@@ -43,8 +43,8 @@ const steps = [
 ---
 <Base
   title="VAI Expert Connect"
-  description="VAI Expert Connect is a planned way for veterinary professionals to seek additional specialist perspectives on challenging clinical cases. Coming soon."
-  ogDescription="A planned way for veterinary professionals to seek additional specialist perspectives on challenging clinical cases. Coming soon."
+  description="VAI Expert Connect is designed to give veterinary professionals a pathway to additional specialist perspectives on challenging clinical cases. Coming to VAI."
+  ogDescription="A pathway to additional specialist perspectives on challenging clinical cases. Coming to VAI."
 >
   <!-- 1. Hero -->
   <section class="tx-host bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]">
@@ -53,7 +53,7 @@ const steps = [
       <div class="max-w-4xl">
         <div class="flex flex-wrap items-center gap-x-4 gap-y-3 mb-6">
           <span class="coming-soon-badge" data-coming-soon>
-            <span class="coming-soon-dot" aria-hidden="true"></span>Coming soon
+            <span class="coming-soon-dot" aria-hidden="true"></span>Coming to VAI
           </span>
           <span class="eyebrow-brand" style="color: var(--brand-gold);">VAI Expert Connect</span>
         </div>
@@ -64,20 +64,20 @@ const steps = [
           A new way for veterinary professionals to seek additional specialist perspectives on challenging clinical cases.
         </p>
         <p class="mt-6 text-sm leading-relaxed opacity-70 max-w-xl">
-          VAI Expert Connect is in planning. It is not yet open, and no consultations are being offered.
+          Expert Connect is not open yet, and no consultations are offered.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- 2. How it is planned to work -->
+  <!-- 2. How it is designed to work -->
   <section class="bg-[var(--brand-cloud-white)]">
     <div class="mx-auto max-w-6xl px-6 sec-feature">
       <div class="max-w-3xl mb-10 md:mb-12">
-        <div class="eyebrow-brand mb-4">How it is planned to work</div>
-        <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-5">Five intended steps, from case to clarity.</h2>
+        <div class="eyebrow-brand mb-4">How it is designed to work</div>
+        <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-5">Five steps, from case to clarity.</h2>
         <p class="text-[var(--brand-midnight-navy)] opacity-75 leading-relaxed">
-          These are the steps the service is designed around. They describe an intended future experience, and none of them can be used today.
+          These are the steps the service is designed around. They describe the experience as designed, and none of them can be used yet.
         </p>
       </div>
 
@@ -90,7 +90,7 @@ const steps = [
               </span>
             </div>
             <div class="ec-step__body">
-              <div class="ec-step__num"><span class="sr-only">Step </span>{String(s.n).padStart(2, '0')}<span class="ec-step__planned">Planned</span></div>
+              <div class="ec-step__num"><span class="sr-only">Step </span>{String(s.n).padStart(2, '0')}</div>
               <h3 class="font-brand-serif text-[var(--brand-midnight-navy)] text-xl md:text-[1.35rem] leading-snug mb-2">{s.t}</h3>
               <p class="text-sm text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed">{s.d}</p>
             </div>
@@ -110,7 +110,7 @@ const steps = [
         </div>
         <div class="md:col-span-6 md:col-start-7 md:pt-9">
           <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-4">
-            Future consultations may involve a fee. Nothing is offered today, and the terms of the service have not been set.
+            Consultations may involve a fee. Nothing is offered yet, and the terms of the service will be set out before it opens.
           </p>
           <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed">
             Details will be published here once the service is ready, and not before.
@@ -131,7 +131,7 @@ const steps = [
           We are building a network of veterinary specialists and experienced clinicians to help shape the next generation of professional clinical support.
         </p>
         <div class="inline-flex flex-wrap items-center gap-x-4 gap-y-2 border border-white/25 rounded-full px-5 py-3">
-          <span class="text-[11px] uppercase tracking-[0.16em]" style="color: var(--brand-gold);">Coming soon</span>
+          <span class="text-[11px] uppercase tracking-[0.16em]" style="color: var(--brand-gold);">Coming to VAI</span>
           <span class="text-sm opacity-80">Registration of interest is not open yet.</span>
         </div>
       </div>
@@ -144,7 +144,7 @@ const steps = [
       <div class="max-w-2xl">
         <div class="eyebrow-brand mb-4">Current status</div>
         <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-6">
-          VAI Expert Connect is a planned part of VAI. This page describes the intention, not a live service. To see what VAI offers today, open VAI.
+          VAI Expert Connect is part of VAI's product direction. This page describes the service as designed; it is not open yet. To see what VAI offers today, open VAI.
         </p>
         <a href="https://app.vai.vet" rel="noopener noreferrer" class="btn-brand btn-brand-primary">Open VAI</a>
       </div>
@@ -180,10 +180,6 @@ const steps = [
   .ec-step__num {
     display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;
     font-family: var(--brand-font-headline); font-size: 1.05rem; color: var(--brand-gold); letter-spacing: 0.06em;
-  }
-  .ec-step__planned {
-    font-family: var(--brand-font-body); font-size: 0.625rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--brand-clinical-blue); border: 1px solid rgba(41, 89, 168, 0.4); border-radius: 9999px; padding: 0.2rem 0.5rem; line-height: 1;
   }
   @media (min-width: 1024px) {
     .ec-steps { grid-template-columns: repeat(5, minmax(0, 1fr)); }

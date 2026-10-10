@@ -4,7 +4,7 @@ import SignatureGeometry from '../components/texture/SignatureGeometry.astro';
 import ReasoningLines from '../components/texture/ReasoningLines.astro';
 
 // VAI DIALOGUE (route kept as /role-play/ so existing links keep working), an informational "coming soon" page. Voice dialogue does not exist today. Nothing here uses a microphone, audio, a player
-// or a waveform: the page is static. Every capability is labelled as planned. Existing, real functionality (text-based Difficult Conversations
+// or a waveform: the page is static. The page states plainly that voice dialogue is not available yet. Existing, real functionality (text-based Difficult Conversations
 // training in Practice at app.vai.vet) is described separately and accurately. Original copy and layout.
 const OPEN_VAI_URL = 'https://app.vai.vet';
 
@@ -27,13 +27,13 @@ const capabilities = [
   'Immediate communication feedback',
   'Structured performance scoring',
   'Individual development tracking',
-  'Future clinic-level training and reporting',
+  'Clinic-level training and reporting',
 ];
 ---
 <Base
   title="VAI Dialogue"
-  description="VAI Dialogue is a planned way for veterinary teams to practise spoken conversations across clinical and team roles. Voice dialogue is coming soon."
-  ogDescription="Planned voice dialogue for veterinary teams, extending VAI's text-based Difficult Conversations training. Coming soon."
+  description="VAI Dialogue brings spoken conversation practice to veterinary teams across clinical and team roles. Voice dialogue is coming to VAI."
+  ogDescription="Voice dialogue for veterinary teams, extending VAI's text-based Difficult Conversations training. Coming to VAI."
 >
   <!-- 1. Hero -->
   <section class="tx-host bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]">
@@ -41,7 +41,7 @@ const capabilities = [
     <div class="tx-content mx-auto max-w-6xl px-6 sec-hero">
       <div class="max-w-4xl">
         <span class="coming-soon-badge mb-6" data-coming-soon>
-          <span class="coming-soon-dot" aria-hidden="true"></span>VAI Dialogue &middot; Voice &middot; Coming soon
+          <span class="coming-soon-dot" aria-hidden="true"></span>VAI Dialogue &middot; Voice &middot; Coming to VAI
         </span>
         <h1 class="font-brand-serif text-[var(--brand-cloud-white)] text-4xl md:text-7xl leading-[1.06] mb-7">
           Practise the Conversations That Shape Veterinary Care
@@ -50,21 +50,21 @@ const capabilities = [
           Realistic AI-powered conversations designed to help veterinary teams develop confidence, communication skills and professional judgement.
         </p>
         <p class="mt-6 text-sm leading-relaxed opacity-70 max-w-xl">
-          VAI Dialogue is in planning. Spoken dialogue is not yet part of VAI.
+          Spoken dialogue is coming to VAI. Text-based conversation practice is available today in Practice.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- 2. Planned scenario pairings -->
+  <!-- 2. Scenario pairings -->
   <section class="tx-host bg-[var(--brand-cloud-white)]">
     <ReasoningLines variant="flow" tone="light" place="flow" />
     <div class="tx-content mx-auto max-w-6xl px-6 sec-feature">
       <div class="max-w-3xl mb-10 md:mb-12">
-        <div class="eyebrow-brand mb-4">Planned scenarios</div>
+        <div class="eyebrow-brand mb-4">Scenarios</div>
         <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-5">Eight pairings, across the whole practice team.</h2>
         <p class="text-[var(--brand-midnight-navy)] opacity-75 leading-relaxed">
-          Difficult conversations are not only between a veterinarian and a client. These are the pairings VAI Dialogue is planned to cover.
+          Difficult conversations are not only between a veterinarian and a client. These are the pairings VAI Dialogue is designed to cover.
         </p>
       </div>
 
@@ -86,23 +86,22 @@ const capabilities = [
     </div>
   </section>
 
-  <!-- 3. Planned capabilities -->
+  <!-- 3. Capabilities -->
   <section class="bg-white border-t border-black/10">
     <div class="mx-auto max-w-6xl px-6 sec-feature">
       <div class="grid md:grid-cols-12 gap-8 md:gap-14">
         <div class="md:col-span-5">
-          <div class="eyebrow-brand mb-4">Planned capabilities</div>
-          <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-5">What the service is intended to offer.</h2>
+          <div class="eyebrow-brand mb-4">Capabilities</div>
+          <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-5">What VAI Dialogue is designed to offer.</h2>
           <p class="text-sm text-[var(--brand-midnight-navy)] opacity-65 leading-relaxed max-w-xs">
-            Each item below is planned. None of them exists yet.
+            Voice dialogue is coming to VAI. These capabilities describe the service as designed, and none is available yet.
           </p>
         </div>
         <ul class="md:col-span-7 border-t border-black/10">
           {capabilities.map((c) => (
             <li class="flex items-center justify-between gap-4 py-4 border-b border-black/10">
               <span class="text-[var(--brand-midnight-navy)] leading-snug">{c}</span>
-              <span class="planned-tag">Planned</span>
-            </li>
+                          </li>
           ))}
         </ul>
       </div>
@@ -120,7 +119,7 @@ const capabilities = [
           VAI already provides text-based Difficult Conversations training within Practice, at app.vai.vet.
         </p>
         <p class="leading-relaxed opacity-80 mb-8">
-          VAI Dialogue is planned to extend communication training into spoken interactions and additional veterinary-team roles. Spoken conversations are not part of VAI today.
+          VAI Dialogue extends communication training into spoken interactions and additional veterinary-team roles. Spoken conversations are coming to VAI and are not available yet.
         </p>
         <a href={OPEN_VAI_URL} rel="noopener noreferrer" class="btn-brand btn-brand-primary">Open VAI</a>
       </div>
@@ -156,8 +155,4 @@ const capabilities = [
   .rp-role { font-family: var(--brand-font-headline); font-size: 1.4rem; line-height: 1.15; color: var(--brand-midnight-navy); }
   .rp-link { color: var(--brand-clinical-blue); opacity: 0.75; display: block; line-height: 0; }
 
-  .planned-tag {
-    flex: none; font-family: var(--brand-font-body); font-size: 0.625rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--brand-clinical-blue); border: 1px solid rgba(41, 89, 168, 0.4); border-radius: 9999px; padding: 0.3rem 0.65rem; line-height: 1;
-  }
 </style>

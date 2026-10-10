@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import SignatureGeometry from '../components/texture/SignatureGeometry.astro';
 
 // VAI FOR ORGANISATIONS. Explains how clinics, veterinary groups and larger organisations can talk to VAI about extending access to their teams. Every statement on this page either comes from
-// existing VAI copy (the homepage "VAI for Teams" section, About, Expert Connect, VAI Dialogue) or is explicitly labelled as planned. There are no prices, plans, numbers of users, service levels, customer
+// existing VAI copy (the homepage "VAI for Teams" section, About, Expert Connect, VAI Dialogue) or carries an explicit status label (Coming to VAI). There are no prices, plans, numbers of users, service levels, customer
 // names, security or compliance claims, or timelines, and nothing here is a form: the call to action is the existing /contact/ page and the published address on it.
 const today = [
   { t: 'Ask VAI', d: 'Evidence-aware clinical reasoning that makes uncertainty and evidence limitations visible. It supports a clinician’s thinking and does not replace it.', href: 'https://app.vai.vet', cta: 'Open VAI', external: true },
@@ -11,10 +11,10 @@ const today = [
   { t: 'VAI Veterinary Academy', d: 'Structured, expert-led education that connects learning with the skills professionals use in real clinical work.', href: '/academy/', cta: 'Explore the Academy' },
   { t: 'VAI Pulse', d: 'A live view of newly indexed veterinary research and professional guidance, drawn from PubMed and open to everyone.', href: '/pulse/', cta: 'Explore VAI Pulse' },
 ];
-const planned = [
-  { t: 'Team communication training', d: 'VAI Dialogue is planned to extend communication training into spoken conversations across clinical and team roles.', href: '/role-play/', cta: 'About VAI Dialogue' },
-  { t: 'Clinic-level training and reporting', d: 'Training and reporting at the level of a clinic or organisation, rather than only the individual, is planned for the future.' },
-  { t: 'Specialist perspectives', d: 'Expert Connect is a planned way to seek additional specialist perspectives on challenging clinical cases.', href: '/expert-connect/', cta: 'About Expert Connect' },
+const expanding = [
+  { t: 'Team communication training', d: 'VAI Dialogue brings realistic spoken communication training to clinical and team roles, extending the conversation practice already in VAI.', href: '/role-play/', cta: 'About VAI Dialogue' },
+  { t: 'Clinic-level training and reporting', d: 'Bringing professional development beyond the individual clinician, with organisation-level training insights and reporting designed for veterinary teams.' },
+  { t: 'Specialist perspectives', d: 'Expert Connect is designed as a pathway to additional specialist perspectives on challenging clinical cases.', href: '/expert-connect/', cta: 'About Expert Connect' },
 ];
 ---
 <Base
@@ -116,20 +116,20 @@ const planned = [
     </div>
   </section>
 
-  <!-- 5. Planned for teams -->
+  <!-- 5. Expanding VAI: capabilities for teams (each carries one honest status label; none is available yet) -->
   <section class="bg-white border-t border-black/10">
     <div class="mx-auto max-w-6xl px-6 sec-feature">
       <div class="max-w-2xl mb-10">
-        <div class="eyebrow-brand mb-4">In planning</div>
-        <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-4">Planned for teams.</h2>
+        <div class="eyebrow-brand mb-4">Expanding VAI</div>
+        <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-4">Built for teams, too.</h2>
         <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed">
-          The following are intentions, not services. None of them is available today, and no dates or terms have been set.
+          VAI is expanding beyond the individual clinician, bringing its approach to professional development, communication and clinical collaboration into veterinary teams and organisations.
         </p>
       </div>
       <ul class="grid md:grid-cols-3 gap-4 md:gap-5">
-        {planned.map((x) => (
+        {expanding.map((x) => (
           <li class="org-card">
-            <span class="tag-tactile text-[11px] uppercase tracking-[0.12em] mb-3">Planned</span>
+            <span class="tag-tactile text-[11px] uppercase tracking-[0.12em] mb-3">Coming to VAI</span>
             <h3 class="font-brand-serif text-[var(--brand-midnight-navy)] text-xl mb-2">{x.t}</h3>
             <p class="text-sm leading-relaxed text-[var(--brand-midnight-navy)] opacity-75">{x.d}</p>
             {x.href && <a href={x.href} class="link-ink text-sm inline-block mt-4">{x.cta} &rarr;</a>}
