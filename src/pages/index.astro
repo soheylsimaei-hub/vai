@@ -60,34 +60,39 @@ const PRACTICE_CAPTURE: string | null = null;
     </div>
   </section>
 
-  <!-- 2. Platform introduction — editorial triptych, not dashboard cards.
-       Three equal-weight columns separated only by a hairline divider (no
-       borders, no fill, no numbering/arrows), so the domains read as three
-       facets of one platform rather than a linear onboarding sequence. -->
+  <!-- 2. Platform introduction — editorial quartet, not dashboard cards.
+       Four equal-weight columns (Reason, Practise, Exchange, Develop) separated only by hairlines
+       (no borders, no fill, no numbering/arrows), so the domains read as four facets of one
+       platform. Four columns from 1280px; 2 x 2 from 768px; single column on phones. -->
   <section class="tx-host bg-[var(--brand-cloud-white)]">
     <ReasoningLines variant="flow" tone="light" place="flow" />
-    <div class="tx-content mx-auto max-w-6xl px-6 sec-feature">
+    <div class="tx-content mx-auto max-w-6xl xl:max-w-7xl px-6 sec-feature">
       <div class="max-w-3xl mb-10 md:mb-12">
         <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-6">
           One platform, built around your judgement.
         </h2>
         <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed">
-          Veterinary work asks you to reason through uncertain cases, communicate with worried clients, and keep learning long after formal education ends. VAI is built around all three, as one professional capability platform rather than three separate tools.
+          Veterinary work asks you to reason through uncertain cases, communicate through difficult moments, learn from professional peers, and keep developing long after formal education ends. VAI brings these parts of professional life together in one platform.
         </p>
       </div>
 
-      <div class="grid md:grid-cols-3 md:divide-x md:divide-black/10">
-        <div class="md:pr-10 pb-7 md:pb-0">
+      <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-y-10 md:gap-y-12">
+        <div class="md:pr-14 xl:pr-9">
           <div class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl mb-3">Reason</div>
           <div class="eyebrow-brand mb-4">Ask VAI</div>
           <p class="text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed">Bring a real case. VAI confirms what it understood, then reasons through it with you, evidence-cited where evidence applies.</p>
         </div>
-        <div class="md:px-10 py-7 md:py-0">
+        <div class="md:border-l md:border-black/10 md:pl-14 xl:px-9 xl:pl-9">
           <div class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl mb-3">Practise</div>
           <div class="eyebrow-brand mb-4">Practice</div>
-          <p class="text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed">Rehearse the client conversations that are hardest to get right, with honest, specific feedback afterward.</p>
+          <p class="text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed">Rehearse the clinical reasoning and client conversations that are hardest to get right, with honest, specific feedback afterward.</p>
         </div>
-        <div class="md:pl-10 pt-7 md:pt-0">
+        <div class="md:max-xl:border-t md:max-xl:border-black/10 md:max-xl:pt-12 md:pr-14 xl:border-l xl:border-black/10 xl:px-9">
+          <div class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl mb-3">Exchange</div>
+          <div class="eyebrow-brand mb-4">VAI Exchange</div>
+          <p class="text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed">Discuss challenging cases, exchange perspectives with veterinary colleagues and specialists, and learn from professional discussion.</p>
+        </div>
+        <div class="md:border-l md:border-black/10 md:pl-14 md:max-xl:border-t md:max-xl:pt-12 xl:pl-9">
           <div class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl mb-3">Develop</div>
           <div class="eyebrow-brand mb-4">Learn</div>
           <p class="text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed">Structured, case-based, expert-led development for the parts of the job nobody has time to teach you properly.</p>
