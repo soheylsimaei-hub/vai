@@ -40,7 +40,7 @@ export interface PhotoEntry {
 export const PHOTO_WIDTHS = [480, 800, 1024] as const;
 export const PHOTO_BASE = '/photography/library';
 /** Bump when library files are replaced in place: it is appended to every image URL (?v=) so browsers and the CDN fetch the new files instead of serving a cached copy for hours. Last bump: 2026-10-10 (c), surgeon-theatre was replaced with the founder's corrected picture (no horse, canine thorax radiograph). */
-export const PHOTO_VERSION = '20261010c';
+export const PHOTO_VERSION = '20261010d';
 
 
 
