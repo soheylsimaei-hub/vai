@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import SignatureGeometry from '../components/texture/SignatureGeometry.astro';
 
 // VAI EXPERT CONNECT, an informational "coming soon" page. Nothing on this page is operational: there is no form, no upload, no payment and
-// no request flow, and no price, response time, expert availability or number of experts is stated. The page states plainly that the service is not open yet.
+// no request flow, and no price, response time, expert availability or number of experts is stated. Availability is communicated by the Coming to VAI status labels.
 //
 // "Register Your Interest" is intentionally NOT a link. The only candidate route is /contact/, whose form posts to a Formspree endpoint that is
 // still the placeholder YOUR_FORMSPREE_ID (src/components/ContactForm.astro), so a submission would not reach anyone, and the form carries no
@@ -43,7 +43,7 @@ const steps = [
 ---
 <Base
   title="VAI Expert Connect"
-  description="VAI Expert Connect is designed to give veterinary professionals a pathway to additional specialist perspectives on challenging clinical cases. Coming to VAI."
+  description="VAI Expert Connect provides veterinary professionals with a pathway to additional specialist perspectives on challenging clinical cases. Coming to VAI."
   ogDescription="A pathway to additional specialist perspectives on challenging clinical cases. Coming to VAI."
 >
   <!-- 1. Hero -->
@@ -64,20 +64,20 @@ const steps = [
           A new way for veterinary professionals to seek additional specialist perspectives on challenging clinical cases.
         </p>
         <p class="mt-6 text-sm leading-relaxed opacity-70 max-w-xl">
-          Expert Connect is designed to bring a considered specialist perspective to the cases that need one.
+          Expert Connect brings a considered specialist perspective to the cases that need one.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- 2. How it is designed to work -->
+  <!-- 2. How Expert Connect works -->
   <section class="bg-[var(--brand-cloud-white)]">
     <div class="mx-auto max-w-6xl px-6 sec-feature">
       <div class="max-w-3xl mb-10 md:mb-12">
-        <div class="eyebrow-brand mb-4">How it is designed to work</div>
+        <div class="eyebrow-brand mb-4">How Expert Connect works</div>
         <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-5">Five steps, from case to clarity.</h2>
         <p class="text-[var(--brand-midnight-navy)] opacity-75 leading-relaxed">
-          These are the steps the service is designed around, once it opens.
+          Five steps take a case from the first question to a considered specialist response.
         </p>
       </div>
 
@@ -128,21 +128,24 @@ const steps = [
         <p class="text-lg md:text-xl leading-relaxed opacity-90 mb-8">
           We are building a network of veterinary specialists and experienced clinicians to help shape the next generation of professional clinical support.
         </p>
-        <div class="inline-flex flex-wrap items-center gap-x-4 gap-y-2 border border-white/25 rounded-full px-5 py-3">
+        <div class="inline-flex flex-wrap items-center gap-x-4 gap-y-2 border border-white/25 rounded-[1.6rem] sm:rounded-full px-5 py-3">
           <span class="text-[11px] uppercase tracking-[0.16em]" style="color: var(--brand-gold);">Coming to VAI</span>
-          <span class="text-sm opacity-80">Registration of interest is not open yet.</span>
+          <span class="text-sm opacity-80">Specialist participation opening progressively.</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 5. Status -->
+  <!-- 5. Preparing for launch: a confident closing statement. No timetable, numbers or availability claims. -->
   <section class="bg-[var(--brand-cloud-white)]">
-    <div class="mx-auto max-w-6xl px-6 sec-standard">
-      <div class="max-w-2xl">
-        <div class="eyebrow-brand mb-4">Current status</div>
-        <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed mb-6">
-          VAI Expert Connect is part of VAI's product direction. This page describes the service as designed; it is not open yet. To see what VAI offers today, open VAI.
+    <div class="mx-auto max-w-6xl px-6 sec-feature">
+      <div class="max-w-3xl">
+        <div class="eyebrow-brand mb-4">Preparing for launch</div>
+        <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-6">
+          Expert Connect is being prepared for its first phase of specialist participation.
+        </h2>
+        <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed text-lg max-w-2xl mb-8">
+          VAI is bringing together the clinical framework, specialist network and professional experience that will support expert-to-veterinarian consultation within the platform.
         </p>
         <a href="https://app.vai.vet" rel="noopener noreferrer" class="btn-brand btn-brand-primary">Open VAI</a>
       </div>
