@@ -111,7 +111,7 @@ const audience = [
     <ol class="grid md:grid-cols-2 gap-x-12 gap-y-4 max-w-5xl">
       {modules.map((m, i) => (
         <li class="grid grid-cols-[auto_1fr] gap-4 items-baseline border-l-2 border-teal pl-5 py-1">
-          <div class="font-serif text-teal text-xs tracking-[0.3em]">{String(i + 1).padStart(2, '0')}</div>
+          <div class="num-index text-teal text-xs">{String(i + 1).padStart(2, '0')}</div>
           <div class="font-serif text-lg text-navy-deep">{m}</div>
         </li>
       ))}

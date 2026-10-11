@@ -196,6 +196,10 @@
   .font-brand-serif { font-family: var(--brand-font-headline); }
   .font-brand-sans { font-family: var(--brand-font-body); }
 
+  /* Functional index numbers (card corners, steps, module and pathway sequence: 01, 02, 03). The interface sans-serif, medium weight, lining and tabular numerals, modest tracking.
+     Editorial and display numerals keep the serif; this class is only for small numbers that identify a position in a sequence. */
+  .num-index { font-family: var(--brand-font-body); font-weight: 500; font-variant-numeric: lining-nums tabular-nums; letter-spacing: 0.08em; line-height: 1; }
+
   /* Inline text link: Clinical Blue, weight 600 (distinguishable from body text without relying on colour alone), no underline, a quiet opacity
      change on hover and the global focus ring. One class for every in-copy link on the site. */
   .link-ink { color: var(--brand-clinical-blue); font-weight: 600; text-decoration: none; transition: opacity 160ms ease; }

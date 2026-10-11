@@ -9,7 +9,7 @@ const steps = [
   <div class="grid md:grid-cols-3 gap-0 relative">
     {steps.map((s, i) => (
       <div class={`relative p-8 md:p-10 ${i < 2 ? 'border-b md:border-b-0 md:border-r border-champagne/40' : ''} ${i === 0 ? 'bg-ivory' : i === 1 ? 'bg-paper' : 'bg-navy-deep text-ivory'}`}>
-        <div class={`font-serif text-xs tracking-[0.3em] mb-3 ${i === 2 ? 'text-champagne-soft' : 'text-champagne'}`}>{s.n}</div>
+        <div class={`num-index text-xs mb-3 ${i === 2 ? 'text-champagne-soft' : 'text-champagne'}`}>{s.n}</div>
         <h3 class={`font-serif text-2xl mb-3 ${i === 2 ? 'text-ivory' : 'text-navy-deep'}`}>{s.t}</h3>
         <p class={`leading-relaxed text-sm ${i === 2 ? 'text-platinum' : 'text-graphite'}`}>{s.d}</p>
         {i < 2 && (
