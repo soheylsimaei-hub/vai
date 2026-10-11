@@ -1,0 +1,159 @@
+---
+// VAI Expert Network: expression of interest. Posts (JSON, from the browser) to the VAI app's public contact endpoint, which emails the details to faculty@vai.vet with the sender as Reply-To.
+// It stores nothing. Self-reported only: roles and qualifications are not verified, and the form never says or implies that anyone has joined the network. If the message cannot be delivered the
+// visitor is told so plainly and given the address; the form never reports success unless the server confirms it.
+// Protections: required fields and an explicit consent checkbox, a hidden honeypot, a fill-time trap (the render time is sent), and the server-side origin allow-list, validation and rate limits.
+const ENDPOINT = 'https://app.vai.vet/api/public-contact';
+const ROLES = ['Board-certified / recognised specialist', 'Advanced practitioner / certificate holder', 'Experienced small-animal clinician', 'Academic / university clinician', 'Referral clinician', 'Other veterinary professional'];
+const SPECIALTIES = ['Dermatology', 'Internal Medicine', 'Cardiology', 'Emergency & Critical Care', 'Neurology', 'Surgery', 'Diagnostic Imaging', 'Oncology', 'Ophthalmology', 'Behaviour', 'Dentistry', 'Anaesthesia / Analgesia', 'Clinical Pathology', 'Other'];
+const field = 'w-full border border-black/20 bg-white px-4 py-3 text-[var(--brand-midnight-navy)] font-sans text-[15px] focus:outline-none focus:border-[var(--brand-clinical-blue)]';
+const label = 'eyebrow-brand mb-2 block';
+---
+<div id="eoi-root" data-endpoint={ENDPOINT} class="bg-[var(--brand-cloud-white)] text-[var(--brand-midnight-navy)] border border-white/20 shadow-[0_24px_60px_-28px_rgba(0,0,0,0.6)]">
+  <form id="eoi-form" class="px-5 py-7 md:px-9 md:py-9 grid gap-5" novalidate>
+    <div>
+      <div class="eyebrow-brand mb-2">Express your interest</div>
+      <p class="text-sm leading-relaxed opacity-75 max-w-xl">A few professional details, so we can contact you about relevant opportunities to participate. Please do not include any client or patient information.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-5">
+      <div>
+        <label class={label} for="eoi-name">Full name</label>
+        <input id="eoi-name" name="name" type="text" required maxlength="120" autocomplete="name" class={field} />
+      </div>
+      <div>
+        <label class={label} for="eoi-email">Email</label>
+        <input id="eoi-email" name="email" type="email" required maxlength="254" autocomplete="email" class={field} />
+      </div>
+      <div>
+        <label class={label} for="eoi-country">Country</label>
+        <input id="eoi-country" name="country" type="text" required maxlength="80" autocomplete="country-name" class={field} />
+      </div>
+      <div>
+        <label class={label} for="eoi-role">Professional role</label>
+        <select id="eoi-role" name="role" required class={field}>
+          <option value="" disabled selected>Select</option>
+          {ROLES.map((r) => <option value={r}>{r}</option>)}
+        </select>
+      </div>
+    </div>
+
+    <div>
+      <label class={label} for="eoi-specialty">Specialty / primary clinical field</label>
+      <select id="eoi-specialty" name="specialty" required class={field}>
+        <option value="" disabled selected>Select</option>
+        {SPECIALTIES.map((s) => <option value={s}>{s}</option>)}
+      </select>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-5">
+      <div>
+        <label class={label} for="eoi-qual">Qualifications / credentials <span class="normal-case tracking-normal opacity-60">(optional)</span></label>
+        <input id="eoi-qual" name="qualifications" type="text" maxlength="300" class={field} />
+      </div>
+      <div>
+        <label class={label} for="eoi-inst">Institution / organisation <span class="normal-case tracking-normal opacity-60">(optional)</span></label>
+        <input id="eoi-inst" name="institution" type="text" maxlength="160" autocomplete="organization" class={field} />
+      </div>
+    </div>
+
+    <div>
+      <label class={label} for="eoi-profile">LinkedIn or professional profile <span class="normal-case tracking-normal opacity-60">(optional)</span></label>
+      <input id="eoi-profile" name="profile" type="url" maxlength="300" placeholder="https://" class={field} />
+    </div>
+
+    <div>
+      <label class={label} for="eoi-interest">Tell us about your interest in VAI Expert Connect <span class="normal-case tracking-normal opacity-60">(optional)</span></label>
+      <textarea id="eoi-interest" name="interest" rows="4" maxlength="2000" class={field}></textarea>
+    </div>
+
+    <!-- Honeypot: invisible to people, tempting to bots. Anything typed here means the submission is discarded. -->
+    <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden">
+      <label for="eoi-website">Leave this field empty</label>
+      <input id="eoi-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <div class="grid gap-4 pt-1">
+      <label class="flex items-start gap-3 text-xs leading-relaxed max-w-xl cursor-pointer opacity-80">
+        <input id="eoi-consent" name="consent" type="checkbox" required class="mt-0.5 h-4 w-4 shrink-0" />
+        <span>I agree that VAI may use these details to consider my interest in the VAI Expert Network and to contact me about it. See the <a href="https://app.vai.vet/privacy" rel="noopener" class="underline">Privacy Policy</a>.</span>
+      </label>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+        <button id="eoi-submit" type="submit" class="btn-brand btn-brand-primary self-start">Submit interest</button>
+        <p id="eoi-status" role="status" aria-live="polite" class="text-sm leading-relaxed"></p>
+      </div>
+    </div>
+
+    <noscript>
+      <p class="text-sm leading-relaxed">This form needs JavaScript. You can also write to <a class="underline" href="mailto:faculty@vai.vet">faculty@vai.vet</a>.</p>
+    </noscript>
+  </form>
+
+  <div id="eoi-done" class="hidden px-5 py-9 md:px-9 md:py-12" role="status" tabindex="-1">
+    <div class="eyebrow-brand mb-3">Interest received</div>
+    <p class="font-brand-serif text-2xl md:text-3xl leading-snug mb-4">Thank you for your interest in the VAI Expert Network.</p>
+    <p class="leading-relaxed opacity-80 max-w-xl">We'll review your details as Expert Connect develops and contact you about relevant opportunities to participate.</p>
+  </div>
+</div>
+
+<script>
+  const root = document.getElementById('eoi-root') as HTMLElement | null;
+  const form = document.getElementById('eoi-form') as HTMLFormElement | null;
+  if (root && form) {
+    const endpoint = root.dataset.endpoint as string;
+    const renderedAt = Date.now();
+    const status = document.getElementById('eoi-status') as HTMLElement;
+    const submit = document.getElementById('eoi-submit') as HTMLButtonElement;
+    const done = document.getElementById('eoi-done') as HTMLElement;
+    const say = (html: string, error: boolean) => {
+      status.innerHTML = html;
+      status.className = 'text-sm leading-relaxed ' + (error ? 'text-red-800' : '');
+    };
+    const direct = 'Please try again, or write to <a class="underline" href="mailto:faculty@vai.vet">faculty@vai.vet</a>.';
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (submit.disabled) return; // no double submission
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      const d = new FormData(form);
+      const payload = {
+        kind: 'expert-interest',
+        name: String(d.get('name') ?? ''),
+        email: String(d.get('email') ?? ''),
+        country: String(d.get('country') ?? ''),
+        role: String(d.get('role') ?? ''),
+        specialty: String(d.get('specialty') ?? ''),
+        qualifications: String(d.get('qualifications') ?? ''),
+        institution: String(d.get('institution') ?? ''),
+        profile: String(d.get('profile') ?? ''),
+        interest: String(d.get('interest') ?? ''),
+        consent: (document.getElementById('eoi-consent') as HTMLInputElement).checked,
+        website: String(d.get('website') ?? ''),
+        t: renderedAt,
+      };
+      submit.disabled = true;
+      submit.setAttribute('aria-busy', 'true');
+      submit.textContent = 'Sending…';
+      say('Sending your details…', false);
+      try {
+        const res = await fetch(endpoint, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(payload) });
+        const body = await res.json().catch(() => ({}) as { ok?: boolean; error?: string });
+        if (res.ok && body.ok === true) {
+          form.classList.add('hidden');
+          done.classList.remove('hidden');
+          done.focus();
+          return;
+        }
+        const reason = typeof body.error === 'string' && res.status < 500 ? body.error + ' ' : 'We could not send your details just now. ';
+        say(reason + direct, true);
+      } catch {
+        say('We could not send your details just now. ' + direct, true);
+      }
+      submit.disabled = false;
+      submit.removeAttribute('aria-busy');
+      submit.textContent = 'Submit interest';
+    });
+  }
+</script>

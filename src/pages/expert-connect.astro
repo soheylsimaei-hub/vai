@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import SignatureGeometry from '../components/texture/SignatureGeometry.astro';
+import ExpertInterestForm from '../components/ExpertInterestForm.astro';
 
 // VAI EXPERT CONNECT, an informational "coming soon" page. Nothing on this page is operational: there is no form, no upload, no payment and
 // no request flow, and no price, response time, expert availability or number of experts is stated. Availability is communicated by the Coming to VAI status labels.
@@ -8,6 +9,10 @@ import SignatureGeometry from '../components/texture/SignatureGeometry.astro';
 // "Register Your Interest" is intentionally NOT a link. The only candidate route is /contact/, whose form posts to a Formspree endpoint that is
 // still the placeholder YOUR_FORMSPREE_ID (src/components/ContactForm.astro), so a submission would not reach anyone, and the form carries no
 // privacy notice beyond a one-line consent. Until a working, privacy-reviewed route exists the section stays non-transactional.
+// EXPERT_FORM_LIVE: the Expert Network expression-of-interest form is built and tested end to end against the VAI app's public contact endpoint, which emails faculty@vai.vet. It stays OFF until that
+// mailbox exists and a test submission has been confirmed in it (on 2026-10-11 Google still answered "550 5.1.1 account does not exist" for faculty@vai.vet, so a submission would bounce unseen).
+// While OFF, the section shows the status pill instead of the call to action.
+const EXPERT_FORM_LIVE = false;
 const steps = [
   {
     n: 1,
@@ -126,32 +131,37 @@ const steps = [
         <div class="eyebrow-brand mb-4" style="color: var(--brand-gold);">For specialists and experienced clinicians</div>
         <h2 class="font-brand-serif text-[var(--brand-cloud-white)] text-3xl md:text-5xl leading-[1.1] mb-6">Join the VAI Expert Network</h2>
         <p class="text-lg md:text-xl leading-relaxed opacity-90 mb-8">
-          We are building a network of veterinary specialists and experienced clinicians to help shape the next generation of professional clinical support.
+          We're bringing together veterinary specialists and experienced clinicians who want to contribute to the next generation of professional clinical support.
         </p>
-        <div class="inline-flex flex-wrap items-center gap-x-4 gap-y-2 border border-white/25 rounded-[1.6rem] sm:rounded-full px-5 py-3">
-          <span class="text-[11px] uppercase tracking-[0.16em]" style="color: var(--brand-gold);">Coming to VAI</span>
-          <span class="text-sm opacity-80">Specialist participation opening progressively.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. Preparing for launch: a confident closing statement. No timetable, numbers or availability claims. -->
-  <section class="bg-[var(--brand-cloud-white)]">
-    <div class="mx-auto max-w-6xl px-6 sec-feature">
-      <div class="max-w-3xl">
-        <div class="eyebrow-brand mb-4">Preparing for launch</div>
-        <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-4xl leading-[1.15] mb-6">
-          Expert Connect is being prepared for its first phase of specialist participation.
-        </h2>
-        <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed text-lg max-w-2xl mb-8">
-          VAI is bringing together the clinical framework, specialist network and professional experience that will support expert-to-veterinarian consultation within the platform.
-        </p>
-        <a href="https://app.vai.vet" rel="noopener noreferrer" class="btn-brand btn-brand-primary">Open VAI</a>
+        {EXPERT_FORM_LIVE ? (
+          <>
+            <button id="eoi-open" type="button" aria-expanded="false" aria-controls="eoi-panel" class="btn-brand btn-brand-primary">Express your interest &rarr;</button>
+            <div id="eoi-panel" class="hidden mt-8 max-w-2xl"><ExpertInterestForm /></div>
+          </>
+        ) : (
+          <div class="inline-flex flex-wrap items-center gap-x-4 gap-y-2 border border-white/25 rounded-[1.6rem] sm:rounded-full px-5 py-3">
+            <span class="text-[11px] uppercase tracking-[0.16em]" style="color: var(--brand-gold);">Coming to VAI</span>
+            <span class="text-sm opacity-80">Specialist participation opening progressively.</span>
+          </div>
+        )}
       </div>
     </div>
   </section>
 </Base>
+
+<script>
+  // Opens and closes the expression-of-interest form beneath the call to action (present only when the form is live).
+  const openBtn = document.getElementById('eoi-open') as HTMLButtonElement | null;
+  const panel = document.getElementById('eoi-panel') as HTMLElement | null;
+  if (openBtn && panel) {
+    openBtn.addEventListener('click', () => {
+      const opening = panel.classList.contains('hidden');
+      panel.classList.toggle('hidden', !opening);
+      openBtn.setAttribute('aria-expanded', String(opening));
+      if (opening) (panel.querySelector('input, select') as HTMLElement | null)?.focus();
+    });
+  }
+</script>
 
 <style>
   .coming-soon-badge {
