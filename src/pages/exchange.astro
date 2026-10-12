@@ -1,0 +1,310 @@
+---
+import Base from '../layouts/Base.astro';
+import SignatureGeometry from '../components/texture/SignatureGeometry.astro';
+import ReasoningLines from '../components/texture/ReasoningLines.astro';
+
+// VAI EXCHANGE: the public product page (2026-10-12). It explains the capability; the signed-in Exchange at app.vai.vet/exchange is the experience itself.
+// Honesty rules for this page: Exchange is an EXPERT PREVIEW. The interface shown is an illustration (no names, no usernames, no counts, no timestamps, no endorsements); nothing says or implies that an
+// active community, specialist participation or a working synthesis feature exists today; community discussion is never presented as evidence. Participation uses a real, working route: an email to vai@vai.vet.
+const JOIN_HREF = 'mailto:vai@vai.vet?subject=VAI%20Exchange%3A%20Expert%20Preview';
+const OPEN_EXCHANGE = 'https://app.vai.vet/exchange';
+
+const flow = [
+  { t: 'Clinical question', d: 'A focused question about a real case or a clinical uncertainty.' },
+  { t: 'Case context', d: 'The signalment, the findings and what has been done, so every perspective responds to the same facts.' },
+  { t: 'Professional perspectives', d: 'Colleagues and specialists share how they would approach it, and why.' },
+  { t: 'Evidence and discussion', d: 'Published evidence stays distinct from opinion, and the discussion can challenge both.' },
+  { t: 'Synthesis', d: 'Where perspectives agree, where they differ and what remains open, brought together in one place.' },
+  { t: 'Follow-up and outcome', d: 'What was decided, what happened next and what was learned.' },
+];
+
+const contexts = [
+  'Diagnostic uncertainty',
+  'Difficult or unusual cases',
+  'Interpretation of findings',
+  'Management approaches',
+  'Clinical reasoning',
+  'Treatment challenges',
+  'Follow-up and outcomes',
+  'Professional questions',
+  'Specialist and peer perspectives',
+];
+
+const journey = ['Initial question', 'Professional perspectives', 'Clinical decision', 'Follow-up', 'Outcome'];
+
+const platform = [
+  { w: 'Evidence', l: 'VAI Pulse', href: '/pulse/', d: 'Helps clinicians stay connected to the evidence.' },
+  { w: 'Reason', l: 'Ask VAI', href: '/#ask-vai', d: 'Helps clinicians explore evidence and reason through clinical questions.' },
+  { w: 'Practise', l: 'VAI Practice', href: '/#practice', d: 'Helps clinicians rehearse clinical reasoning and communication.' },
+  { w: 'Exchange', l: 'VAI Exchange', href: null, d: 'Connects clinicians around cases, questions and professional perspectives.', here: true },
+  { w: 'Develop', l: 'VAI Veterinary Academy', href: '/academy/', d: 'Develops structured professional capability.' },
+];
+// Column treatment per item: five columns from 1280px; from 768px a balanced 3 + 2; stacked below. Literal class strings so Tailwind keeps them.
+const platformCell = [
+  'md:col-span-2 xl:col-span-1 md:border-t-0 md:pr-6 xl:pr-5',
+  'md:col-span-2 xl:col-span-1 md:border-t-0 md:border-l md:border-white/15 md:px-6 xl:px-5',
+  'md:col-span-2 xl:col-span-1 md:border-t-0 md:border-l md:border-white/15 md:px-6 xl:px-5',
+  'md:col-span-3 xl:col-span-1 xl:border-t-0 xl:border-l xl:border-white/15 md:pr-6 xl:px-5',
+  'md:col-span-3 xl:col-span-1 md:border-l md:border-white/15 xl:border-t-0 md:pl-6 xl:px-5',
+];
+
+const audience = ['Companion-animal veterinarians', 'Veterinary specialists', 'Experienced clinicians', 'Early-career clinicians', 'Clinical educators'];
+---
+<Base
+  title="VAI Exchange | Veterinary Clinical Knowledge & Professional Exchange"
+  description="VAI Exchange brings veterinary professionals together around clinical questions, cases, evidence and professional perspectives within the VAI platform."
+  ogDescription="Clinical knowledge, shared. VAI Exchange is the professional veterinary clinical community within VAI, built around cases, perspectives, evidence and follow-up."
+>
+  <!-- 1. Hero -->
+  <section class="tx-host bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]">
+    <SignatureGeometry tone="navy" place="hero" />
+    <div class="tx-content mx-auto max-w-6xl px-6 sec-hero">
+      <div class="max-w-4xl">
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <div class="eyebrow-brand" style="color: var(--brand-gold);">VAI Exchange</div>
+          <span class="tag-tactile text-[11px] uppercase tracking-[0.12em] !bg-[rgba(190,150,89,0.16)] !bg-none !border-[rgba(190,150,89,0.65)] !text-[var(--brand-gold)] !shadow-none">Expert Preview</span>
+        </div>
+        <h1 class="font-brand-serif text-[var(--brand-cloud-white)] text-5xl md:text-7xl leading-[1.06] mb-8">
+          Clinical knowledge, shared.
+        </h1>
+        <p class="text-xl md:text-2xl leading-relaxed opacity-90 max-w-3xl mb-5">
+          Veterinary medicine advances through evidence, experience and the exchange of clinical perspectives.
+        </p>
+        <p class="text-lg leading-relaxed opacity-80 max-w-2xl mb-10">
+          VAI Exchange brings veterinary professionals together around real clinical questions, cases and professional discussion, creating a structured environment for knowledge to be shared, challenged and developed.
+        </p>
+        <div class="flex flex-wrap items-center gap-3">
+          <a href={JOIN_HREF} class="btn-brand btn-brand-primary">Join the Expert Preview &rarr;</a>
+          <a href={OPEN_EXCHANGE} rel="noopener noreferrer" class="btn-brand btn-brand-on-dark">Open VAI Exchange</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. More than a discussion thread -->
+  <section class="tx-host bg-[var(--brand-cloud-white)]">
+    <ReasoningLines variant="flow" tone="light" place="flow" />
+    <div class="tx-content mx-auto max-w-6xl px-6 sec-feature">
+      <div class="max-w-3xl mb-10 md:mb-14">
+        <div class="eyebrow-brand mb-4">How Exchange works</div>
+        <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-5xl leading-[1.12] mb-6">More than a discussion thread.</h2>
+        <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed text-lg">
+          Most clinical discussion disappears into a chronological feed. VAI Exchange is designed to give a discussion a shape, so that it can become useful professional knowledge instead.
+        </p>
+      </div>
+      <ol class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-0 border-t border-black/10">
+        {flow.map((s, i) => (
+          <li class="py-7 border-b border-black/10">
+            <div class="num-index text-[var(--brand-gold)] text-xs mb-3">{String(i + 1).padStart(2, '0')}</div>
+            <h3 class="font-brand-serif text-[var(--brand-midnight-navy)] text-2xl leading-snug mb-2">{s.t}</h3>
+            <p class="text-sm text-[var(--brand-midnight-navy)] opacity-75 leading-relaxed max-w-xs">{s.d}</p>
+          </li>
+        ))}
+      </ol>
+      <p class="mt-8 max-w-3xl text-sm text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed">
+        VAI Exchange is in Expert Preview. These steps are demonstrated with illustrative content, and parts of the flow, such as evidence panels and discussion synthesis, are being introduced progressively. None of it is shown as live community activity.
+      </p>
+    </div>
+  </section>
+
+  <!-- 3. Built around clinical context -->
+  <section class="bg-white border-t border-black/10">
+    <div class="mx-auto max-w-6xl px-6 sec-feature">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-16">
+        <div class="lg:col-span-6">
+          <div class="eyebrow-brand mb-4">Clinical context</div>
+          <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-5xl leading-[1.12] mb-6">Built around clinical context.</h2>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed text-lg mb-5">
+            A clinical discussion is only as useful as its context. VAI Exchange is designed around the case, so that perspectives respond to the specifics rather than to generalities.
+          </p>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed">
+            Exchange provides professional discussion and perspectives. It does not provide a diagnosis, and it does not replace the judgement of the clinician responsible for the patient.
+          </p>
+        </div>
+        <div class="lg:col-span-5 lg:col-start-8">
+          <div class="eyebrow-brand mb-4">What it is built for</div>
+          <ul class="border-t border-black/10">
+            {contexts.map((c) => (
+              <li class="py-3.5 border-b border-black/10 text-[var(--brand-midnight-navy)] leading-snug">{c}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. One case, different perspectives (an illustration of the interface, never real activity) -->
+  <section class="tx-host bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)] border-t border-white/10">
+    <SignatureGeometry tone="navy" place="trust" />
+    <div class="tx-content mx-auto max-w-6xl px-6 sec-feature">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-14 items-start">
+        <div class="lg:col-span-5">
+          <div class="text-xs uppercase tracking-[0.14em] opacity-70 mb-4">Multiple perspectives</div>
+          <h2 class="font-brand-serif text-[var(--brand-cloud-white)] text-3xl md:text-5xl leading-[1.12] mb-6">One case. Different perspectives.</h2>
+          <p class="text-lg opacity-85 leading-relaxed mb-5">
+            Difficult clinical problems rarely have a single useful point of view. Exchange creates space to compare how colleagues approach the same case: what they prioritise, where they agree, where they differ, what evidence informs the discussion and what remains uncertain.
+          </p>
+          <p class="opacity-75 leading-relaxed">
+            Agreement among colleagues is not the same as evidence. Exchange shows perspectives side by side. It does not treat a consensus as clinical truth.
+          </p>
+        </div>
+        <div class="lg:col-span-7">
+          <figure class="m-0" aria-labelledby="illus-caption">
+            <div class="bg-[var(--brand-cloud-white)] text-[var(--brand-midnight-navy)] border border-white/20 shadow-[0_24px_60px_-28px_rgba(0,0,0,0.6)]">
+              <div class="flex flex-wrap items-center justify-between gap-2 px-5 py-3 border-b border-black/10 bg-white">
+                <span class="text-[11px] uppercase tracking-[0.14em] text-[var(--brand-clinical-blue)] font-medium">Dermatology &middot; Canine</span>
+                <span class="text-[11px] uppercase tracking-[0.12em] opacity-60">Illustrative interface</span>
+              </div>
+              <div class="px-5 pt-5 pb-6">
+                <h3 class="font-brand-serif text-xl md:text-2xl leading-snug mb-5">Recurrent superficial pyoderma in a 6-year-old Labrador Retriever</h3>
+                <div class="grid gap-3 mb-5">
+                  <div class="border-l-2 border-[var(--brand-clinical-blue)] pl-4">
+                    <div class="text-[11px] uppercase tracking-[0.12em] opacity-60 mb-1">Specialist perspective &middot; Dermatology</div>
+                    <p class="text-sm leading-relaxed">Recurrence changes the clinical question from how to manage this episode to why recurrence is occurring.</p>
+                  </div>
+                  <div class="border-l-2 border-black/20 pl-4">
+                    <div class="text-[11px] uppercase tracking-[0.12em] opacity-60 mb-1">Practitioner perspective &middot; General practice</div>
+                    <p class="text-sm leading-relaxed">I would want to know what happened between episodes: the duration and adherence of earlier courses, and whether cytology was repeated.</p>
+                  </div>
+                  <div class="border-l-2 border-black/20 pl-4">
+                    <div class="text-[11px] uppercase tracking-[0.12em] opacity-60 mb-1">Specialist perspective &middot; Internal medicine</div>
+                    <p class="text-sm leading-relaxed">I would not stop at the skin. Systemic clues change the order of thinking.</p>
+                  </div>
+                </div>
+                <div class="bg-white border border-black/10 p-4">
+                  <div class="text-[11px] uppercase tracking-[0.14em] text-[var(--brand-clinical-blue)] font-medium mb-3">Discussion summary</div>
+                  <dl class="space-y-3 text-sm">
+                    <div><dt class="font-medium">Areas of agreement</dt><dd class="opacity-75 leading-relaxed">Recurrent disease warrants investigation beyond the current skin lesions.</dd></div>
+                    <div><dt class="font-medium">Differing perspectives</dt><dd class="opacity-75 leading-relaxed">The order in which allergic, endocrine and infectious factors should be investigated.</dd></div>
+                    <div><dt class="font-medium">Questions still open</dt><dd class="opacity-75 leading-relaxed">Has culture and susceptibility testing been performed during a recurrent episode?</dd></div>
+                  </dl>
+                </div>
+              </div>
+            </div>
+            <figcaption id="illus-caption" class="mt-3 text-xs opacity-65 leading-relaxed">An illustration of how a case could appear in VAI Exchange. It is not a real case, and these are not real clinicians or real posts.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Evidence stays distinct from opinion -->
+  <section class="bg-[var(--brand-cloud-white)] border-t border-black/10">
+    <div class="mx-auto max-w-6xl px-6 sec-feature">
+      <div class="max-w-3xl mb-10 md:mb-12">
+        <div class="eyebrow-brand mb-4">Perspective with context</div>
+        <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-5xl leading-[1.12] mb-6">Know what you&rsquo;re reading.</h2>
+        <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed text-lg">
+          Different forms of veterinary knowledge carry different authority. VAI is designed to make that difference visible rather than blur it.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5 md:gap-6">
+        <div class="bg-white border border-black/12 border-t-2 border-t-[var(--brand-clinical-blue)] p-6">
+          <div class="text-xs uppercase tracking-[0.14em] text-[var(--brand-clinical-blue)] font-medium mb-3">Evidence</div>
+          <p class="text-sm text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed">Published research and guidelines, with their sources. This is the kind of knowledge Ask VAI draws on and cites.</p>
+        </div>
+        <div class="bg-white border border-black/12 border-t-2 border-t-[var(--brand-gold)] p-6">
+          <div class="text-xs uppercase tracking-[0.14em] text-[var(--brand-midnight-navy)] font-medium mb-3">Professional perspective</div>
+          <p class="text-sm text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed">How a veterinary specialist or experienced clinician approaches a problem, clearly attributed as perspective and never presented as evidence.</p>
+        </div>
+        <div class="bg-white border border-dashed border-black/25 p-6">
+          <div class="text-xs uppercase tracking-[0.14em] text-[var(--brand-midnight-navy)] opacity-80 font-medium mb-3">Community discussion</div>
+          <p class="text-sm text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed">The wider conversation between colleagues. Valuable for seeing how others think, and never treated as validated evidence.</p>
+        </div>
+      </div>
+      <p class="mt-8 max-w-3xl text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed">
+        Content shared in Exchange is not added to Ask VAI&rsquo;s evidence base. Community opinion informs a discussion. It does not change what counts as evidence.
+      </p>
+    </div>
+  </section>
+
+  <!-- 6. The case does not end with the question -->
+  <section class="bg-white border-t border-black/10">
+    <div class="mx-auto max-w-6xl px-6 sec-feature">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+        <div class="lg:col-span-5">
+          <div class="eyebrow-brand mb-4">Follow the case</div>
+          <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-5xl leading-[1.12] mb-6">The case doesn&rsquo;t end with the question.</h2>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed text-lg mb-5">
+            Veterinary communities hold many good questions and rarely show what happened next. Exchange is designed to keep the clinical journey together, where the clinician chooses to share it.
+          </p>
+          <p class="text-sm text-[var(--brand-midnight-navy)] opacity-70 leading-relaxed">In the Expert Preview, follow-up is demonstrated with an illustrative case.</p>
+        </div>
+        <ol class="lg:col-span-6 lg:col-start-7 border-t border-black/10">
+          {journey.map((j, i) => (
+            <li class="flex items-baseline gap-5 py-4 border-b border-black/10">
+              <span class="num-index text-[var(--brand-gold)] text-xs w-6 shrink-0">{String(i + 1).padStart(2, '0')}</span>
+              <span class="font-brand-serif text-[var(--brand-midnight-navy)] text-xl md:text-2xl leading-snug">{j}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Exchange within the VAI ecosystem -->
+  <section class="tx-host bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]">
+    <SignatureGeometry tone="navy" place="cta" />
+    <div class="tx-content mx-auto max-w-6xl xl:max-w-7xl px-6 sec-feature">
+      <div class="max-w-2xl mb-10 md:mb-12">
+        <div class="eyebrow-brand mb-4" style="color: var(--brand-gold);">Within VAI</div>
+        <h2 class="font-brand-serif text-[var(--brand-cloud-white)] text-3xl md:text-5xl leading-[1.12] mb-6">One platform. Five connected capabilities.</h2>
+        <p class="text-lg opacity-85 leading-relaxed">Exchange is one of the reasons VAI exists, and it works alongside the rest of the platform.</p>
+      </div>
+      <ol class="grid md:grid-cols-6 xl:grid-cols-5 border-t border-white/15">
+        {platform.map((s, i) => (
+          <li class={`py-6 border-t border-white/15 first:border-t-0 ${platformCell[i]}`}>
+            <div class="flex items-center gap-3 mb-2">
+              <span class={`inline-block w-[7px] h-[7px] rounded-full border border-[var(--brand-gold)] ${s.here ? 'bg-[var(--brand-gold)]' : ''}`} aria-hidden="true"></span>
+              <h3 class="font-brand-serif text-[var(--brand-cloud-white)] text-2xl leading-none">{s.href ? <a href={s.href} class="hover:text-[var(--brand-gold)] transition-colors">{s.w}</a> : s.w}</h3>
+            </div>
+            <div class={`eyebrow-brand mb-3 ${s.here ? '' : 'opacity-80'}`} style="color: var(--brand-gold);">{s.l}</div>
+            <p class="text-sm opacity-80 leading-relaxed">{s.d}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- 8. Who it is for -->
+  <section class="bg-[var(--brand-cloud-white)]">
+    <div class="mx-auto max-w-6xl px-6 sec-feature">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+        <div class="lg:col-span-6">
+          <div class="eyebrow-brand mb-4">Who it is for</div>
+          <h2 class="font-brand-serif text-[var(--brand-midnight-navy)] text-3xl md:text-5xl leading-[1.12] mb-6">Professional infrastructure for clinical knowledge.</h2>
+          <p class="text-[var(--brand-midnight-navy)] opacity-80 leading-relaxed text-lg">VAI Exchange is built for veterinary knowledge sharing between professionals. It is not a general social network.</p>
+        </div>
+        <ul class="lg:col-span-5 lg:col-start-8 border-t border-black/10">
+          {audience.map((a) => (
+            <li class="py-3.5 border-b border-black/10 text-[var(--brand-midnight-navy)] leading-snug">{a}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Expert Preview and participation -->
+  <section class="tx-host bg-[var(--brand-midnight-navy)] text-[var(--brand-cloud-white)]">
+    <SignatureGeometry tone="navy" place="trust" />
+    <div class="tx-content mx-auto max-w-6xl px-6 sec-hero">
+      <div class="max-w-3xl">
+        <div class="flex flex-wrap items-center gap-3 mb-5">
+          <div class="eyebrow-brand" style="color: var(--brand-gold);">VAI Exchange</div>
+          <span class="tag-tactile text-[11px] uppercase tracking-[0.12em] !bg-[rgba(190,150,89,0.16)] !bg-none !border-[rgba(190,150,89,0.65)] !text-[var(--brand-gold)] !shadow-none">Expert Preview</span>
+        </div>
+        <h2 class="font-brand-serif text-[var(--brand-cloud-white)] text-3xl md:text-5xl leading-[1.1] mb-6">Introduced progressively, with the professionals who shape it.</h2>
+        <p class="text-lg leading-relaxed opacity-90 mb-4">
+          VAI Exchange is being introduced progressively as part of the VAI professional platform.
+        </p>
+        <p class="leading-relaxed opacity-80 mb-9">
+          We are beginning with veterinary professionals who can help shape the quality, structure and clinical standards of the community.
+        </p>
+        <div class="flex flex-wrap items-center gap-3">
+          <a href={JOIN_HREF} class="btn-brand btn-brand-primary">Join the Expert Preview &rarr;</a>
+          <a href="/" class="btn-brand btn-brand-on-dark">Explore VAI</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
