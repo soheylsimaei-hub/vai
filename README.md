@@ -52,7 +52,7 @@ and variables → Actions → Variables).
 /veterinary-longevity   — flagship direction, five pillars
 /faculty                — teach with VAI
 /academic-standards     — programme docs, evidence hierarchy, ethics
-/contact                — contact form (delivers to vai@vai.vet / faculty@vai.vet through the VAI app) and the two public addresses
+/contact                — the two public addresses: vai@vai.vet (primary) and support@vai.vet (support); the contact form (via the VAI app) is built but switched off
 /pulse/                 — VAI Pulse: what's new in veterinary medicine (public, no login)
 /pulse/guidelines/      — VAI Pulse, Guidelines & Consensus
 /pulse/{view}/{discipline}/{period}/ — every filter combination (noindex)
@@ -71,7 +71,7 @@ here: change `vai-app`, re-sync, and commit the result. `npm test` fails if the 
 
 ## Identity
 
-VAI is the master brand; VAI Veterinary is the professional platform; VAI Veterinary Academy is the educational division. Academia Europa and the name "Veterinary Academy International" must not appear on this site. The only public email addresses are `vai@vai.vet` and `faculty@vai.vet`.
+VAI is the master brand; VAI Veterinary is the professional platform; VAI Veterinary Academy is the educational division. Academia Europa and the name "Veterinary Academy International" must not appear on this site. The only public email addresses are `vai@vai.vet` (primary) and `support@vai.vet` (support). The former faculty address was deleted and must not appear.
 
 ## Notes
 

@@ -1,10 +1,10 @@
 ---
-// The VAI contact form. It posts (JSON, from the browser) to the VAI app's public contact endpoint, which emails the enquiry to vai@vai.vet, or to faculty@vai.vet for Faculty Collaboration, with the enquirer as
-// Reply-To. It stores nothing. If the message cannot be delivered the visitor is told so plainly and given the two addresses; the form never reports "sent" unless the server confirms it.
+// The VAI contact form. It posts (JSON, from the browser) to the VAI app's public contact endpoint, which emails the enquiry to vai@vai.vet with the enquirer as
+// Reply-To. It stores nothing. If the message cannot be delivered the visitor is told so plainly and given the address; the form never reports "sent" unless the server confirms it.
 // Protections: required fields and an explicit consent checkbox, a hidden honeypot field, a fill-time trap (the render time is sent), and the server-side origin allow-list, validation and rate limit.
 const ENDPOINT = 'https://app.vai.vet/api/public-contact';
 
-const CATEGORIES = ['General Enquiry', 'VAI Platform', 'VAI Veterinary Academy', 'Faculty Collaboration', 'Partnerships & Organisations', 'Other'];
+const CATEGORIES = ['General Enquiry', 'VAI Platform', 'VAI Veterinary Academy', 'Partnerships & Organisations', 'Other'];
 
 // Programme of interest can be pre-selected via ?programme=trusted-vet-method
 const programmeParam = Astro.url.searchParams.get('programme') ?? '';
@@ -73,7 +73,7 @@ const field = 'w-full border border-platinum bg-paper px-4 py-3 text-graphite fo
     </div>
 
     <noscript>
-      <p class="text-sm text-graphite leading-relaxed">This form needs JavaScript. You can also write to <a class="link-ink" href="mailto:vai@vai.vet">vai@vai.vet</a>, or to <a class="link-ink" href="mailto:faculty@vai.vet">faculty@vai.vet</a> for faculty and academic collaboration.</p>
+      <p class="text-sm text-graphite leading-relaxed">This form needs JavaScript. You can also write to <a class="link-ink" href="mailto:vai@vai.vet">vai@vai.vet</a>.</p>
     </noscript>
   </form>
 
@@ -99,7 +99,7 @@ const field = 'w-full border border-platinum bg-paper px-4 py-3 text-graphite fo
       status.innerHTML = html;
       status.className = 'text-sm leading-relaxed ' + (tone === 'error' ? 'text-red-800' : 'text-graphite');
     };
-    const directEmail = 'Please try again, or write to <a class="link-ink" href="mailto:vai@vai.vet">vai@vai.vet</a> (or <a class="link-ink" href="mailto:faculty@vai.vet">faculty@vai.vet</a> for faculty and academic collaboration).';
+    const directEmail = 'Please try again, or write to <a class="link-ink" href="mailto:vai@vai.vet">vai@vai.vet</a>.';
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (submit.disabled) return; // no double submission

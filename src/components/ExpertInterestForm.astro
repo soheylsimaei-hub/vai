@@ -1,5 +1,5 @@
 ---
-// VAI Expert Network: expression of interest. Posts (JSON, from the browser) to the VAI app's public contact endpoint, which emails the details to faculty@vai.vet with the sender as Reply-To.
+// VAI Expert Network: expression of interest. Posts (JSON, from the browser) to the VAI app's public contact endpoint, which emails the details with the sender as Reply-To. NOTE (2026-10-12): that endpoint's recipient for this form is still the deleted faculty mailbox; it must be changed to vai@vai.vet in the VAI app before this form is switched on.
 // It stores nothing. Self-reported only: roles and qualifications are not verified, and the form never says or implies that anyone has joined the network. If the message cannot be delivered the
 // visitor is told so plainly and given the address; the form never reports success unless the server confirms it.
 // Protections: required fields and an explicit consent checkbox, a hidden honeypot, a fill-time trap (the render time is sent), and the server-side origin allow-list, validation and rate limits.
@@ -85,7 +85,7 @@ const label = 'eyebrow-brand mb-2 block';
     </div>
 
     <noscript>
-      <p class="text-sm leading-relaxed">This form needs JavaScript. You can also write to <a class="underline" href="mailto:faculty@vai.vet">faculty@vai.vet</a>.</p>
+      <p class="text-sm leading-relaxed">This form needs JavaScript. You can also write to <a class="underline" href="mailto:vai@vai.vet">vai@vai.vet</a>.</p>
     </noscript>
   </form>
 
@@ -109,7 +109,7 @@ const label = 'eyebrow-brand mb-2 block';
       status.innerHTML = html;
       status.className = 'text-sm leading-relaxed ' + (error ? 'text-red-800' : '');
     };
-    const direct = 'Please try again, or write to <a class="underline" href="mailto:faculty@vai.vet">faculty@vai.vet</a>.';
+    const direct = 'Please try again, or write to <a class="underline" href="mailto:vai@vai.vet">vai@vai.vet</a>.';
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (submit.disabled) return; // no double submission

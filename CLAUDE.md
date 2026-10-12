@@ -45,7 +45,7 @@ Pages map directly to routes: `/`, `/about`, `/programmes`, `/veterinary-longevi
 
 - Brand architecture: **VAI** is the master brand, **VAI Veterinary** is the professional platform, and **VAI Veterinary Academy** is the educational division. Never use the expanded name "Veterinary Academy International".
 - **Academia Europa must not appear anywhere on this website** (copy, links, metadata, structured data, images, documents). VAI is not presented as part of, a subsidiary of, or the educational arm of any other institution. (Updated by the founder, 2026-10-10.)
-- The only public contact addresses are **vai@vai.vet** (general enquiries) and **faculty@vai.vet** (faculty and academic collaboration). Do not publish any other address.
+- The only public contact addresses are **vai@vai.vet** (VAI's primary address: general, professional, faculty, partnership and organisation enquiries) and **support@vai.vet** (account, access, technical and platform support). **The former faculty address was deleted (2026-10-12) and must not appear anywhere.** Do not publish any other address.
 - Legal identity line: "VAI is a veterinary professional development platform and educational ecosystem operated by Solex Education Unipessoal Lda, a company registered in Portugal." Do not invent registration numbers, addresses, accreditations or affiliations.
 - Do not link to or reference Noble Veterinary Clinic. Do not claim accreditation that has not been formally granted.
 

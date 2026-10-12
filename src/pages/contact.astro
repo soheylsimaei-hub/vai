@@ -4,28 +4,28 @@ import PageHero from '../components/PageHero.astro';
 import Section from '../components/Section.astro';
 import ContactForm from '../components/ContactForm.astro';
 
-// The two public contact addresses. These are the ONLY addresses shown on this site; the contact form delivers to the same two inboxes (see ContactForm.astro and src/app/api/public-contact in vai-app).
+// The two public contact addresses (2026-10-12): vai@vai.vet is VAI's primary address (general, professional, faculty, partnership, programme, Exchange and organisation enquiries) and support@vai.vet is the
+// dedicated support address (account, access, technical or platform problems). Both are live. The former faculty address was deleted and must not appear anywhere on the site. These are the ONLY addresses shown here.
 //
-// FORM_LIVE: the form is built, tested and wired to the VAI app's delivery endpoint, but it is switched OFF until the two mailboxes exist. On 2026-10-10 Google's mail servers answered "550 5.1.1 account does not
-// exist" for BOTH vai@vai.vet and faculty@vai.vet (the same answer as for a made-up address), so a submitted enquiry would be accepted by the email provider and then bounce unseen. Set this to true once
-// both addresses exist and a test enquiry has been confirmed in each inbox. (An earlier version posted to a Formspree placeholder, YOUR_FORMSPREE_ID, which returns "Form not found".)
+// FORM_LIVE: the contact form (ContactForm.astro) is built and wired to the VAI app's delivery endpoint, but it stays switched OFF. Before it is switched on, that endpoint (src/app/api/public-contact in
+// vai-app) must be checked end to end with a test enquiry delivered to vai@vai.vet, and its old "Faculty Collaboration" route to the deleted faculty mailbox must be removed there (the form here no longer offers it).
 const FORM_LIVE = false;
 const channels = [
   {
-    t: 'General Enquiries',
+    t: 'General & Professional Enquiries',
     e: 'vai@vai.vet',
-    d: 'For platform enquiries, partnerships, organisations, general questions and professional communication.',
+    d: 'For questions about VAI, professional collaboration, faculty, partnerships, programmes, VAI Exchange, organisations and other general enquiries.',
   },
   {
-    t: 'Faculty & Academic Collaboration',
-    e: 'faculty@vai.vet',
-    d: 'For faculty applications, veterinary specialists, educators, academic collaboration and educational programme development.',
+    t: 'Support',
+    e: 'support@vai.vet',
+    d: 'For account, access, technical or platform support.',
   },
 ];
 ---
 <Base
   title="Contact VAI"
-  description="Contact VAI: general enquiries, the VAI platform, VAI Veterinary Academy, faculty and academic collaboration, and partnerships with organisations."
+  description="Contact VAI: general and professional enquiries, faculty and academic collaboration, partnerships with organisations, and support for the VAI platform."
 >
   <PageHero
     eyebrow="Contact VAI"
@@ -41,7 +41,7 @@ const channels = [
 
   <Section eyebrow="Write to Us" title={FORM_LIVE ? 'Two ways to reach VAI.' : 'Write to VAI directly.'} tone={FORM_LIVE ? 'ivory' : undefined}>
     {!FORM_LIVE && (
-      <p class="max-w-3xl mb-8 text-graphite leading-relaxed">The online contact form is being set up. Until it opens, please write to us at the address that fits your enquiry.</p>
+      <p class="max-w-3xl mb-8 text-graphite leading-relaxed">Please write to us at the address that fits your enquiry.</p>
     )}
     <ul class="max-w-5xl border-t border-platinum">
       {channels.map((p) => (

@@ -4,7 +4,7 @@ import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 
 // Identity guard (founder instruction, 2026-10-10): Academia Europa and the name "Veterinary Academy International" must not appear anywhere on the public site, and the only public email addresses
-// are vai@vai.vet and faculty@vai.vet. This reads the shipped source (pages, components, layouts, public files, build helpers), not the documentation that states the rule.
+// are vai@vai.vet (primary) and support@vai.vet (support); the former faculty address was deleted (2026-10-12) and must not appear. This reads the shipped source (pages, components, layouts, public files, build helpers), not the documentation that states the rule.
 
 const root = process.cwd();
 const files: string[] = [];
@@ -24,17 +24,19 @@ test("no shipped file names Academia Europa, its domain, or Veterinary Academy I
   assert.deepEqual(bad, []);
 });
 
-test("the only email addresses in the public site are vai@vai.vet and faculty@vai.vet", () => {
+test("the only email addresses in the public site are vai@vai.vet and support@vai.vet, and the deleted faculty address appears nowhere", () => {
   const found = new Set<string>();
   for (const f of shipped) for (const m of read(f).match(/[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}/g) ?? []) if (!/\.(png|jpe?g|webp|svg)$/i.test(m)) found.add(m.toLowerCase());
-  assert.deepEqual([...found].sort(), ["faculty@vai.vet", "vai@vai.vet"]);
+  assert.deepEqual([...found].sort(), ["support@vai.vet", "vai@vai.vet"]);
+  assert.ok(!shipped.some((f) => /faculty@vai\.vet/i.test(read(f))), "no shipped file mentions the deleted faculty address");
 });
 
 test("the contact form no longer posts to a placeholder service and names the VAI endpoint and the approved categories", () => {
   const form = read(join(root, "src/components/ContactForm.astro"));
   assert.doesNotMatch(form, /formspree|YOUR_FORMSPREE_ID/i);
   assert.match(form, /https:\/\/app\.vai\.vet\/api\/public-contact/);
-  for (const c of ["General Enquiry", "VAI Platform", "VAI Veterinary Academy", "Faculty Collaboration", "Partnerships & Organisations", "Other"]) assert.ok(form.includes(c), c);
+  for (const c of ["General Enquiry", "VAI Platform", "VAI Veterinary Academy", "Partnerships & Organisations", "Other"]) assert.ok(form.includes(c), c);
+  assert.ok(!form.includes("Faculty Collaboration"), "the form no longer offers a faculty route (that mailbox was deleted; faculty enquiries go to vai@vai.vet)");
   assert.match(form, /name="website"/, "honeypot present");
   assert.match(form, /type="checkbox" required/, "explicit consent required");
 });
@@ -45,5 +47,7 @@ test("the contact page uses the approved headline and legal identity line, and t
   assert.match(page, /eyebrow="Contact VAI"/);
   assert.match(page, /operated by <strong[^>]*>Solex Education Unipessoal Lda<\/strong>, a company registered in Portugal/);
   assert.match(page, /const FORM_LIVE = (true|false);/);
-  assert.match(page, /550 5\.1\.1/, "the reason the form is gated is recorded next to the switch");
+  assert.match(page, /FORM_LIVE: [^\n]*switched OFF/, "the reason the form is gated is recorded next to the switch");
+  assert.match(page, /mailto:\$\{p\.e\}/, "the addresses are live mailto links");
+  assert.match(page, /e: 'vai@vai\.vet'[\s\S]*e: 'support@vai\.vet'/, "the two channels: VAI first, support second");
 });

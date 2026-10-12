@@ -9,9 +9,9 @@ import ExpertInterestForm from '../components/ExpertInterestForm.astro';
 // "Register Your Interest" is intentionally NOT a link. The only candidate route is /contact/, whose form posts to a Formspree endpoint that is
 // still the placeholder YOUR_FORMSPREE_ID (src/components/ContactForm.astro), so a submission would not reach anyone, and the form carries no
 // privacy notice beyond a one-line consent. Until a working, privacy-reviewed route exists the section stays non-transactional.
-// EXPERT_FORM_LIVE: the Expert Network expression-of-interest form is built and tested end to end against the VAI app's public contact endpoint, which emails faculty@vai.vet. It stays OFF until that
-// mailbox exists and a test submission has been confirmed in it (on 2026-10-11 Google still answered "550 5.1.1 account does not exist" for faculty@vai.vet, so a submission would bounce unseen).
-// While OFF, the section shows the status pill instead of the call to action.
+// EXPERT_FORM_LIVE: the Expert Network expression-of-interest form is built and tested against the VAI app's public contact endpoint, but it stays OFF: that endpoint still emails the deleted
+// deleted faculty mailbox for this form, so it must be changed to vai@vai.vet in the VAI app and re-tested before the form is switched on. While OFF, the section shows the status pill and a working
+// "Express your interest" link that opens an email to vai@vai.vet (vai@vai.vet is live and is VAI's primary address).
 const EXPERT_FORM_LIVE = false;
 const steps = [
   {
@@ -139,9 +139,12 @@ const steps = [
             <div id="eoi-panel" class="hidden mt-8 max-w-2xl"><ExpertInterestForm /></div>
           </>
         ) : (
-          <div class="inline-flex flex-wrap items-center gap-x-4 gap-y-2 border border-white/25 rounded-[1.6rem] sm:rounded-full px-5 py-3">
-            <span class="text-[11px] uppercase tracking-[0.16em]" style="color: var(--brand-gold);">Coming to VAI</span>
-            <span class="text-sm opacity-80">Specialist participation opening progressively.</span>
+          <div class="flex flex-wrap items-center gap-x-6 gap-y-4">
+            <a href="mailto:vai@vai.vet?subject=VAI%20Expert%20Network%3A%20expression%20of%20interest" class="btn-brand btn-brand-primary">Express your interest &rarr;</a>
+            <div class="inline-flex flex-wrap items-center gap-x-4 gap-y-2 border border-white/25 rounded-[1.6rem] sm:rounded-full px-5 py-3">
+              <span class="text-[11px] uppercase tracking-[0.16em]" style="color: var(--brand-gold);">Coming to VAI</span>
+              <span class="text-sm opacity-80">Specialist participation opening progressively.</span>
+            </div>
           </div>
         )}
       </div>
